@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class ControllerUserEventController {
+public class ControlUserEventController {
     @FXML
     public void onButtonGoToHome() {
         try {

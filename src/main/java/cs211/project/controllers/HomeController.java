@@ -30,4 +30,12 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public  void onButtonGoToMyEvent(){
+        try {
+            FXRouter.goTo("MyEvent");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

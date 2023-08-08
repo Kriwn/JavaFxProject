@@ -18,11 +18,11 @@ public class HelloApplication extends Application {
     private static void configRoute() {
         String resourcesPath = "cs211/project/views/";
         FXRouter.when("hello", resourcesPath + "hello-view.fxml");
-        FXRouter.when("LoginPage", resourcesPath + "LoginPage.fxml");
-        FXRouter.when("ControlUserEvent",resourcesPath + "ControlUserEvent.fxml");
-        FXRouter.when("AdminPass",resourcesPath + "Admin-pass.fxml");
-        FXRouter.when("Home",resourcesPath + "Home.fxml");
-        FXRouter.when("SingUp",resourcesPath + "SingUp.fxml");
+        FXRouter.when("LoginPage", resourcesPath + "login-page.fxml");
+        FXRouter.when("ControlUserEvent",resourcesPath + "control-user-event.fxml");
+        FXRouter.when("Home",resourcesPath + "home.fxml");
+        FXRouter.when("SingUp",resourcesPath + "sing-up.fxml");
+        FXRouter.when("MyEvent",resourcesPath + "my-event.fxml");
     }
 
 
