@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #E4DCCF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.JoinEventController">
+   <children>
+      <AnchorPane blendMode="SRC_ATOP" prefHeight="760.0" prefWidth="240.0" style="-fx-background-color: #7D9D9C;" stylesheets="@../../../../../../../new/src/main/resources/CSS/User/side.css">
+         <children>
+            <Label layoutX="80.0" layoutY="156.0" text="UserName" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="94.0" fitWidth="106.0" layoutX="73.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/add-friend.png" />
+               </image>
+            </ImageView>
+            <Button layoutY="268.0" mnemonicParsing="false" onAction="#onButtonGoToHome" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutY="358.0" mnemonicParsing="false" onAction="#onButtonGoToMyEvent" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="My Event" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutY="448.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutY="538.0" mnemonicParsing="false" onAction="#onButtonGoToLoginPage" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="319.5" layoutY="40.0" prefHeight="680.0" prefWidth="625.0" style="-fx-background-color: #F0EBE3; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="65.0" layoutY="31.0" text="Join Event">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="273.0" layoutY="606.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #576F72;" text="Join" textFill="WHITE" />
+            <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="400.0" text="รายละเอียด Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="460.0" text="วันที่เริ่ม Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="340.0" layoutY="460.0" text="เวลาที่เริ่ม Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="520.0" text="วันที่สิ้นสุด Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="340.0" layoutY="520.0" text="เวลาที่สิ้นสุด Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="345.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+            <ListView layoutX="90.0" layoutY="90.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;" />
+            <Label layoutX="245.0" layoutY="340.0" text="nameEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="245.0" layoutY="400.0" text="detailsEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="460.0" text="dateStartEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="519.0" text="dateEndEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="486.0" layoutY="459.0" text="timeStartEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="486.0" layoutY="520.0" text="timeEndEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="65.0" layoutY="581.0" prefWidth="150.0" style="-fx-background-color: #576F72;" stylesheets="@../../../../../../../new/src/main/resources/CSS/User/join-event.css" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

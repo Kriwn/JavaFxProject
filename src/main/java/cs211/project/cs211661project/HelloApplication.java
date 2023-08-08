@@ -26,8 +26,9 @@ public class HelloApplication extends Application {
         FXRouter.when("AdminMain",resourcesPath + "admin-main.fxml");
         FXRouter.when("AdminPass",resourcesPath + "admin-pass.fxml");
         FXRouter.when("edit-event", resourcesPath + "edit-event.fxml");
+        FXRouter.when("CreateEvent",resourcesPath + "create-event.fxml");
+        FXRouter.when("JoinEvent",resourcesPath + "join-event.fxml");
     }
-
 
     public static void main(String[] args) {
         launch();
