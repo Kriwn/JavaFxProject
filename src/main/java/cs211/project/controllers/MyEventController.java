@@ -5,7 +5,15 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class ControlUserEventController {
+public class MyEventController {
+    @FXML
+    public  void onButtonGoToLoginPage(){
+        try {
+            FXRouter.goTo("LoginPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @FXML
     public void onButtonGoToHome() {
         try {
@@ -15,24 +23,26 @@ public class ControlUserEventController {
         }
     }
     @FXML
-    public  void onButtonGoToMyEvent() {
+    public void onButtonGoToControlUserEvent() {
+        try {
+            FXRouter.goTo("ControlUserEvent");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToMyEvent(){
         try {
             FXRouter.goTo("MyEvent");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
-        public void onButtonGoToSetting() {
+    public  void onButtonGoToSetting(){
         try {
             FXRouter.goTo("Setting");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void onButtonGoToLogout() {
-        try {
-            FXRouter.goTo("LoginPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
