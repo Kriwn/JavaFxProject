@@ -12,22 +12,44 @@
    <children>
       <ListView layoutX="304.0" layoutY="42.0" prefHeight="674.0" prefWidth="367.0" style="-fx-background-radius: 15px; -fx-background-color: #F0EBE3;" />
       <Label layoutX="703.0" layoutY="167.0" text="Name">
+      <ListView layoutX="304.0" layoutY="69.0" prefHeight="290.0" prefWidth="367.0" style="-fx-background-radius: 15px; -fx-background-color: #F0EBE3;" />
+      <Label layoutX="753.0" layoutY="498.0" text="TimeStart">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label layoutX="703.0" layoutY="230.0" text="Number">
+      <Label layoutX="753.0" layoutY="561.0" text="TimeEnd">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Label layoutX="703.0" layoutY="292.0" text="Label">
+      <Label layoutX="753.0" layoutY="623.0" text="Detail">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Button layoutX="810.0" layoutY="681.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #7D9D9C; -fx-background-radius: 15px;" text="Ban" textFill="WHITE" />
       <AnchorPane blendMode="SRC_ATOP" prefHeight="760.0" prefWidth="240.0" style="-fx-background-color: #7D9D9C;" stylesheets="@../../../CSS/User/side.css">
+      <Button layoutX="780.0" layoutY="197.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #7D9D9C; -fx-background-radius: 15px;" text="Ban" textFill="WHITE" />
+      <ListView layoutX="304.0" layoutY="416.0" prefHeight="290.0" prefWidth="367.0" style="-fx-background-radius: 15px; -fx-background-color: #F0EBE3;" />
+      <Label layoutX="753.0" layoutY="441.0" text="Name activity">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="316.0" layoutY="24.0" text="User List">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="316.0" layoutY="380.0" text="Activity List">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane blendMode="SRC_ATOP" prefHeight="760.0" prefWidth="240.0" style="-fx-background-color: #7D9D9C;" stylesheets="@../../../../../../../new/src/main/resources/CSS/User/side.css">
          <children>
             <Label layoutX="80.0" layoutY="156.0" text="UserName" textFill="WHITE">
                <font>
@@ -50,11 +72,15 @@
                </font>
             </Button>
             <Button layoutY="448.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+            <Button layoutX="20.0" layoutY="448.0" mnemonicParsing="false" onAction="#onButtonGoToSetting" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+            <Button layoutY="448.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="538.0" mnemonicParsing="false" onAction="#onButtonGoToLoginPage" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
+            <Button layoutY="538.0" mnemonicParsing="false" onAction="#" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
+            <Button layoutY="538.0" mnemonicParsing="false" onAction="#onButtonGoToLogout" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
