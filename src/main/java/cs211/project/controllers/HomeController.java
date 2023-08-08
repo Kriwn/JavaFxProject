@@ -14,4 +14,20 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public  void onButtonGoToCreateEventPage(){
+        try {
+            FXRouter.goTo("createEvent");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToJoinEventPage(){
+        try {
+            FXRouter.goTo("LoginPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
