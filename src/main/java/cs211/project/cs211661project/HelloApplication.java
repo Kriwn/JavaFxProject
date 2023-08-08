@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
 
         FXRouter.bind(this, stage, "CS211 661 Project",1024,760);
         configRoute();
-        FXRouter.goTo("AdminMain");
+        FXRouter.goTo("LoginPage");
     }
 
     private static void configRoute() {
@@ -25,6 +25,8 @@ public class HelloApplication extends Application {
         FXRouter.when("MyEvent",resourcesPath + "my-event.fxml");
         FXRouter.when("AdminMain",resourcesPath + "admin-main.fxml");
         FXRouter.when("AdminPass",resourcesPath + "admin-pass.fxml");
+        FXRouter.when("CreateEvent",resourcesPath + "create-event.fxml");
+        FXRouter.when("JoinEvent",resourcesPath + "join-event.fxml");
     }
 
 
