@@ -14,4 +14,12 @@ public class ControlUserEventController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public void onButtonGoToSetting() {
+        try {
+            FXRouter.goTo("Setting");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

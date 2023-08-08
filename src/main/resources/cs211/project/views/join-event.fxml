@@ -33,7 +33,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="448.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+            <Button layoutY="448.0" mnemonicParsing="false" onAction="#onButtonGoToSetting" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

@@ -16,3 +16,9 @@
     -fx-text-alignment: center;
     -fx-cursor: hand;
 }
+
+.button:hover{
+    -fx-background-color: #576F72;
+    -fx-border-width:0 0 0 10;
+    -fx-border-color: white;
+}
