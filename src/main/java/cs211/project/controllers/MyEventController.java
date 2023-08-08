@@ -47,4 +47,12 @@ public class MyEventController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public void goToEditEvent() {
+        try {
+            FXRouter.goTo("edit-event");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

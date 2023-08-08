@@ -24,7 +24,7 @@
                   <Image url="@../Images/add-friend.png" />
                </image>
             </ImageView>
-            <Button layoutY="268.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Home" textFill="WHITE">
+            <Button layoutY="268.0" mnemonicParsing="false" onAction="#onButtonGoToHome" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Home" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
