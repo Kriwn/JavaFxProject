@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #E4DCCF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane blendMode="SRC_ATOP" prefHeight="760.0" prefWidth="240.0" style="-fx-background-color: #7D9D9C;">
@@ -22,7 +21,7 @@
                   <Image url="@../Images/add-friend.png" />
                </image>
             </ImageView>
-            <Button layoutY="268.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Home" textFill="WHITE">
+            <Button layoutY="268.0" mnemonicParsing="false" onAction="#onButtonGoToHome" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Home" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +36,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="538.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
+            <Button layoutY="538.0" mnemonicParsing="false" onAction="#onButtonGoToLoginPage" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
