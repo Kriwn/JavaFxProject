@@ -22,4 +22,12 @@ public class ControlUserEventController {
             throw new RuntimeException(e);
         }
     }
+        @FXML
+    public void onButtonGoToLogout() {
+        try {
+            FXRouter.goTo("LoginPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
