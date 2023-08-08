@@ -17,7 +17,7 @@ public class HomeController {
     @FXML
     public  void onButtonGoToCreateEventPage(){
         try {
-            FXRouter.goTo("createEvent");
+            FXRouter.goTo("CreateEvent");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -25,7 +25,7 @@ public class HomeController {
     @FXML
     public  void onButtonGoToJoinEventPage(){
         try {
-            FXRouter.goTo("LoginPage");
+            FXRouter.goTo("JoinEvent");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,6 +34,14 @@ public class HomeController {
     public  void onButtonGoToMyEvent(){
         try {
             FXRouter.goTo("MyEvent");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public void onButtonGoToHome() {
+        try {
+            FXRouter.goTo("Home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
