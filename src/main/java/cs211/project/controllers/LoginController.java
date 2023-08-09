@@ -14,18 +14,11 @@ public class LoginController {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     public  void onButtonGoToSingUp(){
         try {
             FXRouter.goTo("SingUp");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
-    public void onButtonGoToSetting() {
-        try {
-            FXRouter.goTo("Setting");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

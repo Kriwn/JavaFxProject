@@ -15,14 +15,6 @@ public class CreateEventController {
         }
     }
     @FXML
-    public  void onButtonGoToLoginPage(){
-        try {
-            FXRouter.goTo("LoginPage");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
     public  void onButtonGoToMyEvent(){
         try {
             FXRouter.goTo("MyEvent");
@@ -34,6 +26,14 @@ public class CreateEventController {
     public void onButtonGoToSetting() {
         try {
             FXRouter.goTo("Setting");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToLoginPage(){
+        try {
+            FXRouter.goTo("LoginPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

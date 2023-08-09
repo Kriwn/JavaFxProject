@@ -7,17 +7,17 @@ import java.io.IOException;
 
 public class SettingController {
     @FXML
-    public  void onButtonGoToLoginPage(){
+    public void onButtonGoToHome() {
         try {
-            FXRouter.goTo("LoginPage");
+            FXRouter.goTo("Home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @FXML
-    public void onButtonGoToHome() {
+    public  void onButtonGoToMyEvent(){
         try {
-            FXRouter.goTo("Home");
+            FXRouter.goTo("MyEvent");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -31,9 +31,9 @@ public class SettingController {
         }
     }
     @FXML
-    public  void onButtonGoToMyEvent(){
+    public  void onButtonGoToLoginPage(){
         try {
-            FXRouter.goTo("MyEvent");
+            FXRouter.goTo("LoginPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

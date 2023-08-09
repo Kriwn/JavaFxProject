@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class EditEventController {
     @FXML
-    public  void onButtonGoToLoginPage(){
+    public void onButtonGoToHome() {
         try {
-            FXRouter.goTo("LoginPage");
+            FXRouter.goTo("Home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -23,9 +23,17 @@ public class EditEventController {
         }
     }
     @FXML
-    public void onButtonGoToHome() {
+    public void onButtonGoToSetting () {
         try {
-            FXRouter.goTo("Home");
+            FXRouter.goTo("Setting");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToLoginPage(){
+        try {
+            FXRouter.goTo("LoginPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,14 +42,6 @@ public class EditEventController {
     public void goToStaff() {
         try {
             FXRouter.goTo("Staff");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
-    public void onButtonGoToSetting () {
-        try {
-            FXRouter.goTo("Setting");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
