@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" stylesheets="@../../../CSS/Admin/main.Css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.AdminMainController">
+<AnchorPane fx:id="Page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" stylesheets="@../CSS/Admin/main.Css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.AdminMainController">
   <children>
       <AnchorPane fx:id="Sidebar" prefHeight="760.0" prefWidth="240.0">
          <children>
@@ -36,8 +36,8 @@
             </Button>
          </children>
          <stylesheets>
-            <URL value="@../../../CSS/Admin/Controll.Css" />
-            <URL value="@../../../CSS/Admin/Image.Css" />
+            <URL value="@../CSS/Admin/Controll.Css" />
+            <URL value="@../CSS/Admin/Image.Css" />
          </stylesheets>
       </AnchorPane>
       <TableView fixedCellSize="1.0" layoutX="332.0" layoutY="80.0" prefHeight="600.0" prefWidth="600.0">
