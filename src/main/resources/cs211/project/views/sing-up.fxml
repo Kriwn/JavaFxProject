@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #E4DCCF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SingUpController">
    <children>
-      <AnchorPane blendMode="SRC_ATOP" layoutX="178.0" layoutY="128.0" prefHeight="524.0" prefWidth="662.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane blendMode="SRC_ATOP" layoutX="178.0" layoutY="128.0" prefHeight="524.0" prefWidth="662.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-cursor: hand;">
          <children>
             <Label layoutX="53.0" layoutY="61.0" text="UserName">
                <font>

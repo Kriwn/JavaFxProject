@@ -7,25 +7,9 @@ import java.io.IOException;
 
 public class StaffController {
     @FXML
-    public void goToEditEvent() {
-        try {
-            FXRouter.goTo("edit-event");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
     public void onButtonGoToHome() {
         try {
             FXRouter.goTo("Home");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
-    public  void onButtonGoToLoginPage(){
-        try {
-            FXRouter.goTo("LoginPage");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,6 +26,22 @@ public class StaffController {
     public void onButtonGoToSetting () {
         try {
             FXRouter.goTo("Setting");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToLoginPage(){
+        try {
+            FXRouter.goTo("LoginPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public void goToEditEvent() {
+        try {
+            FXRouter.goTo("edit-event");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

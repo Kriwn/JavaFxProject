@@ -7,25 +7,9 @@ import java.io.IOException;
 
 public class HomeController {
     @FXML
-    public  void onButtonGoToLoginPage(){
+    public void onButtonGoToHome() {
         try {
-            FXRouter.goTo("LoginPage");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
-    public  void onButtonGoToCreateEventPage(){
-        try {
-            FXRouter.goTo("CreateEvent");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @FXML
-    public  void onButtonGoToJoinEventPage(){
-        try {
-            FXRouter.goTo("JoinEvent");
+            FXRouter.goTo("Home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -39,17 +23,33 @@ public class HomeController {
         }
     }
     @FXML
-    public void onButtonGoToHome() {
+    public void onButtonGoToSetting () {
         try {
-            FXRouter.goTo("Home");
+            FXRouter.goTo("Setting");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @FXML
-    public void onButtonGoToSetting () {
+    public  void onButtonGoToLoginPage(){
         try {
-            FXRouter.goTo("Setting");
+            FXRouter.goTo("LoginPage");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToJoinEventPage(){
+        try {
+            FXRouter.goTo("JoinEvent");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public  void onButtonGoToCreateEventPage(){
+        try {
+            FXRouter.goTo("CreateEvent");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
