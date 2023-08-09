@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #E4DCCF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.ControlUserEventController">
+    <children>
+        <ListView layoutX="304.0" layoutY="69.0" prefHeight="290.0" prefWidth="367.0" style="-fx-background-radius: 15px; -fx-background-color: #F0EBE3;" />
+        <Label layoutX="753.0" layoutY="498.0" text="TimeStart">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="753.0" layoutY="561.0" text="TimeEnd">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="753.0" layoutY="623.0" text="Detail">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="765.0" layoutY="196.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #7D9D9C; -fx-background-radius: 15px; -fx-cursor: hand;" text="Ban" textFill="WHITE" />
+        <ListView layoutX="304.0" layoutY="416.0" prefHeight="290.0" prefWidth="367.0" style="-fx-background-radius: 15px; -fx-background-color: #F0EBE3;" />
+        <Label layoutX="753.0" layoutY="441.0" text="Name activity">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="304.0" layoutY="41.0" text="User List">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="303.0" layoutY="388.0" text="Activity List">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <AnchorPane blendMode="SRC_ATOP" prefHeight="760.0" prefWidth="240.0" style="-fx-background-color: #7D9D9C;" stylesheets="@../CSS/User/side.css">
+            <children>
+                <Label layoutX="80.0" layoutY="156.0" text="UserName" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="94.0" fitWidth="106.0" layoutX="73.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Images/add-friend.png" />
+                    </image>
+                </ImageView>
+                <Button layoutY="268.0" mnemonicParsing="false" onAction="#onButtonGoToHome" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" stylesheets="@../CSS/User/side.css" text="Home" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutY="358.0" mnemonicParsing="false" onAction="#onButtonGoToMyEvent" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="My Event" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutY="448.0" mnemonicParsing="false" onAction="#onButtonGoToSetting" prefHeight="90.0" prefWidth="240.0" style="-fx-background-color: 0; -fx-cursor: hand; -fx-background-radius: 25px;" text="Setting" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button layoutY="538.0" mnemonicParsing="false" onAction="#onButtonGoToLogout" prefHeight="90.0" prefWidth="240.0" style="-fx-cursor: hand; -fx-background-radius: 25px; -fx-background-color: 0;" text="Logout" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
