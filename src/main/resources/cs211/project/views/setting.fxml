@@ -58,17 +58,17 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="33.0" layoutY="253.0" text="new password">
+            <Label layoutX="33.0" layoutY="264.0" text="new password">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <TextField layoutX="151.0" layoutY="312.0">
+            <TextField layoutX="151.0" layoutY="323.0">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="40.0" layoutY="371.0" text="confirm password">
+            <Label layoutX="33.0" layoutY="374.0" text="confirm password">
                <font>
                   <Font size="32.0" />
                </font>
@@ -78,7 +78,7 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Button layoutX="209.0" layoutY="497.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" text="confirm" textFill="WHITE">
+            <Button fx:id="con" layoutX="200.0" layoutY="499.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" stylesheets="@../CSS/User/Setting.css" text="confirm" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
