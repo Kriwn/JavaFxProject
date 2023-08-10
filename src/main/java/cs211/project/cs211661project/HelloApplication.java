@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         FXRouter.when("LoginPage", resourcesPath + "login-page.fxml");
         FXRouter.when("ControlUserEvent",resourcesPath + "control-user-event.fxml");
         FXRouter.when("Home",resourcesPath + "home.fxml");
-        FXRouter.when("SingUp",resourcesPath + "sing-up.fxml");
+        FXRouter.when("SignUp",resourcesPath + "signup-page.fxml");
         FXRouter.when("MyEvent",resourcesPath + "my-event.fxml");
         FXRouter.when("AdminMain",resourcesPath + "admin-main.fxml");
         FXRouter.when("AdminPass",resourcesPath + "admin-pass.fxml");

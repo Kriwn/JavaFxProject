@@ -18,7 +18,7 @@ public class LoginController {
     @FXML
     public  void onButtonGoToSingUp(){
         try {
-            FXRouter.goTo("SingUp");
+            FXRouter.goTo("SignUp");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
