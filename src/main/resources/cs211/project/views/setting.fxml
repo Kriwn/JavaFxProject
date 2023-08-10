@@ -84,11 +84,11 @@
                </font>
             </Button>
             <Circle layoutX="291.0" layoutY="103.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="239.0" layoutY="90.0" text="Chose Image" textFill="WHITE">
+            <Button layoutX="222.0" layoutY="84.0" mnemonicParsing="false" stylesheets="@../CSS/User/side.css" text="Choose Image" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
-            </Label>
+            </Button>
          </children>
       </Pane>
    </children>
