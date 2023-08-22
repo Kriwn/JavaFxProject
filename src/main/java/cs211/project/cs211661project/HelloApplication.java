@@ -38,6 +38,7 @@ public class HelloApplication extends Application {
         NPBPRouter.when("select-my-create-event",viewPath + "select-my-create-event.fxml");
         NPBPRouter.when("select-team",viewPath + "select-team.fxml");
         NPBPRouter.when("setting",viewPath + "setting.fxml");
+        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
     }
     public static void main(String[] args) {
         launch();
