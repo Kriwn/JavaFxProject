@@ -1,0 +1,46 @@
+.parent{
+
+}
+.app-signInButton{
+    -fx-text-fill: #00ff00;
+    -fx-background-color: #0000ff;
+}
+.app-signInButton:hover{
+    -fx-text-fill:  #7D9D9C;
+    -fx-underline: true;
+}
+
+.app-logInButton{
+    -fx-background-color: #7D9D9C;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+}
+.app-logInButton:hover{
+    -fx-background-color: transparent ;
+    -fx-background-radius: 5;
+    -fx-text-fill: #7D9D9C;
+    -fx-border-color: #7D9D9C;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-border-radius: 5;
+}
+.background-pageArea{
+    -fx-background-color: #E4DCCF;
+}
+.background-leftArea{
+    -fx-background-color: #7D9D9C;
+}
+.text-field{
+    -fx-background-color: transparent;
+    -fx-border-color: #7D9D9C;
+    -fx-border-width: 0 0 2 0;
+}
+.sidebar-button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-background-radius: 25;
+}
+.sidebar-background{
+    -fx-background-color: #7D9D9C;
+}
+
