@@ -9,7 +9,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.HomeController">
    <left>
-      <AnchorPane fx:id="page" prefHeight="760.0" prefWidth="240.0" styleClass="sidebar-background" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="760.0" prefWidth="240.0" styleClass="sidebar-background" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="94.0" fitWidth="106.0" layoutX="73.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="86.0" layoutY="171.0" text="Username" textFill="WHITE">
@@ -17,22 +17,27 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutY="268.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Home">
+            <Button layoutY="268.0" mnemonicParsing="false" onAction="#onHomeButton" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Home">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="358.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="MyEvent">
+            <Button layoutY="358.0" mnemonicParsing="false" onAction="#onMyEventButton" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="My event">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="448.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Setting">
+            <Button layoutY="538.0" mnemonicParsing="false" onAction="#onSettingButton" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Setting">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutY="538.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Logout">
+            <Button layoutY="628.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="Logout">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutY="448.0" mnemonicParsing="false" onAction="#onMyCreateEventButton" prefHeight="90.0" prefWidth="240.0" styleClass="sidebar-button" text="My createvent">
                <font>
                   <Font size="18.0" />
                </font>
@@ -41,6 +46,6 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane fx:id="contentArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="page" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
