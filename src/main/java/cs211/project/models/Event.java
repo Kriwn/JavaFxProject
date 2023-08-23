@@ -13,6 +13,22 @@ public class Event {
     private ArrayList<Team> team;
     private ArrayList<NormalUser> user;
 
+    public Event(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, int capacity){
+        this.name = name;
+        this.detail = details;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+        this.capacity = capacity;
+    }
+    public void addTeam(Team team){
+
+    }
+
+    public boolean isName(String name) {
+        return this.name.equals(name);
+    }
     public String getName() {
         return name;
     }
