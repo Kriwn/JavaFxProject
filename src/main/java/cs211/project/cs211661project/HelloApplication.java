@@ -24,6 +24,23 @@ public class HelloApplication extends Application {
         NPBPRouter.when("home-page",viewPath + "home-page.fxml");
         NPBPRouter.when("CreateStaffTeam",viewPath + "create-staff-team.fxml");
         NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
+        NPBPRouter.when("my-event",viewPath + "my-event.fxml");
+        NPBPRouter.when("activity", viewPath + "activity.fxml");
+        NPBPRouter.when("create-activity", viewPath + "create-activity.fxml");
+        NPBPRouter.when("edit-activity", viewPath + "edit-activity.fxml");
+        NPBPRouter.when("edit-user",viewPath + "edit-user.fxml");
+        NPBPRouter.when("admin-main",viewPath + "admin-main.fxml");
+        NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");
+        NPBPRouter.when("create-event",viewPath + "create-event.fxml");
+        NPBPRouter.when("create-staff-team",viewPath + "create-staff-team.fxml");
+        NPBPRouter.when("edit-event",viewPath + "edit-event.fxml");
+        NPBPRouter.when("join-event",viewPath + "join-event.fxml");
+        NPBPRouter.when("join-team",viewPath + "join-team.fxml");
+        NPBPRouter.when("my-create-event",viewPath + "my-create-event.fxml");
+        NPBPRouter.when("select-my-create-event",viewPath + "select-my-create-event.fxml");
+        NPBPRouter.when("select-team",viewPath + "select-team.fxml");
+        NPBPRouter.when("setting",viewPath + "setting.fxml");
+        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
     }
     public static void main(String[] args) {
         launch();
