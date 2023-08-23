@@ -22,6 +22,8 @@ public class HelloApplication extends Application {
         NPBPRouter.when("login",viewPath + "login.fxml");
         NPBPRouter.when("signup",viewPath + "signup.fxml");
         NPBPRouter.when("home-page",viewPath + "home-page.fxml");
+        NPBPRouter.when("CreateStaffTeam",viewPath + "create-staff-team.fxml");
+        NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
     }
     public static void main(String[] args) {
         launch();
