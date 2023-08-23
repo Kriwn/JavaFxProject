@@ -3,6 +3,7 @@ package cs211.project.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import cs211.project.services.NPBPRouter;
@@ -13,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable{
     @FXML AnchorPane signUpArea;
+    @FXML TextField userNameLabel;
+    @FXML
 
     public void initialize(URL location, ResourceBundle resources){
     }
