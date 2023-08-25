@@ -10,8 +10,8 @@ public class Event {
     private String timeStart;
     private String timeEnd;
     private int capacity;
-    private ArrayList<Team> team;
-    private ArrayList<NormalUser> user;
+    private ArrayList<Team> teams;
+    private ArrayList<NormalUser> users;
 
     public Event(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, int capacity){
         this.name = name;
@@ -22,9 +22,15 @@ public class Event {
         this.timeEnd = timeEnd;
         this.capacity = capacity;
     }
-    public void addTeam(Team team){
 
+    public void addTeam(Team team){
+        this.teams.add(team);
     }
+
+    public void addUser(NormalUser user){
+        this.users.add(user);
+    }
+
 
     public boolean isName(String name) {
         return this.name.equals(name);
@@ -86,18 +92,18 @@ public class Event {
     }
 
     public ArrayList<Team> getTeam() {
-        return team;
+        return teams;
     }
 
     public void setTeam(ArrayList<Team> team) {
-        this.team = team;
+        this.teams = team;
     }
 
     public ArrayList<NormalUser> getUser() {
-        return user;
+        return users;
     }
 
     public void setUser(ArrayList<NormalUser> user) {
-        this.user = user;
+        this.users = user;
     }
 }
