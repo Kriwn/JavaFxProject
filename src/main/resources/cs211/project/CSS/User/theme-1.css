@@ -6,7 +6,7 @@
     -fx-cursor: hand;
 }
 
-.appimage{
+.app-image{
     -fx-background-image: url(View.jpg);
 }
 .defaultButton{
@@ -14,6 +14,11 @@
      -fx-background-radius: 16;
      -fx-background-color: #7D9D9C;
  }
+
+.defaultButton:hover{
+    -fx-background-color:rgba(125,157,157,0.8);
+    -fx-text-fill: white;
+}
 
 .defaultPage{
     -fx-background-color: #E4DCCF;
@@ -78,10 +83,3 @@
     -fx-background-color: transparent;
     -fx-text-fill: black;
 }
-
-.logInButton{
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-background-color: #7D9D9C;
-}
-

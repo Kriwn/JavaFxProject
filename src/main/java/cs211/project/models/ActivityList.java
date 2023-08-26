@@ -13,7 +13,7 @@ public class ActivityList {
         if (!name.equals("") & !detail.equals("")){
             Activity exist = findActivityByName(name);
             if (exist == null){
-
+                activities.add(new Activity(name,detail));
             }
         }
     }
