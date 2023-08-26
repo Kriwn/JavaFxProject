@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.JoinEventController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.JoinEventController">
    <children>
       <AnchorPane layoutX="79.5" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
@@ -15,7 +15,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="156.25" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Join Staff" textFill="WHITE" />
+            <Button layoutX="156.25" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Staff" textFill="WHITE" />
             <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Event">
                <font>
                   <Font size="18.0" />
@@ -67,7 +67,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="368.75" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Join Event" textFill="WHITE" />
+            <Button layoutX="368.75" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Event" textFill="WHITE" />
             <Label fx:id="countEmpty" layoutX="358.0" layoutY="290.0" text="countEmpty">
                <font>
                   <Font size="18.0" />

@@ -6,7 +6,7 @@
 
 <BorderPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.AppController">
    <left>
-      <AnchorPane prefHeight="760.0" prefWidth="512.0" style="-fx-background-color: #7D9D9C;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="760.0" prefWidth="512.0" styleClass="appimage" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="217.0" layoutY="281.0" text="Label" />
          </children></AnchorPane>
