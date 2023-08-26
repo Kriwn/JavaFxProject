@@ -15,7 +15,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="240.0" layoutY="410.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="edit details" textFill="WHITE" />
+            <Button layoutX="240.0" layoutY="410.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit details" textFill="WHITE" />
             <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Event">
                <font>
                   <Font size="18.0" />
@@ -27,7 +27,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="240.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="edit team" textFill="WHITE" />
+            <Button layoutX="240.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit team" textFill="WHITE" />
             <Label layoutX="65.0" layoutY="410.0" text="แก้ไขรายละเอียด :">
                <font>
                   <Font size="18.0" />
@@ -43,19 +43,19 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="239.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="edit user" textFill="WHITE" />
+            <Button layoutX="239.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit user" textFill="WHITE" />
             <Label layoutX="370.0" layoutY="410.0" text="Chat :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="460.0" layoutY="410.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="chat" textFill="WHITE" />
+            <Button layoutX="460.0" layoutY="410.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="chat" textFill="WHITE" />
             <Label layoutX="370.0" layoutY="490.0" text="Activity :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="460.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="chat" textFill="WHITE" />
+            <Button layoutX="460.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="chat" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

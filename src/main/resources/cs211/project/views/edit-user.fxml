@@ -10,7 +10,7 @@
     <children>
       <AnchorPane layoutX="80.0" layoutY="36.0" prefHeight="680.0" prefWidth="625.0">
          <children>
-              <Button layoutX="271.0" layoutY="608.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" text="Ban" textFill="WHITE" />
+              <Button layoutX="271.0" layoutY="608.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" styleClass="defaultButton" text="Ban" textFill="WHITE" />
               <Label layoutX="279.0" layoutY="40.0" text="User List">
                   <font>
                       <Font size="18.0" />

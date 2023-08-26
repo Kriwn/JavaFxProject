@@ -24,12 +24,12 @@
             <Font name="Impact" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="119.0" layoutY="671.0" text="Dont' Have account ?" textFill="WHITE">
+      <Label layoutX="119.0" layoutY="671.0" text="Dont' Have account ?" textFill="#171717">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="304.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#clickSignIn" prefHeight="35.0" prefWidth="75.0" styleClass="signInButton" text="Sign in" textFill="#a3a3a3">
+      <Button layoutX="304.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#clickSignIn" prefHeight="35.0" prefWidth="75.0" styleClass="signUpButton" text="Sign up" textFill="#a3a3a3">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
