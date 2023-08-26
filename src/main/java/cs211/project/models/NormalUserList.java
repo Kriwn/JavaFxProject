@@ -15,7 +15,7 @@ public class NormalUserList {
         }
         return null;
     }
-    public void addNewUser(String username, String name, String password){
+    public void addNewUserFromFile(String username, String name, String password){
         username = username.trim();
         name = name.trim();
         password = password.trim();
@@ -23,6 +23,20 @@ public class NormalUserList {
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
                 users.add(new NormalUser(username,name,password));
+            }
+        }
+    }
+
+    public void signUp(String username, String name, String password){
+        username = username.trim();
+        name = name.trim();
+        password = password.trim();
+        NormalUser exist = findUserByUsername(username);
+        if(!username.equals("") && !name.equals("") && !password.equals("")){
+            if(exist == null){
+                NormalUser normalUser = new NormalUser(username, name);
+                normalUser.hashPassword(password);
+                users.add(normalUser);
             }
         }
     }

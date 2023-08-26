@@ -5,6 +5,10 @@ public class NormalUser extends Account{
         super(username, name, password);
     }
 
+    public NormalUser(String username, String name) {
+        super(username, name);
+    }
+
 
 
 }

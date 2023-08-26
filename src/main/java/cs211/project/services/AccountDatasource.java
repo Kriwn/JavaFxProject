@@ -5,7 +5,6 @@ import cs211.project.models.NormalUserList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 
 public class AccountDatasource implements Datasource<NormalUserList> {
     private String directoryName;
@@ -60,7 +59,7 @@ public class AccountDatasource implements Datasource<NormalUserList> {
                 String password = data[2].trim();
                 //อาจจะมีตัวเพิ่ม
 
-                users.addNewUser(username,name,password);
+                users.addNewUserFromFile(username,name,password);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
