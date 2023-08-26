@@ -19,16 +19,6 @@
     -fx-background-color: #E4DCCF;
 }
 
-.app-signInButton{
-    -fx-text-fill: #00ff00;
-    -fx-background-color: #0000ff;
-}
-
-.app-signInButton:hover{
-    -fx-text-fill:  #7D9D9C;
-    -fx-underline: true;
-}
-
 .app-logInButton{
     -fx-background-color: #7D9D9C;
     -fx-text-fill: white;
@@ -76,7 +66,11 @@
 
 .signUpButton{
     -fx-background-color: transparent;
-    -fx-text-fill: black;
+    -fx-text-fill: gray;
+}
+.signUpButton:hover{
+    -fx-text-fill:  #7D9D9C;
+    -fx-underline: true;
 }
 
 .logInButton{
@@ -84,4 +78,8 @@
     -fx-background-radius: 16;
     -fx-background-color: #7D9D9C;
 }
+.app-text{
+    -fx-text-fill: white;
+}
+
 

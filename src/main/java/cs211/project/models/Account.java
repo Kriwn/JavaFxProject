@@ -23,7 +23,18 @@ public class Account {
         this.username = username;
         this.password = null;
         this.roleAccount = "NormalUser";
+        this.image = "images/default.png";
+        this.timeLogin = LocalDateTime.now();
     }
+    public Account(String username, String name, String role, String image, String time) {
+        this.name = name;
+        this.username = username;
+        this.password = null;
+        this.roleAccount = role;
+        this.image = image;
+        this.timeLogin = LocalDateTime.parse(time);
+    }
+
 
     /**
      * Use this constructor when reading data from file
@@ -31,10 +42,11 @@ public class Account {
      * @param name
      * @param password
      */
-    public Account(String username,String name,String password){
-        this(username, name);
+    public Account(String username,String name,String password,String role, String image,String time){
+        this(username, name,role,image,time);
         this.password = password;
     }
+
     public boolean isUsername(String username){
         return this.username.equals(username);
     }
@@ -43,8 +55,8 @@ public class Account {
     public void hashPassword(String password) {
         this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
-    public boolean confirmPassword(String password,String confirmPassword){
-        if(password.equals( confirmPassword)){
+    public  static boolean confirmPassword(String password,String confirmPassword){
+        if(password.equals(confirmPassword)){
             return true;
         }
         return false;

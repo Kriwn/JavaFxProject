@@ -1,8 +1,16 @@
 package cs211.project.controllers;
 
+import cs211.project.models.Account;
+import cs211.project.models.AccountList;
+import cs211.project.models.NormalUser;
+import cs211.project.models.NormalUserList;
+import cs211.project.services.AccountDatasource;
+import cs211.project.services.Datasource;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -10,14 +18,38 @@ import cs211.project.services.NPBPRouter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable{
     @FXML AnchorPane signUpArea;
     @FXML TextField userNameLabel;
-    @FXML
+    @FXML TextField nameLabel;
+    @FXML PasswordField passwordLabel;
+    @FXML PasswordField confirmPasswordLabel;
+    @FXML Label errorLabel;
+    private AccountList users;
 
     public void initialize(URL location, ResourceBundle resources){
+        AccountDatasource datasource = new AccountDatasource("data","account.csv");
+        users = datasource.readData();
+    }
+    public void onButtonRegister() {
+        String name = userNameLabel.getText();
+        String username = nameLabel.getText();
+        String password = passwordLabel.getText();
+        String confirmPassWord = confirmPasswordLabel.getText();
+        if (users.checkUserByUsername(username)) {
+            if (Account.confirmPassword(password, confirmPassWord)) {
+                users.signUp(name, username, password);
+            }
+            else{
+                errorLabel.setText("Please make sure your passwords match.");
+            }
+        }
+        else{
+            errorLabel.setText("This username is already use.");
+        }
     }
     public void clickBack(MouseEvent event) throws IOException {
         NPBPRouter.loadPage("login", signUpArea);
