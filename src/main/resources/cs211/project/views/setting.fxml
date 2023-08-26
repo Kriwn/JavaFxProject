@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SettingController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SettingController">
    <children>
       <Pane fx:id="pass" layoutX="92.0" layoutY="80.0" prefHeight="600.0" prefWidth="600.0">
          <children>

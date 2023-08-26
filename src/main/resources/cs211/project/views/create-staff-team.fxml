@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreateStaffTeamController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreateStaffTeamController">
    <children>
       <AnchorPane layoutX="79.5" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
