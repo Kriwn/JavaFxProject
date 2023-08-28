@@ -92,7 +92,7 @@ public class AccountDatasource implements Datasource<AccountList> {
         FileOutputStream fileOutputStream = null;
 
         try {
-            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream = new FileOutputStream(file,true);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

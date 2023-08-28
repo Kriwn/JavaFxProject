@@ -20,6 +20,7 @@ public class Account {
      */
     public Account(String username, String name) {
         this.name = name;
+
         this.username = username;
         this.password = null;
         this.roleAccount = "User";

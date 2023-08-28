@@ -18,16 +18,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable{
-    @FXML AnchorPane signUpArea;
-    @FXML TextField userNameLabel;
-    @FXML TextField nameLabel;
-    @FXML PasswordField passwordLabel;
-    @FXML PasswordField confirmPasswordLabel;
-    @FXML Label errorLabel;
+    @FXML  AnchorPane signUpArea;
+    @FXML  TextField userNameLabel;
+    @FXML  TextField nameLabel;
+    @FXML  PasswordField passwordLabel;
+    @FXML  PasswordField confirmPasswordLabel;
+    @FXML  Label errorLabel;
     private AccountList accounts;
+    private AccountDatasource datasource;
 
     public void initialize(URL location, ResourceBundle resources){
-        AccountDatasource datasource = new AccountDatasource("data","account.csv");
+        datasource = new AccountDatasource("data","account.csv");
         accounts = datasource.readData();
     }
     public void onButtonRegister() {
@@ -39,6 +40,7 @@ public class SignUpController implements Initializable{
             if (Account.confirmPassword(password, confirmPassWord)) {
                 accounts.signUp(name, username, password);
                 errorLabel.setText("success");
+                datasource.writeData(accounts);
                 try {
                     NPBPRouter.loadPage("login",signUpArea);
                 } catch (IOException e) {
