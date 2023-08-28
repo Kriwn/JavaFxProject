@@ -12,7 +12,7 @@ public class HomeController implements Initializable{
     @FXML AnchorPane page;
     public void initialize(URL location, ResourceBundle resources){
         try {
-            NPBPRouter.loadPage("home-page",page);
+            NPBPRouter.loadPage("staff-list",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -6,6 +6,9 @@ import cs211.project.services.NPBPRouter;
 
 import java.io.IOException;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -15,6 +18,7 @@ public class HelloApplication extends Application {
 //        String css = getClass().getResource("css/theme-2.css").toExternalForm();
         NPBPRouter.goTo("app");
     }
+
     public void configRoute(){
         String viewPath = "cs211/project/views/";
         NPBPRouter.when("app",viewPath + "app.fxml");
@@ -41,6 +45,8 @@ public class HelloApplication extends Application {
         NPBPRouter.when("select-team",viewPath + "select-team.fxml");
         NPBPRouter.when("setting",viewPath + "setting.fxml");
         NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
+        NPBPRouter.when("staff-card", viewPath + "staff-card.fxml");
+        NPBPRouter.when("staff-list", viewPath + "staff-list.fxml");
     }
     public static void main(String[] args) {
         launch();

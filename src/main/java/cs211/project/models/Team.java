@@ -3,24 +3,25 @@ package cs211.project.models;
 import java.util.ArrayList;
 
 public class Team {
-    private String name;
-    private ArrayList<String> team;
+    private String teamName;
+    private StaffList staffs;
     private int capacity;
     private String openDate;
     private String openTime;
     private String closeDate;
     private String closeTime;
 
-    public Team(String name, int capacity, String openDate, String openTime, String closeDate, String closeTime){
-        this.name = name;
+    public Team(String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+        this.teamName = name;
         this.capacity = capacity;
         this.openDate = openDate;
         this.openTime = openTime;
         this.closeDate = closeDate;
         this.closeTime = closeTime;
+        this.staffs = staffs;
     }
 
-    public String getTeamName() {return name;}
+    public String getTeamName() {return teamName;}
 
     public int getCapacity() {return capacity;}
 
@@ -32,7 +33,11 @@ public class Team {
 
     public String getCloseTime() {return closeTime;}
 
+    public StaffList getStaffs() {return staffs;}
+
     public boolean isTeamName(String name) {
-        return this.name.equals(name);
+        return this.teamName.equals(name);
     }
+
+
 }
