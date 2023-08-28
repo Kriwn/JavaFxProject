@@ -8,13 +8,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SettingController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SettingController">
    <children>
       <Pane fx:id="pass" layoutX="92.0" layoutY="80.0" prefHeight="600.0" prefWidth="600.0">
          <children>
-            <Label layoutX="33.0" layoutY="154.0" text="password">
+            <Label layoutX="58.0" layoutY="161.0" text="password">
                <font>
-                  <Font size="32.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <TextField layoutX="151.0" layoutY="213.0">
@@ -22,9 +22,9 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="33.0" layoutY="264.0" text="new password">
+            <Label layoutX="58.0" layoutY="283.0" text="new password">
                <font>
-                  <Font size="32.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <TextField layoutX="151.0" layoutY="323.0">
@@ -32,9 +32,9 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Label layoutX="33.0" layoutY="374.0" text="confirm password">
+            <Label layoutX="57.0" layoutY="390.0" text="confirm password">
                <font>
-                  <Font size="32.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
             <TextField layoutX="151.0" layoutY="433.0">
@@ -42,13 +42,13 @@
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Button layoutX="200.0" layoutY="499.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" text="confirm" textFill="WHITE">
+            <Button layoutX="200.0" layoutY="499.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" styleClass="defaultButton" text="confirm" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Circle fill="WHITE" layoutX="291.0" layoutY="103.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button layoutX="222.0" layoutY="84.0" mnemonicParsing="false" text="Choose Image" textFill="WHITE">
+            <Circle layoutX="291.0" layoutY="103.0" radius="75.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button layoutX="222.0" layoutY="84.0" mnemonicParsing="false" styleClass="defaultButton" text="Choose Image" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

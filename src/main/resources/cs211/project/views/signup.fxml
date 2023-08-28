@@ -7,38 +7,54 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="signUpArea" prefHeight="760.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SignUpController">
+<AnchorPane fx:id="signUpArea" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SignUpController">
    <children>
-      <Button layoutX="228.0" layoutY="578.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="56.0" styleClass="signInButton" text="OK">
+      <Button layoutX="201.0" layoutY="551.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="96.0" styleClass="defaultButton" text="Sign Up">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="131.0" layoutY="257.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" styleClass="text-field">
+      <TextField fx:id="userNameLabel" layoutX="131.0" layoutY="257.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="131.0" layoutY="397.0" prefWidth="250.0" promptText="Password" styleClass="text-field">
+      <PasswordField fx:id="passwordLabel" layoutX="131.0" layoutY="397.0" prefWidth="250.0" promptText="Password" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <TextField layoutX="131.0" layoutY="327.0" prefHeight="37.0" prefWidth="250.0" promptText="Name" styleClass="text-field">
+      <TextField fx:id="nameLabel" layoutX="131.0" layoutY="327.0" prefHeight="37.0" prefWidth="250.0" promptText="Name" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="131.0" layoutY="467.0" prefWidth="250.0" promptText="Confirm Password" styleClass="text-field">
+      <PasswordField fx:id="confirmPasswordLabel" layoutX="131.0" layoutY="467.0" prefWidth="250.0" promptText="Confirm Password" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Label fx:id="singUpArea" layoutX="222.0" layoutY="139.0" text="Sign In">
+      <Label fx:id="singUpArea" layoutX="173.0" layoutY="153.0" text="Create account">
          <font>
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
       <Button layoutX="23.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#clickBack" styleClass="logInButton" text="Back" />
+      <Label layoutX="132.0" layoutY="237.0" text="Username">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="131.0" layoutY="307.0" text="Name">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="131.0" layoutY="380.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="134.0" layoutY="447.0" text="Confirm Password">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

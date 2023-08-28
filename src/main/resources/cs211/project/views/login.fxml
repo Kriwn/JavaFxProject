@@ -5,39 +5,41 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginArea" prefHeight="760.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.LoginController">
+<AnchorPane fx:id="loginArea" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.LoginController">
    <children>
       <Label layoutX="226.0" layoutY="191.0" text="Log in">
          <font>
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
-      <PasswordField layoutX="131.0" layoutY="400.0" prefWidth="250.0" promptText="Password">
+      <PasswordField layoutX="131.0" layoutY="400.0" prefWidth="250.0" promptText="Password" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </PasswordField>
-      <Button layoutX="189.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#clickLogIn" prefHeight="35.0" prefWidth="130.0" styleClass="logInButton" text="Log in" textFill="WHITE">
+      <Button layoutX="187.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#clickLogIn" prefHeight="35.0" prefWidth="130.0" styleClass="defaultButton" text="Log in" textFill="#111111">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="119.0" layoutY="671.0" text="Dont' Have account ?" textFill="WHITE">
+      <Label layoutX="131.0" layoutY="671.0" text="Dont' Have account ?" textFill="#171717">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="304.0" layoutY="664.0" mnemonicParsing="false" onMouseClicked="#clickSignIn" prefHeight="35.0" prefWidth="75.0" styleClass="signInButton" text="Sign in" textFill="#a3a3a3">
+      <Button layoutX="271.0" layoutY="666.0" mnemonicParsing="false" onMouseClicked="#clickSignIn" prefHeight="21.0" prefWidth="75.0" styleClass="signUpButton" text="Sign up" textFill="#141414">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </Button>
-      <TextField layoutX="130.0" layoutY="317.0" prefHeight="37.0" prefWidth="250.0" promptText="Username">
+      <TextField layoutX="130.0" layoutY="317.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
+      <Line endX="45.75" layoutX="287.0" layoutY="689.0" startX="-1.0" />
    </children>
 </AnchorPane>

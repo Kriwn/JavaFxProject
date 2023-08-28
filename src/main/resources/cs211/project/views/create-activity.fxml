@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreateActivityController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreateActivityController">
    <children>
       <AnchorPane layoutX="80.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
@@ -15,7 +15,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="292.0" layoutY="480.0" mnemonicParsing="false" text="Back" />
+            <Button layoutX="292.0" layoutY="480.0" mnemonicParsing="false" styleClass="defaultButton" text="Back" />
             <Label layoutX="155.0" layoutY="185.0" text="ชื่อกิจกรรม" />
             <Label layoutX="155.0" layoutY="235.0" prefHeight="17.0" prefWidth="76.0" text="เวลาเริ่มกิจกรรม" />
             <Label layoutX="155.0" layoutY="285.0" text="เวลาสิ้นสุดกิจกรรม" />
