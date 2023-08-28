@@ -21,10 +21,10 @@ public class AccountList {
     public Boolean checkUserByUsername(String username){
         for(User user: users){
             if(user.isUsername(username)){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
     /*เพิ่มuser จากการอ่านไฟล์*/
     public void addNewUserFromFile(String username, String name, String password,String role,String image,String time){

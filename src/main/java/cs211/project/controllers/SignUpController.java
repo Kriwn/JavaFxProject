@@ -31,13 +31,19 @@ public class SignUpController implements Initializable{
         accounts = datasource.readData();
     }
     public void onButtonRegister() {
-        String name = userNameLabel.getText();
-        String username = nameLabel.getText();
+        String name = nameLabel.getText();
+        String username = userNameLabel.getText();
         String password = passwordLabel.getText();
         String confirmPassWord = confirmPasswordLabel.getText();
         if (accounts.checkUserByUsername(username)) {
             if (Account.confirmPassword(password, confirmPassWord)) {
                 accounts.signUp(name, username, password);
+                errorLabel.setText("success");
+                try {
+                    NPBPRouter.loadPage("login",signUpArea);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
             else{
                 errorLabel.setText("Please make sure your passwords match.");

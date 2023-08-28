@@ -66,10 +66,9 @@ public class AccountDatasource implements Datasource<AccountList> {
                 String username = data[0].trim();
                 String name = data[1].trim();
                 String password = data[2].trim();
-                String image = data[3].trim();
-                String roleAccount = data[4].trim();
+                String roleAccount = data[3].trim();
+                String image = data[4].trim();
                 String timeLogin = data[5].trim();
-
                 // เพิ่มข้อมูลลงใน list
                 if(roleAccount.equals("User")){
                     accountList.addNewUserFromFile(username, name, password, image, roleAccount, timeLogin);
