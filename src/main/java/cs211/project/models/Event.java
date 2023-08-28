@@ -1,26 +1,36 @@
 package cs211.project.models;
 
+import javafx.scene.image.Image;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
     private String name;
     private String detail;
-    private String dateStart;
-    private String dateEnd;
-    private String timeStart;
-    private String timeEnd;
-    private int capacity;
-    private ArrayList<Team> teams;
-    private ArrayList<NormalUser> users;
+    private  int countMember;
+    private int maxMember;
+    private String image;
+    private ArrayList<Team> teams = new ArrayList<>();
+    private ArrayList<NormalUser> users = new ArrayList<>();
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
+    private LocalTime timeStart;
+    private LocalTime timeEnd;
+    private int states;
 
-    public Event(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, int capacity){
+    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
         this.name = name;
         this.detail = details;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
-        this.capacity = capacity;
+        this.maxMember = Integer.parseInt(maxMember);
+        this.dateStart = LocalDate.parse(dateStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.countMember = 0;
+        this.states = 0;
     }
 
     public void addTeam(Team team){
@@ -31,6 +41,20 @@ public class Event {
         this.users.add(user);
     }
 
+    public void removeUser(NormalUser user) {
+        this.users.remove(user);
+    }
+    public void setImage(String image){
+        this.image = image;
+    }
+
+    public LocalDate getDateStart() {
+        return dateStart;
+    }
+
+    public LocalDate getDateEnd() {
+        return dateEnd;
+    }
 
     public boolean isName(String name) {
         return this.name.equals(name);
@@ -47,48 +71,40 @@ public class Event {
         return detail;
     }
 
+    public void setDateStart(String dateStart) {
+        this.dateStart = LocalDate.parse(dateStart);
+    }
+
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = LocalDate.parse(dateEnd);
+    }
+
     public void setDetail(String detail) {
         this.detail = detail;
     }
 
-    public String getDateStart() {
-        return dateStart;
-    }
-
-    public void setDateStart(String dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public String getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(String dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public String getTimeStart() {
-        return timeStart;
-    }
-
     public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
+        this.timeStart = LocalTime.parse(timeStart);
     }
 
-    public String getTimeEnd() {
+    public LocalTime getTimeEnd() {
         return timeEnd;
     }
 
+    public LocalTime getTimeStart() {
+        return timeStart;
+    }
+
     public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
+        this.timeEnd = LocalTime.parse(timeEnd);
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getMaxMember() {
+        return maxMember;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setCapacity(int maxMember) {
+        this.maxMember = maxMember;
     }
 
     public ArrayList<Team> getTeam() {
@@ -105,5 +121,21 @@ public class Event {
 
     public void setUser(ArrayList<NormalUser> user) {
         this.users = user;
+    }
+
+    public int getCountMember() {
+        return countMember;
+    }
+
+    public void addCountMember() {
+        this.countMember += 1;
+    }
+
+    public int getStates() {
+        return states;
+    }
+
+    public void setStates(int states) {
+        this.states = states;
     }
 }
