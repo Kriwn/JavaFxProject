@@ -3,24 +3,22 @@ package cs211.project.controllers;
 import cs211.project.models.Staff;
 import cs211.project.models.StaffList;
 import cs211.project.services.Datasource;
+import cs211.project.services.NPBPRouter;
 import cs211.project.services.StaffDatasource;
-import cs211.project.cs211661project.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -37,6 +35,8 @@ public class StaffListController {
     @FXML
     private VBox vbox3;
     private Staff selectStaff;
+    @FXML
+    AnchorPane page;
     public void initialize(){
         datasource = new StaffDatasource("staffs", "staffs.csv");
         staffList = datasource.readData();
@@ -124,6 +124,10 @@ public class StaffListController {
         String separator = name.substring(name.lastIndexOf('.'), name.length());
         String fileName = staff.getUsername();
 
+        if (!separator.equals(".jpg") || !separator.equals(".png") || !separator.equals(".gif")){
+            return staff.getImagePath();
+        }
+
         Path to = Paths.get(locate+"/Images/"+fileName+separator);
         CopyOption[] options = new CopyOption[]{
                 StandardCopyOption.REPLACE_EXISTING,
@@ -180,6 +184,14 @@ public class StaffListController {
                 vbox3.getChildren().add(createCard(staff));
             }
             count++;
+        }
+    }
+
+    public void backToMyCreateEvent(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
