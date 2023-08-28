@@ -3,7 +3,7 @@ package cs211.project.models;
 import java.util.ArrayList;
 
 public class Admin extends Account{
-    public ArrayList<NormalUser> users;
+    public ArrayList<User> users;
 
     public Admin(String username, String name) {
         super(username, name);

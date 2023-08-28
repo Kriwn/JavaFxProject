@@ -22,7 +22,7 @@ public class Account {
         this.name = name;
         this.username = username;
         this.password = null;
-        this.roleAccount = "NormalUser";
+        this.roleAccount = "User";
         this.image = "images/default.png";
         this.timeLogin = LocalDateTime.now();
     }

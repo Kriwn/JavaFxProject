@@ -3,10 +3,15 @@ package cs211.project.models;
 import java.util.ArrayList;
 
 public class AccountList {
-    private ArrayList<NormalUser> users;
+    private ArrayList<User> users;
+    private ArrayList<Admin> admins;
 
-    public NormalUser findUserByUsername(String username){
-        for(NormalUser user: users){
+    public AccountList(){
+        users = new ArrayList<>();
+        admins = new ArrayList<>();
+    }
+    public User findUserByUsername(String username){
+        for(User user: users){
             if(user.isUsername(username)){
                 return user;
             }
@@ -14,7 +19,7 @@ public class AccountList {
         return null;
     }
     public Boolean checkUserByUsername(String username){
-        for(NormalUser user: users){
+        for(User user: users){
             if(user.isUsername(username)){
                 return true;
             }
@@ -26,10 +31,21 @@ public class AccountList {
         username = username.trim();
         name = name.trim();
         password = password.trim();
-        NormalUser exist = findUserByUsername(username);
+        User exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                users.add(new NormalUser(username,name,password,role,image,time));
+                users.add(new User(username,name,password,role,image,time));
+            }
+        }
+    }
+    public void addNewAdminFromFile(String username, String name, String password, String role, String image, String time){
+        username = username.trim();
+        name = name.trim();
+        password = password.trim();
+        User exist = findUserByUsername(username);
+        if(!username.equals("") && !name.equals("") && !password.equals("")){
+            if(exist == null){
+                admins.add(new Admin(username,name,password,role,image,time));
             }
         }
     }
@@ -38,31 +54,34 @@ public class AccountList {
         username = username.trim();
         name = name.trim();
         password = password.trim();
-        NormalUser exist = findUserByUsername(username);
+        User exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                NormalUser normalUser = new NormalUser(username, name);
-                normalUser.hashPassword(password);
-                users.add(normalUser);
+                User user = new User(username, name);
+                user.hashPassword(password);
+                users.add(user);
             }
         }
     }
     public boolean changePassword(String username, String oldPassword, String newPassword){
-        NormalUser exist = findUserByUsername(username);
+        User exist = findUserByUsername(username);
 
         return false;
     }
 
-    public NormalUser login(String username,String password){
-        NormalUser user = findUserByUsername(username);
+    public User login(String username, String password){
+        User user = findUserByUsername(username);
         boolean flag = user.validatePassword(password);
         if(flag){
             return user;
         }
         return null;
     }
+    public ArrayList<User> getUsers(){
+        return users;
+    }
 
-    public NormalUser getUsers() {
-
+    public ArrayList<Admin> getAdmins(){
+        return admins;
     }
 }

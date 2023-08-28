@@ -11,7 +11,7 @@ public class Event {
     private String timeEnd;
     private int capacity;
     private ArrayList<Team> teams;
-    private ArrayList<NormalUser> users;
+    private ArrayList<User> users;
 
     public Event(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, int capacity){
         this.name = name;
@@ -27,7 +27,7 @@ public class Event {
         this.teams.add(team);
     }
 
-    public void addUser(NormalUser user){
+    public void addUser(User user){
         this.users.add(user);
     }
 
@@ -99,11 +99,11 @@ public class Event {
         this.teams = team;
     }
 
-    public ArrayList<NormalUser> getUser() {
+    public ArrayList<User> getUser() {
         return users;
     }
 
-    public void setUser(ArrayList<NormalUser> user) {
+    public void setUser(ArrayList<User> user) {
         this.users = user;
     }
 }

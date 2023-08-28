@@ -29,7 +29,7 @@ public class EventList {
         exist.addTeam(team);
     }
 
-    public void addUser(NormalUser user, String name){
+    public void addUser(User user, String name){
         Event exist = findEventByName(name);
         exist.addUser(user);
     }

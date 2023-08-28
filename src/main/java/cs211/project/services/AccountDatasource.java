@@ -2,9 +2,6 @@ package cs211.project.services;
 
 import cs211.project.models.Account;
 import cs211.project.models.AccountList;
-import cs211.project.models.NormalUser;
-import cs211.project.models.NormalUserList;
-
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -74,11 +71,11 @@ public class AccountDatasource implements Datasource<AccountList> {
                 String timeLogin = data[5].trim();
 
                 // เพิ่มข้อมูลลงใน list
-                if(roleAccount.equals("NormalUser")){
-                    accountList.
+                if(roleAccount.equals("User")){
+                    accountList.addNewUserFromFile(username, name, password, image, roleAccount, timeLogin);
                 }
                 else if(roleAccount.equals("Admin")){
-
+                    accountList.addNewAdminFromFile(username, name, password, image, roleAccount, timeLogin);
                 }
             }
         } catch (IOException e) {
