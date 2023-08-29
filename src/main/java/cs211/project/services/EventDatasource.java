@@ -2,7 +2,7 @@ package cs211.project.services;
 
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
-import cs211.project.models.NormalUserList;
+import cs211.project.models.AccountList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

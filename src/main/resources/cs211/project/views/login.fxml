@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="loginArea" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.LoginController">
    <children>
-      <Label layoutX="226.0" layoutY="191.0" text="Log in">
+      <Label layoutX="226.0" layoutY="191.0" styleClass="app-text" text="Log in">
          <font>
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
-      <PasswordField layoutX="131.0" layoutY="400.0" prefWidth="250.0" promptText="Password" styleClass="login-text-field">
+      <PasswordField fx:id="passwordLabel" layoutX="131.0" layoutY="400.0" prefWidth="250.0" promptText="Password" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
@@ -25,7 +25,7 @@
             <Font name="Impact" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="131.0" layoutY="671.0" text="Dont' Have account ?" textFill="#171717">
+      <Label layoutX="119.0" layoutY="671.0" styleClass="app-text" text="Dont' Have account ?" textFill="#171717">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
@@ -35,11 +35,11 @@
             <Font name="Impact" size="16.0" />
          </font>
       </Button>
-      <TextField layoutX="130.0" layoutY="317.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" styleClass="login-text-field">
+      <TextField fx:id="usernameLabel" layoutX="130.0" layoutY="317.0" prefHeight="37.0" prefWidth="250.0" promptText="Username" styleClass="login-text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Line endX="45.75" layoutX="287.0" layoutY="689.0" startX="-1.0" />
+      <Label fx:id="errorLabel" layoutX="242.0" layoutY="447.0" text="Label" textFill="RED" />
    </children>
 </AnchorPane>
