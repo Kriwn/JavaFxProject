@@ -70,10 +70,10 @@ public class AccountDatasource implements Datasource<AccountList> {
                 String timeLogin = data[5].trim();
                 // เพิ่มข้อมูลลงใน list
                 if(roleAccount.equals("User")){
-                    accountList.addNewUserFromFile(username, name, password, image, roleAccount, timeLogin);
+                    accountList.addNewUserFromFile(username, name, password, roleAccount, image, timeLogin);
                 }
                 else if(roleAccount.equals("Admin")){
-                    accountList.addNewAdminFromFile(username, name, password, image, roleAccount, timeLogin);
+                    accountList.addNewAdminFromFile(username, name, password, roleAccount, image, timeLogin);
                 }
             }
         } catch (IOException e) {

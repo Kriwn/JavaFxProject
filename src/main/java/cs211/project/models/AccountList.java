@@ -57,7 +57,7 @@ public class AccountList {
         User exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                User user = new User(username, name,password);
+                User user = new User(username, name);
                 user.hashPassword(password);
                 users.add(user);
             }
