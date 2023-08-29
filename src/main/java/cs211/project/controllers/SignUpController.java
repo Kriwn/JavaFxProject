@@ -38,7 +38,7 @@ public class SignUpController implements Initializable{
         String confirmPassWord = confirmPasswordLabel.getText();
         if (accounts.checkUserByUsername(username)) {
             if (Account.confirmPassword(password, confirmPassWord)) {
-                accounts.signUp(name, username, password);
+                accounts.signUp(username, name, password);
                 errorLabel.setText("success");
                 datasource.writeData(accounts);
                 try {

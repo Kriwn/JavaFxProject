@@ -62,9 +62,12 @@ public class Account {
         }
         return false;
     }
-    public boolean validatePassword(String password){
-        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(),this.password);
-        return  result.verified;
+    public boolean validatePassword(String password) {
+        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), this.password);
+        return result.verified;
+    }
+    public boolean validatePassword2(String password){
+        return this.password.equals(password);
     }
 
     public String getPassword() {

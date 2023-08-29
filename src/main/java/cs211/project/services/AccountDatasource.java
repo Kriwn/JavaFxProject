@@ -2,7 +2,6 @@ package cs211.project.services;
 
 import cs211.project.models.Account;
 import cs211.project.models.AccountList;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
@@ -92,7 +91,7 @@ public class AccountDatasource implements Datasource<AccountList> {
         FileOutputStream fileOutputStream = null;
 
         try {
-            fileOutputStream = new FileOutputStream(file,true);
+            fileOutputStream = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -106,7 +105,7 @@ public class AccountDatasource implements Datasource<AccountList> {
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
             for (Account user : data.getUsers()) {
-                String line = user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getImage() + "," + user.getRoleAccount() + "," + user.getTimeLogin();
+                String line = user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getRoleAccount() + "," + user.getImage() + "," + user.getTimeLogin();
                 buffer.append(line);
                 buffer.append("\n");
             }
