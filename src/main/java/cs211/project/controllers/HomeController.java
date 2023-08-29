@@ -40,6 +40,13 @@ public class HomeController implements Initializable{
             throw new RuntimeException(e);
         }
     }
+    public void onHistoryButton(){
+        try {
+            NPBPRouter.loadPage("history",page);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void onSettingButton(){
         try {
             NPBPRouter.loadPage("setting",page);

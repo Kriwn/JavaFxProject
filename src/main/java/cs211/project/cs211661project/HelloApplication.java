@@ -49,6 +49,8 @@ public class HelloApplication extends Application {
         NPBPRouter.when("staff-list", viewPath + "staff-list.fxml");
         NPBPRouter.when("chat", viewPath + "chat.fxml");
         NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
+        NPBPRouter.when("history", viewPath + "history.fxml");
+
     }
     public static void main(String[] args) {
         launch();
