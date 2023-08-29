@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
         NPBPRouter.setCss("CSS/User/theme-1.css");
         configRoute();
 //        String css = getClass().getResource("css/theme-2.css").toExternalForm();
-        NPBPRouter.goTo("create-event");
+        NPBPRouter.goTo("app");
     }
 
     public void configRoute(){
