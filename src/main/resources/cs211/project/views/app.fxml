@@ -8,7 +8,6 @@
    <left>
       <AnchorPane prefHeight="760.0" prefWidth="512.0" styleClass="app-image" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="217.0" layoutY="281.0" text="Label" />
          </children></AnchorPane>
    </left>
    <right>

@@ -33,7 +33,10 @@ public class EventList {
         exist.addTeam(team);
     }
 
-    public void joinEvent(NormalUser user, String name){
+    public void joinEvent(User user, String name){
+
+    }
+    public void addUser(User user, String name){
         Event exist = findEventByName(name);
         if (exist.getMaxMember() > exist.getCountMember() && exist.getStates() == 1){
             exist.addUser(user);
@@ -63,7 +66,7 @@ public class EventList {
         exist.setCapacity(capacity);
     }
 
-    public void banUser(NormalUser user, String name){
+    public void banUser(User user, String name){
         Event exist = findEventByName(name);
         exist.removeUser(user);
     }

@@ -14,7 +14,7 @@ public class Event {
     private int maxMember;
     private String image;
     private ArrayList<Team> teams = new ArrayList<>();
-    private ArrayList<NormalUser> users = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalTime timeStart;
@@ -37,11 +37,11 @@ public class Event {
         this.teams.add(team);
     }
 
-    public void addUser(NormalUser user){
+    public void addUser(User user){
         this.users.add(user);
     }
 
-    public void removeUser(NormalUser user) {
+    public void removeUser(User user) {
         this.users.remove(user);
     }
     public void setImage(String image){
@@ -115,11 +115,11 @@ public class Event {
         this.teams = team;
     }
 
-    public ArrayList<NormalUser> getUser() {
+    public ArrayList<User> getUser() {
         return users;
     }
 
-    public void setUser(ArrayList<NormalUser> user) {
+    public void setUser(ArrayList<User> user) {
         this.users = user;
     }
 
