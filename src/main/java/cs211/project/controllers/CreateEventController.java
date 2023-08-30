@@ -13,6 +13,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -24,6 +25,8 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 public class CreateEventController {
+    @FXML
+    AnchorPane page;
     @FXML
     private TextField capacityEvent;
 
@@ -75,6 +78,12 @@ public class CreateEventController {
         dateEndEvent.setValue(null);
         capacityEvent.clear();
         datasource.writeData(eventList);
+
+        try {
+            NPBPRouter.loadPage("my-create-event",page);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

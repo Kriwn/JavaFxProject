@@ -20,7 +20,7 @@ public class EventList {
         timeStart = timeStart.trim();
         timeEnd = timeEnd.trim();
         capacity = capacity.trim();
-        if (!name.equals("") && !details.equals("") && !dateStart.equals("") && !dateEnd.equals("") && !timeStart.equals("") && !timeEnd.equals("")) {
+        if (!name.equals("")) {
             Event exist = findEventByName(name);
             if (exist == null) {
                 events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd, capacity));
