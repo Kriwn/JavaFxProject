@@ -19,16 +19,16 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordLabel" layoutX="131.0" layoutY="390.0" prefWidth="250.0" promptText="Password" styleClass="text-field">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </PasswordField>
       <TextField fx:id="nameLabel" layoutX="131.0" layoutY="325.0" prefHeight="37.0" prefWidth="250.0" promptText="Name" styleClass="text-field">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
+      <PasswordField fx:id="passwordLabel" layoutX="131.0" layoutY="390.0" prefWidth="250.0" promptText="Password" styleClass="text-field">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </PasswordField>
       <PasswordField fx:id="confirmPasswordLabel" layoutX="131.0" layoutY="455.0" prefWidth="250.0" promptText="Confirm Password" styleClass="text-field">
          <font>
             <Font size="16.0" />
