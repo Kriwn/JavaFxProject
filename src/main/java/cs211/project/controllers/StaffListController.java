@@ -35,6 +35,7 @@ public class StaffListController {
     @FXML
     private VBox vbox3;
     private Staff selectStaff;
+    private VBox selectBox;
     @FXML
     AnchorPane page;
     public void initialize(){
@@ -80,8 +81,10 @@ public class StaffListController {
         statusLabel.setText(staff.getStatus());
         img.setFill(new ImagePattern(new Image("file:" + staff.getImagePath())));
 
+        VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
             selectStaff = staff;
+            selectBox = finalVbox;
             System.out.println("Selected Staff: " + selectStaff.getUsername()); // for debugging
         });
 
@@ -167,24 +170,38 @@ public class StaffListController {
     }
 
     public void refresh() {
-        vbox1.getChildren().clear();
-        vbox2.getChildren().clear();
-        vbox3.getChildren().clear();
+        Circle circle = (Circle) selectBox.getChildren().get(1);
+        Label username = (Label) selectBox.getChildren().get(3);
+        Label role = (Label) selectBox.getChildren().get(4);
+        Label status = (Label) selectBox.getChildren().get(5);
 
-        staffList = datasource.readData();
-        staffs = staffList.getStaffs();
+        circle.setFill(selectStaff.getImg().getFill());
+        username.setText(selectStaff.getUsername());
+        status.setText(selectStaff.getStatus());
+        role.setText(selectStaff.getRole());
 
-        int count = 0;
-        for (var staff : staffs) {
-            if (count % 3 == 0) {
-                vbox1.getChildren().add(createCard(staff));
-            } else if (count % 3 == 1) {
-                vbox2.getChildren().add(createCard(staff));
-            } else if (count % 3 == 2) {
-                vbox3.getChildren().add(createCard(staff));
-            }
-            count++;
-        }
+//        username.setText(selectStaff.getUsername());
+//        status.setText(selectStaff.getStatus());
+//        role.setText(selectStaff.getRole());
+//        img.setFill(selectStaff.getImg().getFill());
+//        vbox1.getChildren().clear();
+//        vbox2.getChildren().clear();
+//        vbox3.getChildren().clear();
+//
+//        staffList = datasource.readData();
+//        staffs = staffList.getStaffs();
+//
+//        int count = 0;
+//        for (var staff : staffs) {
+//            if (count % 3 == 0) {
+//                vbox1.getChildren().add(createCard(staff));
+//            } else if (count % 3 == 1) {
+//                vbox2.getChildren().add(createCard(staff));
+//            } else if (count % 3 == 2) {
+//                vbox3.getChildren().add(createCard(staff));
+//            }
+//            count++;
+//        }
     }
 
     public void backToMyCreateEvent(){

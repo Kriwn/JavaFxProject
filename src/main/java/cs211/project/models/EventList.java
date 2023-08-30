@@ -1,5 +1,7 @@
 package cs211.project.models;
 
+import javafx.scene.image.Image;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -12,7 +14,7 @@ public class EventList {
         events = new ArrayList<>();
     }
 
-    public void addNewEvent(String name, String details, String dateStart, String dateEnd, String timeStart,String timeEnd,String capacity){
+    public void addNewEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, String capacity, Image image){
         name = name.trim();
         details = details.trim();
         dateStart = dateStart.trim();
@@ -23,7 +25,7 @@ public class EventList {
         if (!name.equals("")) {
             Event exist = findEventByName(name);
             if (exist == null) {
-                events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd, capacity));
+                events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd, capacity,image));
             }
         }
     }
@@ -55,7 +57,7 @@ public class EventList {
     }
 
 
-    public void editEvent(String name,String name_new, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, int capacity){
+    public void editEvent(String name,String name_new, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, int capacity, Image image){
         Event exist = findEventByName(name);
         exist.setName(name_new);
         exist.setDetail(details);
@@ -64,6 +66,7 @@ public class EventList {
         exist.setDateEnd(dateEnd);
         exist.setTimeEnd(timeEnd);
         exist.setCapacity(capacity);
+        exist.setImage(image);
     }
 
     public void banUser(User user, String name){

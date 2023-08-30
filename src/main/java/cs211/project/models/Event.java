@@ -12,7 +12,7 @@ public class Event {
     private String detail;
     private  int countMember;
     private int maxMember;
-    private String image;
+    private Image image;
     private ArrayList<Team> teams = new ArrayList<>();
     private ArrayList<User> users = new ArrayList<>();
     private LocalDate dateStart;
@@ -21,7 +21,7 @@ public class Event {
     private LocalTime timeEnd;
     private int states;
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
+    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember,Image image){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
@@ -31,6 +31,20 @@ public class Event {
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = 0;
         this.states = 0;
+        this.image = image;
+    }
+
+    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
+        this.name = name;
+        this.detail = details;
+        this.maxMember = Integer.parseInt(maxMember);
+        this.dateStart = LocalDate.parse(dateStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.countMember =0;
+        this.states = 0;
+        setImage(new Image("file:" + "images/default.png"));
     }
 
     public void addTeam(Team team){
@@ -43,9 +57,6 @@ public class Event {
 
     public void removeUser(User user) {
         this.users.remove(user);
-    }
-    public void setImage(String image){
-        this.image = image;
     }
 
     public LocalDate getDateStart() {
@@ -137,5 +148,13 @@ public class Event {
 
     public void setStates(int states) {
         this.states = states;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Image getImage() {
+        return image;
     }
 }

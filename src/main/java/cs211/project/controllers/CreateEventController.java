@@ -69,7 +69,9 @@ public class CreateEventController {
         String timeStart = timeStartEvent.getText().trim();
         String timeEnd = timeEndEvent.getText().trim();
         String maxMember = capacityEvent.getText().trim();
-        eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember);
+        Image image = eventImageView.getImage();
+
+        eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember,image);
         nameEvent.clear();
         detailsEvent.clear();
         timeStartEvent.clear();
@@ -124,14 +126,9 @@ public class CreateEventController {
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
 
 
-                // SET NEW FILE PATH TO IMAGE
-                eventImageView.setImage(new Image(target.toUri().toString()));
 
-                //setImagePath
-                Event eventForSetImagePath = new Event("nameSetImage","detailsSetImage","dateStartSetImage","dateEndSetImage","timeStartSetImage","timeEndSetImage","0");
-                eventForSetImagePath.setImage(destDir + "/" + filename);
-                this.eventForSetImagePath=eventForSetImagePath;
-//                System.out.println("Upload: "+accountForSetImagePath.getImagePath())
+                // SET NEW FILE PATH TO IMAGE
+                eventImageView.setImage(new Image("file:"+ "images/" + filename));
             } catch (IOException e) {
                 e.printStackTrace();
             }

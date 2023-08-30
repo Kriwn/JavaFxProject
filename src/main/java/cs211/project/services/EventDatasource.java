@@ -3,6 +3,7 @@ package cs211.project.services;
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.models.AccountList;
+import javafx.scene.image.Image;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -63,9 +64,10 @@ public class EventDatasource implements Datasource<EventList>{
                 String timeStart = data[4].trim();
                 String timeEnd = data[5].trim();
                 String capacity = data[6];
+                Image image = new Image(data[7]);
                 //อาจจะมีตัวเพิ่ม
 
-                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,capacity);
+                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,capacity,image);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -96,7 +98,7 @@ public class EventDatasource implements Datasource<EventList>{
         try {
             // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
             for (Event event : data.getEvents()) {
-                String line = event.getName() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd() + "," + event.getCountMember() + "," + event.getMaxMember();
+                String line = event.getName() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
                 buffer.append(line);
                 buffer.append("\n");
             }
