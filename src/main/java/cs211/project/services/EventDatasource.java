@@ -63,11 +63,12 @@ public class EventDatasource implements Datasource<EventList>{
                 String dateEnd = data[3].trim();
                 String timeStart = data[4].trim();
                 String timeEnd = data[5].trim();
-                String capacity = data[6];
-                Image image = new Image(data[7]);
+                String countMember = data[6];
+                String maxMember = data[7];
+                Image image = new Image(data[8]);
                 //อาจจะมีตัวเพิ่ม
 
-                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,capacity,image);
+                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,maxMember,image);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +99,7 @@ public class EventDatasource implements Datasource<EventList>{
         try {
             // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
             for (Event event : data.getEvents()) {
-                String line = event.getName() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
+                String line = event.getName() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
                 buffer.append(line);
                 buffer.append("\n");
             }

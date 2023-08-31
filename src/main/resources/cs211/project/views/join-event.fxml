@@ -36,39 +36,39 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="200.0" fitWidth="280.0" layoutX="180.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="245.0" layoutY="340.0" text="nameEvent">
+            <ImageView fx:id="eventImageView" fitHeight="200.0" fitWidth="280.0" layoutX="180.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="nameEventLabel" layoutX="245.0" layoutY="340.0" text="nameEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="245.0" layoutY="400.0" text="detailsEvent">
+            <Label fx:id="detailsEventLabel" layoutX="245.0" layoutY="400.0" text="detailsEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="245.0" layoutY="460.0" text="dateStartEvent">
+            <Label fx:id="dateStartEventLabel" layoutX="245.0" layoutY="460.0" text="dateStartEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="245.0" layoutY="520.0" text="dateEndEvent">
+            <Label fx:id="dateEndEventLabel" layoutX="245.0" layoutY="520.0" text="dateEndEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="380.0" layoutY="460.0" text="timeStartEvent">
+            <Label fx:id="timeStartEventLabel" layoutX="380.0" layoutY="460.0" text="timeStartEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="380.0" layoutY="520.0" text="timeEndEvent">
+            <Label fx:id="timeEndEventLabel" layoutX="380.0" layoutY="520.0" text="timeEndEvent">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="368.75" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Event" textFill="WHITE" />
-            <Label fx:id="countEmpty" layoutX="358.0" layoutY="290.0" text="countEmpty">
+            <Button layoutX="368.75" layoutY="600.0" mnemonicParsing="false" onAction="#onJointEventButton" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Event" textFill="WHITE" />
+            <Label fx:id="countEmpty" layoutX="419.0" layoutY="290.0" text="label">
                <font>
                   <Font size="18.0" />
                </font>
@@ -78,7 +78,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="countTotal" layoutX="483.0" layoutY="290.0" text="countTotal">
+            <Label fx:id="countTotal" layoutX="483.0" layoutY="290.0" text="label">
                <font>
                   <Font size="18.0" />
                </font>

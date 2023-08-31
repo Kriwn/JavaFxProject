@@ -3,26 +3,32 @@ package cs211.project.controllers;
 import cs211.project.models.Account;
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
+import cs211.project.models.Staff;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CreateEventController {
     @FXML
@@ -52,12 +58,14 @@ public class CreateEventController {
     private TextField timeStartEvent;
     private EventList eventList;
     private Datasource<EventList> datasource;
-    private Event event ;
     private Event eventForSetImagePath;
+    private Event selectEvent;
+    private ArrayList<Event> event;
 
     public void initialize(){
         datasource = new EventDatasource("data","event.csv");
         eventList = datasource.readData();
+        event = eventList.getEvents();
     }
 
     @FXML
@@ -72,6 +80,7 @@ public class CreateEventController {
         Image image = eventImageView.getImage();
 
         eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember,image);
+        eventList.addCountEvent(nameString);
         nameEvent.clear();
         detailsEvent.clear();
         timeStartEvent.clear();
@@ -80,6 +89,7 @@ public class CreateEventController {
         dateEndEvent.setValue(null);
         capacityEvent.clear();
         datasource.writeData(eventList);
+
 
         try {
             NPBPRouter.loadPage("my-create-event",page);
@@ -104,33 +114,30 @@ public class CreateEventController {
         File file = chooser.showOpenDialog(source.getScene().getWindow());
 
         if (file != null) {
+
+            File dir = new File("images");
+
+            String locate = dir.getParent();
+            File f = new File("images");
+            if (!f.exists()) {f.mkdirs();}
+
+            Path from = Paths.get(file.toURI());
+
+            String name = file.getName();
+            String separator = name.substring(name.lastIndexOf('.'), name.length());
+            String fileName = nameEvent.getText().trim();
+
+            eventImageView.setImage(new Image("file:"+"images/"+fileName+separator));
+
+            Path to = Paths.get("images/"+fileName+separator);
+            CopyOption[] options = new CopyOption[]{
+                    StandardCopyOption.REPLACE_EXISTING,
+                    StandardCopyOption.COPY_ATTRIBUTES
+            };
             try {
-
-                // CREATE FOLDER IF NOT EXIST
-                File destDir = new File("images");
-
-                if (!destDir.exists()) destDir.mkdirs();
-
-
-                // RENAME FILE
-                String[] fileSplit = file.getName().split("\\.");
-
-                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
-                Path target = FileSystems.getDefault().getPath(
-                        destDir.getAbsolutePath() + System.getProperty("file.separator") + filename
-                );
-
-
-                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
-                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-
-
-
-                // SET NEW FILE PATH TO IMAGE
-                eventImageView.setImage(new Image("file:"+ "images/" + filename));
+                Files.copy(from,to, options);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }

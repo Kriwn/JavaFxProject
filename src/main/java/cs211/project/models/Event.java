@@ -8,6 +8,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
+    public static int countEvent = 1;
+    public int position;
     private String name;
     private String detail;
     private  int countMember;
@@ -32,6 +34,7 @@ public class Event {
         this.countMember = 0;
         this.states = 0;
         this.image = image;
+        this.position = countEvent;
     }
 
     public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
@@ -45,8 +48,15 @@ public class Event {
         this.countMember =0;
         this.states = 0;
         setImage(new Image("file:" + "images/default.png"));
+        this.position = countEvent;
+    }
+    public void addCountEvent(){
+        countEvent++;
     }
 
+    public boolean isPosition(int position){
+        return this.position == position;
+    }
     public void addTeam(Team team){
         this.teams.add(team);
     }
@@ -139,7 +149,7 @@ public class Event {
     }
 
     public void addCountMember() {
-        this.countMember += 1;
+        this.countMember++;
     }
 
     public int getStates() {

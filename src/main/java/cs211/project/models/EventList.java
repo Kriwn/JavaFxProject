@@ -30,15 +30,26 @@ public class EventList {
         }
     }
 
+    public Event findEventByPosition(int position){
+        for (Event event : events) {
+            if (event.isPosition(position)) {
+                return event;
+            }
+        }
+        return null;
+    }
+
     public void addTeam(Team team,String name){
         Event exist = findEventByName(name);
         exist.addTeam(team);
     }
 
-    public void joinEvent(User user, String name){
-
+    public void addCountEvent(String name){
+        Event exist = findEventByName(name);
+        exist.addCountEvent();
     }
-    public void addUser(User user, String name){
+
+    public void joinEvent(User user, String name){
         Event exist = findEventByName(name);
         if (exist.getMaxMember() > exist.getCountMember() && exist.getStates() == 1){
             exist.addUser(user);
