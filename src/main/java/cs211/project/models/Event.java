@@ -3,7 +3,6 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class Event {
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private int states;
+    private int status;
 
     public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember,Image image){
         this.name = name;
@@ -32,7 +31,7 @@ public class Event {
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = 0;
-        this.states = 0;
+        this.status = 0;
         this.image = image;
         this.position = countEvent;
     }
@@ -46,7 +45,7 @@ public class Event {
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember =0;
-        this.states = 0;
+        this.status = 0;
         setImage(new Image("file:" + "images/default.png"));
         this.position = countEvent;
     }
@@ -152,12 +151,12 @@ public class Event {
         this.countMember++;
     }
 
-    public int getStates() {
-        return states;
+    public int getStatus() {
+        return status;
     }
 
-    public void setStates(int states) {
-        this.states = states;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setImage(Image image) {

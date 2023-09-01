@@ -1,8 +1,7 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Event;
-import cs211.project.models.EventList;
-import cs211.project.models.Staff;
+import cs211.project.models.*;
+import cs211.project.services.AccountDatasource;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
@@ -14,7 +13,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -43,6 +41,10 @@ public class HomePageController implements Initializable {
     private ArrayList<Event> events;
     private EventList eventList;
     private Datasource<EventList> datasource;
+    private Datasource<AccountList> datasourceUser;
+    private AccountList accountList;
+    private User user;
+    private ArrayList<Event> eventUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,8 +82,9 @@ public class HomePageController implements Initializable {
         namelabel.setText(newEvent.getName());
         countMember.setText(""+newEvent.getCountMember());
         maxMember.setText(""+newEvent.getMaxMember());
-        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
+//        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
+        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
                 NPBPRouter.loadPage("join-event",page,newEvent.getName());

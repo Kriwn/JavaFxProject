@@ -29,6 +29,7 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         datasource = new AccountDatasource("data","account.csv");
         accounts = datasource.readData();
+
     }
 
     public void clickSignIn(MouseEvent event) throws IOException {
@@ -41,7 +42,7 @@ public class LoginController implements Initializable{
         User exist = accounts.findUserByUsername(username);
         if(exist != null){
             if(exist.validatePassword(password)){
-                NPBPRouter.goTo("home");
+                NPBPRouter.goTo("home",exist.getUsername());
             }
         }
         else{

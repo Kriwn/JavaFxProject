@@ -3,7 +3,6 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -51,7 +50,7 @@ public class EventList {
 
     public void joinEvent(User user, String name){
         Event exist = findEventByName(name);
-        if (exist.getMaxMember() > exist.getCountMember() && exist.getStates() == 1){
+        if (exist.getMaxMember() > exist.getCountMember() && exist.getStatus() == 1){
             exist.addUser(user);
             exist.addCountMember();
         }
@@ -60,10 +59,10 @@ public class EventList {
     public void checkTimeEvent(String name,LocalDate date, LocalTime time){
         Event exist = findEventByName(name);
         if(exist.getDateStart().isAfter(date) && exist.getDateEnd().isBefore(date) && exist.getTimeStart().isAfter(time) && exist.getTimeEnd().isBefore(time)){
-            exist.setStates(1);
+            exist.setStatus(1);
         }
         else{
-            exist.setStates(0);
+            exist.setStatus(0);
         }
     }
 

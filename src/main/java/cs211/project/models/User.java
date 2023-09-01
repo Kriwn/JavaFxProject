@@ -14,4 +14,5 @@ public class User extends Account{
         super(username,name,password,role,image,time);
     }
 
+    public ArrayList<Event> getMyEvents(){return myEvents;}
 }
