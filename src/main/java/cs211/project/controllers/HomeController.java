@@ -1,57 +1,65 @@
 package cs211.project.controllers;
 
-import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import cs211.project.services.NPBPRouter;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class HomeController {
-    @FXML
-    public void onButtonGoToHome() {
+public class HomeController implements Initializable{
+    @FXML AnchorPane page;
+    public void initialize(URL location, ResourceBundle resources){
         try {
-            FXRouter.goTo("Home");
+            NPBPRouter.loadPage("home-page",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public  void onButtonGoToMyEvent(){
+
+    public void onHomeButton(){
         try {
-            FXRouter.goTo("MyEvent");
+            NPBPRouter.loadPage("home-page",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public void onButtonGoToSetting () {
+    public void onMyEventButton(){
         try {
-            FXRouter.goTo("Setting");
+            NPBPRouter.loadPage("my-event",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public  void onButtonGoToLoginPage(){
+
+    public void onMyCreateEventButton(){
         try {
-            FXRouter.goTo("LoginPage");
+            NPBPRouter.loadPage("my-create-event",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public  void onButtonGoToJoinEventPage(){
+    public void onHistoryButton(){
         try {
-            FXRouter.goTo("JoinEvent");
+            NPBPRouter.loadPage("history",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    public  void onButtonGoToCreateEventPage(){
+    public void onSettingButton(){
         try {
-            FXRouter.goTo("CreateEvent");
+            NPBPRouter.loadPage("setting",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+    public void onLogout(){
+        try {
+            NPBPRouter.goTo("app");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

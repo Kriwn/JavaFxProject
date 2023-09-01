@@ -1,49 +1,50 @@
 package cs211.project.controllers;
 
-import cs211.project.services.FXRouter;
 import javafx.fxml.FXML;
-
-import java.io.IOException;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Circle;
 
 public class StaffController {
+
     @FXML
-    public void onButtonGoToHome() {
-        try {
-            FXRouter.goTo("Home");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private Circle imgCircle;
+
+    @FXML
+    private Label roleLabel;
+
+    @FXML
+    private Label statusLabel;
+
+    @FXML
+    private Label usernameLabel;
+
+    public void setImgCircle(Circle circle){
+        this.imgCircle = circle;
     }
-    @FXML
-    public  void onButtonGoToMyEvent(){
-        try {
-            FXRouter.goTo("MyEvent");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+    public void setRoleLabel(Label role){
+        this.roleLabel = role;
     }
-    @FXML
-    public void onButtonGoToSetting () {
-        try {
-            FXRouter.goTo("Setting");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+    public void setStatusLabel(Label status){
+        this.statusLabel = status;
     }
-    @FXML
-    public  void onButtonGoToLoginPage(){
-        try {
-            FXRouter.goTo("LoginPage");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+    public void setUsernameLabel(Label username){
+        this.usernameLabel = username;
     }
-    @FXML
-    public void goToEditEvent() {
-        try {
-            FXRouter.goTo("edit-event");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+    public Circle getImgCircle() { return imgCircle; }
+
+    public Label getRoleLabel() {
+        return roleLabel;
+    }
+
+    public Label getStatusLabel() {
+        return statusLabel;
+    }
+
+    public Label getUsernameLabel() {
+        return usernameLabel;
     }
 }

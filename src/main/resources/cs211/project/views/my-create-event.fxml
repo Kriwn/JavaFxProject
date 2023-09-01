@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.MyCreateEventController">
+   <children>
+      <AnchorPane layoutX="79.5" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
+         <children>
+            <Label layoutX="65.0" layoutY="31.0" text="My Create Event">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="240.0" layoutY="410.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit details" textFill="WHITE" />
+            <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="200.0" fitWidth="280.0" layoutX="180.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="245.0" layoutY="340.0" text="nameEvent">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="240.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit team" textFill="WHITE" />
+            <Label layoutX="65.0" layoutY="410.0" text="แก้ไขรายละเอียด :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="490.0" text="แก้ไขทีม :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="570.0" text="แก้ไข User :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="239.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit user" textFill="WHITE" />
+            <Label layoutX="370.0" layoutY="410.0" text="Chat :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="460.0" layoutY="410.0" mnemonicParsing="false" onAction="#goToChat" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="chat" textFill="WHITE" />
+            <Label layoutX="370.0" layoutY="490.0" text="Activity :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="460.0" layoutY="490.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="chat" textFill="WHITE" />
+            <Button layoutX="460.0" layoutY="570.0" mnemonicParsing="false" onAction="#goToStaffList" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="staff" textFill="WHITE" />
+            <Label layoutX="370.0" layoutY="570.0" text="Staff :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

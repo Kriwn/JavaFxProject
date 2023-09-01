@@ -2,36 +2,56 @@ package cs211.project.cs211661project;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import cs211.project.services.FXRouter;
+import cs211.project.services.NPBPRouter;
 
 import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-
-        FXRouter.bind(this, stage, "CS211 661 Project",1024,760);
+        NPBPRouter.bind(this, stage, "Hi", 1024, 760);
+        NPBPRouter.setCss("CSS/User/theme-1.css");
         configRoute();
-        FXRouter.goTo("LoginPage");
+//        String css = getClass().getResource("css/theme-2.css").toExternalForm();
+        NPBPRouter.goTo("app");
     }
 
-    private static void configRoute() {
-        String resourcesPath = "cs211/project/views/";
-        FXRouter.when("hello", resourcesPath + "hello-view.fxml");
-        FXRouter.when("LoginPage", resourcesPath + "login-page.fxml");
-        FXRouter.when("ControlUserEvent",resourcesPath + "control-user-event.fxml");
-        FXRouter.when("Home",resourcesPath + "home.fxml");
-        FXRouter.when("SingUp",resourcesPath + "sing-up.fxml");
-        FXRouter.when("MyEvent",resourcesPath + "my-event.fxml");
-        FXRouter.when("AdminMain",resourcesPath + "admin-main.fxml");
-        FXRouter.when("AdminPass",resourcesPath + "admin-pass.fxml");
-        FXRouter.when("edit-event", resourcesPath + "edit-event.fxml");
-        FXRouter.when("CreateEvent",resourcesPath + "create-event.fxml");
-        FXRouter.when("JoinEvent",resourcesPath + "join-event.fxml");
-        FXRouter.when("Setting",resourcesPath + "setting.fxml");
-        FXRouter.when("Staff",resourcesPath + "staff.fxml");
-    }
+    public void configRoute(){
+        String viewPath = "cs211/project/views/";
+        NPBPRouter.when("app",viewPath + "app.fxml");
+        NPBPRouter.when("home",viewPath + "home.fxml");
+        NPBPRouter.when("login",viewPath + "login.fxml");
+        NPBPRouter.when("signup",viewPath + "signup.fxml");
+        NPBPRouter.when("home-page",viewPath + "home-page.fxml");
+        NPBPRouter.when("CreateStaffTeam",viewPath + "create-staff-team.fxml");
+        NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
+        NPBPRouter.when("my-event",viewPath + "my-event.fxml");
+        NPBPRouter.when("activity", viewPath + "activity.fxml");
+        NPBPRouter.when("create-activity", viewPath + "create-activity.fxml");
+        NPBPRouter.when("edit-activity", viewPath + "edit-activity.fxml");
+        NPBPRouter.when("edit-user",viewPath + "edit-user.fxml");
+        NPBPRouter.when("admin-main",viewPath + "admin-main.fxml");
+        NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");
+        NPBPRouter.when("create-event",viewPath + "create-event.fxml");
+        NPBPRouter.when("create-staff-team",viewPath + "create-staff-team.fxml");
+        NPBPRouter.when("edit-event",viewPath + "edit-event.fxml");
+        NPBPRouter.when("join-event",viewPath + "join-event.fxml");
+        NPBPRouter.when("join-team",viewPath + "join-team.fxml");
+        NPBPRouter.when("my-create-event",viewPath + "my-create-event.fxml");
+        NPBPRouter.when("select-my-create-event",viewPath + "select-my-create-event.fxml");
+        NPBPRouter.when("select-team",viewPath + "select-team.fxml");
+        NPBPRouter.when("setting",viewPath + "setting.fxml");
+        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
+        NPBPRouter.when("staff-card", viewPath + "staff-card.fxml");
+        NPBPRouter.when("staff-list", viewPath + "staff-list.fxml");
+        NPBPRouter.when("chat", viewPath + "chat.fxml");
+        NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
+        NPBPRouter.when("history", viewPath + "history.fxml");
 
+    }
     public static void main(String[] args) {
         launch();
     }
