@@ -7,12 +7,12 @@ import cs211.project.services.NPBPRouter;
 import cs211.project.services.StaffDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -38,10 +38,12 @@ public class StaffListController {
     private VBox selectBox;
     @FXML
     AnchorPane page;
+
     public void initialize(){
         datasource = new StaffDatasource("staffs", "staffs.csv");
         staffList = datasource.readData();
         staffs = staffList.getStaffs();
+
         datasource.writeData(staffList);
         int count=0;
 
@@ -51,6 +53,8 @@ public class StaffListController {
             if(count%3==2){vbox3.getChildren().add(createCard(staff));}
             count++;
         }
+
+        //page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
     }
 
     public VBox createCard(Staff staff) {

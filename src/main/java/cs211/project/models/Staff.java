@@ -16,7 +16,7 @@ public class Staff {
         role = "Member";
         status = "Normal";
         img = new Circle(100);
-        imagePath = "src/main/resources/Images/add-friend.png";
+        imagePath = "src/main/resources/cs211/project/Images/add-friend.png";
         img.setFill(new ImagePattern(new Image("file:" + imagePath)));
     }
 
