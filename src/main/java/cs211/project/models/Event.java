@@ -22,7 +22,7 @@ public class Event {
     private LocalTime timeEnd;
     private int status;
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember,Image image){
+    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
@@ -30,7 +30,7 @@ public class Event {
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember = 0;
+        this.countMember = Integer.parseInt(countMember);
         this.status = 0;
         this.image = image;
         this.position = countEvent;
@@ -44,7 +44,7 @@ public class Event {
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember =0;
+        this.countMember = 0;
         this.status = 0;
         setImage(new Image("file:" + "images/default.png"));
         this.position = countEvent;

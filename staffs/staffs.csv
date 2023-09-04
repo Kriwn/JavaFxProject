@@ -2,4 +2,4 @@ Palm,Member,Normal,src/main/resources/cs211/project/Images/Palm.png
 Boss,Member,Normal,src/main/resources/cs211/project/Images/Boss.png
 Non,Head,Normal,src/main/resources/cs211/project/Images/Non.jpg
 Peak,Head,Normal,src/main/resources/cs211/project/Images/Peak.jpg
-P,Member,Normal,src/main/resources/cs211/project/Images/add-friend.png
+P,Member,Ban,src/main/resources/cs211/project/Images/add-friend.png

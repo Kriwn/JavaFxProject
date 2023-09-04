@@ -68,7 +68,7 @@ public class EventDatasource implements Datasource<EventList>{
                 Image image = new Image(data[8]);
                 //อาจจะมีตัวเพิ่ม
 
-                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,maxMember,image);
+                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,countMember,maxMember,image);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

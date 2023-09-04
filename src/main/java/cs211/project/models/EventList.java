@@ -13,7 +13,7 @@ public class EventList {
         events = new ArrayList<>();
     }
 
-    public void addNewEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, String capacity, Image image){
+    public void addNewEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity, Image image){
         name = name.trim();
         details = details.trim();
         dateStart = dateStart.trim();
@@ -24,7 +24,7 @@ public class EventList {
         if (!name.equals("")) {
             Event exist = findEventByName(name);
             if (exist == null) {
-                events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd, capacity,image));
+                events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity,image));
             }
         }
     }

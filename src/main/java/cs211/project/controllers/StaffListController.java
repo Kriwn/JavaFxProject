@@ -54,7 +54,7 @@ public class StaffListController {
             count++;
         }
 
-        //page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
+        page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
     }
 
     public VBox createCard(Staff staff) {
