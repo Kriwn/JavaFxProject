@@ -2,6 +2,7 @@ package cs211.project.services;
 
 import cs211.project.models.Account;
 import cs211.project.models.AccountList;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
@@ -62,10 +63,10 @@ public class AccountDatasource implements Datasource<AccountList> {
                 String[] data = line.split(",");
 
                 // อ่านข้อมูลตาม index แล้วจัดการประเภทของข้อมูลให้เหมาะสม
-                String username = data[0].trim();
-                String name = data[1].trim();
-                String password = data[2].trim();
-                String roleAccount = data[3].trim();
+                String roleAccount = data[0].trim();
+                String username = data[1].trim();
+                String name = data[2].trim();
+                String password = data[3].trim();
                 String image = data[4].trim();
                 String timeLogin = data[5].trim();
                 // เพิ่มข้อมูลลงใน list
@@ -104,8 +105,8 @@ public class AccountDatasource implements Datasource<AccountList> {
 
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
-            for (Account user : data.getUsers()) {
-                String line = user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getRoleAccount() + "," + user.getImage() + "," + user.getTimeLogin();
+            for (Account user : data.getAccounts()) {
+                String line = user.getRoleAccount() + "," +  user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getImage() + "," + user.getTimeLogin();
                 buffer.append(line);
                 buffer.append("\n");
             }

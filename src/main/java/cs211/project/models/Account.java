@@ -5,6 +5,8 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.time.LocalDateTime;
 
 public class Account {
+    private static int genId;
+    private int accountId;
     private String name;
     private String username;
     private String password;

@@ -2,7 +2,8 @@ package cs211.project.controllers;
 
 import cs211.project.models.AccountList;
 import cs211.project.models.User;
-import cs211.project.services.AccountDatasource;
+import cs211.project.repository.AccountRepository;
+import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,7 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import cs211.project.services.NPBPRouter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,13 +23,12 @@ public class LoginController implements Initializable{
     @FXML PasswordField passwordLabel;
     @FXML Label errorLabel;
     private AccountList accounts;
-    private AccountDatasource datasource;
+    private AccountRepository repository;
 
 
     public void initialize(URL location, ResourceBundle resources){
-        datasource = new AccountDatasource("data","account.csv");
-        accounts = datasource.readData();
-
+        repository = new AccountRepository();
+        accounts = repository.getAccounts();
     }
 
     public void clickSignIn(MouseEvent event) throws IOException {
@@ -40,6 +39,7 @@ public class LoginController implements Initializable{
         String username = usernameLabel.getText();
         String password = passwordLabel.getText();
         User exist = accounts.findUserByUsername(username);
+        System.out.println(exist);
         if(exist != null){
             if(exist.validatePassword(password)){
                 NPBPRouter.goTo("home",exist.getUsername());
