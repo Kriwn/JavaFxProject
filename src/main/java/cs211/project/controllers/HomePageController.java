@@ -54,6 +54,7 @@ public class HomePageController implements Initializable {
         datasource.writeData(eventList);
         for (var i : events){
             vbox.getChildren().add(createCard(i));
+            System.out.println(i.getGen_id());
         }
     }
 

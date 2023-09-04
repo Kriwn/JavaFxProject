@@ -25,6 +25,7 @@ public class EventList {
             Event exist = findEventByName(name);
             if (exist == null) {
                 events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity,image));
+                Event.event_id++;
             }
         }
     }
@@ -45,7 +46,7 @@ public class EventList {
 
     public void addCountEvent(String name){
         Event exist = findEventByName(name);
-        exist.addCountEvent();
+        exist.addEventId();
     }
 
     public void joinEvent(User user, String name){
