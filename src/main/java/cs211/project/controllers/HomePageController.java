@@ -1,7 +1,7 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.services.AccountDatasource;
+import cs211.project.repository.EventRepository;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
@@ -40,21 +40,20 @@ public class HomePageController implements Initializable {
     private  VBox selectBox;
     private ArrayList<Event> events;
     private EventList eventList;
-    private Datasource<EventList> datasource;
-    private Datasource<AccountList> datasourceUser;
+    private EventRepository eventRepository;
     private AccountList accountList;
     private User user;
     private ArrayList<Event> eventUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        datasource = new EventDatasource("data","event.csv");
-        eventList = datasource.readData();
+        eventRepository = new EventRepository();
+        eventList = eventRepository.getEvents();
         events = eventList.getEvents();
-        datasource.writeData(eventList);
+        eventRepository.save(eventList);
         for (var i : events){
             vbox.getChildren().add(createCard(i));
-            System.out.println(i.getGen_id());
+            System.out.println(i.getEvent_id());
         }
     }
 

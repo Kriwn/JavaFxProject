@@ -4,6 +4,7 @@ import cs211.project.models.Account;
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.models.Staff;
+import cs211.project.repository.EventRepository;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
@@ -57,15 +58,15 @@ public class CreateEventController {
     @FXML
     private TextField timeStartEvent;
     private EventList eventList;
-    private Datasource<EventList> datasource;
+    private EventRepository eventRepository;
     private Event eventForSetImagePath;
     private Event selectEvent;
     private ArrayList<Event> event;
 
     public void initialize(){
-        datasource = new EventDatasource("data","event.csv");
-        eventList = datasource.readData();
-        event = eventList.getEvents();
+        eventRepository = new EventRepository();
+        eventList = eventRepository.getEvents();
+        event = eventRepository.getEvents().getEvents();
     }
 
     @FXML
@@ -80,7 +81,6 @@ public class CreateEventController {
         Image image = eventImageView.getImage();
 
         eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,"0",maxMember,image);
-        eventList.addCountEvent(nameString);
         nameEvent.clear();
         detailsEvent.clear();
         timeStartEvent.clear();
@@ -88,7 +88,7 @@ public class CreateEventController {
         dateStartEvent.setValue(null);
         dateEndEvent.setValue(null);
         capacityEvent.clear();
-        datasource.writeData(eventList);
+        eventRepository.save(eventList);
 
 
         try {

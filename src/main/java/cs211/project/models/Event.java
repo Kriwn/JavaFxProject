@@ -7,8 +7,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
-    public static int event_id = 1;
-    public int gen_id;
+    public static int gen_id = 1;
+    public int event_id;
     private String name;
     private String detail;
     private  int countMember;
@@ -33,7 +33,7 @@ public class Event {
         this.countMember = Integer.parseInt(countMember);
         this.status = 0;
         this.image = image;
-        this.gen_id = event_id;
+        this.event_id = gen_id;
     }
 
     public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
@@ -47,14 +47,14 @@ public class Event {
         this.countMember = 0;
         this.status = 0;
         setImage(new Image("file:" + "images/default.png"));
-        this.gen_id = event_id;
+        this.event_id = gen_id;
     }
-    public void addEventId(){
-        event_id++;
+    public void addGenId(){
+        gen_id++;
     }
 
-    public boolean isPosition(int position){
-        return this.gen_id == position;
+    public boolean isEventId(int event_id){
+        return this.event_id == event_id;
     }
     public void addTeam(Team team){
         this.teams.add(team);
@@ -167,11 +167,11 @@ public class Event {
         return image;
     }
 
-    public static int getEvent_id() {
-        return event_id;
+    public static int getGen_id() {
+        return gen_id;
     }
 
-    public int getGen_id() {
-        return gen_id;
+    public int getEvent_id() {
+        return event_id;
     }
 }

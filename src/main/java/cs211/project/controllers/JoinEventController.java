@@ -2,6 +2,7 @@ package cs211.project.controllers;
 
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
+import cs211.project.repository.EventRepository;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
@@ -49,9 +50,11 @@ public class JoinEventController {
     private Label timeStartEventLabel;
     @FXML
     private ImageView eventImageView;
+
+    private EventRepository eventRepository;
     public void initialize(){
-        datasource = new EventDatasource("data", "event.csv");
-        eventList = datasource.readData();
+        eventRepository = new EventRepository();
+        eventList = eventRepository.getEvents();
         String nameEvent = (String) NPBPRouter.getData();
         event = eventList.findEventByName(nameEvent);
 

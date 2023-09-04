@@ -25,14 +25,14 @@ public class EventList {
             Event exist = findEventByName(name);
             if (exist == null) {
                 events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity,image));
-                Event.event_id++;
+                Event.gen_id++;
             }
         }
     }
 
-    public Event findEventByPosition(int position){
+    public Event findEventByPosition(int event_id){
         for (Event event : events) {
-            if (event.isPosition(position)) {
+            if (event.isEventId(event_id)) {
                 return event;
             }
         }
@@ -42,11 +42,6 @@ public class EventList {
     public void addTeam(Team team,String name){
         Event exist = findEventByName(name);
         exist.addTeam(team);
-    }
-
-    public void addCountEvent(String name){
-        Event exist = findEventByName(name);
-        exist.addEventId();
     }
 
     public void joinEvent(User user, String name){
