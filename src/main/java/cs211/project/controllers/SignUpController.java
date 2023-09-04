@@ -2,7 +2,8 @@ package cs211.project.controllers;
 
 import cs211.project.models.Account;
 import cs211.project.models.AccountList;
-import cs211.project.services.AccountDatasource;
+import cs211.project.repository.AccountRepository;
+import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -11,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import cs211.project.services.NPBPRouter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,11 +25,11 @@ public class SignUpController implements Initializable{
     @FXML  PasswordField confirmPasswordLabel;
     @FXML  Label errorLabel;
     private AccountList accounts;
-    private AccountDatasource datasource;
+    private AccountRepository repository;
 
     public void initialize(URL location, ResourceBundle resources){
-        datasource = new AccountDatasource("data","account.csv");
-        accounts = datasource.readData();
+        repository = new AccountRepository();
+        accounts = repository.getAccounts();
     }
     public void onButtonRegister() {
         String name = nameLabel.getText();
@@ -40,7 +40,7 @@ public class SignUpController implements Initializable{
             if (Account.confirmPassword(password, confirmPassWord)) {
                 accounts.signUp(username, name, password);
                 errorLabel.setText("success");
-                datasource.writeData(accounts);
+                repository.save(accounts);
                 try {
                     NPBPRouter.loadPage("login",signUpArea);
                 } catch (IOException e) {

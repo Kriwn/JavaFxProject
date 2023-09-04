@@ -3,49 +3,47 @@ package cs211.project.models;
 import java.util.ArrayList;
 
 public class AccountList {
-    private ArrayList<User> users;
-    private ArrayList<Admin> admins;
+    private ArrayList<Account> accounts;
 
     public AccountList(){
-        users = new ArrayList<>();
-        admins = new ArrayList<>();
+        accounts = new ArrayList<>();
     }
     public User findUserByUsername(String username){
-        for(User user: users){
-            if(user.isUsername(username)){
-                return user;
+        for(Account account: accounts){
+            if(account.isUsername(username)){
+                return (User)account;
             }
         }
         return null;
     }
     public Boolean checkUserByUsername(String username){
-        for(User user: users){
-            if(user.isUsername(username)){
+        for(Account account: accounts){
+            if(account.isUsername(username)){
                 return false;
             }
         }
         return true;
     }
     /*เพิ่มuser จากการอ่านไฟล์*/
-    public void addNewUserFromFile(String username, String name, String password,String role,String image,String time){
+    public void addNewUserFromFile(String username, String name,String Id, String password,String role,String image,String time){
         username = username.trim();
         name = name.trim();
         password = password.trim();
-        User exist = findUserByUsername(username);
+        Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                users.add(new User(username,name,password,role,image,time));
+                accounts.add(new User(username,name,Id,password,role,image,time));
             }
         }
     }
-    public void addNewAdminFromFile(String username, String name, String password, String role, String image, String time){
+    public void addNewAdminFromFile(String username, String name,String Id, String password, String role, String image, String time){
         username = username.trim();
         name = name.trim();
         password = password.trim();
-        User exist = findUserByUsername(username);
+        Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                admins.add(new Admin(username,name,password,role,image,time));
+                accounts.add(new Admin(username,name,Id,password,role,image,time));
             }
         }
     }
@@ -54,34 +52,34 @@ public class AccountList {
         username = username.trim();
         name = name.trim();
         password = password.trim();
-        User exist = findUserByUsername(username);
+        Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
                 User user = new User(username, name);
                 user.hashPassword(password);
-                users.add(user);
+                accounts.add(user);
             }
         }
     }
+    public void addUser(Account account) {
+        accounts.add((User)account);
+    }
+
     public boolean changePassword(String username, String oldPassword, String newPassword){
-        User exist = findUserByUsername(username);
+        Account exist = findUserByUsername(username);
 
         return false;
     }
-
-    public User login(String username, String password){
-        User user = findUserByUsername(username);
-        boolean flag = user.validatePassword(password);
+    public Account login(String username, String password){
+        Account account = findUserByUsername(username);
+        boolean flag = account.validatePassword(password);
         if(flag){
-            return user;
+            return account;
         }
         return null;
     }
-    public ArrayList<User> getUsers(){
-        return users;
-    }
 
-    public ArrayList<Admin> getAdmins(){
-        return admins;
+    public ArrayList<Account> getAccounts(){
+        return accounts;
     }
 }
