@@ -25,25 +25,25 @@ public class AccountList {
         return true;
     }
     /*เพิ่มuser จากการอ่านไฟล์*/
-    public void addNewUserFromFile(String username, String name, String password,String role,String image,String time){
+    public void addNewUserFromFile(String username, String name,String Id, String password,String role,String image,String time){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new User(username,name,password,role,image,time));
+                accounts.add(new User(username,name,Id,password,role,image,time));
             }
         }
     }
-    public void addNewAdminFromFile(String username, String name, String password, String role, String image, String time){
+    public void addNewAdminFromFile(String username, String name,String Id, String password, String role, String image, String time){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new Admin(username,name,password,role,image,time));
+                accounts.add(new Admin(username,name,Id,password,role,image,time));
             }
         }
     }

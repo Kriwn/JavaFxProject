@@ -9,11 +9,7 @@ public class Admin extends Account{
         super(username, name);
     }
 
-    public Admin(String username, String name, String role, String image, String time) {
-        super(username, name, role, image, time);
-    }
-
-    public Admin(String username, String name, String password, String role, String image, String time) {
-        super(username, name, password, role, image, time);
+    public Admin(String username, String name,String Id, String password, String role, String image, String time) {
+        super(username, name,Id, password, role, image, time);
     }
 }

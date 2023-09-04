@@ -12,8 +12,8 @@ public class User extends Account{
         myCreateEvents = new ArrayList<>();
     }
 
-    public User(String username, String name, String password, String role, String image, String time) {
-        super(username,name,password,role,image,time);
+    public User(String username, String name,String Id, String password, String role, String image, String time) {
+        super(username,name,Id,password,role,image,time);
         myEvents = new ArrayList<>();
         myCreateEvents = new ArrayList<>();
     }
