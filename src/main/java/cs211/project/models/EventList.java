@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class EventList {
     private ArrayList<Event> events;
+    private int lastEvent = 0;
 
     public EventList() {
         events = new ArrayList<>();

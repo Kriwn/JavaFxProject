@@ -55,7 +55,6 @@ public class HomePageController implements Initializable {
             vbox.getChildren().add(createCard(i));
             System.out.println(i.getEvent_id());
         }
-        Event.gen_id = 1;
     }
 
     public VBox createCard(Event newEvent){

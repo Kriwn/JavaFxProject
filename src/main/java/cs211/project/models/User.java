@@ -3,8 +3,8 @@ package cs211.project.models;
 import java.util.ArrayList;
 
 public class User extends Account{
-    private ArrayList<Event> myEvents;
-    private ArrayList<Event> myCreateEvents;
+    private ArrayList<Integer> myEvents;
+    private ArrayList<Integer> myCreateEvents;
 
     public User(String username, String name) {
         super(username, name);
@@ -18,8 +18,10 @@ public class User extends Account{
         myCreateEvents = new ArrayList<>();
     }
 
-    public ArrayList<Event> getMyEvents(){return myEvents;}
-    public ArrayList<Event> getMyCreateEvents(){
+
+
+    public ArrayList<Integer> getMyEvents(){return myEvents;}
+    public ArrayList<Integer> getMyCreateEvents(){
         return myCreateEvents;
     }
 
