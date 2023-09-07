@@ -75,7 +75,7 @@ public class JoinEventController {
 
     public void onJointEventButton(){
         event.addCountMember();
-        datasource.writeData(eventList);
+        eventRepository.save(eventList);
         try {
             NPBPRouter.loadPage("home-page",page);
         } catch (IOException e) {
