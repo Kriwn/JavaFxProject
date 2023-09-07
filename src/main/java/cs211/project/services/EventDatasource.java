@@ -58,17 +58,18 @@ public class EventDatasource implements Datasource<EventList>{
                 String[] data = line.split(",");
 
                 String name = data[0].trim();
-                String details = data[1].trim();
-                String dateStart = data[2].trim();
-                String dateEnd = data[3].trim();
-                String timeStart = data[4].trim();
-                String timeEnd = data[5].trim();
-                String countMember = data[6];
-                String maxMember = data[7];
-                Image image = new Image(data[8]);
+                String id = data[1].trim();
+                String details = data[2].trim();
+                String dateStart = data[3].trim();
+                String dateEnd = data[4].trim();
+                String timeStart = data[5].trim();
+                String timeEnd = data[6].trim();
+                String countMember = data[7];
+                String maxMember = data[8];
+                Image image = new Image(data[9]);
                 //อาจจะมีตัวเพิ่ม
 
-                events.addNewEvent(name,details,dateStart,dateEnd,timeStart,timeEnd,countMember,maxMember,image);
+                events.addNewEvent(name,id,details,dateStart,dateEnd,timeStart,timeEnd,countMember,maxMember,image);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -99,7 +100,7 @@ public class EventDatasource implements Datasource<EventList>{
         try {
             // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
             for (Event event : data.getEvents()) {
-                String line = event.getName() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
+                String line = event.getName() + "," + event.getEventId() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
                 buffer.append(line);
                 buffer.append("\n");
             }

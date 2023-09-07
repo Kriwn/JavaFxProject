@@ -7,8 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
-    public static int gen_id = 1;
-    private int event_id;
+    private int eventId;
     private String name;
     private String detail;
     private  int countMember;
@@ -22,7 +21,7 @@ public class Event {
     private LocalTime timeEnd;
     private int status;
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
@@ -33,7 +32,7 @@ public class Event {
         this.countMember = Integer.parseInt(countMember);
         this.status = 0;
         this.image = image;
-        this.event_id = gen_id;
+        this.eventId = Integer.parseInt(id);
     }
 
     public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
@@ -47,14 +46,11 @@ public class Event {
         this.countMember = 0;
         this.status = 0;
         setImage(new Image("file:" + "images/default.png"));
-        this.event_id = gen_id;
-    }
-    public void addGenId(){
-        gen_id++;
+        this.eventId = Integer.parseInt(id);
     }
 
     public boolean isEventId(int event_id){
-        return this.event_id == event_id;
+        return this.eventId == event_id;
     }
     public void addTeam(Team team){
         this.teams.add(team);
@@ -167,11 +163,7 @@ public class Event {
         return image;
     }
 
-    public static int getGen_id() {
-        return gen_id;
-    }
-
-    public int getEvent_id() {
-        return event_id;
+    public int getEventId() {
+        return eventId;
     }
 }

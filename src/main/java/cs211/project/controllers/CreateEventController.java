@@ -80,7 +80,7 @@ public class CreateEventController {
         String maxMember = capacityEvent.getText().trim();
         Image image = eventImageView.getImage();
 
-        eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,"0",maxMember,image);
+        eventList.createEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember,"0",image);
         nameEvent.clear();
         detailsEvent.clear();
         timeStartEvent.clear();

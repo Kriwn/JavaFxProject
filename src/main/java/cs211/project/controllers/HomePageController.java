@@ -2,8 +2,6 @@ package cs211.project.controllers;
 
 import cs211.project.models.*;
 import cs211.project.repository.EventRepository;
-import cs211.project.services.Datasource;
-import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +51,7 @@ public class HomePageController implements Initializable {
         eventRepository.save(eventList);
         for (var i : events){
             vbox.getChildren().add(createCard(i));
-            System.out.println(i.getEvent_id());
+            System.out.println(i.getEventId());
         }
     }
 
