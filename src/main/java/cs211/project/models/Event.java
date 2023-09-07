@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Event {
     public static int gen_id = 1;
-    public int event_id;
+    private int event_id;
     private String name;
     private String detail;
     private  int countMember;
