@@ -15,6 +15,7 @@ class AccountEventRepositoryTest {
       System.out.println(accountEventRepository.getEventJoinByAccountId(1));
       System.out.println(accountEventRepository.getEventJoinByAccountId(2));
       System.out.println(accountEventRepository.getEventOwnerByAccountId(3));
+    System.out.println(accountEventRepository.getAccount_join_event());
       ArrayList<Integer> a = new ArrayList<>();
       a.add(1);
       a.add(10);
