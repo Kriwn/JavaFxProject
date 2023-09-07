@@ -1,5 +1,6 @@
 package cs211.project.repository;
 
+import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
@@ -19,5 +20,10 @@ public class EventRepository {
 
     public EventList getEvents(){
         return events;
+    }
+
+    public Event findById(int id) {
+        Event event = events.findEventByPosition(id);
+        return event;
     }
 }

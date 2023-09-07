@@ -24,6 +24,6 @@ public class MyEventController implements Initializable {
         datasourceAccount = new AccountDatasource("data","account.csv");
         String username = "Taro";
         users = datasourceAccount.readData();
-        user = users.findUserByUsername(username);
+        user = (User)users.findUserByUsername(username);
     }
 }
