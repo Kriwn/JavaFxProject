@@ -1,6 +1,7 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
+import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
@@ -40,18 +41,22 @@ public class HomePageController implements Initializable {
     private EventList eventList;
     private EventRepository eventRepository;
     private AccountList accountList;
+    private AccountRepository accountRepository;
     private User user;
     private ArrayList<Event> eventUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        user = (User)NPBPRouter.getData();
         eventRepository = new EventRepository();
+        accountRepository = new AccountRepository();
+        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         eventRepository.save(eventList);
+        System.out.println(user);
         for (var i : events){
             vbox.getChildren().add(createCard(i));
-            System.out.println(i.getEventId());
         }
     }
 
@@ -96,7 +101,7 @@ public class HomePageController implements Initializable {
 
     public void onCreateEventButton(){
         try {
-            NPBPRouter.loadPage("create-event",page);
+            NPBPRouter.loadPage("create-event",page,user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

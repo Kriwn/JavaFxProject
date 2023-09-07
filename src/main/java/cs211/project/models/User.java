@@ -17,12 +17,22 @@ public class User extends Account{
         myEvents = new ArrayList<>();
         myCreateEvents = new ArrayList<>();
     }
+    public void addMyCreateEventFromFile(ArrayList<Integer> myCreateEvents){
+        if(myCreateEvents == null){
+            return;
+        }
+        this.myCreateEvents = myCreateEvents;
+    }
 
 
 
     public ArrayList<Integer> getMyEvents(){return myEvents;}
     public ArrayList<Integer> getMyCreateEvents(){
         return myCreateEvents;
+    }
+
+    public void addEvent(int id) {
+        myCreateEvents.add(id);
     }
 
     @Override

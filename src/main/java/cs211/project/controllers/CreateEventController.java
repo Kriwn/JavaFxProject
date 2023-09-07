@@ -1,9 +1,7 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Account;
-import cs211.project.models.Event;
-import cs211.project.models.EventList;
-import cs211.project.models.Staff;
+import cs211.project.models.*;
+import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.Datasource;
 import cs211.project.services.EventDatasource;
@@ -30,6 +28,7 @@ import java.net.URL;
 import java.nio.file.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CreateEventController {
     @FXML
@@ -59,14 +58,20 @@ public class CreateEventController {
     private TextField timeStartEvent;
     private EventList eventList;
     private EventRepository eventRepository;
+    private AccountEventRepository accountEventRepository;
+    private HashMap<Integer,ArrayList<Integer>> map;
+    private User user;
     private Event eventForSetImagePath;
     private Event selectEvent;
     private ArrayList<Event> event;
 
     public void initialize(){
+        user = (User)NPBPRouter.getData();
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
         event = eventRepository.getEvents().getEvents();
+        accountEventRepository = new AccountEventRepository();
+        user.addMyCreateEventFromFile(accountEventRepository.getEventOwnerByAccountId(user.getAccountId()));
     }
 
     @FXML
@@ -81,6 +86,13 @@ public class CreateEventController {
         Image image = eventImageView.getImage();
 
         eventList.createEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember,"0",image);
+        Event exist = eventList.findEventByName(nameString);
+        int event_id = exist.getEventId();
+        map = accountEventRepository.getAccount_owner_event();
+        user.addEvent(event_id);
+        map.put(user.getAccountId(),user.getMyCreateEvents());
+        accountEventRepository.saveEventOwner(map);
+
         nameEvent.clear();
         detailsEvent.clear();
         timeStartEvent.clear();

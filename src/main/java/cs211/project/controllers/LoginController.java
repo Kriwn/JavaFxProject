@@ -45,7 +45,7 @@ public class LoginController implements Initializable{
         if(exist != null){
             if(exist.validatePassword(password)){
                 if (exist instanceof User) {
-                    NPBPRouter.goTo("home", exist.getUsername());
+                    NPBPRouter.goTo("home", exist);
                 } else if (exist instanceof Admin) {
 
                 }
