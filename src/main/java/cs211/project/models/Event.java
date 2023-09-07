@@ -36,7 +36,7 @@ public class Event {
         this.event_id = gen_id;
     }
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
