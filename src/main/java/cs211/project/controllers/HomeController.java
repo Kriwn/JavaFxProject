@@ -38,19 +38,6 @@ public class HomeController implements Initializable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Scene scene = image.getScene();
-                Stage stage = (Stage) image.getScene().getWindow();
-                scene.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
-                    if(click.getCode() == KeyCode.ESCAPE){
-                        onLogout();
-                    }
-                });
-            }
-        });
     }
 
     public void onHomeButton(){
