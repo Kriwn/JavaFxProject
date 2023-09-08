@@ -52,6 +52,9 @@ public class Account {
     public boolean isUsername(String username){
         return this.username.equals(username);
     }
+    public boolean isAccountId(int id){
+        return this.accountId == id;
+    }
 
 
     public void hashPassword(String password) {

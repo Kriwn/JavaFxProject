@@ -5,14 +5,20 @@ import cs211.project.models.AccountList;
 import cs211.project.models.Admin;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
+import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +37,24 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         repository = new AccountRepository();
         accounts = repository.getAccounts();
+
+//        usernameLabel.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+//
+//        });
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Scene scene = usernameLabel.getScene();
+                Stage stage = (Stage) usernameLabel.getScene().getWindow();
+                scene.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+                    if(click.getCode() == KeyCode.ESCAPE){
+                        stage.close();
+                    }
+                });
+            }
+        });
+
     }
 
     public void clickSignIn(MouseEvent event) throws IOException {

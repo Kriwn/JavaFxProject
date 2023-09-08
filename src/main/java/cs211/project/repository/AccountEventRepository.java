@@ -1,5 +1,7 @@
 package cs211.project.repository;
 
+
+import cs211.project.pivot.AccountEventList;
 import cs211.project.services.AccountEventJoinDatasource;
 import cs211.project.services.AccountEventOwnerDatasource;
 import cs211.project.services.Datasource;
@@ -8,36 +10,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AccountEventRepository {
-    private HashMap<Integer, ArrayList<Integer>> account_join_event;
-    private HashMap<Integer, ArrayList<Integer>> account_owner_event;
-    private Datasource<HashMap<Integer,ArrayList<Integer>>> join_event_data;
-    private Datasource<HashMap<Integer,ArrayList<Integer>>> owner_event_data;
+    private AccountEventList list_join;
+    private AccountEventList list_create;
+    private Datasource<AccountEventList> join_event_data;
+    private Datasource<AccountEventList> owner_event_data;
 
     public AccountEventRepository (){
         join_event_data = new AccountEventJoinDatasource("data","account_join_events.csv");
         owner_event_data = new AccountEventOwnerDatasource("data","account_owner_events.csv");
-        account_join_event = join_event_data.readData();
-        account_owner_event = owner_event_data.readData();
+        list_join = join_event_data.readData();
+        list_create = owner_event_data.readData();
     }
-    public ArrayList<Integer> getEventJoinByAccountId(int id){
-        return account_join_event.get(id);
+    public void saveEventJoin( AccountEventList eventList_join){
+        join_event_data.writeData(eventList_join);
     }
-
-    public ArrayList<Integer> getEventOwnerByAccountId(int id){
-        return account_owner_event.get(id);
-    }
-    public void saveEventJoin( HashMap<Integer, ArrayList<Integer>> event){
-        join_event_data.writeData(event);
-    }
-    public void saveEventOwner(HashMap<Integer, ArrayList<Integer>> event){
-        owner_event_data.writeData(event);
+    public void saveEventOwner(AccountEventList eventList_create){
+        owner_event_data.writeData(eventList_create);
     }
 
-    public HashMap<Integer, ArrayList<Integer>> getAccount_join_event() {
-        return account_join_event;
+    public AccountEventList getList_join() {
+        return list_join;
     }
 
-    public HashMap<Integer, ArrayList<Integer>> getAccount_owner_event() {
-        return account_owner_event;
+    public AccountEventList getList_create() {
+        return list_create;
     }
 }

@@ -18,10 +18,14 @@ public class User extends Account{
         myCreateEvents = new ArrayList<>();
     }
     public void addMyCreateEventFromFile(ArrayList<Integer> myCreateEvents){
-        if(myCreateEvents == null){
-            return;
+        if(myCreateEvents != null){
+            this.myCreateEvents = myCreateEvents;
         }
-        this.myCreateEvents = myCreateEvents;
+    }
+    public void addMyEventFromFile(ArrayList<Integer> myEvents){
+        if(myEvents != null){
+            this.myEvents = myEvents;
+        }
     }
 
 
@@ -31,8 +35,11 @@ public class User extends Account{
         return myCreateEvents;
     }
 
-    public void addEvent(int id) {
+    public void addMyCreateEvent(int id) {
         myCreateEvents.add(id);
+    }
+    public void addMyEvent(int id){
+        myEvents.add(id);
     }
 
     @Override

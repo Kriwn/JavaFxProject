@@ -31,7 +31,7 @@ public class EventList {
         }
     }
 
-    public Event findEventByPosition(int event_id){
+    public Event findEventById(int event_id){
         for (Event event : events) {
             if (event.isEventId(event_id)) {
                 return event;

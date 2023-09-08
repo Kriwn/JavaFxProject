@@ -9,6 +9,14 @@ public class AccountList {
     public AccountList(){
         accounts = new ArrayList<>();
     }
+    public Account findUserByAccountId(int id){
+        for(Account account: accounts){
+            if(account.isAccountId(id)){
+                return account;
+            }
+        }
+        return null;
+    }
     public Account findUserByUsername(String username){
         for(Account account: accounts){
             if(account.isUsername(username)){

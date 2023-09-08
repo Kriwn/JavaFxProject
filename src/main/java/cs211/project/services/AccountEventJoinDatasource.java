@@ -1,13 +1,15 @@
 package cs211.project.services;
 
 import cs211.project.models.Account;
+import cs211.project.pivot.AccountEvent;
+import cs211.project.pivot.AccountEventList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AccountEventJoinDatasource implements Datasource<HashMap<Integer, ArrayList<Integer>>>{
+public class AccountEventJoinDatasource implements Datasource<AccountEventList>{
 
     private String directoryName;
     private String fileName;
@@ -35,8 +37,8 @@ public class AccountEventJoinDatasource implements Datasource<HashMap<Integer, A
     }
 
     @Override
-    public HashMap<Integer, ArrayList<Integer>> readData() {
-        HashMap<Integer,ArrayList<Integer>> account_event = new HashMap<>();
+    public AccountEventList readData() {
+        AccountEventList accountEventList = new AccountEventList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -66,22 +68,18 @@ public class AccountEventJoinDatasource implements Datasource<HashMap<Integer, A
                 String[] data = line.split(",");
 
                 // อ่านข้อมูลตาม index แล้วจัดการประเภทของข้อมูลให้เหมาะสม
-                Integer account_Id = Integer.parseInt(data[0]);
-                ArrayList<Integer> all_event_Id = new ArrayList<>();
-                String[] event = data[1].split("\\|");
-                for(String events: event){
-                    all_event_Id.add(Integer.parseInt(events));
-                }
-                account_event.put(account_Id,all_event_Id);
+                int acc_id = Integer.parseInt(data[0]);
+                int ev_id = Integer.parseInt(data[1]);
+                accountEventList.addNew(acc_id,ev_id);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return account_event;
+        return accountEventList;
     }
 
     @Override
-    public void writeData(HashMap<Integer, ArrayList<Integer>> data) {
+    public void writeData(AccountEventList data) {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -101,23 +99,13 @@ public class AccountEventJoinDatasource implements Datasource<HashMap<Integer, A
         BufferedWriter buffer = new BufferedWriter(outputStreamWriter);
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
-            data.forEach((key,value) ->{
-                String event = "";
-                for(Integer a :value){
-                    event += a+"|";
-                }
-                String line = key + ","+ event;
-                try {
-                    buffer.append(line);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    buffer.append("\n");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+            for (AccountEvent accountEvent : data.getList()) {
+                String line = accountEvent.getAccount_id() + "," + accountEvent.getEvent_id();
+                buffer.append(line);
+                buffer.append("\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 buffer.flush();
@@ -128,4 +116,5 @@ public class AccountEventJoinDatasource implements Datasource<HashMap<Integer, A
             }
         }
     }
+
 }

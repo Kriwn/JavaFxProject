@@ -45,9 +45,9 @@ public class HomePageController implements Initializable {
     private User user;
     private ArrayList<Event> eventUser;
 
-    @Override
+//    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        user = (User)NPBPRouter.getData();
+        user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
         accountList = accountRepository.getAccounts();
@@ -90,7 +90,7 @@ public class HomePageController implements Initializable {
         img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
-                NPBPRouter.loadPage("join-event",page,newEvent.getName());
+                NPBPRouter.loadPage("join-event",page,user,newEvent.getEventId());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -23,7 +23,7 @@ public class EventRepository {
     }
 
     public Event findById(int id) {
-        Event event = events.findEventByPosition(id);
+        Event event = events.findEventById(id);
         return event;
     }
 }
