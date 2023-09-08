@@ -1,6 +1,9 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
+import cs211.project.pivot.AccountEvent;
+import cs211.project.pivot.AccountEventList;
+import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
@@ -42,6 +45,7 @@ public class HomePageController implements Initializable {
     private EventRepository eventRepository;
     private AccountList accountList;
     private AccountRepository accountRepository;
+    private AccountEventRepository accountEventRepository;
     private User user;
     private ArrayList<Event> eventUser;
 
@@ -54,7 +58,15 @@ public class HomePageController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         eventRepository.save(eventList);
-        System.out.println(user);
+        accountEventRepository = new AccountEventRepository();
+        AccountEventList list_join = accountEventRepository.getList_join();
+        AccountEventList list_create = accountEventRepository.getList_create();
+        ArrayList<Integer> listId = new ArrayList<>();
+        listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
+        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+        for (var i : listId){
+            events.remove(eventList.findEventById(i));
+        }
         for (var i : events){
             vbox.getChildren().add(createCard(i));
         }

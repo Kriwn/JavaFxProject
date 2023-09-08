@@ -10,10 +10,10 @@ public class AccountEvent {
     }
 
     public boolean isAccountId(int id){
-        return false;
+        return this.account_id == id;
     }
     public boolean isEventId(int id){
-        return false;
+        return this.event_id == id;
     }
 
     public int getAccount_id() {
