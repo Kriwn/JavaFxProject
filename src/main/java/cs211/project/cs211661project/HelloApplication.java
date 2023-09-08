@@ -37,7 +37,6 @@ public class HelloApplication extends Application {
         NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");
         NPBPRouter.when("create-event",viewPath + "create-event.fxml");
         NPBPRouter.when("create-staff-team",viewPath + "create-staff-team.fxml");
-        NPBPRouter.when("edit-event",viewPath + "edit-event.fxml");
         NPBPRouter.when("join-event",viewPath + "join-event.fxml");
         NPBPRouter.when("join-team",viewPath + "join-team.fxml");
         NPBPRouter.when("my-create-event",viewPath + "my-create-event.fxml");
@@ -50,7 +49,7 @@ public class HelloApplication extends Application {
         NPBPRouter.when("chat", viewPath + "chat.fxml");
         NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
         NPBPRouter.when("history", viewPath + "history.fxml");
-
+        NPBPRouter.when("show-my-create-event", viewPath + "show-my-create-event.fxml");
     }
     public static void main(String[] args) {
         launch();
