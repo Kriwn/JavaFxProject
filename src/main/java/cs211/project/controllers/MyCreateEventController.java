@@ -8,6 +8,9 @@ import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -18,6 +21,12 @@ import java.util.ResourceBundle;
 public class MyCreateEventController implements Initializable {
     @FXML
     AnchorPane page;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label nameEvent;
     private EventRepository eventRepository;
     private EventList eventList;
     private ArrayList<Event> events;
@@ -31,6 +40,13 @@ public class MyCreateEventController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
+
+        showEvent(event);
+    }
+
+    public void showEvent(Event event){
+        imageView.setImage(new Image(event.getImage().getUrl()));
+        nameEvent.setText(event.getName());
     }
     public void goToStaffList(){
         try {
