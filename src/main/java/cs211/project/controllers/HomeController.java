@@ -57,7 +57,7 @@ public class HomeController implements Initializable{
 
     public void onMyCreateEventButton(){
         try {
-            NPBPRouter.loadPage("my-create-event",page,user);
+            NPBPRouter.loadPage("show-my-create-event",page,user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
