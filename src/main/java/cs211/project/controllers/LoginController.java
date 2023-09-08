@@ -6,6 +6,7 @@ import cs211.project.models.Admin;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPAnimation;
+import cs211.project.services.NPBPKeyPress;
 import cs211.project.services.NPBPRouter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -34,38 +35,29 @@ public class LoginController implements Initializable{
     private AccountRepository repository;
 
 
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
         repository = new AccountRepository();
         accounts = repository.getAccounts();
-
-//        usernameLabel.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
-//
-//        });
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Scene scene = usernameLabel.getScene();
-                Stage stage = (Stage) usernameLabel.getScene().getWindow();
-                scene.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
-                    if(click.getCode() == KeyCode.ESCAPE){
-                        stage.close();
-                    }
-                });
+        passwordLabel.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.ENTER) {
+                try {
+                    clickLogIn();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
-
+        NPBPKeyPress.EscPress(usernameLabel);
     }
 
-    public void clickSignIn(MouseEvent event) throws IOException {
+    public void clickSignIn() throws IOException {
         NPBPRouter.loadPage("signup", loginArea);
     }
 
-    public void clickLogIn(MouseEvent event) throws IOException {
+    public void clickLogIn() throws IOException {
         String username = usernameLabel.getText();
         String password = passwordLabel.getText();
         Account exist = accounts.findUserByUsername(username);
-        System.out.println(exist);
         if(exist != null){
             if(exist.validatePassword(password)){
                 if (exist instanceof User) {
