@@ -70,7 +70,8 @@ public class AccountEventJoinDatasource implements Datasource<AccountEventList>{
                 // อ่านข้อมูลตาม index แล้วจัดการประเภทของข้อมูลให้เหมาะสม
                 int acc_id = Integer.parseInt(data[0]);
                 int ev_id = Integer.parseInt(data[1]);
-                accountEventList.addNew(acc_id,ev_id);
+                String status = data[2].trim();
+                accountEventList.addNew(acc_id, ev_id, status);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -100,7 +101,7 @@ public class AccountEventJoinDatasource implements Datasource<AccountEventList>{
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
             for (AccountEvent accountEvent : data.getList()) {
-                String line = accountEvent.getAccount_id() + "," + accountEvent.getEvent_id();
+                String line = accountEvent.getAccount_id() + "," + accountEvent.getEvent_id() + "," + accountEvent.getStatus();
                 buffer.append(line);
                 buffer.append("\n");
             }

@@ -12,6 +12,9 @@ public class AccountEventList {
     public void addNew(int acc_id, int ev_id){
         list.add(new AccountEvent(acc_id,ev_id));
     }
+    public void addNew(int acc_id, int ev_id, String status){
+        list.add(new AccountEvent(acc_id, ev_id, status));
+    }
 
     public ArrayList<Integer> findEventsByAccount(int acc_id){
         ArrayList<Integer> result = new ArrayList<>();

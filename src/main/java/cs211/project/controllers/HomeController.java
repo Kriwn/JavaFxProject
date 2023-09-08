@@ -14,6 +14,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import cs211.project.services.NPBPRouter;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -24,13 +26,13 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable{
     @FXML AnchorPane page;
-    @FXML ImageView image;
+    @FXML Circle image;
     @FXML Label usernameLabel;
     private User user;
     public void initialize(URL location, ResourceBundle resources){
         user = (User)NPBPRouter.getDataAccount();
         usernameLabel.setText(user.getName());
-        image.setImage(new Image("file:" + user.getImage()));
+        image.setFill(new ImagePattern(new Image("file:" + user.getImage())));
         try {
             NPBPRouter.loadPage("home-page",page,user);
         } catch (IOException e) {
