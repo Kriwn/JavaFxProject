@@ -6,9 +6,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.UserCardController">
+<VBox fx:id="card" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.UserCardController">
    <children>
-      <Pane prefHeight="57.0" prefWidth="160.0" />
+      <Pane prefHeight="23.0" prefWidth="160.0" />
       <Circle fx:id="imgCircle" fill="DODGERBLUE" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
       <Pane prefHeight="23.0" prefWidth="600.0" />
       <Label fx:id="usernameLabel" text="username">
@@ -16,6 +16,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Pane prefHeight="36.0" prefWidth="600.0" />
+      <Label fx:id="statusLabel" text="status">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="15.0" prefWidth="160.0" />
    </children>
 </VBox>

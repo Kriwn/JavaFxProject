@@ -28,8 +28,8 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable{
 
     @FXML  AnchorPane loginArea; // right pane
-    @FXML TextField usernameLabel;
-    @FXML PasswordField passwordLabel;
+    @FXML TextField userNameField;
+    @FXML PasswordField passwordField;
     @FXML Label errorLabel;
     private AccountList accounts;
     private AccountRepository repository;
@@ -38,7 +38,7 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         repository = new AccountRepository();
         accounts = repository.getAccounts();
-        passwordLabel.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+        passwordField.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
             if (click.getCode() == KeyCode.ENTER) {
                 try {
                     clickLogIn();
@@ -47,7 +47,7 @@ public class LoginController implements Initializable{
                 }
             }
         });
-        NPBPKeyPress.EscPress(usernameLabel);
+        NPBPKeyPress.EscPress(userNameField);
     }
 
     public void clickSignIn() throws IOException {
@@ -55,8 +55,8 @@ public class LoginController implements Initializable{
     }
 
     public void clickLogIn() throws IOException {
-        String username = usernameLabel.getText();
-        String password = passwordLabel.getText();
+        String username = userNameField.getText();
+        String password = passwordField.getText();
         Account exist = accounts.findUserByUsername(username);
         if(exist != null){
             if(exist.validatePassword(password)){

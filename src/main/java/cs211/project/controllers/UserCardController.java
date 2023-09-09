@@ -9,6 +9,7 @@ public class UserCardController {
     private Circle imgCircle;
     @FXML
     private Label usernameLabel;
+    @FXML private Label statusLabel;
 
     public Circle getImgCircle() {
         return imgCircle;
@@ -21,8 +22,14 @@ public class UserCardController {
     public Label getUsernameLabel() {
         return usernameLabel;
     }
+    public Label getStatusLabel(){
+        return statusLabel;
+    }
 
     public void setUsernameLabel(Label usernameLabel) {
         this.usernameLabel = usernameLabel;
+    }
+    public void setStatusLabel(Label statusLabel){
+        this.statusLabel = statusLabel;
     }
 }

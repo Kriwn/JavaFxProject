@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -19,10 +21,10 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable{
     @FXML  AnchorPane signUpArea;
-    @FXML  TextField userNameLabel;
-    @FXML  TextField nameLabel;
-    @FXML  PasswordField passwordLabel;
-    @FXML  PasswordField confirmPasswordLabel;
+    @FXML  TextField userNameField;
+    @FXML  TextField nameField;
+    @FXML  PasswordField passwordField;
+    @FXML  PasswordField confirmPasswordField;
     @FXML  Label errorLabel;
     private AccountList accounts;
     private AccountRepository repository;
@@ -30,12 +32,17 @@ public class SignUpController implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         repository = new AccountRepository();
         accounts = repository.getAccounts();
+        confirmPasswordField.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.ENTER) {
+                onButtonRegister();
+            }
+        });
     }
     public void onButtonRegister() {
-        String name = nameLabel.getText();
-        String username = userNameLabel.getText();
-        String password = passwordLabel.getText();
-        String confirmPassWord = confirmPasswordLabel.getText();
+        String name = nameField.getText();
+        String username = userNameField.getText();
+        String password = passwordField.getText();
+        String confirmPassWord = confirmPasswordField.getText();
         if (accounts.checkUserByUsername(username)) {
             if (Account.confirmPassword(password, confirmPassWord)) {
                 accounts.signUp(username, name, password);
