@@ -93,7 +93,7 @@ public class CreateEventController {
 
 
         try {
-            NPBPRouter.loadPage("my-create-event",page);
+            NPBPRouter.loadPage("my-create-event",page,user,event_id);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
