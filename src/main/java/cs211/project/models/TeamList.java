@@ -7,8 +7,8 @@ public class TeamList {
     public TeamList(){
         teams = new ArrayList<>();
     }
-    public void addNewTeam(String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
-        teams.add(new Team(name, capacity, openDate, openTime, closeDate, closeTime, staffs));
+    public void addNewTeam(String team_id, String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+        teams.add(new Team(team_id, name, capacity, openDate, openTime, closeDate, closeTime, staffs));
     }
     public Team findTeamByName(String name){
         for(Team team : teams){

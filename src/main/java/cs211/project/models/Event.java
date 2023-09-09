@@ -3,13 +3,11 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
-    public static int countEvent = 1;
-    public int position;
+    private int eventId;
     private String name;
     private String detail;
     private  int countMember;
@@ -21,9 +19,23 @@ public class Event {
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private int states;
+    private int status;
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember,Image image){
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
+        this.name = name;
+        this.detail = details;
+        this.maxMember = Integer.parseInt(maxMember);
+        this.dateStart = LocalDate.parse(dateStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.countMember = Integer.parseInt(countMember);
+        this.status = 0;
+        this.image = image;
+        this.eventId = Integer.parseInt(id);
+    }
+
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
@@ -32,30 +44,13 @@ public class Event {
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = 0;
-        this.states = 0;
-        this.image = image;
-        this.position = countEvent;
-    }
-
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
-        this.name = name;
-        this.detail = details;
-        this.maxMember = Integer.parseInt(maxMember);
-        this.dateStart = LocalDate.parse(dateStart);
-        this.dateEnd = LocalDate.parse(dateEnd);
-        this.timeStart = LocalTime.parse(timeStart);
-        this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember =0;
-        this.states = 0;
+        this.status = 0;
         setImage(new Image("file:" + "images/default.png"));
-        this.position = countEvent;
-    }
-    public void addCountEvent(){
-        countEvent++;
+        this.eventId = Integer.parseInt(id);
     }
 
-    public boolean isPosition(int position){
-        return this.position == position;
+    public boolean isEventId(int event_id){
+        return this.eventId == event_id;
     }
     public void addTeam(Team team){
         this.teams.add(team);
@@ -152,12 +147,12 @@ public class Event {
         this.countMember++;
     }
 
-    public int getStates() {
-        return states;
+    public int getStatus() {
+        return status;
     }
 
-    public void setStates(int states) {
-        this.states = states;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public void setImage(Image image) {
@@ -166,5 +161,9 @@ public class Event {
 
     public Image getImage() {
         return image;
+    }
+
+    public int getEventId() {
+        return eventId;
     }
 }

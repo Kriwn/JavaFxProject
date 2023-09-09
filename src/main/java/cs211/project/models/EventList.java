@@ -3,18 +3,18 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class EventList {
     private ArrayList<Event> events;
+    private int lastId = 0;
 
     public EventList() {
         events = new ArrayList<>();
     }
 
-    public void addNewEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd, String capacity, Image image){
+    public void addNewEvent(String name,String id, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity, Image image){
         name = name.trim();
         details = details.trim();
         dateStart = dateStart.trim();
@@ -25,18 +25,36 @@ public class EventList {
         if (!name.equals("")) {
             Event exist = findEventByName(name);
             if (exist == null) {
-                events.add(new Event(name, details, dateStart, dateEnd, timeStart, timeEnd, capacity,image));
+                events.add(new Event(name,id, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity,image));
+                this.lastId = Integer.parseInt(id);
             }
         }
     }
 
-    public Event findEventByPosition(int position){
+    public Event findEventById(int event_id){
         for (Event event : events) {
-            if (event.isPosition(position)) {
+            if (event.isEventId(event_id)) {
                 return event;
             }
         }
         return null;
+    }
+
+    public void createEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity, Image image){
+        name = name.trim();
+        details = details.trim();
+        dateStart = dateStart.trim();
+        dateEnd = dateEnd.trim();
+        timeStart = timeStart.trim();
+        timeEnd = timeEnd.trim();
+        countMember = countMember.trim();
+        capacity = capacity.trim();
+        Event exist = findEventByName(name);
+        if(!name.equals("")){
+            if(exist == null){
+                events.add(new Event(name,""+ (++lastId),details,dateStart,dateEnd,timeStart,timeEnd,countMember,capacity,image));
+            }
+        }
     }
 
     public void addTeam(Team team,String name){
@@ -44,14 +62,9 @@ public class EventList {
         exist.addTeam(team);
     }
 
-    public void addCountEvent(String name){
-        Event exist = findEventByName(name);
-        exist.addCountEvent();
-    }
-
     public void joinEvent(User user, String name){
         Event exist = findEventByName(name);
-        if (exist.getMaxMember() > exist.getCountMember() && exist.getStates() == 1){
+        if (exist.getMaxMember() > exist.getCountMember() && exist.getStatus() == 1){
             exist.addUser(user);
             exist.addCountMember();
         }
@@ -60,10 +73,10 @@ public class EventList {
     public void checkTimeEvent(String name,LocalDate date, LocalTime time){
         Event exist = findEventByName(name);
         if(exist.getDateStart().isAfter(date) && exist.getDateEnd().isBefore(date) && exist.getTimeStart().isAfter(time) && exist.getTimeEnd().isBefore(time)){
-            exist.setStates(1);
+            exist.setStatus(1);
         }
         else{
-            exist.setStates(0);
+            exist.setStatus(0);
         }
     }
 

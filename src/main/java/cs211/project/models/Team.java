@@ -1,6 +1,7 @@
 package cs211.project.models;
 
 public class Team {
+    private int team_id;
     private String teamName;
     private StaffList staffList;
     private int capacity;
@@ -9,7 +10,8 @@ public class Team {
     private String closeDate;
     private String closeTime;
 
-    public Team(String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+    public Team(String team_id, String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+        this.team_id = Integer.parseInt(team_id);
         this.teamName = name;
         this.capacity = capacity;
         this.openDate = openDate;

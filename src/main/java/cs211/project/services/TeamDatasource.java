@@ -59,16 +59,17 @@ public class TeamDatasource implements Datasource<TeamList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String name = data[0];
-                int capacity = Integer.parseInt(data[1]);
-                String openDate = data[2];
-                String openTime = data[3];
-                String closeDate = data[4];
-                String closeTime = data[5];
+                String id = data[0];
+                String name = data[1];
+                int capacity = Integer.parseInt(data[2]);
+                String openDate = data[3];
+                String openTime = data[4];
+                String closeDate = data[5];
+                String closeTime = data[6];
 
                 Datasource<StaffList> datasource = new StaffDatasource(name, "staffs");
                 StaffList staffList = datasource.readData();
-                teams.addNewTeam(name, capacity, openDate, openTime, closeDate, closeTime, staffList);
+                teams.addNewTeam(id, name, capacity, openDate, openTime, closeDate, closeTime, staffList);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

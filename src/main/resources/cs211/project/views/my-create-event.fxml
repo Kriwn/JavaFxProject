@@ -21,8 +21,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="200.0" fitWidth="280.0" layoutX="180.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="245.0" layoutY="340.0" text="nameEvent">
+            <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="280.0" layoutX="180.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="nameEvent" layoutX="245.0" layoutY="340.0" text="nameEvent">
                <font>
                   <Font size="18.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="239.0" layoutY="570.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit user" textFill="WHITE" />
+            <Button layoutX="239.0" layoutY="570.0" mnemonicParsing="false" onAction="#goToEditUser" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="edit user" textFill="WHITE" />
             <Label layoutX="370.0" layoutY="410.0" text="Chat :">
                <font>
                   <Font size="18.0" />
