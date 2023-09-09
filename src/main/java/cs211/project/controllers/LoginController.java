@@ -8,10 +8,9 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPKeyPress;
 import cs211.project.services.NPBPRouter;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,7 +18,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +29,7 @@ public class LoginController implements Initializable{
     @FXML TextField userNameField;
     @FXML PasswordField passwordField;
     @FXML Label errorLabel;
+    @FXML Button loginButton;
     private AccountList accounts;
     private AccountRepository repository;
 
