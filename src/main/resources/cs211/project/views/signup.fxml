@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="signUpArea" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SignUpController">
    <children>
-      <Button layoutX="219.0" layoutY="541.0" mnemonicParsing="false" onAction="#onButtonRegister" prefHeight="30.0" prefWidth="74.0" styleClass="signInButton" text="Register">
+      <Button layoutX="219.0" layoutY="541.0" mnemonicParsing="false" onAction="#onButtonRegister" prefHeight="30.0" prefWidth="74.0" styleClass="app-logInButton" text="Register">
          <font>
             <Font size="14.0" />
          </font>
@@ -39,7 +39,7 @@
             <Font name="Impact" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="23.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#clickBack" styleClass="logInButton" text="Back" />
+      <Button layoutX="23.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#clickBack" styleClass="app-logInButton" text="Back" />
       <Label layoutX="133.0" layoutY="245.0" text="Username" />
       <Label layoutX="133.0" layoutY="310.0" text="Name" />
       <Label layoutX="133.0" layoutY="375.0" text="Password" />
