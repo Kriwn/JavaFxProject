@@ -42,7 +42,7 @@ public class StaffListController {
         datasource = new StaffDatasource("staffs", "staffs.csv");
         staffList = datasource.readData();
         staffs = staffList.getStaffs();
-        datasource.writeData(staffList);
+        //datasource.writeData(staffList);
         int count=0;
 
         for(var staff : staffs){

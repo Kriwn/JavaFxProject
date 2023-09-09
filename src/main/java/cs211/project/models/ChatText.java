@@ -1,7 +1,6 @@
 package cs211.project.models;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class ChatText {
     private LocalDateTime time;
@@ -14,29 +13,17 @@ public class ChatText {
         this.text = text;
     }
 
-    public LocalDateTime getTime() {
-        return time;
-    }
+    public LocalDateTime getTime() { return time; }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
-    public String getText() {
-        return text;
-    }
+    public String getText() { return text; }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
+    public void setTime(LocalDateTime time) { this.time = time; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username) { this.username = username; }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    public void setText(String text) { this.text = text; }
 
     public boolean isUsername(String username){
         return this.username.equals(username);

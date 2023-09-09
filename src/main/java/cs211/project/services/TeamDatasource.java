@@ -98,7 +98,7 @@ public class TeamDatasource implements Datasource<TeamList>{
 
         try {
             for (Team team : data.getTeams()) {
-                String line = team.getTeamName() + "," + team.getCapacity() + "," + team.getOpenDate() + "," + team.getOpenTime() + "," + team.getCloseDate() + "," + team.getCloseTime() + "," + team.getStaffs();
+                String line = team.getTeamName() + "," + team.getCapacity() + "," + team.getOpenDate() + "," + team.getOpenTime() + "," + team.getCloseDate() + "," + team.getCloseTime() + "," + team.getStaffList();
                 buffer.append(line);
                 buffer.append("\n");
             }

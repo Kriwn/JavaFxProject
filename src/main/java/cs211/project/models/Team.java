@@ -1,10 +1,8 @@
 package cs211.project.models;
 
-import java.util.ArrayList;
-
 public class Team {
     private String teamName;
-    private StaffList staffs;
+    private StaffList staffList;
     private int capacity;
     private String openDate;
     private String openTime;
@@ -18,7 +16,7 @@ public class Team {
         this.openTime = openTime;
         this.closeDate = closeDate;
         this.closeTime = closeTime;
-        this.staffs = staffs;
+        this.staffList = staffs;
     }
 
     public String getTeamName() {return teamName;}
@@ -33,7 +31,7 @@ public class Team {
 
     public String getCloseTime() {return closeTime;}
 
-    public StaffList getStaffs() {return staffs;}
+    public StaffList getStaffList() {return staffList;}
 
     public boolean isTeamName(String name) {
         return this.teamName.equals(name);
