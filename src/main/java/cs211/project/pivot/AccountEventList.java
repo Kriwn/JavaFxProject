@@ -34,6 +34,16 @@ public class AccountEventList {
         }
         return result;
     }
+    public ArrayList<Integer> findAllEventsByAccount(int acc_id){
+        ArrayList<Integer> result = new ArrayList<>();
+        for(AccountEvent accountEvent: list){
+            System.out.println(accountEvent);
+            if(accountEvent.isAccountId(acc_id)){
+                result.add(accountEvent.getEvent_id());
+            }
+        }
+        return result;
+    }
     public ArrayList<Integer> findAllAccountsByEvent(int ev_id){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
