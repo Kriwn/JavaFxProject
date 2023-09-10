@@ -18,6 +18,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +28,8 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable{
 
     @FXML  AnchorPane loginArea; // right pane
-    @FXML TextField userNameField;
-    @FXML PasswordField passwordField;
+    @FXML  MFXTextField userNameField;
+    @FXML MFXPasswordField passwordField;
     @FXML Label errorLabel;
     @FXML Button loginButton;
     private AccountList accounts;

@@ -1,5 +1,7 @@
 package cs211.project.cs211661project;
 
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import cs211.project.services.NPBPRouter;

@@ -1,5 +1,7 @@
 package cs211.project.services;
 
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -95,6 +97,7 @@ public final class NPBPRouter {
         scene.getStylesheets().add((new Object(){
        }).getClass().getResource(CSS).toExternalForm());
         window.setScene(scene);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         //window.setScene(new Scene(resource,route.sceneWidth,route.sceneHeight));
         window.setResizable(false);
         window.show();
@@ -110,6 +113,7 @@ public final class NPBPRouter {
         page.getChildren().removeAll();
         page.getChildren().setAll(resource);
         routeAnimation(resource);
+        MFXThemeManager.addOn(page, Themes.DEFAULT, Themes.LEGACY);
         page.getStylesheets().add((new Object(){}).getClass().getResource(CSS).toExternalForm());
     }
     public static void loadPage(String routeLabel, Parent parent) throws IOException{
