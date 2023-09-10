@@ -189,6 +189,7 @@ public final class NPBPRouter {
         private Object dataEvent;
         private Object dataTeam;
         private Object data4;
+        private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());
         }
