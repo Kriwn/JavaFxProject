@@ -49,7 +49,7 @@ public class HomeController implements Initializable{
     }
     public void onMyEventButton(){
         try {
-            NPBPRouter.loadPage("my-event",page,user);
+            NPBPRouter.loadPage("show-my-event",page,user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

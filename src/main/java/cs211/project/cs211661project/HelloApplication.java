@@ -50,6 +50,7 @@ public class HelloApplication extends Application {
         NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
         NPBPRouter.when("history", viewPath + "history.fxml");
         NPBPRouter.when("show-my-create-event", viewPath + "show-my-create-event.fxml");
+        NPBPRouter.when("show-my-event", viewPath + "show-my-event.fxml");
     }
     public static void main(String[] args) {
         launch();

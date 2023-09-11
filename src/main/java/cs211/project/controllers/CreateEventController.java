@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,7 +35,7 @@ public class CreateEventController {
     private DatePicker dateStartEvent;
 
     @FXML
-    private TextField detailsEvent;
+    private TextArea detailsTextArea;
 
     @FXML
     private ImageView eventImageView;
@@ -52,8 +53,6 @@ public class CreateEventController {
     private AccountEventRepository accountEventRepository;
     private AccountEventList accountEventList;
     private User user;
-    private Event eventForSetImagePath;
-    private Event selectEvent;
     private ArrayList<Event> event;
 
     public void initialize(){
@@ -68,7 +67,7 @@ public class CreateEventController {
     @FXML
     public void handleCreateEventButton() {
         String nameString = nameEvent.getText().trim();
-        String detailsString = detailsEvent.getText().trim();
+        String detailsString = detailsTextArea.getText().trim();
         String dateStart = dateStartEvent.getValue().toString();
         String dateEnd = dateEndEvent.getValue().toString();
         String timeStart = timeStartEvent.getText().trim();
@@ -83,7 +82,7 @@ public class CreateEventController {
         accountEventList.addNew(user.getAccountId(),event_id);
         accountEventRepository.saveEventOwner(accountEventList);
         nameEvent.clear();
-        detailsEvent.clear();
+        detailsTextArea.clear();
         timeStartEvent.clear();
         timeEndEvent.clear();
         dateStartEvent.setValue(null);
