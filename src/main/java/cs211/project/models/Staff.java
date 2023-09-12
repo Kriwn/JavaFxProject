@@ -29,17 +29,13 @@ public class Staff {
         img.setFill(new ImagePattern(new Image("file:" + imagePath)));
     }
 
-    public String getUsername() {return username;}
+    public String getUsername() { return username; }
 
-    public String getRole() {return role;}
+    public String getRole() { return role; }
 
-    public String getStatus() {return status;}
+    public String getStatus() { return status; }
 
-    public void banStaff() {status = "Ban";}
-
-    public Circle getImg() {
-        return img;
-    }
+    public Circle getImg() { return img; }
 
     public String getImagePath() {
         return imagePath;

@@ -59,16 +59,17 @@ public class TeamDatasource implements Datasource<TeamList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String name = data[0];
-                int capacity = Integer.parseInt(data[1]);
-                String openDate = data[2];
-                String openTime = data[3];
-                String closeDate = data[4];
-                String closeTime = data[5];
+                String teamId = data[0];
+                String name = data[1];
+                String maxMember = data[2];
+                String openDate = data[3];
+                String openTime = data[4];
+                String closeDate = data[5];
+                String closeTime = data[6];
 
                 Datasource<StaffList> datasource = new StaffDatasource(name, "staffs");
                 StaffList staffList = datasource.readData();
-                teams.addNewTeam(name, capacity, openDate, openTime, closeDate, closeTime, staffList);
+                teams.addNewTeam(teamId, name, maxMember, openDate, openTime, closeDate, closeTime, staffList);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +99,7 @@ public class TeamDatasource implements Datasource<TeamList>{
 
         try {
             for (Team team : data.getTeams()) {
-                String line = team.getTeamName() + "," + team.getCapacity() + "," + team.getOpenDate() + "," + team.getOpenTime() + "," + team.getCloseDate() + "," + team.getCloseTime() + "," + team.getStaffs();
+                String line = team.getTeam_id() + "," + team.getTeamName() + "," + team.getMaxMember() + "," + team.getOpenDate() + "," + team.getOpenTime() + "," + team.getCloseDate() + "," + team.getCloseTime() + "," + team.getStaffList();
                 buffer.append(line);
                 buffer.append("\n");
             }
