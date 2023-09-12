@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,7 +55,6 @@
                </font>
             </Label>
             <TextField fx:id="nameEvent" layoutX="244.0" layoutY="102.0" prefHeight="26.0" prefWidth="220.0" />
-            <TextField fx:id="detailsEvent" layoutX="244.0" layoutY="161.0" prefHeight="26.0" prefWidth="220.0" />
             <TextField fx:id="timeStartEvent" layoutX="244.0" layoutY="281.0" prefHeight="26.0" prefWidth="220.0" />
             <DatePicker fx:id="dateStartEvent" layoutX="244.0" layoutY="221.0" prefHeight="26.0" prefWidth="220.0" />
             <DatePicker fx:id="dateEndEvent" layoutX="244.0" layoutY="341.0" prefHeight="26.0" prefWidth="220.0" />
@@ -67,6 +67,7 @@
             </Label>
             <TextField fx:id="capacityEvent" layoutX="301.0" layoutY="566.0" prefHeight="26.0" prefWidth="220.0" />
             <Button layoutX="471.0" layoutY="477.0" mnemonicParsing="false" onAction="#handleUploadImageButton" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #7D9D9C; -fx-cursor: hand;" text="add Image" textFill="WHITE" />
+            <TextArea fx:id="detailsTextArea" layoutX="244.0" layoutY="137.0" prefHeight="75.0" prefWidth="220.0" style="-fx-wrap-text: true;" />
          </children>
       </AnchorPane>
    </children>

@@ -1,10 +1,10 @@
 package cs211.project.controllers;
 
-import cs211.project.models.*;
-import cs211.project.pivot.AccountEvent;
+import cs211.project.models.Event;
+import cs211.project.models.EventList;
+import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
-import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class HomePageController implements Initializable {
+public class ShowMyEventController implements Initializable {
     @FXML
     private AnchorPane page;
 
@@ -38,36 +38,27 @@ public class HomePageController implements Initializable {
 
     @FXML
     private VBox vbox;
-
-    private  VBox selectBox;
-    private ArrayList<Event> events;
-    private EventList eventList;
-    private EventRepository eventRepository;
-    private AccountList accountList;
-    private AccountRepository accountRepository;
-    private AccountEventRepository accountEventRepository;
     private User user;
-    private ArrayList<Event> eventUser;
+    private EventRepository eventRepository;
+    private AccountEventRepository accountEventRepository;
+    private EventList eventList;
+    private ArrayList<Event> events;
 
-//    @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        user = (User)NPBPRouter.getDataAccount();
+        user = (User) NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
-        accountRepository = new AccountRepository();
-        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
-        eventRepository.save(eventList);
         accountEventRepository = new AccountEventRepository();
         AccountEventList list_join = accountEventRepository.getList_join();
-        AccountEventList list_create = accountEventRepository.getList_create();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
-        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+        listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
+        ArrayList<Event> eventCreate = new ArrayList<>();
         for (var i : listId){
-            events.remove(eventList.findEventById(i));
+            eventCreate.add(eventList.findEventById(i));
         }
-        for (var i : events){
+        for (var i : eventCreate){
             vbox.getChildren().add(createCard(i));
         }
     }
@@ -102,20 +93,12 @@ public class HomePageController implements Initializable {
         img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
-                NPBPRouter.loadPage("join-event",page,user,newEvent.getEventId());
+                NPBPRouter.loadPage("my-event",page,user,newEvent.getEventId());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
 
         return vbox;
-    }
-
-    public void onCreateEventButton(){
-        try {
-            NPBPRouter.loadPage("create-event",page,user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

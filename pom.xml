@@ -44,6 +44,11 @@
             <artifactId>bcrypt</artifactId>
             <version>${bcrypt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.palexdev</groupId>
+            <artifactId>materialfx</artifactId>
+            <version>11.16.1</version>
+        </dependency>
     </dependencies>
 
     <build>
