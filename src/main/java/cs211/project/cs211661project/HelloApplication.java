@@ -1,5 +1,7 @@
 package cs211.project.cs211661project;
 
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import cs211.project.services.NPBPRouter;
@@ -10,10 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 public class HelloApplication extends Application {
+    private int cssstyle = 2;
     @Override
     public void start(Stage stage) throws IOException {
         NPBPRouter.bind(this, stage, "Hi", 1024, 760);
-        NPBPRouter.setCss("CSS/User/theme-1.css");
+        NPBPRouter.setCss("CSS/User/theme-"+cssstyle+".css");
         configRoute();
 //        String css = getClass().getResource("css/theme-2.css").toExternalForm();
         NPBPRouter.goTo("app");

@@ -8,6 +8,7 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPKeyPress;
 import cs211.project.services.NPBPRouter;
+import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,6 +19,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +30,8 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable{
 
     @FXML  AnchorPane loginArea; // right pane
-    @FXML TextField userNameField;
-    @FXML PasswordField passwordField;
+    @FXML  MFXTextField userNameField;
+    @FXML MFXPasswordField passwordField;
     @FXML Label errorLabel;
     @FXML Button loginButton;
     private AccountList accounts;
@@ -37,6 +41,8 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         repository = new AccountRepository();
         accounts = repository.getAccounts();
+        userNameField.setLeadingIcon(new MFXIconWrapper("fas-user", 16, Color.web("#412F38"), 16));
+        passwordField.setLeadingIcon(new MFXIconWrapper("fas-lock", 16, Color.web("#412F38"), 16));
         passwordField.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
             if (click.getCode() == KeyCode.ENTER) {
                 try {

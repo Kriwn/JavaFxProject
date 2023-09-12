@@ -14,6 +14,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,10 +23,10 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable{
     @FXML  AnchorPane signUpArea;
-    @FXML  TextField userNameField;
-    @FXML  TextField nameField;
-    @FXML  PasswordField passwordField;
-    @FXML  PasswordField confirmPasswordField;
+    @FXML  MFXTextField userNameField;
+    @FXML  MFXTextField nameField;
+    @FXML  MFXPasswordField passwordField;
+    @FXML  MFXPasswordField confirmPasswordField;
     @FXML  Label errorLabel;
     private AccountList accounts;
     private AccountRepository repository;
