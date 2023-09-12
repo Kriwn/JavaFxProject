@@ -36,4 +36,13 @@ public class AccountEvent {
     public String getStatus(){
         return status;
     }
+
+    @Override
+    public String toString() {
+        return "AccountEvent{" +
+                "account_id=" + account_id +
+                ", event_id=" + event_id +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

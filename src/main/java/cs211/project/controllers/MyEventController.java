@@ -15,6 +15,11 @@ import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +27,32 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MyEventController implements Initializable {
+    @FXML
+    private Label dateEndLabel;
+
+    @FXML
+    private Label dateStartLabel;
+
+    @FXML
+    private Label nameEventLabel;
+
+    @FXML
+    private AnchorPane page;
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private Label timeEndLabel;
+
+    @FXML
+    private Label timeStartLabel;
+
+    @FXML
+    private VBox vbox;
+    @FXML
+    private TextArea detailsTextArea;
+
     private Datasource<AccountList> datasourceAccount;
     private AccountList users;
     private User user;
@@ -40,9 +71,19 @@ public class MyEventController implements Initializable {
         events = eventList.getEvents();
         eventRepository.save(eventList);
         accountEventRepository = new AccountEventRepository();
-        ArrayList<Integer> list = new ArrayList<>();
-        AccountEventList list_join = accountEventRepository.getList_join();
-        ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
+        int eventId = (Integer) NPBPRouter.getDataEvent();
+        Event event = eventList.findEventById(eventId);
+        detailsTextArea.setEditable(false);
+
+        showEvent(event);
+    }
+
+    public void showEvent(Event event){
+        nameEventLabel.setText(event.getName());
+        detailsTextArea.setText(event.getDetail());
+        dateStartLabel.setText(event.getDateStart().toString());
+        timeStartLabel.setText(event.getTimeEnd().toString());
+        dateEndLabel.setText(event.getDateEnd().toString());
+        timeEndLabel.setText(event.getTimeEnd().toString());
     }
 }
