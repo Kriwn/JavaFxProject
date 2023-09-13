@@ -1,43 +1,70 @@
 package cs211.project.models;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Team {
+    private int team_id;
     private String teamName;
-    private StaffList staffs;
-    private int capacity;
-    private String openDate;
-    private String openTime;
-    private String closeDate;
-    private String closeTime;
+    private StaffList staffList;
+    private int countMember;
+    private int maxMember;
+    private LocalDate openDate;
+    private LocalTime openTime;
+    private LocalDate closeDate;
+    private LocalTime closeTime;
 
-    public Team(String name, int capacity, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+        this.team_id = Integer.parseInt(team_id);
         this.teamName = name;
-        this.capacity = capacity;
-        this.openDate = openDate;
-        this.openTime = openTime;
-        this.closeDate = closeDate;
-        this.closeTime = closeTime;
-        this.staffs = staffs;
+        this.maxMember = Integer.parseInt(maxMember);
+        this.openDate = LocalDate.parse(openDate);
+        this.openTime = LocalTime.parse(openTime);
+        this.closeDate = LocalDate.parse(closeDate);
+        this.closeTime = LocalTime.parse(closeTime);
+        this.staffList = staffs;
+        this.countMember = 0;
     }
+    
+    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs, String countMember){
+        this.team_id = Integer.parseInt(team_id);
+        this.teamName = name;
+        this.maxMember = Integer.parseInt(maxMember);
+        this.openDate = LocalDate.parse(openDate);
+        this.openTime = LocalTime.parse(openTime);
+        this.closeDate = LocalDate.parse(closeDate);
+        this.closeTime = LocalTime.parse(closeTime);
+        this.staffList = staffs;
+        this.countMember = Integer.parseInt(countMember);
+    }
+
+    public int getTeam_id() {return team_id;}
 
     public String getTeamName() {return teamName;}
 
-    public int getCapacity() {return capacity;}
+    public int getCountMember(){return countMember;}
 
-    public String getOpenDate() {return openDate;}
+    public int getMaxMember() {return maxMember;}
 
-    public String getOpenTime() {return openTime;}
+    public LocalDate getOpenDate() {return openDate;}
 
-    public String getCloseDate() {return closeDate;}
+    public LocalTime getOpenTime() {return openTime;}
 
-    public String getCloseTime() {return closeTime;}
+    public LocalDate getCloseDate() {return closeDate;}
 
-    public StaffList getStaffs() {return staffs;}
+    public LocalTime getCloseTime() {return closeTime;}
+
+    public StaffList getStaffList() {return staffList;}
 
     public boolean isTeamName(String name) {
         return this.teamName.equals(name);
     }
 
+    public boolean isTeamId(int team_id){
+        return this.team_id == team_id;
+    }
 
+    public void addCountMember(){
+        countMember++;
+    }
 }

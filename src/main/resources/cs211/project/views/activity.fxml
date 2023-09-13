@@ -16,7 +16,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <TableView layoutX="83.0" layoutY="80.0" prefHeight="520.0" prefWidth="460.0">
+            <TableView fx:id="activityTableView" layoutX="83.0" layoutY="80.0" prefHeight="520.0" prefWidth="460.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="C1" />
                   <TableColumn prefWidth="75.0" text="C2" />
