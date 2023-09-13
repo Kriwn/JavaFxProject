@@ -6,6 +6,7 @@ import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
+import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +40,6 @@ public class HomePageController implements Initializable {
     @FXML
     private VBox vbox;
 
-    private  VBox selectBox;
     private ArrayList<Event> events;
     private EventList eventList;
     private EventRepository eventRepository;
@@ -67,7 +67,9 @@ public class HomePageController implements Initializable {
             events.remove(eventList.findEventById(i));
         }
         for (var i : events){
-            vbox.getChildren().add(createCard(i));
+            i.checkTimeEvent();
+            if (i.getStatus())
+                vbox.getChildren().add(createCard(i));
         }
     }
 
@@ -105,6 +107,14 @@ public class HomePageController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+        VBox finalVbox = vbox;
+        vbox.setOnMouseEntered(event1 ->{
+            NPBPAnimation.scaleTransition(finalVbox, 1.05);
+        });
+
+        vbox.setOnMouseExited(event2 ->{
+            NPBPAnimation.reverseScale(finalVbox);
         });
 
         return vbox;

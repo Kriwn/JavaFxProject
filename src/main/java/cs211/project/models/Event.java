@@ -19,7 +19,7 @@ public class Event {
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private int status;
+    private boolean status;
 
     public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
         this.name = name;
@@ -30,7 +30,7 @@ public class Event {
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = Integer.parseInt(countMember);
-        this.status = 0;
+        this.status = true;
         this.image = image;
         this.eventId = Integer.parseInt(id);
     }
@@ -44,9 +44,18 @@ public class Event {
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = 0;
-        this.status = 0;
+        this.status = true;
         setImage(new Image("file:" + "images/default.png"));
         this.eventId = Integer.parseInt(id);
+    }
+
+    public void checkTimeEvent(){
+        if(dateEnd.isBefore(LocalDate.now()) && timeEnd.isBefore(LocalTime.now())){
+            status = true;
+        }
+        else{
+            status = false;
+        }
     }
 
     public boolean isEventId(int event_id){
@@ -147,12 +156,8 @@ public class Event {
         this.countMember++;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public void setImage(Image image) {

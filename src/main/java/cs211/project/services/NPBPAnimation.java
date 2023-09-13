@@ -6,6 +6,8 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class NPBPAnimation {
@@ -23,8 +25,22 @@ public class NPBPAnimation {
         scale.play();
     }
 
+    public static void scaleTransition(Pane pane,double scale){
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(250), pane);
+        scaleTransition.setToX(scale);
+        scaleTransition.setToY(scale);
+        scaleTransition.play();
+    }
+
     public static void reverseScale(Control control) {
         ScaleTransition scale = new ScaleTransition(Duration.millis(250), control);
+        scale.setToX(1);
+        scale.setToY(1);
+        scale.play();
+    }
+
+    public static void reverseScale(Pane pane) {
+        ScaleTransition scale = new ScaleTransition(Duration.millis(250), pane);
         scale.setToX(1);
         scale.setToY(1);
         scale.play();

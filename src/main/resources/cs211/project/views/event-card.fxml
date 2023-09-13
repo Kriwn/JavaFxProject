@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EventController">
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EventController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: transparent;">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: transparent;">
          <children>
             <Pane prefHeight="100.0" prefWidth="25.0" />
             <Circle fx:id="imgCircle" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
