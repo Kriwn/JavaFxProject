@@ -49,14 +49,13 @@ public class HomePageController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;
-    private ArrayList<Event> eventUser;
 
-//    @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
-        accountList = accountRepository.getAccounts();
+//        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         eventRepository.save(eventList);
