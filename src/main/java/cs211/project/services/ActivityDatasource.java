@@ -1,23 +1,20 @@
 package cs211.project.services;
 
-import cs211.project.models.Staff;
-import cs211.project.models.StaffList;
-import cs211.project.models.Team;
-import cs211.project.models.TeamList;
-import javafx.scene.shape.Circle;
+import cs211.project.models.*;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
-public class TeamDatasource implements Datasource<TeamList>{
+public class ActivityDatasource implements Datasource<ActivityList>{
     private String directoryName;
     private String fileName;
-    public TeamDatasource(String directoryName, String fileName){
+
+    public ActivityDatasource(String directoryName, String fileName) {
         this.directoryName = directoryName;
         this.fileName = fileName;
         checkFileIsExisted();
     }
+
     private void checkFileIsExisted() {
         File file = new File(directoryName);
         if (!file.exists()) {
@@ -33,56 +30,47 @@ public class TeamDatasource implements Datasource<TeamList>{
             }
         }
     }
+
     @Override
-    public TeamList readData(){
-        TeamList teams = new TeamList();
+    public ActivityList readData() {
+        ActivityList activitys = new ActivityList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
         FileInputStream fileInputStream = null;
-
         try {
             fileInputStream = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        InputStreamReader inputStreamReader = new InputStreamReader(
-                fileInputStream,
-                StandardCharsets.UTF_8
-        );
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
         BufferedReader buffer = new BufferedReader(inputStreamReader);
-
         String line = "";
         try {
             while ( (line = buffer.readLine()) != null ){
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String teamId = data[0];
-                String name = data[1];
-                String maxMember = data[2];
-                String openDate = data[3];
-                String openTime = data[4];
-                String closeDate = data[5];
-                String closeTime = data[6];
+                String name = data[0].trim();
+                String detail = data[1].trim();
 
-                Datasource<StaffList> datasource = new StaffDatasource(name, "staffs");
-                StaffList staffList = datasource.readData();
-                teams.addNewTeam(teamId, name, maxMember, openDate, openTime, closeDate, closeTime, staffList);
+                activitys.addNewActivity(name,detail);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return teams;
+        return activitys;
     }
 
+
     @Override
-    public void writeData(TeamList data) {
+    public void writeData(ActivityList data)
+    {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
+        // เตรียม object ที่ใช้ในการเขียนไฟล์
         FileOutputStream fileOutputStream = null;
 
         try {
@@ -98,8 +86,8 @@ public class TeamDatasource implements Datasource<TeamList>{
         BufferedWriter buffer = new BufferedWriter(outputStreamWriter);
 
         try {
-            for (Team team : data.getTeams()) {
-                String line = team.getTeam_id() + "," + team.getTeamName() + "," + team.getMaxMember() + "," + team.getOpenDate() + "," + team.getOpenTime() + "," + team.getCloseDate() + "," + team.getCloseTime() + "," + team.getStaffList();
+            for (Activity activity : data.getActivity()) {
+                String line = activity.getName() + "," +activity.getDetail();
                 buffer.append(line);
                 buffer.append("\n");
             }
