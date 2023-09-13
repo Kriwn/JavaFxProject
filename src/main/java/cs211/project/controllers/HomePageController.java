@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -72,6 +74,12 @@ public class HomePageController implements Initializable {
             if (i.getStatus())
                 vbox.getChildren().add(createCard(i));
         }
+
+        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.C) {
+                onCreateEventButton();
+            }
+        });
     }
 
     public VBox createCard(Event newEvent){

@@ -13,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -62,6 +64,12 @@ public class CreateEventController {
         event = eventRepository.getEvents().getEvents();
         accountEventRepository = new AccountEventRepository();
         user.addMyCreateEventFromFile(accountEventRepository.getList_create().findEventsByAccount(user.getAccountId()));
+
+        capacityEvent.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.ENTER) {
+                handleCreateEventButton();
+            }
+        });
     }
 
     @FXML

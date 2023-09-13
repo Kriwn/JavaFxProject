@@ -69,19 +69,6 @@ public class EventList {
             exist.addCountMember();
         }
     }
-
-    public void editEvent(String name,String name_new, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, int capacity, Image image){
-        Event exist = findEventByName(name);
-        exist.setName(name_new);
-        exist.setDetail(details);
-        exist.setDateStart(dateStart);
-        exist.setTimeStart(timeStart);
-        exist.setDateEnd(dateEnd);
-        exist.setTimeEnd(timeEnd);
-        exist.setCapacity(capacity);
-        exist.setImage(image);
-    }
-
     public void banUser(User user, String name){
         Event exist = findEventByName(name);
         exist.removeUser(user);

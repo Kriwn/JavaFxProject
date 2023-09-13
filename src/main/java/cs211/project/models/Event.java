@@ -58,6 +58,17 @@ public class Event {
         }
     }
 
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, String maxMember, Image image){
+        this.name = name;
+        this.detail = details;
+        this.dateStart = LocalDate.parse(dateStart);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.maxMember = Integer.parseInt(maxMember);
+        this.image = image;
+    }
+
     public boolean isEventId(int event_id){
         return this.eventId == event_id;
     }

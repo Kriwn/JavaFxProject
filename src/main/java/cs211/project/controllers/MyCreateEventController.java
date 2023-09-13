@@ -69,4 +69,12 @@ public class MyCreateEventController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    public void goToEditEvent(){
+        try {
+            NPBPRouter.loadPage("edit-event",page,user,event.getEventId());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
