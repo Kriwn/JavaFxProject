@@ -64,35 +64,11 @@ public class EventList {
 
     public void joinEvent(User user, String name){
         Event exist = findEventByName(name);
-        if (exist.getMaxMember() > exist.getCountMember() && exist.getStatus() == 1){
+        if (exist.getMaxMember() > exist.getCountMember() && exist.getStatus()){
             exist.addUser(user);
             exist.addCountMember();
         }
     }
-
-    public void checkTimeEvent(String name,LocalDate date, LocalTime time){
-        Event exist = findEventByName(name);
-        if(exist.getDateStart().isAfter(date) && exist.getDateEnd().isBefore(date) && exist.getTimeStart().isAfter(time) && exist.getTimeEnd().isBefore(time)){
-            exist.setStatus(1);
-        }
-        else{
-            exist.setStatus(0);
-        }
-    }
-
-
-    public void editEvent(String name,String name_new, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, int capacity, Image image){
-        Event exist = findEventByName(name);
-        exist.setName(name_new);
-        exist.setDetail(details);
-        exist.setDateStart(dateStart);
-        exist.setTimeStart(timeStart);
-        exist.setDateEnd(dateEnd);
-        exist.setTimeEnd(timeEnd);
-        exist.setCapacity(capacity);
-        exist.setImage(image);
-    }
-
     public void banUser(User user, String name){
         Event exist = findEventByName(name);
         exist.removeUser(user);

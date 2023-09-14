@@ -6,6 +6,7 @@ import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
+import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -39,7 +42,6 @@ public class HomePageController implements Initializable {
     @FXML
     private VBox vbox;
 
-    private  VBox selectBox;
     private ArrayList<Event> events;
     private EventList eventList;
     private EventRepository eventRepository;
@@ -47,14 +49,13 @@ public class HomePageController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;
-    private ArrayList<Event> eventUser;
 
-//    @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
-        accountList = accountRepository.getAccounts();
+//        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         eventRepository.save(eventList);
@@ -68,8 +69,16 @@ public class HomePageController implements Initializable {
             events.remove(eventList.findEventById(i));
         }
         for (var i : events){
-            vbox.getChildren().add(createCard(i));
+            i.checkTimeEvent();
+            if (i.getStatus())
+                vbox.getChildren().add(createCard(i));
         }
+
+        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.C) {
+                onCreateEventButton();
+            }
+        });
     }
 
     public VBox createCard(Event newEvent){
@@ -106,6 +115,14 @@ public class HomePageController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+        VBox finalVbox = vbox;
+        vbox.setOnMouseEntered(event1 ->{
+            NPBPAnimation.scaleTransition(finalVbox, 1.05);
+        });
+
+        vbox.setOnMouseExited(event2 ->{
+            NPBPAnimation.reverseScale(finalVbox);
         });
 
         return vbox;

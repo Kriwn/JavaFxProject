@@ -4,6 +4,8 @@ public class Activity {
     private String name;
     private String detail;
 
+    private int id;
+
     public String getName() {
 
         return name;
@@ -14,6 +16,9 @@ public class Activity {
         this.name = name;
     }
 
+    public int getId(){
+        return id;
+    }
     public String getDetail() {
         return detail;
     }
@@ -23,9 +28,10 @@ public class Activity {
         this.detail = detail;
     }
 
-    public Activity(String name, String detail) {
+    public Activity(String name, String detail,int id) {
         this.name = name;
         this.detail = detail;
+        this.id = id;
     }
 
     public boolean isName(String name){

@@ -52,10 +52,11 @@ public class ActivityDatasource implements Datasource<ActivityList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String name = data[0].trim();
-                String detail = data[1].trim();
+                String id = data[0] .trim();
+                String name = data[1].trim();
+                String detail = data[2].trim();
 
-                activitys.addNewActivity(name,detail);
+                activitys.addNewActivityFromFile(name,detail,id);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -87,7 +88,7 @@ public class ActivityDatasource implements Datasource<ActivityList>{
 
         try {
             for (Activity activity : data.getActivity()) {
-                String line = activity.getName() + "," +activity.getDetail();
+                String line =activity.getId()+ "," + activity.getName() + "," +activity.getDetail();
                 buffer.append(line);
                 buffer.append("\n");
             }

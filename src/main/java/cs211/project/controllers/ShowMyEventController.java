@@ -6,6 +6,7 @@ import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
+import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,6 +98,15 @@ public class ShowMyEventController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+
+        VBox finalVbox = vbox;
+        vbox.setOnMouseEntered(event1 ->{
+            NPBPAnimation.scaleTransition(finalVbox, 1.05);
+        });
+
+        vbox.setOnMouseExited(event2 ->{
+            NPBPAnimation.reverseScale(finalVbox);
         });
 
         return vbox;
