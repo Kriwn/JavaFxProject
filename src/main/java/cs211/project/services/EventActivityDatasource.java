@@ -1,15 +1,17 @@
 package cs211.project.services;
 
 import cs211.project.models.*;
+import cs211.project.pivot.EventActivity;
+import cs211.project.pivot.EventActivityList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class ActivityDatasource implements Datasource<ActivityList>{
+public class EventActivityDatasource implements Datasource<EventActivityList>{
     private String directoryName;
     private String fileName;
 
-    public ActivityDatasource(String directoryName, String fileName) {
+    public EventActivityDatasource(String directoryName, String fileName) {
         this.directoryName = directoryName;
         this.fileName = fileName;
         checkFileIsExisted();
@@ -32,8 +34,8 @@ public class ActivityDatasource implements Datasource<ActivityList>{
     }
 
     @Override
-    public ActivityList readData() {
-        ActivityList activitys = new ActivityList();
+    public EventActivityList readData() {
+        EventActivityList eventActivityList = new EventActivityList();
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
 
@@ -52,21 +54,20 @@ public class ActivityDatasource implements Datasource<ActivityList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String id = data[0] .trim();
-                String name = data[1].trim();
-                String detail = data[2].trim();
+                int ac_id = Integer.parseInt(data[0]);
+                int ev_id = Integer.parseInt(data[1]);
 
-                activitys.addNewActivityFromFile(name,detail,id);
+                eventActivityList.addNew(ac_id,ev_id);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return activitys;
+        return eventActivityList;
     }
 
 
     @Override
-    public void writeData(ActivityList data)
+    public void writeData(EventActivityList data)
     {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -87,8 +88,8 @@ public class ActivityDatasource implements Datasource<ActivityList>{
         BufferedWriter buffer = new BufferedWriter(outputStreamWriter);
 
         try {
-            for (Activity activity : data.getActivity()) {
-                String line =activity.getId()+ "," + activity.getName() + "," +activity.getDetail();
+            for (EventActivity eventActivity : data.getList()) {
+                String line =eventActivity.getActivity_id()+ "," + eventActivity.getEvent_id();
                 buffer.append(line);
                 buffer.append("\n");
             }
