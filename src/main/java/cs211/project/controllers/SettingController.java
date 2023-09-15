@@ -2,9 +2,10 @@ package cs211.project.controllers;
 
 import cs211.project.models.AccountList;
 import cs211.project.models.User;
-import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,17 +13,16 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 public class SettingController {
-    private AccountList userList;
 
     private User user;
 
-    @FXML
     public void initialize(){
         // read csv
         //user = userList.findUserByUsername("stttt");
         user = new User( "username",  "name");
     }
 
+    @FXML
     public void chooseImageButton(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image");
