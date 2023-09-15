@@ -15,11 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -60,7 +63,9 @@ public class ShowMyCreateEventController implements Initializable {
             eventCreate.add(eventList.findEventById(i));
         }
         for (var i : eventCreate){
-            vbox.getChildren().add(createCard(i));
+            i.checkTimeEvent();
+            if (i.getStatus())
+                vbox.getChildren().add(createCard(i));
         }
     }
 
@@ -89,9 +94,9 @@ public class ShowMyCreateEventController implements Initializable {
         namelabel.setText(newEvent.getName());
         countMember.setText(""+newEvent.getCountMember());
         maxMember.setText(""+newEvent.getMaxMember());
-//        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
+        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
-        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
+//        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
                 NPBPRouter.loadPage("my-create-event",page,user,newEvent.getEventId());

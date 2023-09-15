@@ -3,7 +3,9 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Event {
@@ -23,6 +25,19 @@ public class Event {
 
     public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
         this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStart = LocalDate.parse(dateStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.countMember = Integer.parseInt(countMember);
+        this.maxMember = Integer.parseInt(maxMember);
+        this.image = image;
+    }
+
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember){
+        this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
         this.dateStart = LocalDate.parse(dateStart);
@@ -31,26 +46,12 @@ public class Event {
         this.timeEnd = LocalTime.parse(timeEnd);
         this.countMember = Integer.parseInt(countMember);
         this.status = true;
-        this.image = image;
-        this.eventId = Integer.parseInt(id);
-    }
-
-    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
-        this.name = name;
-        this.detail = details;
-        this.maxMember = Integer.parseInt(maxMember);
-        this.dateStart = LocalDate.parse(dateStart);
-        this.dateEnd = LocalDate.parse(dateEnd);
-        this.timeStart = LocalTime.parse(timeStart);
-        this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember = 0;
-        this.status = true;
         setImage(new Image("file:" + "images/default.png"));
         this.eventId = Integer.parseInt(id);
     }
 
     public void checkTimeEvent(){
-        if(dateEnd.isBefore(LocalDate.now()) && timeEnd.isBefore(LocalTime.now())){
+        if(dateEnd.isAfter(LocalDate.now())){
             status = true;
         }
         else{
