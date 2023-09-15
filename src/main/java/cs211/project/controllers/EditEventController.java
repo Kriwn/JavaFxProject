@@ -15,8 +15,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -76,7 +78,18 @@ public class EditEventController implements Initializable {
 
     public void showText(){
         nameEvent.setText(event.getName());
-        detailsTextArea.setText(event.getDetail());
+        String details = event.getDetail();
+        System.out.println(details);
+        String []details_new = details.split("\\|");
+        System.out.println(details_new);
+        details = "";
+        for (var i : details_new){
+            details += i.trim();
+            details += "\n";
+        }
+        System.out.println(details);
+        detailsTextArea.setText(details);
+
         dateStartEvent.setValue(event.getDateStart());
         timeStartEvent.setText(event.getTimeStart().toString());
         dateEndEvent.setValue(event.getDateEnd());
@@ -87,7 +100,6 @@ public class EditEventController implements Initializable {
 
     public void handleEditEventButton(){
         String name = nameEvent.getText();
-        String details = detailsTextArea.getText();
         String dateStart = dateStartEvent.getValue().toString();
         String timeStart = timeStartEvent.getText();
         String dateEnd = dateEndEvent.getValue().toString();
@@ -95,10 +107,18 @@ public class EditEventController implements Initializable {
         Image image = eventImageView.getImage();
         String maxMember = capacityEvent.getText();
 
+        String []s = detailsTextArea.getText().split("\n");
+        String details = "";
+        for (var i : s){
+            details += i.trim();
+            details += "|";
+        }
+
         event.editEvent(name, details, dateStart, timeStart, dateEnd, timeEnd, maxMember, image);
         eventRepository.save(eventList);
 
         successLabel.setVisible(true);
+        successLabel.setEffect(new ImageInput());
 
     }
 

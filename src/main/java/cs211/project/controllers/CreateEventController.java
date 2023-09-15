@@ -7,10 +7,12 @@ import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -75,13 +77,20 @@ public class CreateEventController {
     @FXML
     public void handleCreateEventButton() {
         String nameString = nameEvent.getText().trim();
-        String detailsString = detailsTextArea.getText().trim();
         String dateStart = dateStartEvent.getValue().toString();
         String dateEnd = dateEndEvent.getValue().toString();
         String timeStart = timeStartEvent.getText().trim();
         String timeEnd = timeEndEvent.getText().trim();
         String maxMember = capacityEvent.getText().trim();
         Image image = eventImageView.getImage();
+
+
+        String []s = detailsTextArea.getText().split("\n");
+        String detailsString = "";
+        for (var i : s){
+            detailsString += i.trim();
+            detailsString += "|";
+        }
 
         eventList.createEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,"0",maxMember,image);
         Event exist = eventList.findEventByName(nameString);
@@ -90,7 +99,6 @@ public class CreateEventController {
         accountEventList.addNew(user.getAccountId(),event_id);
         accountEventRepository.saveEventOwner(accountEventList);
         nameEvent.clear();
-        detailsTextArea.clear();
         timeStartEvent.clear();
         timeEndEvent.clear();
         dateStartEvent.setValue(null);
