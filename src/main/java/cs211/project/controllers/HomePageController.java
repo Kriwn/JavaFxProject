@@ -8,9 +8,13 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.collections.MapChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -50,8 +54,14 @@ public class HomePageController implements Initializable {
     private AccountEventRepository accountEventRepository;
     private User user;
 
+    private Scene scene;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        page.setOnMouseEntered(hover -> {
+//            page.requestFocus();
+//        });
+
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
@@ -74,11 +84,11 @@ public class HomePageController implements Initializable {
                 vbox.getChildren().add(createCard(i));
         }
 
-        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
-            if (click.getCode() == KeyCode.C) {
-                onCreateEventButton();
-            }
-        });
+//        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+//            if (click.getCode() == KeyCode.F1) {
+//                onCreateEventButton();
+//            }
+//        });
     }
 
     public VBox createCard(Event newEvent){
@@ -106,9 +116,9 @@ public class HomePageController implements Initializable {
         namelabel.setText(newEvent.getName());
         countMember.setText(""+newEvent.getCountMember());
         maxMember.setText(""+newEvent.getMaxMember());
-//        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
+        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
-        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
+//        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
                 NPBPRouter.loadPage("join-event",page,user,newEvent.getEventId());

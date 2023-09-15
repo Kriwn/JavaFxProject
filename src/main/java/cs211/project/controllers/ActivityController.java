@@ -2,7 +2,11 @@ package cs211.project.controllers;
 
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
+<<<<<<< HEAD
 import cs211.project.services.EventActivityDatasource;
+=======
+//import cs211.project.services.ActivityDatasource;
+>>>>>>> 06300bf1e6e07fc8174ef53734cb50956c52c60b
 import cs211.project.services.Datasource;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -18,10 +22,9 @@ public class ActivityController {
 
     @FXML
     public void initialize() {
-//        datasource = new EventActivityDatasource("data", "activity.csv");
+//        datasource = new ActivityDatasource("data", "activity.csv");
 //        activityList = datasource.readData();
 //        showTable(activityList);
-
     }
 
     private void showTable(ActivityList activityList) {

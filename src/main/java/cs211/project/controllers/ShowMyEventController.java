@@ -60,7 +60,9 @@ public class ShowMyEventController implements Initializable {
             eventCreate.add(eventList.findEventById(i));
         }
         for (var i : eventCreate){
-            vbox.getChildren().add(createCard(i));
+            i.checkTimeEvent();
+            if (i.getStatus())
+                vbox.getChildren().add(createCard(i));
         }
     }
 
@@ -89,9 +91,9 @@ public class ShowMyEventController implements Initializable {
         namelabel.setText(newEvent.getName());
         countMember.setText(""+newEvent.getCountMember());
         maxMember.setText(""+newEvent.getMaxMember());
-//        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
+        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
-        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
+//        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
                 NPBPRouter.loadPage("my-event",page,user,newEvent.getEventId());
