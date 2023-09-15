@@ -110,6 +110,13 @@
     -fx-background-color:#F0EBE3;
 }
 
+.card:hover{
+    -fx-background-color: gray;
+}
+.card:focused{
+    -fx-background-color: black;
+}
+
 
 
 
