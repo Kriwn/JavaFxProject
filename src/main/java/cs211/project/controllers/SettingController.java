@@ -2,7 +2,10 @@ package cs211.project.controllers;
 
 import cs211.project.models.AccountList;
 import cs211.project.models.User;
+import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,11 +18,14 @@ import java.nio.file.StandardCopyOption;
 public class SettingController {
 
     private User user;
+    @FXML private TextField oldTextField;
+    @FXML private TextField newTextField;
+    @FXML private TextField conTextField;
+    @FXML private Label errorLabel;
 
     public void initialize(){
-        // read csv
-        //user = userList.findUserByUsername("stttt");
-        user = new User( "username",  "name");
+        user = (User) NPBPRouter.getDataAccount();
+        errorLabel.setText("");
     }
 
     @FXML
@@ -27,10 +33,7 @@ public class SettingController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image");
 
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
 
         File file = fileChooser.showOpenDialog(null);
 
@@ -39,7 +42,7 @@ public class SettingController {
             String separator = name.substring(name.lastIndexOf('.'), name.length());
             // Define the destination directory and file name where you want to save the selected file
             File destinationDir = new File("images/User");
-            String destinationFileName = user.getName() + separator;
+            String destinationFileName = user.getUsername() + separator;
 
             // Create the destination file
             File destinationFile = new File(destinationDir, destinationFileName);
@@ -52,5 +55,14 @@ public class SettingController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void confirm(){
+        String oldpass = oldTextField.getText().trim();
+        String newpass = newTextField.getText().trim();
+        String conpass = conTextField.getText().trim();
+        if (oldpass.equals("") || newpass.equals("") || conpass.equals(""))
+            errorLabel.setText("Please fill  is required");
+            return ;
     }
 }
