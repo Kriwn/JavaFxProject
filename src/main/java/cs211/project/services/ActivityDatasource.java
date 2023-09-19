@@ -57,7 +57,7 @@ public class ActivityDatasource implements  Datasource<ActivityList>{
                 String name = data[1].trim();
                 String detail = data[2].trim();
 
-                activitys.addNewActivity(name,detail);
+//                activitys.addNewActivity(name,detail);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

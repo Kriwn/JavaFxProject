@@ -18,10 +18,10 @@ public class ActivityRepository {
         datasource.writeData(activityList);
     }
 
-    public Activity findByName(String Name) {
-        Activity activity = activitys.findActivityByName(Name);
-        return activity;
-    }
+//    public Activity findByName(String Name) {
+//        Activity activity = activitys.findActivityByName(Name);
+//        return activity;
+//    }
 
 
     public  ActivityList getActivityList() {
