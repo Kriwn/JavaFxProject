@@ -76,10 +76,15 @@ public class AccountList {
         accounts.add((User)account);
     }
 
-    public boolean changePassword(String username, String oldPassword, String newPassword){
+    public void changePassword(String username,String newPassword){
         Account exist = findUserByUsername(username);
-
-        return false;
+        exist.setPassword(newPassword);
+        return ;
+    }
+    public  void changeImage(String username,String path)
+    {
+        Account exist = findUserByUsername(username);
+        exist.setImage(path);
     }
     public Account login(String username, String password){
         Account account = findUserByUsername(username);

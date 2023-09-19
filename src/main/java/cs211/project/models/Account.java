@@ -91,6 +91,10 @@ public class Account {
     public void setAccountId(int id){
         this.accountId = id;
     }
+    public  void setPassword(String password){
+        this.password = password;
+        this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    }
 
     public String getUsername() {
         return username;
