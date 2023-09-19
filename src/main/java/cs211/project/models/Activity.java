@@ -38,4 +38,12 @@ public class Activity {
         return  this.name.equals(name);
     }
 
+    public boolean isId(int id){
+        return  this.id == id;
+    }
+
+//    public  boolean isDetail(String detail){
+//        return  this
+//    }
+
 }

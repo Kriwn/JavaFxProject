@@ -13,7 +13,7 @@ public class ActivityList {
         detail = detail.trim();
         id = id.trim();
         if (!name.equals("") & !detail.equals("")){
-            Activity exist = findActivityByName(name);
+            Activity exist = findActivityById(Integer.parseInt(id));
             if (exist == null){
                 activities.add(new Activity(name,detail,Integer.parseInt(id)));
                 this.lastId = Integer.parseInt(id);
@@ -25,20 +25,25 @@ public class ActivityList {
         name = name.trim();
         detail = detail.trim();
         if (!name.equals("") & !detail.equals("")){
-            Activity exist = findActivityByName(name);
+            Activity exist = findActivityByBoth(name,detail);
             if (exist == null){
                 activities.add(new Activity(name,detail,++lastId));
             }
         }
     }
 
-    public Activity findActivityByName(String name){
+    public Activity findActivityById(int id){
         for (Activity activity : activities) {
-            if (activity.isName(name)){
+            if (activity.isId(id)){
                 return activity;
             }
         }
         return null;
+    }
+    public  Activity findActivityByBoth(String name,String detail){
+        name = name.trim();
+        detail = detail.trim();
+
     }
 
 
