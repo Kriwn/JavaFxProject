@@ -68,7 +68,6 @@ public class HomePageController implements Initializable {
 //        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
-        eventRepository.save(eventList);
         accountEventRepository = new AccountEventRepository();
         AccountEventList list_join = accountEventRepository.getList_join();
         AccountEventList list_create = accountEventRepository.getList_create();
