@@ -10,29 +10,29 @@ public class TeamList {
     public TeamList(){
         teams = new ArrayList<>();
     }
-    public void addNewTeam(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+    public void addNewTeam(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, String countMember){
         team_id = team_id.trim();
         name = name.trim();
         maxMember = maxMember.trim();
-        openDate = openTime.trim();
+        openDate = openDate.trim();
         openTime = openTime.trim();
         closeDate = closeDate.trim();
         closeTime = closeTime.trim();
+        countMember = countMember.trim();
 
         if (!name.equals("")) {
             Team exist = findTeamByName(name);
             if (exist == null) {
-                teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, staffs));
+                teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
                 this.lastId = Integer.parseInt(team_id);
             }
         }
     }
 
-    public void createTeam(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
-        team_id = team_id.trim();
+    public void createTeam(String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, String countMember){
         name = name.trim();
         maxMember = maxMember.trim();
-        openDate = openTime.trim();
+        openDate = openDate.trim();
         openTime = openTime.trim();
         closeDate = closeDate.trim();
         closeTime = closeTime.trim();
@@ -40,7 +40,7 @@ public class TeamList {
         Team exist = findTeamByName(name);
         if(!name.equals("")){
             if(exist == null){
-                teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, staffs));
+                teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
             }
         }
     }

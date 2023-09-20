@@ -36,14 +36,14 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="244.0" layoutY="102.0" prefHeight="26.0" prefWidth="220.0" />
-            <TextField layoutX="244.0" layoutY="162.0" prefHeight="26.0" prefWidth="220.0" />
-            <TextField layoutX="244.0" layoutY="342.0" prefHeight="26.0" prefWidth="220.0" />
-            <TextField layoutX="244.0" layoutY="222.0" prefHeight="26.0" prefWidth="220.0" />
+            <TextField fx:id="teamNameText" layoutX="244.0" layoutY="102.0" prefHeight="26.0" prefWidth="220.0" />
+            <TextField fx:id="capacity" layoutX="244.0" layoutY="162.0" prefHeight="26.0" prefWidth="220.0" />
+            <TextField fx:id="closeTimeText" layoutX="244.0" layoutY="342.0" prefHeight="26.0" prefWidth="220.0" />
+            <TextField fx:id="openTimeText" layoutX="244.0" layoutY="222.0" prefHeight="26.0" prefWidth="220.0" />
+            <Button layoutX="263.0" layoutY="616.0" mnemonicParsing="false" onAction="#backButton" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="back" textFill="WHITE" />
             <Label fx:id="errorLabel" layoutX="327.0" layoutY="128.0" text="errorLabel" textFill="RED" />
-            <Button layoutX="263.0" layoutY="616.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="back" textFill="WHITE" />
-            <DatePicker layoutX="244.0" layoutY="282.0" prefHeight="26.0" prefWidth="220.0" />
-            <DatePicker layoutX="244.0" layoutY="402.0" prefHeight="26.0" prefWidth="220.0" />
+            <DatePicker fx:id="openDate" layoutX="244.0" layoutY="282.0" prefHeight="26.0" prefWidth="220.0" />
+            <DatePicker fx:id="closeDate" layoutX="244.0" layoutY="402.0" prefHeight="26.0" prefWidth="220.0" />
             <Label layoutX="65.0" layoutY="282.0" text="วันที่เปิดรับ">
                <font>
                   <Font size="18.0" />
@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="253.0" layoutY="481.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="defaultButton" text="Creat" textFill="WHITE">
+            <Button layoutX="253.0" layoutY="481.0" mnemonicParsing="false" onAction="#createTeamButton" prefHeight="50.0" prefWidth="120.0" styleClass="defaultButton" text="Create" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

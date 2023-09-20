@@ -69,12 +69,14 @@ public class Activity {
         return  this.id == id;
     }
 
+
     public  boolean isDetail(String detail){
         return  this.detail.equals(detail);
     }
     public LocalDate getDateStart() {
         return dateStart;
     }
+
 
     public LocalDate getDateEnd() {
         return dateEnd;

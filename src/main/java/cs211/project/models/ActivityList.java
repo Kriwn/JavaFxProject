@@ -57,3 +57,4 @@ public class ActivityList {
         return activities;
     }
 }
+

@@ -9,16 +9,17 @@
 
 <AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.TeamListController">
    <children>
+      <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButton" text="back" />
       <Label layoutX="72.0" layoutY="37.0" text="All Teams">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="372.0" layoutY="703.0" mnemonicParsing="false" text="back" />
       <ScrollPane fx:id="scrollPane" layoutX="72.0" layoutY="80.0" prefHeight="600.0" prefWidth="640.0">
          <content>
             <VBox fx:id="vbox" prefHeight="596.0" prefWidth="637.0" />
          </content>
       </ScrollPane>
+      <Button layoutX="351.0" layoutY="707.0" mnemonicParsing="false" onAction="#createTeamButton" text="Create Team" />
    </children>
 </AnchorPane>
