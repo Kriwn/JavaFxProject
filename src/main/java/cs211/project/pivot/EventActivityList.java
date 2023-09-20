@@ -8,8 +8,8 @@ public class EventActivityList {
         list = new ArrayList<>();
     }
 
-    public void addNew(int activity_id, int event_id) {
-        list.add(new EventActivity(activity_id,event_id));
+    public void addNew(int event_id, int activity_id) {
+        list.add(new EventActivity(event_id,activity_id));
     }
 
     public ArrayList<Integer> findEventActivityByActivityId(int activity_id){

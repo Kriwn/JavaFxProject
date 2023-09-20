@@ -1,5 +1,6 @@
 package cs211.project.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ActivityList {
@@ -8,26 +9,26 @@ public class ActivityList {
 
     public  ActivityList(){activities = new ArrayList<>();}
 
-    public void  addNewActivityFromFile(String name,String detail,String id){
+    public void  addNewActivityFromFile(String name,String detail,String id,String dateStart,String dateEnd, String timeStart,String timeEnd){
         name = name.trim();
         detail = detail.trim();
         id = id.trim();
         if (!name.equals("") & !detail.equals("")){
             Activity exist = findActivityById(Integer.parseInt(id));
             if (exist == null){
-                activities.add(new Activity(name,detail,Integer.parseInt(id)));
+                activities.add(new Activity(name,detail,Integer.parseInt(id),dateStart,dateEnd,timeStart,timeEnd));
                 this.lastId = Integer.parseInt(id);
             }
         }
     }
 
-    public void  addNewActivity(String name,String detail){
+    public void  addNewActivity(String name,String detail,String dateStart,String dateEnd, String timeStart,String timeEnd){
         name = name.trim();
         detail = detail.trim();
         if (!name.equals("") & !detail.equals("")){
             Activity exist = findActivityByBoth(name,detail);
             if (exist == null){
-                activities.add(new Activity(name,detail,++lastId));
+                activities.add(new Activity(name,detail,++lastId,dateStart,dateEnd,timeStart,timeEnd));
             }
         }
     }
@@ -43,7 +44,12 @@ public class ActivityList {
     public  Activity findActivityByBoth(String name,String detail){
         name = name.trim();
         detail = detail.trim();
-
+        for (Activity activity : activities) {
+            if (activity.isName(name) && activity.isDetail(detail)) {
+                return activity;
+            }
+        }
+        return null;
     }
 
 

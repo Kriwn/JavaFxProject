@@ -4,7 +4,7 @@ public class EventActivity {
     private int activity_id;
     private int event_id;
 
-    public EventActivity(int activity_id,int event_id)
+    public EventActivity(int event_id,int activity_id)
     {
         this.activity_id = activity_id;
         this.event_id = event_id;

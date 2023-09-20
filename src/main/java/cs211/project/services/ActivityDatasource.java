@@ -56,8 +56,12 @@ public class ActivityDatasource implements  Datasource<ActivityList>{
                 String id = data[0].trim();
                 String name = data[1].trim();
                 String detail = data[2].trim();
+                String dateStart = data[3].trim();
+                String dateEnd = data[4].trim();
+                String timeStart = data[5].trim();
+                String timeEnd = data[6].trim();
 
-                activitys.addNewActivity(name,detail);
+                activitys.addNewActivityFromFile(name,detail,id,dateStart,dateEnd,timeStart,timeEnd);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -88,7 +92,7 @@ public class ActivityDatasource implements  Datasource<ActivityList>{
 
         try {
             for (Activity activity : data.getActivity()) {
-                String line = activity.getId() + "," + activity.getName() + "," +activity.getDetail();
+                String line = activity.getId() + "," + activity.getName() + "," +activity.getDetail() + "," + activity.getDateStart() + "," +activity.getDateEnd()+ "," +activity.getTimeStart()+ "," +activity.getTimeEnd();
                 buffer.append(line);
                 buffer.append("\n");
             }

@@ -4,7 +4,7 @@ public class TeamActivity {
     private int activity_id;
     private int team_id;
 
-    public TeamActivity(int activity_id,int team_id){
+    public TeamActivity(int team_id,int activity_id){
         this.activity_id = activity_id;
         this.team_id = team_id;
     }
