@@ -29,7 +29,6 @@ public class HelloApplication extends Application {
         NPBPRouter.when("login",viewPath + "login.fxml");
         NPBPRouter.when("signup",viewPath + "signup.fxml");
         NPBPRouter.when("home-page",viewPath + "home-page.fxml");
-        NPBPRouter.when("CreateStaffTeam",viewPath + "create-staff-team.fxml");
         NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
         NPBPRouter.when("my-event",viewPath + "my-event.fxml");
         NPBPRouter.when("activity", viewPath + "activity.fxml");
@@ -54,6 +53,11 @@ public class HelloApplication extends Application {
         NPBPRouter.when("history", viewPath + "history.fxml");
         NPBPRouter.when("show-my-create-event", viewPath + "show-my-create-event.fxml");
         NPBPRouter.when("show-my-event", viewPath + "show-my-event.fxml");
+        NPBPRouter.when("team-card", viewPath + "team-card.fxml");
+        NPBPRouter.when("team-detail", viewPath + "team-detail.fxml");
+        NPBPRouter.when("team-list", viewPath + "team-list.fxml");
+        NPBPRouter.when("teams-list", viewPath + "teams-list.fxml");
+        NPBPRouter.when("teams-chat", viewPath + "teams-chat.fxml");
     }
     public static void main(String[] args) {
         launch();

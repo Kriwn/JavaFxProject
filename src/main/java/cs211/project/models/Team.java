@@ -14,7 +14,7 @@ public class Team {
     private LocalDate closeDate;
     private LocalTime closeTime;
 
-    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs){
+    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime){
         this.team_id = Integer.parseInt(team_id);
         this.teamName = name;
         this.maxMember = Integer.parseInt(maxMember);
@@ -22,11 +22,10 @@ public class Team {
         this.openTime = LocalTime.parse(openTime);
         this.closeDate = LocalDate.parse(closeDate);
         this.closeTime = LocalTime.parse(closeTime);
-        this.staffList = staffs;
         this.countMember = 0;
     }
     
-    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, StaffList staffs, String countMember){
+    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, String countMember){
         this.team_id = Integer.parseInt(team_id);
         this.teamName = name;
         this.maxMember = Integer.parseInt(maxMember);
@@ -34,11 +33,10 @@ public class Team {
         this.openTime = LocalTime.parse(openTime);
         this.closeDate = LocalDate.parse(closeDate);
         this.closeTime = LocalTime.parse(closeTime);
-        this.staffList = staffs;
         this.countMember = Integer.parseInt(countMember);
     }
 
-    public int getTeam_id() {return team_id;}
+    public int getTeamId() {return team_id;}
 
     public String getTeamName() {return teamName;}
 
