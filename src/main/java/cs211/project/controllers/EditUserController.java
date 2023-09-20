@@ -124,6 +124,6 @@ public class EditUserController implements Initializable {
         circle.setFill(new ImagePattern(new Image("file:" + user.getImage())));
         username.setText(selectUser.getName());
         status.setText(accountEvent.getStatus());
-
+        selectBox.setFocusTraversable(true);
     }
 }
