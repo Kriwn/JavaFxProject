@@ -82,8 +82,10 @@ public class ShowMyEventController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : eventJoin){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        observableList.add(i.getName());
-                        list.add(eventList.findEventByName(i.getName()));
+                        if (i.getStatus()){
+                            observableList.add(i.getName());
+                            list.add(eventList.findEventByName(i.getName()));
+                        }
                     }
                 }
                 showNameEventListView.setItems(observableList);

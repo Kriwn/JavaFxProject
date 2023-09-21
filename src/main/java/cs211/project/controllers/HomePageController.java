@@ -106,8 +106,10 @@ public class HomePageController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : events){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        observableList.add(i.getName());
-                        list.add(eventList.findEventByName(i.getName()));
+                        if (i.getStatus()){
+                            observableList.add(i.getName());
+                            list.add(eventList.findEventByName(i.getName()));
+                        }
                     }
                 }
                 listView.setItems(observableList);
