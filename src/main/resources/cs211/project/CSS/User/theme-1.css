@@ -23,6 +23,10 @@
 .defaultPage{
     -fx-background-color: #F0EBE3;
 }
+.defaultInnerPage{
+    -fx-background-color: #E4DCCF;
+    -fx-background-radius:30;
+}
 
 .app-logInButton{
     -fx-background-color: #7D9D9C;
@@ -92,6 +96,9 @@
     -fx-text-fill: #7D9D9C;
     -fx-background-color: #F0EBE3 ;
 }
+#customField .mfx-font-icon{
+    -mfx-color: #7D9D9C;
+}
 /**************************************************
  * Password Fields
 **************************************************/
@@ -117,6 +124,17 @@
     -fx-background-color: black;
 }
 
+/***********************************
+ * Table-View
+***********************************/
 
-
+.mfx-table-view{
+    -fx-background-radius:10;
+    -fx-border-color: transparent;
+}
+/*
+.mfx-table-row:hover{
+   -fx-background-color: red;
+}
+ */
 

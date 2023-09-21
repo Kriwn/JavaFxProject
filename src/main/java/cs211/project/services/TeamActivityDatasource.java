@@ -55,10 +55,10 @@ public class TeamActivityDatasource implements Datasource<TeamActivityList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                int ac_id = Integer.parseInt(data[0]);
-                int t_id = Integer.parseInt(data[1]);
+                int t_id = Integer.parseInt(data[0]);
+                int ac_id = Integer.parseInt(data[1]);
 
-                eventActivityList.addNew(ac_id,t_id);
+                eventActivityList.addNew(t_id,ac_id);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

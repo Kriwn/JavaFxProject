@@ -50,7 +50,7 @@ public class MyCreateEventController implements Initializable {
     }
     public void goToStaffList(){
         try {
-            NPBPRouter.loadPage("staff-list",page);
+            NPBPRouter.loadPage("team-list",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

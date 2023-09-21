@@ -16,7 +16,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <TextField layoutX="151.0" layoutY="162.0">
+            <TextField fx:id="oldTextField" layoutX="151.0" layoutY="162.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -26,7 +26,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <TextField layoutX="151.0" layoutY="275.0">
+            <TextField fx:id="newTextField" layoutX="151.0" layoutY="275.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -36,16 +36,17 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <TextField layoutX="151.0" layoutY="402.0">
+            <TextField fx:id="conTextField" layoutX="151.0" layoutY="402.0">
                <font>
                   <Font size="24.0" />
                </font>
             </TextField>
-            <Button layoutX="209.0" layoutY="476.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" styleClass="defaultButton" text="confirm" textFill="WHITE">
+            <Button layoutX="209.0" layoutY="491.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="182.0" styleClass="defaultButton" text="confirm" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
+            <Label fx:id="errorLabel" layoutX="286.0" layoutY="463.0" text="Label" textFill="RED" />
          </children></Pane>
   </children>
 </AnchorPane>

@@ -1,8 +1,10 @@
 package cs211.project.controllers;
 
-import cs211.project.models.ChatText;
-import cs211.project.models.Team;
+import cs211.project.models.*;
+import cs211.project.repository.AccountRepository;
+import cs211.project.repository.EventRepository;
 import cs211.project.repository.TeamRepository;
+import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -15,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class TeamListController {
     @FXML private ScrollPane scrollPane;
@@ -22,8 +25,22 @@ public class TeamListController {
     @FXML private AnchorPane page;
     private Team selectedTeam;
     private TeamRepository teamRepository;
+    private EventRepository eventRepository;
+    private AccountRepository accountRepository;
+    private User user;
+    private Event event;
+    private TeamList teamlist;
+    private ArrayList<Team> teams;
 
     public void initialize(){
+        user = (User) NPBPRouter.getDataAccount();
+        event = (Event) NPBPRouter.getDataEvent();
+        eventRepository = new EventRepository();
+        accountRepository = new AccountRepository();
+        teamRepository = new TeamRepository();
+        teamlist = teamRepository.getTeamList();
+        teams = teamlist.getTeams();
+
 
     }
 
@@ -54,5 +71,21 @@ public class TeamListController {
         maxMemberLabel.setText(""+team.getMaxMember());
 
         return hbox;
+    }
+
+    public void backButton(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createTeamButton(){
+        try {
+            NPBPRouter.loadPage("create-staff-team",page);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -54,10 +54,10 @@ public class EventActivityDatasource implements Datasource<EventActivityList>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                int ac_id = Integer.parseInt(data[0]);
-                int ev_id = Integer.parseInt(data[1]);
+                int ev_id = Integer.parseInt(data[0]);
+                int ac_id = Integer.parseInt(data[1]);
 
-                eventActivityList.addNew(ac_id,ev_id);
+                eventActivityList.addNew(ev_id,ac_id);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
