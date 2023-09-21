@@ -132,7 +132,9 @@
     -fx-background-radius:10;
     -fx-border-color: transparent;
 }
+/*
 .mfx-table-row:hover{
-    -fx-background-color: red;
+   -fx-background-color: red;
 }
+ */
 

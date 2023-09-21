@@ -64,8 +64,9 @@ public class LoginController implements Initializable{
         String password = passwordField.getText();
         Account exist = accounts.findUserByUsername(username);
         if(exist != null){
-            if(exist.validatePassword(password)){
+            if(accounts.login(username, password)){
                 if (exist instanceof User) {
+                    repository.save(accounts);
                     NPBPRouter.goTo("home", exist);
                 } else if (exist instanceof Admin) {
 
