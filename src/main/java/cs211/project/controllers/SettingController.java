@@ -64,7 +64,7 @@ public class SettingController {
         }
     }
 
-    public void confirm(){
+    public void confirm() throws IOException {
         String oldPass = oldTextField.getText().trim();
         String newPass = newTextField.getText().trim();
         String conPass = conTextField.getText().trim();
@@ -77,6 +77,7 @@ public class SettingController {
                     accounts.changePassword(user.getUsername(),newPass);
                     repository.save(accounts);
                     System.out.println("Change password successfully");
+                    NPBPRouter.goTo("home",user);
                 }
                 else
                     errorLabel.setText("Not matching password and confirm password");
