@@ -62,6 +62,7 @@ public class ActivityDatasource implements  Datasource<ActivityList>{
                 String timeEnd = data[6].trim();
 
                 activitys.addNewActivityFromFile(name,detail,id,dateStart,dateEnd,timeStart,timeEnd);
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

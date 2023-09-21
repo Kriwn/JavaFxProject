@@ -1,5 +1,6 @@
 package cs211.project.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class AccountList {
@@ -86,13 +87,14 @@ public class AccountList {
         Account exist = findUserByUsername(username);
         exist.setImage(path);
     }
-    public Account login(String username, String password){
+    public boolean login(String username, String password){
         Account account = findUserByUsername(username);
         boolean flag = account.validatePassword(password);
         if(flag){
-            return account;
+            account.setTimeLogin(LocalDateTime.now());
+            return true;
         }
-        return null;
+        return false;
     }
 
     public ArrayList<Account> getAccounts(){

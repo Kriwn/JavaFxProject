@@ -52,7 +52,6 @@ public class ActivityList {
         return null;
     }
 
-
     public  ArrayList<Activity> getActivity(){
         return activities;
     }
