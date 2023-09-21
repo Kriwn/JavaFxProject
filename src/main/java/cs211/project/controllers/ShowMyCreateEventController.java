@@ -8,10 +8,13 @@ import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -42,6 +45,8 @@ public class ShowMyCreateEventController implements Initializable {
 
     @FXML
     private VBox vbox;
+    @FXML
+    private ListView showNameEventListView;
     private User user;
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
@@ -62,9 +67,51 @@ public class ShowMyCreateEventController implements Initializable {
         for (var i : listId){
             eventCreate.add(eventList.findEventById(i));
         }
-        for (var i : eventCreate){
+        showEvent(eventCreate);
+        showNameEventListView.setVisible(false);
+
+        //----------------------* searchTextField *----------------------
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        searchTextField.textProperty().addListener((observableValue, old, New) -> {
+            if(New.equals("")) {
+                showNameEventListView.getItems().clear();
+                showNameEventListView.setVisible(false);
+                vbox.getChildren().clear();
+                showEvent(eventCreate);
+            }
+            else if(New != null) {
+                showNameEventListView.setVisible(true);
+                showNameEventListView.getItems().clear();
+                ArrayList<Event> list = new ArrayList<>();
+                for(var i : eventCreate){
+                    if(i.getName().toLowerCase().contains(New.toLowerCase())) {
+                        observableList.add(i.getName());
+                        list.add(eventList.findEventByName(i.getName()));
+                    }
+                }
+                showNameEventListView.setItems(observableList);
+                vbox.getChildren().clear();
+                showEvent(list);
+            }
+        });
+        showNameEventListView.setOnMouseClicked(click -> {
+            if (!showNameEventListView.getSelectionModel().getSelectedItems().isEmpty()) {
+                String nameSelectEvent = showNameEventListView.getSelectionModel().getSelectedItems().get(0).toString();
+                Event selectEvent = eventList.findEventByName(nameSelectEvent);
+                if (nameSelectEvent != null) {
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(createCard(selectEvent));
+                    showNameEventListView.setVisible(false);
+                }
+            }
+        });
+        //------------------------------------------------------------------
+    }
+
+    public void showEvent(ArrayList<Event> eventArrayList){
+        for (var i : eventArrayList){
             i.checkTimeEvent();
-            if (i.getStatus())
+            if (i.getStatus() && i.checkMember())
                 vbox.getChildren().add(createCard(i));
         }
     }

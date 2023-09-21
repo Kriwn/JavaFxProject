@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
@@ -118,7 +119,6 @@ public class EditEventController implements Initializable {
         eventRepository.save(eventList);
 
         successLabel.setVisible(true);
-        successLabel.setEffect(new ImageInput());
 
     }
 

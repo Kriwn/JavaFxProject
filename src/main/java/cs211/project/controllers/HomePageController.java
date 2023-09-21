@@ -8,7 +8,10 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -30,7 +34,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -45,6 +53,9 @@ public class HomePageController implements Initializable {
 
     @FXML
     private VBox vbox;
+
+    @FXML
+    private ListView listView;
 
     private ArrayList<Event> events;
     private EventList eventList;
@@ -65,7 +76,6 @@ public class HomePageController implements Initializable {
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
-//        accountList = accountRepository.getAccounts();
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
@@ -74,20 +84,62 @@ public class HomePageController implements Initializable {
         ArrayList<Integer> listId = new ArrayList<>();
         listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
         listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+
         for (var i : listId){
             events.remove(eventList.findEventById(i));
         }
-        for (var i : events){
-            i.checkTimeEvent();
-            if (i.getStatus())
-                vbox.getChildren().add(createCard(i));
-        }
+        showEvent(events);
+        listView.setVisible(false);
+
+        //----------------------* searchTextField *----------------------
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        searchTextField.textProperty().addListener((observableValue, old, New) -> {
+            if(New.equals("")) {
+                listView.getItems().clear();
+                listView.setVisible(false);
+                vbox.getChildren().clear();
+                showEvent(events);
+            }
+            else if(New != null) {
+                listView.setVisible(true);
+                listView.getItems().clear();
+                ArrayList<Event> list = new ArrayList<>();
+                for(var i : events){
+                    if(i.getName().toLowerCase().contains(New.toLowerCase())) {
+                        observableList.add(i.getName());
+                        list.add(eventList.findEventByName(i.getName()));
+                    }
+                }
+                listView.setItems(observableList);
+                vbox.getChildren().clear();
+                showEvent(list);
+            }
+        });
+        listView.setOnMouseClicked(click -> {
+            if (!listView.getSelectionModel().getSelectedItems().isEmpty()) {
+                String nameSelectEvent = listView.getSelectionModel().getSelectedItems().get(0).toString();
+                Event selectEvent = eventList.findEventByName(nameSelectEvent);
+                if (nameSelectEvent != null) {
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(createCard(selectEvent));
+                    listView.setVisible(false);
+                }
+            }
+        });
+        //------------------------------------------------------------------
 
 //        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
 //            if (click.getCode() == KeyCode.F1) {
 //                onCreateEventButton();
 //            }
 //        });
+    }
+    public void showEvent(ArrayList<Event> eventArrayList){
+        for (var i : eventArrayList){
+            i.checkTimeEvent();
+            if (i.getStatus() && i.checkMember())
+                vbox.getChildren().add(createCard(i));
+        }
     }
 
     public VBox createCard(Event newEvent){

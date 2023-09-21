@@ -52,11 +52,28 @@ public class Event {
 
     public void checkTimeEvent(){
         if(dateEnd.isAfter(LocalDate.now())){
-            status = true;
+            if(dateEnd.equals(LocalDate.now())){
+                if(timeEnd.isAfter(LocalTime.now())){
+                    status = true;
+                }
+                else{
+                    status = false;
+                }
+            }
+            else{
+                status = true;
+            }
         }
         else{
             status = false;
         }
+    }
+
+    public boolean checkMember(){
+        if (countMember < maxMember){
+            return true;
+        }
+        return false;
     }
 
     public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, String maxMember, Image image){
