@@ -1,7 +1,10 @@
 package cs211.project.services;
 
+import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
+import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -17,7 +20,7 @@ public final class NPBPRouter {
     private static final String WINDOW_TITLE = "";
     private static final Double WINDOW_WIDTH = 800D;
     private static final Double WINDOW_HEIGHT = 600D;
-    private static final Double FADE_ANIMATION_DURATION = 600D;
+    private static final Double FADE_ANIMATION_DURATION = 500D;
     private static NPBPRouter router;
     private static Object main;
     private static Stage window;
@@ -79,24 +82,10 @@ public final class NPBPRouter {
         routes.put(routeLabel,routeScene);
     }
     private static void routeAnimation(Parent node) {
-        String anType = animationType != null ? animationType.toLowerCase() : "";
-        byte var3 = -1;
-        switch(anType.hashCode()) {
-            case 3135100:
-                if (anType.equals("fade")) {
-                    var3 = 0;
-                }
-            default:
-                switch(var3) {
-                    case 0:
-                        Double fd = animationDuration != null ? animationDuration : FADE_ANIMATION_DURATION;
-                        FadeTransition ftCurrent = new FadeTransition(Duration.millis(fd), node);
-                        ftCurrent.setFromValue(0.0D);
-                        ftCurrent.setToValue(1.0D);
-                        ftCurrent.play();
-                    default:
-                }
-        }
+        FadeTransition fadeTransition = new FadeTransition(Duration.millis(FADE_ANIMATION_DURATION),node);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
     private static void loadNewRoute(RouteScene route) throws IOException {
         current = route;
@@ -108,6 +97,7 @@ public final class NPBPRouter {
         scene.getStylesheets().add((new Object(){
        }).getClass().getResource(CSS).toExternalForm());
         window.setScene(scene);
+        MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
         //window.setScene(new Scene(resource,route.sceneWidth,route.sceneHeight));
         window.setResizable(false);
         window.show();
@@ -122,15 +112,30 @@ public final class NPBPRouter {
         window.setTitle(route.windowTitle);
         page.getChildren().removeAll();
         page.getChildren().setAll(resource);
+        routeAnimation(resource);
+        MFXThemeManager.addOn(page, Themes.DEFAULT, Themes.LEGACY);
         page.getStylesheets().add((new Object(){}).getClass().getResource(CSS).toExternalForm());
     }
     public static void loadPage(String routeLabel, Parent parent) throws IOException{
         RouteScene route = (RouteScene)routes.get(routeLabel);
         loadNewPage(route, parent);
     }
-    public static void loadPage(String routeLabel, Parent parent, Object data) throws IOException{
+    public static void loadPage(String routeLabel, Parent parent, Object data1) throws IOException{
         RouteScene route = (RouteScene)routes.get(routeLabel);
-        route.data = data;
+        route.dataAccount = data1;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2,Object data3) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
         loadNewPage(route, parent);
     }
     public static void goTo(String routeLabel) throws IOException {
@@ -140,7 +145,7 @@ public final class NPBPRouter {
 
     public static void goTo(String routeLabel, Object data) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
-        route.data = data;
+        route.dataAccount = data;
         loadNewRoute(route);
     }
     public static void setCss(String path){
@@ -164,8 +169,14 @@ public final class NPBPRouter {
         animationType = anType;
         animationDuration = anDuration;
     }
-    public static Object getData() {
-        return current.data;
+    public static Object getDataAccount() {
+        return current.dataAccount;
+    }
+    public static Object getDataEvent(){
+        return current.dataEvent;
+    }
+    public static Object getDataTeam(){
+        return current.dataTeam;
     }
 
 
@@ -174,7 +185,11 @@ public final class NPBPRouter {
         private String windowTitle;
         private double sceneWidth;
         private double sceneHeight;
-        private Object data;
+        private Object dataAccount;
+        private Object dataEvent;
+        private Object dataTeam;
+        private Object data4;
+        private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());
         }

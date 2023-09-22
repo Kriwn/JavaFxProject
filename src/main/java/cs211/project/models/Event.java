@@ -3,40 +3,38 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Event {
-    public static int countEvent = 1;
-    public int position;
+    private int eventId;
     private String name;
     private String detail;
     private  int countMember;
     private int maxMember;
     private Image image;
-    private ArrayList<Team> teams = new ArrayList<>();
-    private ArrayList<User> users = new ArrayList<>();
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private int status;
+    private boolean status;
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember,Image image){
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
         this.name = name;
+        this.eventId = Integer.parseInt(id);
         this.detail = details;
-        this.maxMember = Integer.parseInt(maxMember);
         this.dateStart = LocalDate.parse(dateStart);
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember = 0;
-        this.status = 0;
+        this.countMember = Integer.parseInt(countMember);
+        this.maxMember = Integer.parseInt(maxMember);
         this.image = image;
-        this.position = countEvent;
     }
 
-    public Event(String name, String details,String dateStart,String dateEnd,String timeStart,String timeEnd, String maxMember){
+    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
@@ -44,28 +42,51 @@ public class Event {
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.countMember =0;
-        this.status = 0;
+        this.countMember = Integer.parseInt(countMember);
+        this.status = true;
         setImage(new Image("file:" + "images/default.png"));
-        this.position = countEvent;
-    }
-    public void addCountEvent(){
-        countEvent++;
+        this.eventId = Integer.parseInt(id);
     }
 
-    public boolean isPosition(int position){
-        return this.position == position;
-    }
-    public void addTeam(Team team){
-        this.teams.add(team);
+    public void checkTimeEvent(){
+        if(dateEnd.isAfter(LocalDate.now())){
+            if(dateEnd.equals(LocalDate.now())){
+                if(timeEnd.isAfter(LocalTime.now())){
+                    status = true;
+                }
+                else{
+                    status = false;
+                }
+            }
+            else{
+                status = true;
+            }
+        }
+        else{
+            status = false;
+        }
     }
 
-    public void addUser(User user){
-        this.users.add(user);
+    public boolean checkMember(){
+        if (countMember < maxMember){
+            return true;
+        }
+        return false;
     }
 
-    public void removeUser(User user) {
-        this.users.remove(user);
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, String maxMember, Image image){
+        this.name = name;
+        this.detail = details;
+        this.dateStart = LocalDate.parse(dateStart);
+        this.timeStart = LocalTime.parse(timeStart);
+        this.dateEnd = LocalDate.parse(dateEnd);
+        this.timeEnd = LocalTime.parse(timeEnd);
+        this.maxMember = Integer.parseInt(maxMember);
+        this.image = image;
+    }
+
+    public boolean isEventId(int event_id){
+        return this.eventId == event_id;
     }
 
     public LocalDate getDateStart() {
@@ -127,22 +148,6 @@ public class Event {
         this.maxMember = maxMember;
     }
 
-    public ArrayList<Team> getTeam() {
-        return teams;
-    }
-
-    public void setTeam(ArrayList<Team> team) {
-        this.teams = team;
-    }
-
-    public ArrayList<User> getUser() {
-        return users;
-    }
-
-    public void setUser(ArrayList<User> user) {
-        this.users = user;
-    }
-
     public int getCountMember() {
         return countMember;
     }
@@ -151,12 +156,8 @@ public class Event {
         this.countMember++;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public void setImage(Image image) {
@@ -165,5 +166,26 @@ public class Event {
 
     public Image getImage() {
         return image;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", countMember=" + countMember +
+                ", maxMember=" + maxMember +
+                ", image=" + image +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", timeStart=" + timeStart +
+                ", timeEnd=" + timeEnd +
+                ", status=" + status +
+                '}';
     }
 }

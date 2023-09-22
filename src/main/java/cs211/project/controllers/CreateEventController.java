@@ -1,34 +1,30 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Account;
-import cs211.project.models.Event;
-import cs211.project.models.EventList;
-import cs211.project.models.Staff;
-import cs211.project.services.Datasource;
-import cs211.project.services.EventDatasource;
+import cs211.project.models.*;
+import cs211.project.pivot.AccountEventList;
+import cs211.project.repository.AccountEventRepository;
+import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CreateEventController {
     @FXML
@@ -43,7 +39,7 @@ public class CreateEventController {
     private DatePicker dateStartEvent;
 
     @FXML
-    private TextField detailsEvent;
+    private TextArea detailsTextArea;
 
     @FXML
     private ImageView eventImageView;
@@ -57,21 +53,30 @@ public class CreateEventController {
     @FXML
     private TextField timeStartEvent;
     private EventList eventList;
-    private Datasource<EventList> datasource;
-    private Event eventForSetImagePath;
-    private Event selectEvent;
+    private EventRepository eventRepository;
+    private AccountEventRepository accountEventRepository;
+    private AccountEventList accountEventList;
+    private User user;
     private ArrayList<Event> event;
 
     public void initialize(){
-        datasource = new EventDatasource("data","event.csv");
-        eventList = datasource.readData();
-        event = eventList.getEvents();
+        user = (User)NPBPRouter.getDataAccount();
+        eventRepository = new EventRepository();
+        eventList = eventRepository.getEvents();
+        event = eventRepository.getEvents().getEvents();
+        accountEventRepository = new AccountEventRepository();
+        user.addMyCreateEventFromFile(accountEventRepository.getList_create().findEventsByAccount(user.getAccountId()));
+
+        capacityEvent.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
+            if (click.getCode() == KeyCode.ENTER) {
+                handleCreateEventButton();
+            }
+        });
     }
 
     @FXML
     public void handleCreateEventButton() {
         String nameString = nameEvent.getText().trim();
-        String detailsString = detailsEvent.getText().trim();
         String dateStart = dateStartEvent.getValue().toString();
         String dateEnd = dateEndEvent.getValue().toString();
         String timeStart = timeStartEvent.getText().trim();
@@ -79,20 +84,31 @@ public class CreateEventController {
         String maxMember = capacityEvent.getText().trim();
         Image image = eventImageView.getImage();
 
-        eventList.addNewEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,maxMember,image);
-        eventList.addCountEvent(nameString);
+
+        String []s = detailsTextArea.getText().split("\n");
+        String detailsString = "";
+        for (var i : s){
+            detailsString += i.trim();
+            detailsString += "|";
+        }
+
+        eventList.createEvent(nameString,detailsString,dateStart,dateEnd,timeStart,timeEnd,"0",maxMember,image);
+        Event exist = eventList.findEventByName(nameString);
+        int event_id = exist.getEventId();
+        accountEventList = accountEventRepository.getList_create();
+        accountEventList.addNew(user.getAccountId(),event_id);
+        accountEventRepository.saveEventOwner(accountEventList);
         nameEvent.clear();
-        detailsEvent.clear();
         timeStartEvent.clear();
         timeEndEvent.clear();
         dateStartEvent.setValue(null);
         dateEndEvent.setValue(null);
         capacityEvent.clear();
-        datasource.writeData(eventList);
+        eventRepository.save(eventList);
 
 
         try {
-            NPBPRouter.loadPage("my-create-event",page);
+            NPBPRouter.loadPage("my-create-event",page,user,event_id);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

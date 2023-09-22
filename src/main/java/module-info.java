@@ -2,7 +2,7 @@ module cs211.project.cs211661project {
     requires javafx.controls;
     requires javafx.fxml;
     requires bcrypt;
-
+    requires MaterialFX;
 
 
     opens cs211.project.cs211661project to javafx.fxml;

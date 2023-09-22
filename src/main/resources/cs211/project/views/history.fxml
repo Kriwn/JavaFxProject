@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.HistoryController">
-
+<AnchorPane prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.HistoryController">
+   <children>
+      <AnchorPane layoutX="79.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0" styleClass="defaultInnerPage">
+         <children>
+            <MFXTableView fx:id="table1" footerVisible="false" layoutX="37.0" layoutY="90.0" prefHeight="250.0" prefWidth="550.0" />
+            <MFXTableView fx:id="table2" footerVisible="false" layoutX="37.0" layoutY="396.0" prefHeight="250.0" prefWidth="550.0" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

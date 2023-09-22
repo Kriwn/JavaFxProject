@@ -1,28 +1,57 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.services.AccountDatasource;
-import cs211.project.services.Datasource;
-import cs211.project.services.EventDatasource;
+import cs211.project.pivot.AccountEvent;
+import cs211.project.pivot.AccountEventList;
+import cs211.project.repository.AccountEventRepository;
+import cs211.project.repository.AccountRepository;
+import cs211.project.repository.EventRepository;
+import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.Transition;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Delayed;
+import java.util.function.Consumer;
 
 public class HomePageController implements Initializable {
     @FXML
@@ -37,24 +66,108 @@ public class HomePageController implements Initializable {
     @FXML
     private VBox vbox;
 
-    private  VBox selectBox;
+    @FXML
+    private ListView listView;
+
     private ArrayList<Event> events;
     private EventList eventList;
-    private Datasource<EventList> datasource;
-    private Datasource<AccountList> datasourceUser;
+    private EventRepository eventRepository;
     private AccountList accountList;
+    private AccountRepository accountRepository;
+    private AccountEventRepository accountEventRepository;
     private User user;
-    private ArrayList<Event> eventUser;
+
+    private int LOAD = 250;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        datasource = new EventDatasource("data","event.csv");
-        eventList = datasource.readData();
+        user = (User)NPBPRouter.getDataAccount();
+        eventRepository = new EventRepository();
+        accountRepository = new AccountRepository();
+        eventList = eventRepository.getEvents();
         events = eventList.getEvents();
-        datasource.writeData(eventList);
-        for (var i : events){
-            vbox.getChildren().add(createCard(i));
+        accountEventRepository = new AccountEventRepository();
+        AccountEventList list_join = accountEventRepository.getList_join();
+        AccountEventList list_create = accountEventRepository.getList_create();
+        ArrayList<Integer> listId = new ArrayList<>();
+        listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
+        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+
+        for (var i : listId){
+            events.remove(eventList.findEventById(i));
         }
+        showEvent(events);
+        listView.setVisible(false);
+
+        //----------------------* searchTextField *----------------------
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        searchTextField.textProperty().addListener((observableValue, old, New) -> {
+            if(New.equals("")) {
+                listView.getItems().clear();
+                listView.setVisible(false);
+                vbox.getChildren().clear();
+                showEvent(events);
+            }
+            else if(New != null) {
+                listView.setVisible(true);
+                listView.getItems().clear();
+                ArrayList<Event> list = new ArrayList<>();
+                for(var i : events){
+                    if(i.getName().toLowerCase().contains(New.toLowerCase())) {
+                        if (i.getStatus()){
+                            observableList.add(i.getName());
+                            list.add(eventList.findEventByName(i.getName()));
+                        }
+                    }
+                }
+                listView.setItems(observableList);
+                vbox.getChildren().clear();
+                showEvent(list);
+            }
+        });
+        listView.setOnMouseClicked(click -> {
+            if (!listView.getSelectionModel().getSelectedItems().isEmpty()) {
+                String nameSelectEvent = listView.getSelectionModel().getSelectedItems().get(0).toString();
+                Event selectEvent = eventList.findEventByName(nameSelectEvent);
+                if (nameSelectEvent != null) {
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(createCard(selectEvent));
+                    searchTextField.setText(nameSelectEvent);
+                    listView.setVisible(false);
+                }
+            }
+        });
+        //------------------------------------------------------------------
+        vbox.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_rainbow.gif")));
+//        searchTextField.setOnMouseEntered(hover -> {
+//            searchTextField.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_text.gif")));
+//        });
+//        searchTextField.setOnMouseExited(unhover -> {
+//            searchTextField.setCursor(Cursor.HAND);
+//        });
+    }
+    public void showEvent(ArrayList<Event> eventArrayList){
+        LOAD = 250;
+        eventArrayList.forEach(data -> {
+            data.checkTimeEvent();
+            if(data.getStatus() && data.checkMember()) {
+                VBox vBox = createCard(data);
+                vbox.getChildren().add(vBox);
+                vBox.setOpacity(0);
+                FadeTransition fadeTransition = new FadeTransition(Duration.millis(LOAD),vBox);
+                LOAD += 250;
+                fadeTransition.setToValue(100);
+                fadeTransition.play();
+            }
+
+        });
+
+
+//        for (var i : eventArrayList){
+//            i.checkTimeEvent();
+//            if (i.getStatus() && i.checkMember())
+//                vbox.getChildren().add(createCard(i));
+//        }
     }
 
     public VBox createCard(Event newEvent){
@@ -82,23 +195,30 @@ public class HomePageController implements Initializable {
         namelabel.setText(newEvent.getName());
         countMember.setText(""+newEvent.getCountMember());
         maxMember.setText(""+newEvent.getMaxMember());
-//        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
+        img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
-        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
+//        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
-                NPBPRouter.loadPage("join-event",page,newEvent.getName());
+                NPBPRouter.loadPage("join-event",page,user,newEvent.getEventId());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+        VBox finalVbox = vbox;
+        vbox.setOnMouseEntered(event1 ->{
+            NPBPAnimation.scaleTransition(finalVbox, 1.05);
+        });
 
+        vbox.setOnMouseExited(event2 ->{
+            NPBPAnimation.reverseScale(finalVbox);
+        });
         return vbox;
     }
 
     public void onCreateEventButton(){
         try {
-            NPBPRouter.loadPage("create-event",page);
+            NPBPRouter.loadPage("create-event",page,user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,4 +1,4 @@
-.parent{
+    .parent{
 
 }
 
@@ -21,7 +21,11 @@
 }
 
 .defaultPage{
+    -fx-background-color: #F0EBE3;
+}
+.defaultInnerPage{
     -fx-background-color: #E4DCCF;
+    -fx-background-radius:30;
 }
 
 .app-logInButton{
@@ -44,11 +48,7 @@
 .background-leftArea{
     -fx-background-color: #7D9D9C;
 }
-.login-text-field{
-    -fx-background-color: transparent;
-    -fx-border-color: #7D9D9C;
-    -fx-border-width: 0 0 2 0;
-}
+
 .sidebar-button{
     -fx-background-color: transparent;
 }
@@ -77,14 +77,64 @@
     -fx-text-fill:  #7D9D9C;
     -fx-underline: true;
 }
-
-.logInButton{
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-background-color: #7D9D9C;
-}
 .app-text{
-    -fx-text-fill: white;
+    -fx-text-fill: #7D9D9C;
+}
+/**************************************************
+ * Text Fields
+**************************************************/
+#customField {
+    -fx-min-width: 130;
+    -fx-font-family: 'Visby Round CF Medium';
+    -fx-border-color:#7D9D9C ;
+    -fx-background-color: transparent;
+    -fx-text-fill: #7D9D9C;
 }
 
+#customField .floating-text {
+    -fx-font-family: 'Visby Round CF Medium';
+    -fx-text-fill: #7D9D9C;
+    -fx-background-color: #F0EBE3 ;
+}
+#customField .mfx-font-icon{
+    -mfx-color: #7D9D9C;
+}
+/**************************************************
+ * Password Fields
+**************************************************/
+#customPassword {
+    -fx-border-color: #7D9D9C;
+    -fx-background-color: transparent;
+    -fx-text-fill: #7D9D9C;
+}
+
+#customPassword .mfx-font-icon {
+    -mfx-color: #7D9D9C;
+}
+
+#customPassword .floating-text {
+    -fx-text-fill: #7D9D9C;
+    -fx-background-color:#F0EBE3;
+}
+
+.card:hover{
+    -fx-background-color: gray;
+}
+.card:focused{
+    -fx-background-color: black;
+}
+
+/***********************************
+ * Table-View
+***********************************/
+
+.mfx-table-view{
+    -fx-background-radius:10;
+    -fx-border-color: transparent;
+}
+/*
+.mfx-table-row:hover{
+   -fx-background-color: red;
+}
+ */
 

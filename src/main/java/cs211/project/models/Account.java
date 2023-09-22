@@ -5,6 +5,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.time.LocalDateTime;
 
 public class Account {
+    private int accountId;
     private String name;
     private String username;
     private String password;
@@ -20,16 +21,16 @@ public class Account {
      */
     public Account(String username, String name) {
         this.name = name;
-
         this.username = username;
         this.password = null;
         this.roleAccount = "User";
         this.image = "images/default.png";
         this.timeLogin = LocalDateTime.now();
     }
-    public Account(String username, String name, String role, String image, String time) {
+    public Account(String username, String name,String id, String role, String image, String time) {
         this.name = name;
         this.username = username;
+        this.accountId = Integer.parseInt(id);
         this.password = null;
         this.roleAccount = role;
         this.image = image;
@@ -43,13 +44,16 @@ public class Account {
      * @param name
      * @param password
      */
-    public Account(String username,String name,String password,String role, String image,String time){
-        this(username, name,role,image,time);
+    public Account(String username,String name,String  id,String password,String role, String image,String time){
+        this(username, name, id, role, image, time);
         this.password = password;
     }
 
     public boolean isUsername(String username){
         return this.username.equals(username);
+    }
+    public boolean isAccountId(int id){
+        return this.accountId == id;
     }
 
 
@@ -84,6 +88,13 @@ public class Account {
     public void setName(String name) {
         this.name = name;
     }
+    public void setAccountId(int id){
+        this.accountId = id;
+    }
+    public  void setPassword(String password){
+        this.password = password;
+        this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+    }
 
     public String getUsername() {
         return username;
@@ -99,6 +110,10 @@ public class Account {
 
     public LocalDateTime getTimeLogin() {
         return timeLogin;
+    }
+
+    public int getAccountId() {
+        return accountId;
     }
 
     public void setTimeLogin(LocalDateTime timeLogin) {
