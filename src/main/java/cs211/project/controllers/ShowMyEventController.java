@@ -8,6 +8,7 @@ import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +51,7 @@ public class ShowMyEventController implements Initializable {
     private AccountEventRepository accountEventRepository;
     private EventList eventList;
     private ArrayList<Event> events;
+    private int LOAD = 250;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,6 +103,7 @@ public class ShowMyEventController implements Initializable {
                 if (nameSelectEvent != null) {
                     vbox.getChildren().clear();
                     vbox.getChildren().add(createCard(selectEvent));
+                    searchTextField.setText(nameSelectEvent);
                     showNameEventListView.setVisible(false);
                 }
             }
@@ -108,11 +112,20 @@ public class ShowMyEventController implements Initializable {
     }
 
     public void showEvent(ArrayList<Event> eventArrayList){
-        for (var i : eventArrayList){
-            i.checkTimeEvent();
-            if (i.getStatus() && i.checkMember())
-                vbox.getChildren().add(createCard(i));
-        }
+        LOAD = 250;
+        eventArrayList.forEach(data -> {
+            data.checkTimeEvent();
+            if(data.getStatus() && data.checkMember()) {
+                VBox vBox = createCard(data);
+                vbox.getChildren().add(vBox);
+                vBox.setOpacity(0);
+                FadeTransition fadeTransition = new FadeTransition(Duration.millis(LOAD),vBox);
+                LOAD += 250;
+                fadeTransition.setToValue(100);
+                fadeTransition.play();
+            }
+
+        });
     }
 
     public VBox createCard(Event newEvent){

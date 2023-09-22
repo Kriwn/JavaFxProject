@@ -15,8 +15,6 @@ public class Event {
     private  int countMember;
     private int maxMember;
     private Image image;
-    private ArrayList<Team> teams = new ArrayList<>();
-    private ArrayList<User> users = new ArrayList<>();
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalTime timeStart;
@@ -90,17 +88,6 @@ public class Event {
     public boolean isEventId(int event_id){
         return this.eventId == event_id;
     }
-    public void addTeam(Team team){
-        this.teams.add(team);
-    }
-
-    public void addUser(User user){
-        this.users.add(user);
-    }
-
-    public void removeUser(User user) {
-        this.users.remove(user);
-    }
 
     public LocalDate getDateStart() {
         return dateStart;
@@ -161,22 +148,6 @@ public class Event {
         this.maxMember = maxMember;
     }
 
-    public ArrayList<Team> getTeam() {
-        return teams;
-    }
-
-    public void setTeam(ArrayList<Team> team) {
-        this.teams = team;
-    }
-
-    public ArrayList<User> getUser() {
-        return users;
-    }
-
-    public void setUser(ArrayList<User> user) {
-        this.users = user;
-    }
-
     public int getCountMember() {
         return countMember;
     }
@@ -201,4 +172,20 @@ public class Event {
         return eventId;
     }
 
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", name='" + name + '\'' +
+                ", detail='" + detail + '\'' +
+                ", countMember=" + countMember +
+                ", maxMember=" + maxMember +
+                ", image=" + image +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", timeStart=" + timeStart +
+                ", timeEnd=" + timeEnd +
+                ", status=" + status +
+                '}';
+    }
 }

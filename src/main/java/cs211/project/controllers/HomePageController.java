@@ -8,6 +8,9 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
@@ -23,13 +26,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -43,6 +50,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Delayed;
+import java.util.function.Consumer;
 
 public class HomePageController implements Initializable {
     @FXML
@@ -67,6 +76,8 @@ public class HomePageController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;
+
+    private int LOAD = 250;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -121,18 +132,42 @@ public class HomePageController implements Initializable {
                 if (nameSelectEvent != null) {
                     vbox.getChildren().clear();
                     vbox.getChildren().add(createCard(selectEvent));
+                    searchTextField.setText(nameSelectEvent);
                     listView.setVisible(false);
                 }
             }
         });
         //------------------------------------------------------------------
+        vbox.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_rainbow.gif")));
+//        searchTextField.setOnMouseEntered(hover -> {
+//            searchTextField.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_text.gif")));
+//        });
+//        searchTextField.setOnMouseExited(unhover -> {
+//            searchTextField.setCursor(Cursor.HAND);
+//        });
     }
     public void showEvent(ArrayList<Event> eventArrayList){
-        for (var i : eventArrayList){
-            i.checkTimeEvent();
-            if (i.getStatus() && i.checkMember())
-                vbox.getChildren().add(createCard(i));
-        }
+        LOAD = 250;
+        eventArrayList.forEach(data -> {
+            data.checkTimeEvent();
+            if(data.getStatus() && data.checkMember()) {
+                VBox vBox = createCard(data);
+                vbox.getChildren().add(vBox);
+                vBox.setOpacity(0);
+                FadeTransition fadeTransition = new FadeTransition(Duration.millis(LOAD),vBox);
+                LOAD += 250;
+                fadeTransition.setToValue(100);
+                fadeTransition.play();
+            }
+
+        });
+
+
+//        for (var i : eventArrayList){
+//            i.checkTimeEvent();
+//            if (i.getStatus() && i.checkMember())
+//                vbox.getChildren().add(createCard(i));
+//        }
     }
 
     public VBox createCard(Event newEvent){
@@ -178,7 +213,6 @@ public class HomePageController implements Initializable {
         vbox.setOnMouseExited(event2 ->{
             NPBPAnimation.reverseScale(finalVbox);
         });
-
         return vbox;
     }
 

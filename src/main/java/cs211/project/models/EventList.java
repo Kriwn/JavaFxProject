@@ -74,23 +74,6 @@ public class EventList {
         }
     }
 
-    public void addTeam(Team team,String name){
-        Event exist = findEventByName(name);
-        exist.addTeam(team);
-    }
-
-    public void joinEvent(User user, String name){
-        Event exist = findEventByName(name);
-        if (exist.getMaxMember() > exist.getCountMember() && exist.getStatus()){
-            exist.addUser(user);
-            exist.addCountMember();
-        }
-    }
-    public void banUser(User user, String name){
-        Event exist = findEventByName(name);
-        exist.removeUser(user);
-    }
-
     public Event findEventByName(String name) {
         for (Event event : events) {
             if (event.isName(name)) {

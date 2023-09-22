@@ -6,7 +6,6 @@ import java.time.LocalTime;
 public class Team {
     private int team_id;
     private String teamName;
-    private StaffList staffList;
     private int countMember;
     private int maxMember;
     private LocalDate openDate;
@@ -52,7 +51,6 @@ public class Team {
 
     public LocalTime getCloseTime() {return closeTime;}
 
-    public StaffList getStaffList() {return staffList;}
 
     public boolean isTeamName(String name) {
         return this.teamName.equals(name);
