@@ -8,6 +8,7 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableArray;
@@ -30,6 +31,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -65,14 +68,8 @@ public class HomePageController implements Initializable {
     private AccountEventRepository accountEventRepository;
     private User user;
 
-    private Scene scene;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        page.setOnMouseEntered(hover -> {
-//            page.requestFocus();
-//        });
-
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
@@ -129,12 +126,6 @@ public class HomePageController implements Initializable {
             }
         });
         //------------------------------------------------------------------
-
-//        page.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
-//            if (click.getCode() == KeyCode.F1) {
-//                onCreateEventButton();
-//            }
-//        });
     }
     public void showEvent(ArrayList<Event> eventArrayList){
         for (var i : eventArrayList){
