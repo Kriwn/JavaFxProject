@@ -39,6 +39,7 @@ public class SignUpController implements Initializable{
                 onButtonRegister();
             }
         });
+        errorLabel.setVisible(false);
     }
     public void onButtonRegister() {
         String name = nameField.getText();
@@ -58,20 +59,17 @@ public class SignUpController implements Initializable{
             }
             else{
                 errorLabel.setText("Please make sure your passwords match.");
+                errorLabel.setLayoutX(150);
+                errorLabel.setVisible(true);
             }
         }
         else{
             errorLabel.setText("This username is already use.");
+            errorLabel.setLayoutX(170);
+            errorLabel.setVisible(true);
         }
     }
     public void clickBack(MouseEvent event) throws IOException {
         NPBPRouter.loadPage("login", signUpArea);
-    }
-
-    @FXML public void changeTheme() {
-        String css = getClass().getResource("css/theme-1.css").toExternalForm();
-        Scene scene = signUpArea.getScene();
-        scene.getStylesheets().removeAll();
-        scene.getStylesheets().add(css);
     }
 }
