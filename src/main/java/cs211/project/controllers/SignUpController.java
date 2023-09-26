@@ -46,26 +46,32 @@ public class SignUpController implements Initializable{
         String username = userNameField.getText();
         String password = passwordField.getText();
         String confirmPassWord = confirmPasswordField.getText();
-        if (accounts.checkUserByUsername(username)) {
-            if (Account.confirmPassword(password, confirmPassWord)) {
-                accounts.signUp(username, name, password);
-                errorLabel.setText("success");
-                repository.save(accounts);
-                try {
-                    NPBPRouter.loadPage("login",signUpArea);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+        if(!name.equals("") && !username.equals("") && !password.equals("") && !confirmPassWord.equals("")) {
+            if (accounts.checkUserByUsername(username)) {
+                if (Account.confirmPassword(password, confirmPassWord)) {
+                    accounts.signUp(username, name, password);
+                    errorLabel.setText("success");
+                    repository.save(accounts);
+                    try {
+                        NPBPRouter.loadPage("login", signUpArea);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    errorLabel.setText("Please make sure your passwords match.");
+                    errorLabel.setLayoutX(150);
+                    errorLabel.setVisible(true);
                 }
             }
-            else{
-                errorLabel.setText("Please make sure your passwords match.");
-                errorLabel.setLayoutX(150);
+            else {
+                errorLabel.setText("This username is already use.");
+                errorLabel.setLayoutX(170);
                 errorLabel.setVisible(true);
             }
         }
-        else{
-            errorLabel.setText("This username is already use.");
-            errorLabel.setLayoutX(170);
+        else {
+            errorLabel.setText("Please enter all information");
+            errorLabel.setLayoutX(180);
             errorLabel.setVisible(true);
         }
     }
