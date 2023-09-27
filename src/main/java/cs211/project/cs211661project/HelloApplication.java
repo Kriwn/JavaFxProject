@@ -12,13 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 public class HelloApplication extends Application {
-    private int cssstyle = 1;
     @Override
     public void start(Stage stage) throws IOException {
+        int cssStyle = 1;
         NPBPRouter.bind(this, stage, "Hi", 1024, 760);
-        NPBPRouter.setCss("CSS/User/theme-"+cssstyle+".css");
+        NPBPRouter.setCss("CSS/theme-"+cssStyle+".css");
         configRoute();
-//        String css = getClass().getResource("css/theme-2.css").toExternalForm();
         NPBPRouter.goTo("app");
     }
 

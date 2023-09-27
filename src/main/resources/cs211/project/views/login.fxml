@@ -29,7 +29,7 @@
             <Font name="Impact" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="242.0" layoutY="482.0" text="Label" textFill="RED" />
+      <Label fx:id="errorLabel" layoutX="172.0" layoutY="464.0" text="Label" textFill="RED" />
       <MFXTextField id="customField" fx:id="userNameField" floatMode="BORDER" floatingText="Username" layoutX="131.0" layoutY="333.0" prefHeight="30.0" prefWidth="250.0" />
       <MFXPasswordField id="customPassword" fx:id="passwordField" floatMode="BORDER" floatingText="Password" layoutX="131.0" layoutY="407.0" prefHeight="30.0" prefWidth="250.0" />
    </children>

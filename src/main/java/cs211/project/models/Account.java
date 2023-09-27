@@ -12,6 +12,7 @@ public class Account {
     private String image;
     private String roleAccount;
     private LocalDateTime timeLogin;
+    private int accountTheme;
 
     /**
      * Use this constructor when sign up
@@ -26,8 +27,9 @@ public class Account {
         this.roleAccount = "User";
         this.image = "images/default.png";
         this.timeLogin = LocalDateTime.now();
+        this.accountTheme = 1;
     }
-    public Account(String username, String name,String id, String role, String image, String time) {
+    public Account(String username, String name,String id, String role, String image, String time, String accountTheme) {
         this.name = name;
         this.username = username;
         this.accountId = Integer.parseInt(id);
@@ -35,6 +37,7 @@ public class Account {
         this.roleAccount = role;
         this.image = image;
         this.timeLogin = LocalDateTime.parse(time);
+        this.accountTheme = Integer.parseInt(accountTheme);
     }
 
 
@@ -44,8 +47,8 @@ public class Account {
      * @param name
      * @param password
      */
-    public Account(String username,String name,String  id,String password,String role, String image,String time){
-        this(username, name, id, role, image, time);
+    public Account(String username, String name, String  id, String password, String role, String image, String time, String theme){
+        this(username, name, id, role, image, time, theme);
         this.password = password;
     }
 
@@ -70,34 +73,33 @@ public class Account {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), this.password);
         return result.verified;
     }
-    public boolean validatePassword2(String password){
-        return this.password.equals(password);
-    }
-
-    public String getPassword() {
-        return password;
-    }
     public void setImage(String image){
         this.image = image;
     }
-
-    public String getName() {
-        return name;
+    public void setAccountTheme(int theme){
+        this.accountTheme = theme;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+
     public void setAccountId(int id){
         this.accountId = id;
     }
+
     public  void setPassword(String password){
         this.password = password;
         this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
     }
-
+    public void setTimeLogin(LocalDateTime timeLogin) {
+        this.timeLogin = timeLogin;
+    }
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getImage() {
@@ -108,16 +110,19 @@ public class Account {
         return roleAccount;
     }
 
+    public String getName() {
+        return name;
+    }
+    public int getAccountTheme(){
+        return accountTheme;
+    }
+
     public LocalDateTime getTimeLogin() {
         return timeLogin;
     }
 
     public int getAccountId() {
         return accountId;
-    }
-
-    public void setTimeLogin(LocalDateTime timeLogin) {
-        this.timeLogin = timeLogin;
     }
 
     @Override

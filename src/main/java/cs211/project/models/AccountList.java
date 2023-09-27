@@ -35,14 +35,14 @@ public class AccountList {
         return true;
     }
     /*เพิ่มuser จากการอ่านไฟล์*/
-    public void addNewUserFromFile(String username, String name,String id, String password,String role,String image,String time){
+    public void addNewUserFromFile(String username, String name,String id, String password, String role, String image, String time, String theme){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new User(username,name,id,password,role,image,time));
+                accounts.add(new User(username , name, id, password, role, image, time, theme));
                 this.lastId = Integer.parseInt(id);
             }
         }

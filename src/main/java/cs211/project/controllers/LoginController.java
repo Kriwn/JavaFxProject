@@ -41,6 +41,7 @@ public class LoginController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         repository = new AccountRepository();
         accounts = repository.getAccounts();
+        errorLabel.setVisible(false);
         userNameField.setLeadingIcon(new MFXIconWrapper("fas-user", 16, Color.web("#412F38"), 16));
         passwordField.setLeadingIcon(new MFXIconWrapper("fas-lock", 16, Color.web("#412F38"), 16));
         passwordField.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
@@ -67,14 +68,20 @@ public class LoginController implements Initializable{
             if(accounts.login(username, password)){
                 if (exist instanceof User) {
                     repository.save(accounts);
+                    NPBPRouter.setCss("CSS/theme-"+exist.getAccountTheme()+".css");
                     NPBPRouter.goTo("home", exist);
                 } else if (exist instanceof Admin) {
 
                 }
             }
+            else{
+                errorLabel.setText("wrong username or password");
+                errorLabel.setVisible(true);
+            }
         }
         else{
             errorLabel.setText("wrong username or password");
+            errorLabel.setVisible(true);
         }
 
     }
