@@ -39,6 +39,9 @@ public class StaffListController {
     AnchorPane page;
 
     public void initialize(){
+
+
+
         datasource = new StaffDatasource("staffs", "staffs.csv");
         staffList = datasource.readData();
         staffs = staffList.getStaffs();

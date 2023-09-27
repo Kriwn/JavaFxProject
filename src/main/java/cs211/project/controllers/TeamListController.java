@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class TeamListController {
     @FXML private ScrollPane scrollPane;
-    @FXML private VBox vBox;
+    @FXML private VBox vbox;
     @FXML private AnchorPane page;
     private Team selectedTeam;
     private TeamRepository teamRepository;
@@ -41,7 +41,9 @@ public class TeamListController {
         teamlist = teamRepository.getTeamList();
         teams = teamlist.getTeams();
 
-
+        for(var team : teams){
+            vbox.getChildren().add(createCard(team));
+        }
     }
 
     public HBox createCard(Team team){
@@ -69,6 +71,14 @@ public class TeamListController {
         teamNameLabel.setText(team.getTeamName());
         countMemberLabel.setText(""+team.getCountMember());
         maxMemberLabel.setText(""+team.getMaxMember());
+
+        hbox.setOnMouseClicked(click ->{
+            try {
+                NPBPRouter.loadPage("staff-list",page,user,event,team);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         return hbox;
     }
