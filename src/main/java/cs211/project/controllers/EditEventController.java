@@ -75,6 +75,48 @@ public class EditEventController implements Initializable {
         event = eventRepository.findById(eventId);
         successLabel.setVisible(false);
         showText();
+
+        nameEvent.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                successLabel.setVisible(false);
+            }
+        });
+
+        detailsTextArea.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                successLabel.setVisible(false);
+            }
+        });
+
+        dateStartEvent.promptTextProperty().addListener(((observableValue, old, New) -> {
+            if(New != null){
+                successLabel.setVisible(false);
+            }
+        }));
+
+        dateEndEvent.promptTextProperty().addListener(((observableValue, old, New) -> {
+            if(New != null){
+                successLabel.setVisible(false);
+            }
+        }));
+
+        capacityEvent.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                successLabel.setVisible(false);
+            }
+        });
+
+        timeStartEvent.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                successLabel.setVisible(false);
+            }
+        });
+
+        timeEndEvent.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                successLabel.setVisible(false);
+            }
+        });
     }
 
     public void showText(){
@@ -152,6 +194,8 @@ public class EditEventController implements Initializable {
             String fileName = nameEvent.getText().trim();
 
             eventImageView.setImage(new Image("file:"+"images/"+fileName+separator));
+
+            successLabel.setVisible(false);
 
             Path to = Paths.get("images/"+fileName+separator);
             CopyOption[] options = new CopyOption[]{

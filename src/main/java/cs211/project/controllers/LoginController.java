@@ -1,14 +1,13 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Account;
-import cs211.project.models.AccountList;
-import cs211.project.models.Admin;
-import cs211.project.models.User;
+import cs211.project.models.*;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPKeyPress;
 import cs211.project.services.NPBPRouter;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +24,7 @@ import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
@@ -54,6 +54,18 @@ public class LoginController implements Initializable{
             }
         });
         NPBPKeyPress.EscPress(userNameField);
+
+        userNameField.textProperty().addListener((observableValue, old, New) -> {
+            if(New != null) {
+                errorLabel.setVisible(false);
+            }
+        });
+
+        passwordField.textProperty().addListener(((observableValue, old, New) -> {
+            if(New != null){
+                errorLabel.setVisible(false);
+            }
+        }));
     }
 
     public void clickSignIn() throws IOException {

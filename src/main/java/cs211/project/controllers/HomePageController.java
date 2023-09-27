@@ -77,7 +77,7 @@ public class HomePageController implements Initializable {
     private AccountEventRepository accountEventRepository;
     private User user;
 
-    private int LOAD = 250;
+    private int LOAD = 400;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -138,7 +138,7 @@ public class HomePageController implements Initializable {
             }
         });
         //------------------------------------------------------------------
-        vbox.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_rainbow.gif")));
+//        vbox.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_rainbow.gif")));
 //        searchTextField.setOnMouseEntered(hover -> {
 //            searchTextField.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_text.gif")));
 //        });
@@ -147,7 +147,7 @@ public class HomePageController implements Initializable {
 //        });
     }
     public void showEvent(ArrayList<Event> eventArrayList){
-        LOAD = 250;
+        LOAD = 400;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
             if(data.getStatus() && data.checkMember()) {
@@ -162,12 +162,6 @@ public class HomePageController implements Initializable {
 
         });
 
-
-//        for (var i : eventArrayList){
-//            i.checkTimeEvent();
-//            if (i.getStatus() && i.checkMember())
-//                vbox.getChildren().add(createCard(i));
-//        }
     }
 
     public VBox createCard(Event newEvent){

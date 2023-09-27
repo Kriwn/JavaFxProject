@@ -15,12 +15,12 @@
    <children>
       <AnchorPane layoutX="80.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
-            <ScrollPane fx:id="scrollPane" hmax="0.0" layoutX="13.0" layoutY="102.0" prefHeight="515.0" prefWidth="600.0" style="-fx-background-color: #E4DCCF; -fx-hbar-policy: never; -fx-vbar-policy: never;">
+            <ScrollPane fx:id="scrollPane" hmax="0.0" layoutX="13.0" layoutY="102.0" prefHeight="515.0" prefWidth="600.0" style="-fx-hbar-policy: never; -fx-vbar-policy: never;">
                <content>
-                  <VBox fx:id="vbox" prefHeight="515.0" prefWidth="600.0" style="-fx-background-color: #E4DCCF;" />
+                  <VBox fx:id="vbox" prefHeight="515.0" prefWidth="600.0" />
                </content>
             </ScrollPane>
-            <AnchorPane layoutX="13.0" layoutY="51.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #7D9D9C; -fx-background-radius: 15 15 0 0;">
+            <AnchorPane layoutX="13.0" layoutY="51.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-radius: 15 15 0 0;" styleClass="sidebar-background">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
