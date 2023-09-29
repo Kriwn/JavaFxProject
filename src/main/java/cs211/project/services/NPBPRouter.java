@@ -179,6 +179,10 @@ public final class NPBPRouter {
         return current.dataTeam;
     }
 
+    public  static Object getDataActivity(){
+        return current.dataActivity;
+    }
+
 
     public static class RouteScene{
         private String scenePath;
@@ -188,7 +192,7 @@ public final class NPBPRouter {
         private Object dataAccount;
         private Object dataEvent;
         private Object dataTeam;
-        private Object data4;
+        private Object dataActivity;
         private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());

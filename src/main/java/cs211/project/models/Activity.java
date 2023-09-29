@@ -11,11 +11,11 @@ public class Activity {
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private boolean status;
+    private String status;
 
     private int id;
 
-    public Activity(String name, String detail,int id,String dateStart,String dateEnd, String timeStart,String timeEnd) {
+    public Activity(String name, String detail,int id,String dateStart,String dateEnd, String timeStart,String timeEnd,String status) {
         this.name = name;
         this.detail = detail;
         this.id = id;
@@ -23,22 +23,32 @@ public class Activity {
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.status = true;
+        this.status = status;
     }
 
-    public boolean checkTimeEvent(){
+    public void checkTimeActivity(){
         if(dateEnd.isAfter(LocalDate.now())){
-            return true;
+            if(dateEnd.equals(LocalDate.now())){
+                if(timeEnd.isAfter(LocalTime.now())){
+                    status = "available";
+                }
+                else{
+                    status = "Ended";
+                }
+            }
+            else{
+                status = "available";
+            }
         }
         else{
-            return false;
+            status = "Ended";
         }
     }
     public String getName() {
 
         return name;
     }
-    public boolean getStatus(){
+    public String getStatus(){
         return  status;
     }
 

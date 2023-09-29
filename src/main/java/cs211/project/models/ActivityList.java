@@ -9,14 +9,14 @@ public class ActivityList {
 
     public  ActivityList(){activities = new ArrayList<>();}
 
-    public void  addNewActivityFromFile(String name,String detail,String id,String dateStart,String dateEnd, String timeStart,String timeEnd){
+    public void  addNewActivityFromFile(String name,String detail,String id,String dateStart,String dateEnd, String timeStart,String timeEnd,String status){
         name = name.trim();
         detail = detail.trim();
         id = id.trim();
         if (!name.equals("") & !detail.equals("")){
             Activity exist = findActivityById(Integer.parseInt(id));
             if (exist == null){
-                activities.add(new Activity(name,detail,Integer.parseInt(id),dateStart,dateEnd,timeStart,timeEnd));
+                activities.add(new Activity(name,detail,Integer.parseInt(id),dateStart,dateEnd,timeStart,timeEnd,status));
                 this.lastId = Integer.parseInt(id);
             }
         }
@@ -28,7 +28,7 @@ public class ActivityList {
         if (!name.equals("") & !detail.equals("")){
             Activity exist = findActivityByBoth(name,detail);
             if (exist == null){
-                activities.add(new Activity(name,detail,++lastId,dateStart,dateEnd,timeStart,timeEnd));
+                activities.add(new Activity(name,detail,++lastId,dateStart,dateEnd,timeStart,timeEnd,"available"));
             }
         }
     }

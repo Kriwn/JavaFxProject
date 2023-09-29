@@ -6,16 +6,23 @@ import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
+import cs211.project.services.NPBPRouter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
-import java.time.LocalDate;
+import java.io.IOException;
 
-public class ActivityController {
+public class EventActivityController {
 
     @FXML private TableView<Activity> activityTableView;
+    @FXML private AnchorPane anchorPane;
+
+
 
     private ActivityTeamEventRepository TeamEventrepository;
 
@@ -32,17 +39,33 @@ public class ActivityController {
     public void initialize() {
         TeamEventrepository = new ActivityTeamEventRepository();
         ShowActivitys = new ActivityList();
-        eventActivity  = TeamEventrepository.getEventActivity();
+        eventActivity = TeamEventrepository.getEventActivity();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
-        for(EventActivity event :  eventActivity.getList())
-        {
+        for (EventActivity event : eventActivity.getList()) {
             activity = activitys.findActivityById(event.getActivity_id());
-            //if (activity.checkTimeEvent())
-                ShowActivitys.addNewActivityFromFile(activity.getName(),activity.getDetail(),"" + activity.getId(),"" + activity.getDateStart(),"" + activity.getDateEnd(),"" + activity.getTimeStart(),"" + activity.getTimeEnd());
+            activity.checkTimeActivity();
+            ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), activity.getStatus());
         }
+
+
         showTable(ShowActivitys);
+
+        activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
+            @Override
+            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
+                if (newValue != null) {
+                    try {
+
+                        NPBPRouter.loadPage("Edit Activity", anchorPane, newValue);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
     }
+
 
     private void showTable(ActivityList activityList) {
         TableColumn<Activity, String> nameColumn = new TableColumn<>("Name");
