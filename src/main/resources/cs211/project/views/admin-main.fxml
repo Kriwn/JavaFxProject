@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="Page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.AdminMainController">
    <children>
-      <MFXTableView fx:id="mfxTableView" footerVisible="false" layoutX="72.0" layoutY="47.0" prefHeight="666.0" prefWidth="330.0" />
+      <MFXTableView fx:id="mfxTableView" footerVisible="false" layoutX="69.0" layoutY="47.0" prefHeight="666.0" prefWidth="379.0" />
       <Circle fx:id="image" fill="DODGERBLUE" layoutX="602.0" layoutY="222.0" radius="81.0" stroke="BLACK" strokeType="INSIDE" />
       <VBox alignment="TOP_CENTER" layoutX="509.0" layoutY="380.0" prefHeight="200.0" prefWidth="185.0">
          <children>

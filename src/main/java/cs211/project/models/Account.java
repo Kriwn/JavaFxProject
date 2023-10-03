@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Account {
     private int accountId;
@@ -125,6 +126,9 @@ public class Account {
 
     public LocalDateTime getTimeLogin() {
         return timeLogin;
+    }
+    public String getTime(){
+        return timeLogin.format(DateTimeFormatter.ofPattern("dd.MM.YYYY : HH.mm a"));
     }
 
     public int getAccountId() {

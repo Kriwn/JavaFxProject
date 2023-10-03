@@ -9,12 +9,13 @@ import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -40,16 +41,35 @@ public class AdminMainController implements Initializable {
         accountRepository = new AccountRepository();
         accountList = accountRepository.getAccounts();
         accountArrayList = accountList.getAccounts();
+        accountArrayList.removeIf(account -> account.getRoleAccount().equals("Admin"));
+        setData(accountArrayList.get(0));
         setTable(accountArrayList, mfxTableView);
     }
     private void setTable(ArrayList<Account> accounts, MFXTableView<Account> tableView) {
-        MFXTableColumn<Account> nameColumn = new MFXTableColumn<>("Name", Comparator.comparing(Account::getName));
-        MFXTableColumn<Account> userNameColumn = new MFXTableColumn<>("Username", Comparator.comparing(Account::getUsername));
-        MFXTableColumn<Account> date = new MFXTableColumn<>("Date", Comparator.comparing(Account::getTimeLogin));
+        MFXTableColumn<Account> nameColumn = new MFXTableColumn<>("Name",true);
+        MFXTableColumn<Account> userNameColumn = new MFXTableColumn<>("Username",true);
+        MFXTableColumn<Account> date = new MFXTableColumn<>("Date");
 
-        nameColumn.setRowCellFactory(account -> new MFXTableRowCell<>(Account::getName));
-        userNameColumn.setRowCellFactory(account -> new MFXTableRowCell<>(Account::getUsername));
-        date.setRowCellFactory(account -> new MFXTableRowCell<>(Account::getTimeLogin));
+
+        nameColumn.setRowCellFactory(account -> {
+            MFXTableRowCell mfxTableRowCell = new MFXTableRowCell<>(Account::getName);
+            mfxTableRowCell.setAlignment(Pos.CENTER);
+            return mfxTableRowCell;
+        });
+        userNameColumn.setRowCellFactory(account -> {
+            MFXTableRowCell mfxTableRowCell = new MFXTableRowCell<>(Account::getUsername);
+            mfxTableRowCell.setAlignment(Pos.CENTER);
+            return mfxTableRowCell;
+        });
+        date.setRowCellFactory(account -> {
+            MFXTableRowCell mfxTableRowCell = new MFXTableRowCell<>(Account::getTime);
+            mfxTableRowCell.setAlignment(Pos.CENTER);
+            return mfxTableRowCell;
+        });
+        nameColumn.setAlignment(Pos.CENTER);
+        userNameColumn.setAlignment(Pos.CENTER);
+        date.setPrefSize(150,10);
+        date.setAlignment(Pos.CENTER);
         tableView.getTableColumns().clear();
         tableView.getTableColumns().addAll(userNameColumn , nameColumn , date);
 
