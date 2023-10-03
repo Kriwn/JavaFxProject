@@ -38,7 +38,7 @@ public class SettingController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image");
 
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images", "*.png", "*.jpg", "*.jpeg","*gif"));
 
         File file = fileChooser.showOpenDialog(null);
 

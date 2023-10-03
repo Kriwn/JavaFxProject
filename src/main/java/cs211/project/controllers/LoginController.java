@@ -42,8 +42,8 @@ public class LoginController implements Initializable{
         repository = new AccountRepository();
         accounts = repository.getAccounts();
         errorLabel.setVisible(false);
-        userNameField.setLeadingIcon(new MFXIconWrapper("fas-user", 16, Color.web("#412F38"), 16));
-        passwordField.setLeadingIcon(new MFXIconWrapper("fas-lock", 16, Color.web("#412F38"), 16));
+        userNameField.setLeadingIcon(new MFXIconWrapper("fas-user", 16, 16));
+        passwordField.setLeadingIcon(new MFXIconWrapper("fas-lock", 16, 16));
         passwordField.addEventFilter(KeyEvent.KEY_PRESSED, click -> {
             if (click.getCode() == KeyCode.ENTER) {
                 try {
@@ -83,7 +83,9 @@ public class LoginController implements Initializable{
                     NPBPRouter.setCss("CSS/theme-"+exist.getAccountTheme()+".css");
                     NPBPRouter.goTo("home", exist);
                 } else if (exist instanceof Admin) {
-
+                    repository.save(accounts);
+                    NPBPRouter.setCss("CSS/theme-"+exist.getAccountTheme()+".css");
+                    NPBPRouter.goTo("admin-sidebar", exist);
                 }
             }
             else{

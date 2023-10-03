@@ -46,7 +46,7 @@ public class User extends Account{
     public String toString() {
         return "User{" + "Username = "+
                 getUsername() + ", name = " + getName() + ", password = " + getPassword() + ", image = " +
-                getImage() + ", role = " + getRoleAccount() + ", timeLogin = "+ getTimeLogin() +
+                getImagePath() + ", role = " + getRoleAccount() + ", timeLogin = "+ getTimeLogin() +
                 ", myEvents=" + myEvents +
                 ", myCreateEvents=" + myCreateEvents +
                 '}';

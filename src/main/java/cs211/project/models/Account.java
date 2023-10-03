@@ -1,6 +1,8 @@
 package cs211.project.models;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.time.LocalDateTime;
 
@@ -9,10 +11,11 @@ public class Account {
     private String name;
     private String username;
     private String password;
-    private String image;
+    private String imagePath;
     private String roleAccount;
     private LocalDateTime timeLogin;
     private int accountTheme;
+    private ImageView image;
 
     /**
      * Use this constructor when sign up
@@ -25,17 +28,17 @@ public class Account {
         this.username = username;
         this.password = null;
         this.roleAccount = "User";
-        this.image = "images/default.png";
+        this.imagePath = "images/default.png";
         this.timeLogin = LocalDateTime.now();
         this.accountTheme = 1;
     }
-    public Account(String username, String name,String id, String role, String image, String time, String accountTheme) {
+    public Account(String username, String name, String id, String role, String imagePath, String time, String accountTheme) {
         this.name = name;
         this.username = username;
         this.accountId = Integer.parseInt(id);
         this.password = null;
         this.roleAccount = role;
-        this.image = image;
+        this.imagePath = imagePath;
         this.timeLogin = LocalDateTime.parse(time);
         this.accountTheme = Integer.parseInt(accountTheme);
     }
@@ -47,8 +50,8 @@ public class Account {
      * @param name
      * @param password
      */
-    public Account(String username, String name, String  id, String password, String role, String image, String time, String theme){
-        this(username, name, id, role, image, time, theme);
+    public Account(String username, String name, String  id, String password, String role, String imagePath, String time, String theme){
+        this(username, name, id, role, imagePath, time, theme);
         this.password = password;
     }
 
@@ -73,8 +76,8 @@ public class Account {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), this.password);
         return result.verified;
     }
-    public void setImage(String image){
-        this.image = image;
+    public void setImagePath(String imagePath){
+        this.imagePath = imagePath;
     }
     public void setAccountTheme(int theme){
         this.accountTheme = theme;
@@ -102,8 +105,11 @@ public class Account {
         return password;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
+    }
+    public ImageView getImage(){
+        return new ImageView(new Image("file:" + getImagePath()));
     }
 
     public String getRoleAccount() {
@@ -131,7 +137,7 @@ public class Account {
                 "name='" + name + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", image='" + image + '\'' +
+                ", image='" + imagePath + '\'' +
                 ", roleAccount='" + roleAccount + '\'' +
                 ", timeLogin=" + timeLogin +
                 '}';

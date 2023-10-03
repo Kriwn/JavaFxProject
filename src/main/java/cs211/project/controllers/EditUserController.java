@@ -5,17 +5,12 @@ import cs211.project.pivot.AccountEvent;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
-import cs211.project.repository.EventRepository;
-import cs211.project.services.Datasource;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -95,7 +90,7 @@ public class EditUserController implements Initializable {
 
         usernameLabel.setText(accountList.findUserByAccountId(id).getName());
         statusLabel.setText(accountEvent.getStatus());
-        img.setFill(new ImagePattern(new Image("file:" + accountList.findUserByAccountId(id).getImage())));
+        img.setFill(new ImagePattern(new Image("file:" + accountList.findUserByAccountId(id).getImagePath())));
 
         VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
@@ -121,7 +116,7 @@ public class EditUserController implements Initializable {
         Label username = (Label) selectBox.getChildren().get(3);
         Label status = (Label) selectBox.getChildren().get(4);
 
-        circle.setFill(new ImagePattern(new Image("file:" + user.getImage())));
+        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
         username.setText(selectUser.getName());
         status.setText(accountEvent.getStatus());
         selectBox.setFocusTraversable(true);
