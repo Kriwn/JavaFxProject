@@ -176,8 +176,7 @@ public class EditEventController implements Initializable {
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
 
         // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
-        Node source = (Node) event.getSource();
-        File file = chooser.showOpenDialog(source.getScene().getWindow());
+        File file = chooser.showOpenDialog(null);
 
         if (file != null) {
 

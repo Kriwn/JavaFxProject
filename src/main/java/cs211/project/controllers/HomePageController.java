@@ -8,9 +8,7 @@ import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.Transition;
+import javafx.animation.*;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
@@ -76,7 +74,6 @@ public class HomePageController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;
-
     private int LOAD = 400;
 
     @Override
