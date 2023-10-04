@@ -1,57 +1,35 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.pivot.AccountEvent;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.Transition;
-import javafx.beans.value.ObservableValue;
+import javafx.animation.*;
 import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.Delayed;
-import java.util.function.Consumer;
 
 public class HomePageController implements Initializable {
     @FXML
@@ -76,7 +54,6 @@ public class HomePageController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;
-
     private int LOAD = 400;
 
     @Override
@@ -114,7 +91,7 @@ public class HomePageController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : events){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        if (i.getStatus()){
+                        if (i.getStatusEvent()){
                             observableList.add(i.getName());
                             list.add(eventList.findEventByName(i.getName()));
                         }
@@ -150,7 +127,8 @@ public class HomePageController implements Initializable {
         LOAD = 400;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatus() && data.checkMember()) {
+            data.checkTimeJoin();
+            if(data.getStatusEvent() && data.checkMember() && data.getStatusJoin()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

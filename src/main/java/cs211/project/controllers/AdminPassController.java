@@ -1,24 +1,24 @@
 package cs211.project.controllers;
 
 import cs211.project.models.AccountList;
+import cs211.project.models.Admin;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class SettingController {
 
-    private User user;
+public class AdminPassController {
+
+    private Admin admin;
     @FXML private TextField oldTextField;
     @FXML private TextField newTextField;
     @FXML private TextField conTextField;
@@ -29,10 +29,9 @@ public class SettingController {
     public void initialize(){
         repository = new AccountRepository();
         accounts = repository.getAccounts();
-        user = (User) NPBPRouter.getDataAccount();
+        admin = (Admin) NPBPRouter.getDataAccount();
         errorLabel.setText("");
     }
-
     @FXML
     public void chooseImageButton(){
         FileChooser fileChooser = new FileChooser();
@@ -46,8 +45,8 @@ public class SettingController {
             String name =file.getName();
             String separator = name.substring(name.lastIndexOf('.'), name.length());
             // Define the destination directory and file name where you want to save the selected file
-            File destinationDir = new File("images/User");
-            String destinationFileName = user.getUsername() + separator;
+            File destinationDir = new File("images/Admin");
+            String destinationFileName = admin.getUsername() + separator;
 
             // Create the destination file
             File destinationFile = new File(destinationDir, destinationFileName);
@@ -55,7 +54,7 @@ public class SettingController {
             // Copy the selected file to the destination
             try {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
-                accounts.changeImage(user.getUsername(), "images/User/" + destinationFileName);
+                accounts.changeImage(admin.getUsername(), "images/Admin/" + destinationFileName);
                 repository.save(accounts);
                 System.out.println("File saved successfully.");
             } catch (IOException e) {
@@ -63,15 +62,7 @@ public class SettingController {
             }
         }
     }
-    public void refresh(){
-        try {
-            NPBPRouter.goTo("home");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void confirm() throws IOException {
+    public void confirm(){
         String oldPass = oldTextField.getText().trim();
         String newPass = newTextField.getText().trim();
         String conPass = conTextField.getText().trim();
@@ -79,20 +70,19 @@ public class SettingController {
             errorLabel.setText("Please fill  is required");
             return ;
         }
-            if (user.validatePassword(oldPass)) {
-                if (newPass.equals(conPass)) {
-                    accounts.changePassword(user.getUsername(),newPass);
-                    repository.save(accounts);
-                    System.out.println("Change password successfully");
-                    NPBPRouter.goTo("home",user);
-                }
-                else
-                    errorLabel.setText("Not matching password and confirm password");
+        if (admin.validatePassword(oldPass)) {
+            if (newPass.equals(conPass)) {
+                accounts.changePassword(admin.getUsername(),newPass);
+                repository.save(accounts);
+                System.out.println("Change password successfully");
             }
             else
-            {
-                errorLabel.setText("Please fill the correct old password");
-                return ;
-            }
+                errorLabel.setText("Not matching password and confirm password");
+        }
+        else
+        {
+            errorLabel.setText("Please fill the correct old password");
+            return ;
+        }
     }
 }

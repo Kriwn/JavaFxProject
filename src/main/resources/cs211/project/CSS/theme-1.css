@@ -21,8 +21,6 @@ Accent = #657b6d
      -fx-border-radius: 16;
      -fx-background-radius: 16;
      -fx-background-color: #7D9D9C;
-     -fx-font-family: 'Roboto', sans-serif;
-    -fx-font-size: 18;
 }
 
 .defaultButton:hover{
@@ -42,8 +40,6 @@ Accent = #657b6d
     -fx-background-color: #7D9D9C;
     -fx-text-fill: white;
     -fx-background-radius: 10;
-    -fx-font-family: 'Roboto', sans-serif;
-    -fx-font-size: 18;
 }
 .app-logInButton:hover{
     -fx-background-color: transparent ;
@@ -63,6 +59,7 @@ Accent = #657b6d
 
 .sidebar-button{
     -fx-background-color: transparent;
+    -fx-text-fill: #576F72;
 }
 .sidebar-background{
     -fx-background-color: #7D9D9C;
@@ -70,6 +67,7 @@ Accent = #657b6d
 
 .sidebar-button:hover{
     -fx-background-color: #576F72;
+    -fx-text-fill: white;
 }
 
 .sidebar-button:focused{
@@ -84,8 +82,6 @@ Accent = #657b6d
 .signUpButton{
     -fx-background-color: transparent;
     -fx-text-fill: gray;
-    -fx-font-family: 'Roboto', sans-serif;
-    -fx-font-size: 15;
 }
 .signUpButton:hover{
     -fx-text-fill:  #7D9D9C;
@@ -99,14 +95,12 @@ Accent = #657b6d
 **************************************************/
 #customField {
     -fx-min-width: 130;
-    -fx-font-family: 'Roboto', sans-serif;
     -fx-border-color:#7D9D9C ;
     -fx-background-color: transparent;
     -fx-text-fill: #7D9D9C;
 }
 
 #customField .floating-text {
-    -fx-font-family: 'Roboto', sans-serif;
     -fx-text-fill: #7D9D9C;
     -fx-background-color: #F0EBE3 ;
 }
@@ -120,7 +114,6 @@ Accent = #657b6d
     -fx-border-color: #7D9D9C;
     -fx-background-color: transparent;
     -fx-text-fill: #7D9D9C;
-    -fx-font-family: 'Roboto', sans-serif;
 }
 
 #customPassword .mfx-font-icon {
@@ -130,7 +123,6 @@ Accent = #657b6d
 #customPassword .floating-text {
     -fx-text-fill: #7D9D9C;
     -fx-background-color:#F0EBE3;
-    -fx-font-family: 'Roboto', sans-serif;
 }
 
 .card:hover{
@@ -154,11 +146,30 @@ Accent = #657b6d
 }
  */
 /**********************************
- *Font
+ *Button
 **********************************/
-.label{
-    -fx-font-family: 'Roboto', sans-serif;
-}
-.button-font{
-    -fx-font-family: 'Roboto', sans-serif;
-}
+    .mfx-button{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+    .mfx-button:focused{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+    .mfx-button:hover{
+        -fx-background-color: transparent ;
+        -fx-background-radius: 5;
+        -fx-text-fill: #7D9D9C;
+        -fx-border-color: #7D9D9C;
+        -fx-border-width: 1;
+        -fx-border-style: solid;
+        -fx-border-radius: 5;
+    }
+    .mfx-button:armed{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+/***************************************

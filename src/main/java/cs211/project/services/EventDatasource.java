@@ -2,7 +2,6 @@ package cs211.project.services;
 
 import cs211.project.models.Event;
 import cs211.project.models.EventList;
-import cs211.project.models.AccountList;
 import javafx.scene.image.Image;
 
 import java.io.*;
@@ -61,15 +60,19 @@ public class EventDatasource implements Datasource<EventList>{
                 String id = data[1].trim();
                 String details = data[2].trim();
                 String dateStart = data[3].trim();
-                String dateEnd = data[4].trim();
-                String timeStart = data[5].trim();
+                String timeStart = data[4].trim();
+                String dateEnd = data[5].trim();
                 String timeEnd = data[6].trim();
-                String countMember = data[7];
-                String maxMember = data[8];
-                Image image = new Image(data[9]);
+                String openDateStart = data[7].trim();
+                String openTimeStart = data[8].trim();
+                String openDateEnd = data[9].trim();
+                String openTimeEnd = data[10].trim();
+                String countMember = data[11];
+                String maxMember = data[12];
+                Image image = new Image(data[13]);
                 //อาจจะมีตัวเพิ่ม
 
-                events.addNewEvent(name,id,details,dateStart,dateEnd,timeStart,timeEnd,countMember,maxMember,image);
+                events.addNewEvent(name,id,details,dateStart,dateEnd,timeStart,timeEnd,openDateStart,openDateEnd,openTimeStart,openTimeEnd,countMember,maxMember,image);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -100,7 +103,7 @@ public class EventDatasource implements Datasource<EventList>{
         try {
             // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
             for (Event event : data.getEvents()) {
-                String line = event.getName() + "," + event.getEventId() + "," + event.getDetail() + "," + event.getDateStart() + "," + event.getDateEnd() + "," + event.getTimeStart() + "," + event.getTimeEnd()  + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
+                String line = event.getName() + "," + event.getEventId() + "," + event.getDetail() + "," + event.getDateStartEvent() + "," + event.getTimeStartEvent() + "," + event.getDateEndEvent() + "," + event.getTimeEndEvent()  + "," + event.getOpenDateStart()  + "," + event.getOpenTimeStart() + "," + event.getOpenDateEnd() + "," + event.getOpenTimeEnd() + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
                 buffer.append(line);
                 buffer.append("\n");
             }

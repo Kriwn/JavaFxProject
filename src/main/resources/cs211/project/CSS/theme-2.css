@@ -12,11 +12,11 @@
 .defaultButton{
     -fx-border-radius: 16;
     -fx-background-radius: 16;
-    -fx-background-color: green;
+    -fx-background-color: #412F38;
 }
 
 .defaultButton:hover{
-    -fx-background-color:F6F9F7;
+    -fx-background-color: rgba(65, 47, 56, 0.8);
     -fx-text-fill: white;
 }
 
