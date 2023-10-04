@@ -85,7 +85,7 @@ public class AdminMainController implements Initializable {
     private void setData(Account account){
         nameLabel.setText(account.getName());
         userNameLabel.setText(account.getUsername());
-        timeLabel.setText(account.getTimeLogin().format(DateTimeFormatter.ofPattern("dd.MM.YYYY : HH.mm a")));
+        timeLabel.setText(account.getTime());
         image.setFill(new ImagePattern(new Image("file:" + account.getImagePath())));
     }
 }
