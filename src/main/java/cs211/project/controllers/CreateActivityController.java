@@ -3,6 +3,7 @@ package cs211.project.controllers;
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
 import cs211.project.models.User;
+import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
@@ -14,15 +15,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class    EditActivityController implements Initializable {
+public class CreateActivityController implements Initializable {
+
     @FXML
     private TextField nameTextField;
 
@@ -44,57 +43,44 @@ public class    EditActivityController implements Initializable {
     @FXML
     private  TextField timeEnd;
 
+    private ActivityRepository activityRepository;
     private ActivityTeamEventRepository activityTeamEventRepository;
 
     private EventActivityList eventActivityList;
-    private ActivityRepository activityRepository;
 
-    private  ActivityList activityList;
+    private ActivityList activityList;
 
-    private  Activity activity;
 
-    private  int id;
 
     private  int eventId;
 
-    private  User user;
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    private User user;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         activityRepository = new ActivityRepository();
         activityList = activityRepository.getActivityList();
-        id = (int)NPBPRouter.getDataActivity();
-        eventId = (int)NPBPRouter.getDataEvent();
-        user = (User)NPBPRouter.getDataAccount();
-        activity = activityList.findActivityById(id);
         activityTeamEventRepository = new ActivityTeamEventRepository();
         eventActivityList = activityTeamEventRepository.getEventActivity();
+        user = (User)NPBPRouter.getDataAccount();
+        eventId = (int)NPBPRouter.getDataEvent();
 
-        // edit event
-        nameTextField.setText(activity.getName());
-        startDatePicker.setValue(activity.getDateStart());
-        endDatePicker.setValue(activity.getDateEnd());
-        detailTextArea.setText(activity.getDetail());
-        timeStart.setText((""+activity.getTimeStart()));
-        timeEnd.setText(""+activity.getTimeEnd());
     }
 
+
     @FXML
-    public  void  changeActivity(){
+    public  void  createActivity(){
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String detail = detailTextArea.getText();
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
-        activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
+        activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
         activityRepository.save(activityList);
-    }
-
-    public void delete(){
-//        activityList.remove(activityList.findActivityById(id));
-//        activityRepository.save(activityList);
-
-//        eventActivityList.remove(eventId,id);
-//        activityTeamEventRepository.saveEvent(eventActivityList);
+        eventActivityList.addNew(eventId,activityList.getLastId());
+        activityTeamEventRepository.saveEvent(eventActivityList);
+        backToEventActivity();
     }
 
 

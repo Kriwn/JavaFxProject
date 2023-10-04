@@ -32,6 +32,20 @@ public class ActivityList {
             }
         }
     }
+    public void remove(Activity activity){
+        activities.remove(activity);
+    }
+
+
+    public int getLastId()
+    {
+        return  lastId;
+    }
+
+    public void  addNewActivity(Activity activity)
+    {
+        activities.add(activity);
+    }
 
     public Activity findActivityById(int id){
         for (Activity activity : activities) {

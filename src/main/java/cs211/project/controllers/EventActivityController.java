@@ -36,6 +36,10 @@ public class EventActivityController {
 
     private EventActivityList eventActivity;
 
+    private User user;
+
+    private  int eventId;
+
     @FXML
     public void initialize() {
         TeamEventrepository = new ActivityTeamEventRepository();
@@ -43,10 +47,9 @@ public class EventActivityController {
         eventActivity  = TeamEventrepository.getEventActivity();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
-        User user = (User) NPBPRouter.getDataAccount();
+        user = (User)NPBPRouter.getDataAccount();
+        eventId = (int) NPBPRouter.getDataEvent();
 
-
-        int eventId = (int) NPBPRouter.getDataEvent();
         for(EventActivity event :  eventActivity.getList()) {
             if (event.isEventId(eventId)) {
                 activity = activitys.findActivityById(event.getActivity_id());
@@ -104,8 +107,11 @@ public class EventActivityController {
             activityTableView.getItems().add(activity);
         }
     }
-
-    public void delete(){}
-
-    public void create(){}
+    public void create(){
+        try {
+            NPBPRouter.loadPage("create-event-activity",page,user,eventId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

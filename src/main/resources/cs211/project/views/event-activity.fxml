@@ -22,8 +22,7 @@
                   <TableColumn prefWidth="75.0" text="C2" />
                </columns>
             </TableView>
-            <Button layoutX="222.0" layoutY="627.0" mnemonicParsing="false" text="Delete" />
-            <Button layoutX="352.0" layoutY="627.0" mnemonicParsing="false" text="Create" />
+            <Button layoutX="287.0" layoutY="628.0" mnemonicParsing="false" onAction="#create" text="Create" />
          </children>
       </AnchorPane>
    </children>
