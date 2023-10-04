@@ -78,9 +78,9 @@ public class MyCreateEventController implements Initializable {
         }
     }
 
-    public void goToActivity(){
+    public void goToEventActivity(){
         try {
-            NPBPRouter.loadPage("edit-event",page,user,event.getEventId());
+            NPBPRouter.loadPage("event-activity",page,user,event.getEventId());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

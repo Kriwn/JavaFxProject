@@ -2,6 +2,7 @@ package cs211.project.controllers;
 
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
+import cs211.project.models.User;
 import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.repository.ActivityRepository;
@@ -20,9 +21,9 @@ import java.io.IOException;
 public class EventActivityController {
 
     @FXML private TableView<Activity> activityTableView;
-    @FXML private AnchorPane anchorPane;
 
-
+    @FXML
+    private AnchorPane page;
 
     private ActivityTeamEventRepository TeamEventrepository;
 
@@ -39,25 +40,28 @@ public class EventActivityController {
     public void initialize() {
         TeamEventrepository = new ActivityTeamEventRepository();
         ShowActivitys = new ActivityList();
-        eventActivity = TeamEventrepository.getEventActivity();
+        eventActivity  = TeamEventrepository.getEventActivity();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
-        for (EventActivity event : eventActivity.getList()) {
-            activity = activitys.findActivityById(event.getActivity_id());
-            activity.checkTimeActivity();
-            ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), activity.getStatus());
+        User user = (User) NPBPRouter.getDataAccount();
+
+
+        int eventId = (int) NPBPRouter.getDataEvent();
+        for(EventActivity event :  eventActivity.getList()) {
+            if (event.isEventId(eventId)) {
+                activity = activitys.findActivityById(event.getActivity_id());
+                activity.checkTimeActivity();
+                ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
+            }
         }
-
-
         showTable(ShowActivitys);
 
         activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
             @Override
-            public void changed(ObservableValue<? extends Activity> observable, Activity oldValue, Activity newValue) {
+            public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
                 if (newValue != null) {
                     try {
-
-                        NPBPRouter.loadPage("Edit Activity", anchorPane, newValue);
+                        NPBPRouter.loadPage("edit-event-activity",page,user,eventId,newValue.getId());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -65,7 +69,6 @@ public class EventActivityController {
             }
         });
     }
-
 
     private void showTable(ActivityList activityList) {
         TableColumn<Activity, String> nameColumn = new TableColumn<>("Name");
@@ -84,17 +87,19 @@ public class EventActivityController {
         TableColumn<Activity, String> EndTimeColumn = new TableColumn<>("timeEnd");
         EndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
 
+        TableColumn<Activity, String> StatusColumn = new TableColumn<>("status");
+        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // ล้าง column เดิมทั้งหมดที่มีอยู่ใน table แล้วเพิ่ม column ใหม่
+
         activityTableView.getColumns().clear();
         activityTableView.getColumns().add(nameColumn);
         activityTableView.getColumns().add(StartDateColumn);
         activityTableView.getColumns().add(StartTimeColumn);
         activityTableView.getColumns().add(EndDateColumn);
         activityTableView.getColumns().add(EndTimeColumn);
+        activityTableView.getColumns().add(StatusColumn);
         activityTableView.getItems().clear();
 
-        // ใส่ข้อมูล Student ทั้งหมดจาก studentList ไปแสดงใน TableView
         for (Activity activity: activityList.getActivity()) {
             activityTableView.getItems().add(activity);
         }
