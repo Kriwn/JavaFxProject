@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="loginArea" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.LoginController">
    <children>
-      <Label layoutX="226.0" layoutY="191.0" styleClass="app-text" text="Log in">
+      <Label layoutX="226.0" layoutY="189.0" styleClass="app-text" text="Log in">
          <font>
             <Font name="Impact" size="24.0" />
          </font>
