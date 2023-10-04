@@ -4,21 +4,16 @@ import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.models.User;
 import cs211.project.repository.EventRepository;
-import cs211.project.services.Datasource;
-import cs211.project.services.EventDatasource;
 import cs211.project.services.NPBPRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -26,9 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class EditEventController implements Initializable {
@@ -122,21 +114,18 @@ public class EditEventController implements Initializable {
     public void showText(){
         nameEvent.setText(event.getName());
         String details = event.getDetail();
-        System.out.println(details);
         String []details_new = details.split("\\|");
-        System.out.println(details_new);
         details = "";
         for (var i : details_new){
             details += i.trim();
             details += "\n";
         }
-        System.out.println(details);
         detailsTextArea.setText(details);
 
-        dateStartEvent.setValue(event.getDateStart());
-        timeStartEvent.setText(event.getTimeStart().toString());
-        dateEndEvent.setValue(event.getDateEnd());
-        timeEndEvent.setText(event.getTimeEnd().toString());
+        dateStartEvent.setValue(event.getDateStartEvent());
+        timeStartEvent.setText(event.getTimeStartEvent().toString());
+        dateEndEvent.setValue(event.getDateEndEvent());
+        timeEndEvent.setText(event.getTimeEndEvent().toString());
         eventImageView.setImage(event.getImage());
         capacityEvent.setText(""+event.getMaxMember());
     }

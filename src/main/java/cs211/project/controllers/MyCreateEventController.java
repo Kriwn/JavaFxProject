@@ -8,17 +8,31 @@ import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MyCreateEventController implements Initializable {
+    @FXML
+    private DatePicker dateEnd;
+
+    @FXML
+    private DatePicker dateStart;
+    @FXML
+    private TextField timeEnd;
+
+    @FXML
+    private TextField timeStart;
     @FXML
     AnchorPane page;
 
@@ -47,6 +61,19 @@ public class MyCreateEventController implements Initializable {
     public void showEvent(Event event){
         imageView.setImage(new Image(event.getImage().getUrl()));
         nameEvent.setText(event.getName());
+    }
+
+
+    public void setDateTimeJoin(){
+        event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
+        event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
+        event.setOpenTimeStart(LocalTime.parse(timeStart.getText()));
+        event.setOpenTimeEnd(LocalTime.parse(timeEnd.getText()));
+        eventRepository.save(eventList);
+        dateStart.setValue(null);
+        dateEnd.setValue(null);
+        timeStart.clear();
+        timeEnd.clear();
     }
     public void goToStaffList(){
         try {
