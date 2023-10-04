@@ -59,6 +59,7 @@ Accent = #657b6d
 
 .sidebar-button{
     -fx-background-color: transparent;
+    -fx-text-fill: #576F72;
 }
 .sidebar-background{
     -fx-background-color: #7D9D9C;
@@ -66,6 +67,7 @@ Accent = #657b6d
 
 .sidebar-button:hover{
     -fx-background-color: #576F72;
+    -fx-text-fill: white;
 }
 
 .sidebar-button:focused{
@@ -144,5 +146,30 @@ Accent = #657b6d
 }
  */
 /**********************************
- *Font
+ *Button
 **********************************/
+    .mfx-button{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+    .mfx-button:focused{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+    .mfx-button:hover{
+        -fx-background-color: transparent ;
+        -fx-background-radius: 5;
+        -fx-text-fill: #7D9D9C;
+        -fx-border-color: #7D9D9C;
+        -fx-border-width: 1;
+        -fx-border-style: solid;
+        -fx-border-radius: 5;
+    }
+    .mfx-button:armed{
+        -fx-background-color: #7D9D9C;
+        -fx-text-fill: white;
+        -fx-background-radius: 5;
+    }
+/***************************************
