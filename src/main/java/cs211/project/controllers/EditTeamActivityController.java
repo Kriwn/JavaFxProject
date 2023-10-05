@@ -1,13 +1,14 @@
 package cs211.project.controllers;
 
+import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
 import cs211.project.models.User;
 import cs211.project.pivot.EventActivityList;
+import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,8 +19,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CreateEventActivityController implements Initializable {
-
+public class EditTeamActivityController {
     @FXML
     private TextField nameTextField;
 
@@ -42,49 +42,59 @@ public class CreateEventActivityController implements Initializable {
     private  TextField timeEnd;
 
     private ActivityRepository activityRepository;
-    private ActivityTeamEventRepository activityTeamEventRepository;
-
-    private EventActivityList eventActivityList;
 
     private ActivityList activityList;
 
+    private Activity activity;
 
+    private  int id;
 
-    private  int eventId;
+    private  int teamId;
 
     private User user;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         activityRepository = new ActivityRepository();
         activityList = activityRepository.getActivityList();
-        activityTeamEventRepository = new ActivityTeamEventRepository();
-        eventActivityList = activityTeamEventRepository.getEventActivity();
+        id = (int) NPBPRouter.getDataActivity();
+        teamId = (int)NPBPRouter.getDataTeam();
         user = (User)NPBPRouter.getDataAccount();
-        eventId = (int)NPBPRouter.getDataEvent();
+        activity = activityList.findActivityById(id);
 
+
+        // edit event
+        nameTextField.setText(activity.getName());
+        startDatePicker.setValue(activity.getDateStart());
+        endDatePicker.setValue(activity.getDateEnd());
+        detailTextArea.setText(activity.getDetail());
+        timeStart.setText((""+activity.getTimeStart()));
+        timeEnd.setText(""+activity.getTimeEnd());
     }
 
-
     @FXML
-    public  void  createActivity(){
+    public  void  changeActivity(){
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String detail = detailTextArea.getText();
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
-        activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
+        activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
         activityRepository.save(activityList);
-        eventActivityList.addNew(eventId,activityList.getLastId());
-        activityTeamEventRepository.saveEvent(eventActivityList);
         backToEventActivity();
+    }
+
+    public void delete(){
+//        activityList.remove(activityList.findActivityById(id));
+//        activityRepository.save(activityList);
+
+//        eventActivityList.remove(teamId,id);
+//        activityTeamEventRepository.saveTeam(eventActivityList);
     }
 
 
     public void backToEventActivity(){
         try {
-            NPBPRouter.loadPage("event-activity",page,user,eventId);
+            NPBPRouter.loadPage("team-activity",page,user,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

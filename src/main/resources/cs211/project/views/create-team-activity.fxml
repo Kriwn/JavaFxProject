@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EditEventActivityController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreateTeamActivityController">
    <children>
-      <AnchorPane layoutX="90.0" layoutY="50.0" prefHeight="680.0" prefWidth="625.0">
+      <AnchorPane layoutX="80.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
-            <Label layoutX="263.0" layoutY="76.0" text="Edit Activity">
+            <Label layoutX="263.0" layoutY="76.0" text="Create Activity">
                <font>
                   <Font size="24.0" />
                </font>
@@ -25,13 +25,12 @@
             <TextField fx:id="nameTextField" layoutX="325.0" layoutY="181.0" />
             <DatePicker fx:id="endDatePicker" layoutX="326.0" layoutY="294.0" />
             <DatePicker fx:id="startDatePicker" layoutX="325.0" layoutY="231.0" />
-            <Button layoutX="362.0" layoutY="434.0" mnemonicParsing="false" onAction="#changeActivity" text="Change" />
+            <Button layoutX="362.0" layoutY="434.0" mnemonicParsing="false" onAction="#createActivity" text="Create" />
             <TextArea fx:id="detailTextArea" layoutX="325.0" layoutY="361.0" prefHeight="37.0" prefWidth="174.0" />
             <Label layoutX="157.0" layoutY="266.0" text="เวลาเริ่มกิจกรรม" />
             <TextField fx:id="timeStart" layoutX="325.0" layoutY="262.0" promptText="00:00:00" />
             <Label layoutX="157.0" layoutY="332.0" text="เวลาสิ้นสุดกิจกรรม" />
             <TextField fx:id="timeEnd" layoutX="325.0" layoutY="328.0" promptText="00:00:00" />
-            <Button layoutX="300.0" layoutY="542.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="#fc0303" />
          </children>
       </AnchorPane>
    </children>

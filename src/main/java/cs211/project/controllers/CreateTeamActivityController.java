@@ -1,10 +1,9 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
 import cs211.project.models.User;
-import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
+import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
 import cs211.project.services.NPBPRouter;
@@ -20,8 +19,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CreateActivityController implements Initializable {
-
+public class CreateTeamActivityController implements Initializable {
     @FXML
     private TextField nameTextField;
 
@@ -46,13 +44,13 @@ public class CreateActivityController implements Initializable {
     private ActivityRepository activityRepository;
     private ActivityTeamEventRepository activityTeamEventRepository;
 
-    private EventActivityList eventActivityList;
+    private TeamActivityList teamActivityList;
 
     private ActivityList activityList;
 
 
 
-    private  int eventId;
+    private  int teamId;
 
     private User user;
 
@@ -61,9 +59,9 @@ public class CreateActivityController implements Initializable {
         activityRepository = new ActivityRepository();
         activityList = activityRepository.getActivityList();
         activityTeamEventRepository = new ActivityTeamEventRepository();
-        eventActivityList = activityTeamEventRepository.getEventActivity();
-        user = (User)NPBPRouter.getDataAccount();
-        eventId = (int)NPBPRouter.getDataEvent();
+        teamActivityList = activityTeamEventRepository.getTeamActivity();
+        user = (User) NPBPRouter.getDataAccount();
+        teamId = (int)NPBPRouter.getDataTeam();
 
     }
 
@@ -78,15 +76,15 @@ public class CreateActivityController implements Initializable {
         String endTime =timeEnd.getText();
         activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
         activityRepository.save(activityList);
-        eventActivityList.addNew(eventId,activityList.getLastId());
-        activityTeamEventRepository.saveEvent(eventActivityList);
+        teamActivityList.addNew(teamId,activityList.getLastId());
+        activityTeamEventRepository.saveTeam(teamActivityList);
         backToEventActivity();
     }
 
 
     public void backToEventActivity(){
         try {
-            NPBPRouter.loadPage("event-activity",page,user,eventId);
+            NPBPRouter.loadPage("team-activity",page,user,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -18,11 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class    EditActivityController implements Initializable {
+public class EditEventActivityController implements Initializable {
     @FXML
     private TextField nameTextField;
 
@@ -44,9 +42,6 @@ public class    EditActivityController implements Initializable {
     @FXML
     private  TextField timeEnd;
 
-    private ActivityTeamEventRepository activityTeamEventRepository;
-
-    private EventActivityList eventActivityList;
     private ActivityRepository activityRepository;
 
     private  ActivityList activityList;
@@ -65,8 +60,7 @@ public class    EditActivityController implements Initializable {
         eventId = (int)NPBPRouter.getDataEvent();
         user = (User)NPBPRouter.getDataAccount();
         activity = activityList.findActivityById(id);
-        activityTeamEventRepository = new ActivityTeamEventRepository();
-        eventActivityList = activityTeamEventRepository.getEventActivity();
+
 
         // edit event
         nameTextField.setText(activity.getName());
@@ -87,6 +81,7 @@ public class    EditActivityController implements Initializable {
         String endTime =timeEnd.getText();
         activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
         activityRepository.save(activityList);
+        backToEventActivity();
     }
 
     public void delete(){
