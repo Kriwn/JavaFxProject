@@ -2,8 +2,11 @@ package cs211.project.controllers;
 
 import cs211.project.models.Account;
 import cs211.project.models.AccountList;
+import cs211.project.models.Admin;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
+import cs211.project.services.AccountTimeComparator;
+import cs211.project.services.AccountUsernameComparator;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -42,6 +45,7 @@ public class AdminMainController implements Initializable {
         accountList = accountRepository.getAccounts();
         accountArrayList = accountList.getAccounts();
         accountArrayList.removeIf(account -> account.getRoleAccount().equals("Admin"));
+        Admin.sort(accountArrayList,new AccountTimeComparator());
         setData(accountArrayList.get(0));
         setTable(accountArrayList, mfxTableView);
     }
