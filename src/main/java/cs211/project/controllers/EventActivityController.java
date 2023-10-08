@@ -114,4 +114,12 @@ public class EventActivityController {
             throw new RuntimeException(e);
         }
     }
+    public void back(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page,user,eventId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
