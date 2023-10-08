@@ -98,6 +98,14 @@ public class JoinEventController {
             throw new RuntimeException(e);
         }
     }
+
+    public void goToSelectTeam(){
+        try {
+            NPBPRouter.loadPage("select-team-to-join",page,user,event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 /*

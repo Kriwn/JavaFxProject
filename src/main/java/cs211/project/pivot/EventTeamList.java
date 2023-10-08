@@ -8,7 +8,7 @@ public class EventTeamList {
     public void addNew(int eventId, int teamId){
         list.add(new EventTeam(eventId, teamId));
     }
-    public ArrayList<Integer> findTeamByEvent(int eventId){
+    public ArrayList<Integer> findTeamByEventId(int eventId){
         ArrayList<Integer> result = new ArrayList<>();
         for(EventTeam eventTeam : list){
             if(eventTeam.isEventId(eventId)){

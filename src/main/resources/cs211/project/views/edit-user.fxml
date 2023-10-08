@@ -28,5 +28,6 @@
             </HBox>
          </content>
       </ScrollPane>
+      <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backToMyCreateEvent" text="back" />
     </children>
 </AnchorPane>

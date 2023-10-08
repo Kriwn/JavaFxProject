@@ -14,4 +14,8 @@ public class EventTeamRepository {
     }
 
     public void save(EventTeamList eventTeamList){datasource.writeData(eventTeamList);}
+
+    public EventTeamList getEventTeamList(){
+        return eventTeamList;
+    }
 }

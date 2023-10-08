@@ -63,7 +63,6 @@ public class MyCreateEventController implements Initializable {
         nameEvent.setText(event.getName());
     }
 
-
     public void setDateTimeJoin(){
         event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
         event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
@@ -77,18 +76,12 @@ public class MyCreateEventController implements Initializable {
     }
     public void goToStaffList(){
         try {
-            NPBPRouter.loadPage("team-list",page);
+            NPBPRouter.loadPage("team-list",page,user,event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void goToChat(){
-        try {
-            NPBPRouter.loadPage("chat",page);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
     public void goToEditUser(){
         try {
             NPBPRouter.loadPage("edit-user",page,user,event);
