@@ -21,6 +21,12 @@ public class EventActivityList {
         }
         return result;
     }
+
+
+
+    public void remove(int event_id,int ac_id){
+
+    }
     public ArrayList<Integer> findEventActivityByEventId(int event_id){
         ArrayList<Integer> result = new ArrayList<>();
         for(EventActivity eventActivity: list){

@@ -30,9 +30,16 @@ public class HelloApplication extends Application {
         NPBPRouter.when("home-page",viewPath + "home-page.fxml");
         NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
         NPBPRouter.when("my-event",viewPath + "my-event.fxml");
-        NPBPRouter.when("activity", viewPath + "activity.fxml");
-        NPBPRouter.when("create-activity", viewPath + "create-activity.fxml");
-        NPBPRouter.when("edit-activity", viewPath + "edit-activity.fxml");
+
+
+        NPBPRouter.when("event-activity", viewPath + "event-activity.fxml");
+        NPBPRouter.when("team-activity", viewPath + "team-activity.fxml");
+        NPBPRouter.when("create-event-activity", viewPath + "create-event-activity.fxml");
+        NPBPRouter.when("create-team-activity", viewPath + "create-team-activity.fxml");
+        NPBPRouter.when("edit-event-activity", viewPath + "edit-event-activity.fxml");
+        NPBPRouter.when("edit-team-activity", viewPath + "edit-team-activity.fxml");
+
+
         NPBPRouter.when("edit-user",viewPath + "edit-user.fxml");
         NPBPRouter.when("admin-main",viewPath + "admin-main.fxml");
         NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");

@@ -11,13 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class NPBPAnimation {
-    public static void pageTransition(Object object, int duration){
-        if(object instanceof AnchorPane) object = (AnchorPane) object;
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration), (Node) object);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-        fadeTransition.play();
-    }
+
     public static void scaleTransition(Control control){
         ScaleTransition scale = new ScaleTransition(Duration.millis(250), control);
         scale.setToX(1.1);

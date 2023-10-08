@@ -89,7 +89,7 @@ public class EventActivityDatasource implements Datasource<EventActivityList>{
 
         try {
             for (EventActivity eventActivity : data.getList()) {
-                String line =eventActivity.getActivity_id()+ "," + eventActivity.getEvent_id();
+                String line =eventActivity.getEvent_id()+ "," +eventActivity.getActivity_id() ;
                 buffer.append(line);
                 buffer.append("\n");
             }

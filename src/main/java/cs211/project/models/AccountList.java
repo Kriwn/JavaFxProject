@@ -47,14 +47,15 @@ public class AccountList {
             }
         }
     }
-    public void addNewAdminFromFile(String username, String name,String Id, String password, String role, String image, String time){
+    public void addNewAdminFromFile(String username, String name,String id, String password, String role, String image, String time, String theme){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new Admin(username,name,Id,password,role,image,time));
+                accounts.add(new Admin(username,name,id,password,role,image,time, theme));
+                this.lastId = Integer.parseInt(id);
             }
         }
     }
@@ -85,7 +86,7 @@ public class AccountList {
     public  void changeImage(String username,String path)
     {
         Account exist = findUserByUsername(username);
-        exist.setImage(path);
+        exist.setImagePath(path);
     }
     public boolean login(String username, String password){
         Account account = findUserByUsername(username);

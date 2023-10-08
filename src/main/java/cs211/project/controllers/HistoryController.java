@@ -48,7 +48,7 @@ public class HistoryController implements Initializable {
         }
         for(var i : events){
             i.checkTimeEvent();
-            if(i.getStatus()){
+            if(i.getStatusEvent()){
                 eventNotEnd.add(i);
             }
             else{
@@ -61,13 +61,13 @@ public class HistoryController implements Initializable {
     private void setTable(ArrayList<Event> events, MFXTableView<Event> tableView) {
         MFXTableColumn<Event> nameColumn = new MFXTableColumn<>("Name", false, Comparator.comparing(Event::getName));
         MFXTableColumn<Event> countMemberColumn = new MFXTableColumn<>("Count member", false, Comparator.comparing(Event::getCountMember));
-        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false, Comparator.comparing(Event::getDateStart));
-        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false, Comparator.comparing(Event::getDateEnd));
+        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false, Comparator.comparing(Event::getDateStartEvent));
+        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false, Comparator.comparing(Event::getDateEndEvent));
 
         nameColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getName));
         countMemberColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getCountMember));
-        dateStartColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateStart));
-        dateEndColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateEnd));
+        dateStartColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateStartEvent));
+        dateEndColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateEndEvent));
         tableView.getTableColumns().clear();
         tableView.getTableColumns().addAll(nameColumn, countMemberColumn , dateStartColumn , dateEndColumn);
 

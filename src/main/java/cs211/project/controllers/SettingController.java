@@ -63,6 +63,13 @@ public class SettingController {
             }
         }
     }
+    public void refresh(){
+        try {
+            NPBPRouter.goTo("home");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void confirm() throws IOException {
         String oldPass = oldTextField.getText().trim();

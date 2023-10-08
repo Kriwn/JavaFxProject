@@ -76,7 +76,7 @@ public class AccountDatasource implements Datasource<AccountList> {
                     accountList.addNewUserFromFile(username, name,Id, password, roleAccount, image, timeLogin, theme);
                 }
                 else if(roleAccount.equals("Admin")){
-                    accountList.addNewAdminFromFile(username, name,Id, password, roleAccount, image, timeLogin);
+                    accountList.addNewAdminFromFile(username, name,Id, password, roleAccount, image, timeLogin, theme);
                 }
             }
         } catch (IOException e) {
@@ -108,7 +108,7 @@ public class AccountDatasource implements Datasource<AccountList> {
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
             for (Account user : data.getAccounts()) {
-                String line = user.getRoleAccount() + "," + user.getAccountId() + "," +  user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getImage() + "," + user.getTimeLogin() + "," + user.getAccountTheme();
+                String line = user.getRoleAccount() + "," + user.getAccountId() + "," +  user.getUsername() + "," + user.getName() + "," + user.getPassword() + "," + user.getImagePath() + "," + user.getTimeLogin() + "," + user.getAccountTheme();
                 buffer.append(line);
                 buffer.append("\n");
             }
