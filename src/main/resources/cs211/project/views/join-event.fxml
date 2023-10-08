@@ -16,7 +16,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="156.25" layoutY="600.0" mnemonicParsing="false" onAction="#goToSelectTeam" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Staff" textFill="WHITE" />
+            <Button layoutX="156.25" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Staff" textFill="WHITE" />
             <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Event">
                <font>
                   <Font size="18.0" />
@@ -63,7 +63,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="368.75" layoutY="600.0" mnemonicParsing="false" onAction="#onJointEventButton" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Event" textFill="WHITE" />
+            <Button fx:id="joinEventButton" layoutX="368.75" layoutY="600.0" mnemonicParsing="false" onAction="#onJointEventButton" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Join Event" textFill="WHITE" />
             <Label fx:id="countEmpty" layoutX="419.0" layoutY="290.0" text="label">
                <font>
                   <Font size="18.0" />
