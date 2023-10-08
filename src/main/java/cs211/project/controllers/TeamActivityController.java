@@ -117,4 +117,12 @@ public class TeamActivityController {
             throw new RuntimeException(e);
         }
     }
+
+    public void back(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page,user,teamId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

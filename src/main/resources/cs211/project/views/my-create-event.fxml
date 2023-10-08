@@ -54,14 +54,17 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
+                <Button layoutX="460.0" layoutY="490.0" mnemonicParsing="false" onAction="#goToEventActivity" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="activity" textFill="WHITE" />
+                <Button layoutX="460.0" layoutY="570.0" mnemonicParsing="false" onAction="#goToStaffList" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="staff" textFill="WHITE" />
                 <Label layoutX="370.0" layoutY="570.0" text="Staff :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
                 <MFXButton layoutX="264.0" layoutY="411.0" onAction="#goToEditEvent" text="details" />
+                <MFXButton layoutX="484.0" layoutY="411.0" onAction="#goToEditEvent" text="chat" />
                 <MFXButton layoutX="254.0" layoutY="491.0" text="edit team" />
-                <MFXButton layoutX="477.0" layoutY="491.0" text="activity" />
+                <MFXButton layoutX="477.0" layoutY="491.0" onAction="#goToEventActivity" text="activity" />
                 <MFXButton layoutX="257.0" layoutY="571.0" onAction="#goToEditUser" text="edit user" />
                 <MFXButton layoutX="484.0" layoutY="571.0" onAction="#goToStaffList" text="staff" />
                 <DatePicker fx:id="dateStart" layoutX="416.0" layoutY="93.0" promptText="Start date" />
