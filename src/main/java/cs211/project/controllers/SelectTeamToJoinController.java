@@ -1,9 +1,10 @@
 package cs211.project.controllers;
 
-import cs211.project.models.*;
+import cs211.project.models.Event;
+import cs211.project.models.Team;
+import cs211.project.models.TeamList;
+import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.repository.AccountRepository;
-import cs211.project.repository.EventRepository;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
@@ -11,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,9 +23,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TeamListController implements Initializable {
-    @FXML private ScrollPane scrollPane;
-    @FXML private VBox vbox;
+public class SelectTeamToJoinController implements Initializable {
+    @FXML
+    private VBox vbox;
     @FXML private AnchorPane page;
     private TeamRepository teamRepository;
     private EventTeamRepository eventTeamRepository;
@@ -84,7 +84,7 @@ public class TeamListController implements Initializable {
 
         hbox.setOnMouseClicked(click ->{
             try {
-                NPBPRouter.loadPage("team-detail",page,user,event.getEventId(),teamlist.findTeamById(id).getTeamId());
+                NPBPRouter.loadPage("join-team",page,user,event.getEventId(),teamlist.findTeamById(id).getTeamId());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -95,15 +95,7 @@ public class TeamListController implements Initializable {
 
     public void backButton(){
         try {
-            NPBPRouter.loadPage("my-create-event",page);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void createTeamButton(){
-        try {
-            NPBPRouter.loadPage("create-staff-team",page,user,event);
+            NPBPRouter.loadPage("join-event",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

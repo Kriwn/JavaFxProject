@@ -37,6 +37,7 @@ public class TeamList {
         closeDate = closeDate.trim();
         closeTime = closeTime.trim();
 
+
         Team exist = findTeamByName(name);
         if(!name.equals("")){
             if(exist == null){

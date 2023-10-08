@@ -1,16 +1,16 @@
 package cs211.project.pivot;
 
-public class AccountTeam {
+public class TeamAccount {
     private int account_id;
     private int team_id;
     private String status = "NotBan";
     private String role = "Member";
 
-    public AccountTeam(int acc_id, int team_id){
+    public TeamAccount(int acc_id, int team_id){
         this.account_id = acc_id;
         this.team_id = team_id;
     }
-    public AccountTeam(int acc_id, int team_id, String status, String role){
+    public TeamAccount(int acc_id, int team_id, String status, String role){
         this.account_id = acc_id;
         this.team_id = team_id;
         this.status = status;
@@ -27,23 +27,29 @@ public class AccountTeam {
     public int getAccount_id() {
         return account_id;
     }
-
     public int getTeam_id() {
         return team_id;
     }
     public String getStatus(){
         return status;
     }
-
     public String getRole() {
         return role;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
-
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamAccount{" +
+                "account_id=" + account_id +
+                ", team_id=" + team_id +
+                ", status='" + status + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

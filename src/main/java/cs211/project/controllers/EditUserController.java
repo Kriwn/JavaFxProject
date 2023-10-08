@@ -87,7 +87,7 @@ public class EditUserController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        UserCardController userCardController = (UserCardController) fxmlLoader.getController();;
+        UserCardController userCardController = (UserCardController) fxmlLoader.getController();
         Label usernameLabel = userCardController.getUsernameLabel();
         Label statusLabel = userCardController.getStatusLabel();
         Circle img = userCardController.getImgCircle();
@@ -125,5 +125,13 @@ public class EditUserController implements Initializable {
         username.setText(selectUser.getName());
         status.setText(accountEvent.getStatus());
         selectBox.setFocusTraversable(true);
+    }
+
+    public void backToMyCreateEvent(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page,user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

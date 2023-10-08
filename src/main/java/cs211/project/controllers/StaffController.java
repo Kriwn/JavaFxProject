@@ -22,14 +22,6 @@ public class StaffController {
         this.imgCircle = circle;
     }
 
-    public void setRoleLabel(Label role){
-        this.roleLabel = role;
-    }
-
-    public void setStatusLabel(Label status){
-        this.statusLabel = status;
-    }
-
     public void setUsernameLabel(Label username){
         this.usernameLabel = username;
     }

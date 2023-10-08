@@ -7,6 +7,7 @@ import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
+import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
@@ -47,6 +48,7 @@ public class CreateStaffTeamController {
     private AccountRepository accountRepository;
     private TeamRepository teamRepository;
     private EventTeamList eventTeamList;
+    private EventTeamRepository eventTeamRepository;
     private ArrayList<Team> teams;
     private TeamList teamList;
     private Event event;
@@ -59,6 +61,7 @@ public class CreateStaffTeamController {
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
         teams = teamList.getTeams();
+        eventTeamRepository = new EventTeamRepository();
     }
 
     public void createTeamButton(){
@@ -70,10 +73,17 @@ public class CreateStaffTeamController {
         String closeTime = closeTimeText.getText().trim();
 
         teamList.createTeam(name,member,openDateText,openTime,closeDateText,closeTime,"0");
+        Team exist = teamList.findTeamByName(name);
+        int teamId = exist.getTeamId();
+
+        eventTeamList = eventTeamRepository.getEventTeamList();
+        eventTeamList.addNew(event.getEventId(),teamId);
+        eventTeamRepository.save(eventTeamList);
+
         teamRepository.save(teamList);
 
         try {
-            NPBPRouter.loadPage("team-list",page,user,event.getEventId());
+            NPBPRouter.loadPage("team-list",page,user,event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
