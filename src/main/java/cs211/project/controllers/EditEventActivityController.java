@@ -48,6 +48,10 @@ public class EditEventActivityController implements Initializable {
 
     private  Activity activity;
 
+    private  ActivityTeamEventRepository activityTeamEventRepository;
+
+    private  EventActivityList eventActivityList;
+
     private  int id;
 
     private  int eventId;
@@ -60,6 +64,8 @@ public class EditEventActivityController implements Initializable {
         eventId = (int)NPBPRouter.getDataEvent();
         user = (User)NPBPRouter.getDataAccount();
         activity = activityList.findActivityById(id);
+        activityTeamEventRepository = new ActivityTeamEventRepository();
+        eventActivityList = activityTeamEventRepository.getEventActivity();
 
 
         // edit event
@@ -85,11 +91,12 @@ public class EditEventActivityController implements Initializable {
     }
 
     public void delete(){
-//        activityList.remove(activityList.findActivityById(id));
-//        activityRepository.save(activityList);
+        eventActivityList.remove(eventId,id);
+        activityTeamEventRepository.saveEvent(eventActivityList);
 
-//        eventActivityList.remove(eventId,id);
-//        activityTeamEventRepository.saveEvent(eventActivityList);
+        activityList.remove(activityList.findActivityById(id));
+        activityRepository.save(activityList);
+        backToEventActivity();
     }
 
 

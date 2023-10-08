@@ -52,6 +52,10 @@ public class EditTeamActivityController {
     private  int teamId;
 
     private User user;
+
+    private  ActivityTeamEventRepository activityTeamEventRepository;
+
+    private  TeamActivityList teamActivityList;
     public void initialize(URL url, ResourceBundle resourceBundle){
         activityRepository = new ActivityRepository();
         activityList = activityRepository.getActivityList();
@@ -59,6 +63,8 @@ public class EditTeamActivityController {
         teamId = (int)NPBPRouter.getDataTeam();
         user = (User)NPBPRouter.getDataAccount();
         activity = activityList.findActivityById(id);
+        activityTeamEventRepository = new ActivityTeamEventRepository();
+        teamActivityList = activityTeamEventRepository.getTeamActivity();
 
 
         // edit event
@@ -84,11 +90,13 @@ public class EditTeamActivityController {
     }
 
     public void delete(){
-//        activityList.remove(activityList.findActivityById(id));
-//        activityRepository.save(activityList);
 
-//        eventActivityList.remove(teamId,id);
-//        activityTeamEventRepository.saveTeam(eventActivityList);
+        teamActivityList.remove(teamId,id);
+        activityTeamEventRepository.saveTeam(teamActivityList);
+
+        activityList.remove(activityList.findActivityById(id));
+        activityRepository.save(activityList);
+        backToEventActivity();
     }
 
 

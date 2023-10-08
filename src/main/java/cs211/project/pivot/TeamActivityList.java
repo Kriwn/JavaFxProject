@@ -1,6 +1,7 @@
 package cs211.project.pivot;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TeamActivityList {
     private ArrayList<TeamActivity> list;
@@ -22,6 +23,15 @@ public class TeamActivityList {
         return result;
     }
 
+    public void remove(int team_id, int ac_id) {
+        Iterator<TeamActivity> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            TeamActivity teamActivity = iterator.next();
+            if (teamActivity.isTeamId(team_id) && teamActivity.isActivityId(ac_id)) {
+                iterator.remove(); // Remove the element using the iterator
+            }
+        }
+    }
     public ArrayList<Integer> findEventActivityByTeamId(int team_id){
         ArrayList<Integer> result = new ArrayList<>();
         for(TeamActivity teamActivity: list){
