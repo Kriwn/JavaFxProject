@@ -1,7 +1,6 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class ChatText {
@@ -63,4 +62,15 @@ public class ChatText {
         return this.username.equals(username);
     }
     public boolean isChatId(int chatId){return this.chatId == chatId;}
+
+    @Override
+    public String toString() {
+        return "ChatText{" +
+                "chatId=" + chatId +
+                ", date=" + date +
+                ", time=" + time +
+                ", username='" + username + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

@@ -84,7 +84,7 @@ public class SelectTeamToJoinController implements Initializable {
 
         hbox.setOnMouseClicked(click ->{
             try {
-                NPBPRouter.loadPage("join-team",page,user,event.getEventId(),teamlist.findTeamById(id).getTeamId());
+                NPBPRouter.loadPage("join-team",page,user,event,teamlist.findTeamById(id));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

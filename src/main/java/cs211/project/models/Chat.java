@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Chat {
     private ArrayList<ChatText> texts;
-    private int lastId;
+    private int lastId = 0;
     public Chat(){
         texts = new ArrayList<>();
     }
@@ -16,7 +16,7 @@ public class Chat {
         username.trim();
 
         if(!text.equals("")){
-            ChatText exist = findTextByUsername(username);
+            ChatText exist = findTextByChatId(Integer.parseInt(chatId));
             if(exist == null){
                 texts.add(new ChatText(chatId,date,time,username,text));
                 this.lastId = Integer.parseInt(chatId);
@@ -30,10 +30,10 @@ public class Chat {
         username.trim();
 
         if(!text.equals("")){
-            ChatText exist = findTextByUsername(username);
-            if(exist == null){
+//            ChatText exist = findTextByUsername(username);
+//            if(exist == null){
                 texts.add(new ChatText(""+(++lastId),date,time,username,text));
-            }
+//            }
         }
     }
 
@@ -60,5 +60,13 @@ public class Chat {
 
     public ArrayList<ChatText> getChat() {
         return texts;
+    }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "texts=" + texts +
+                ", lastId=" + lastId +
+                '}';
     }
 }

@@ -2,8 +2,6 @@ package cs211.project.controllers;
 
 import cs211.project.models.*;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.repository.AccountRepository;
-import cs211.project.repository.EventRepository;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
@@ -51,7 +49,6 @@ public class TeamListController implements Initializable {
 
         listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));
 
-        System.out.println(teamlist.toString());
         System.out.println(listId);
 
         for(Integer id : listId){
@@ -87,7 +84,7 @@ public class TeamListController implements Initializable {
 
         hbox.setOnMouseClicked(click ->{
             try {
-                NPBPRouter.loadPage("team-detail",page,user,event.getEventId(),teamlist.findTeamById(id).getTeamId());
+                NPBPRouter.loadPage("team-detail",page,user,event.getEventId(),teamlist.findTeamById(id));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

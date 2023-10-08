@@ -61,7 +61,7 @@
                 </Label>
                 <MFXButton layoutX="264.0" layoutY="411.0" onAction="#goToEditEvent" text="details" />
                 <MFXButton layoutX="254.0" layoutY="491.0" text="edit team" />
-                <MFXButton layoutX="477.0" layoutY="491.0" text="activity" />
+                <MFXButton layoutX="477.0" layoutY="491.0" onAction="#goToEventActivity" text="activity" />
                 <MFXButton layoutX="257.0" layoutY="571.0" onAction="#goToEditUser" text="edit user" />
                 <MFXButton layoutX="484.0" layoutY="571.0" onAction="#goToStaffList" text="staff" />
                 <DatePicker fx:id="dateStart" layoutX="416.0" layoutY="93.0" promptText="Start date" />

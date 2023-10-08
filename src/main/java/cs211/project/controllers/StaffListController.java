@@ -29,17 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class StaffListController implements Initializable {
-    @FXML
-    private VBox vbox1;
-    @FXML
-    private VBox vbox2;
-    @FXML
-    private VBox vbox3;
-    private Account selectStaff;
-    private VBox selectBox;
-    @FXML
-    AnchorPane page;
+public class StaffListController implements  Initializable{
+    @FXML private VBox vbox1;
+    @FXML private VBox vbox2;
+    @FXML private VBox vbox3;
+    @FXML private AnchorPane page;
 
     private User user;
     private Team team;
@@ -52,20 +46,23 @@ public class StaffListController implements Initializable {
     private TeamAccountRepository teamAccountRepository;
     private ArrayList<Integer> listId;
     private TeamList teamList;
-
-    @Override
+    private Account selectStaff;
+    private VBox selectBox;
+//
     public void initialize(URL url, ResourceBundle resourceBundle){
         user = (User) NPBPRouter.getDataAccount();
 
-        int teamId = (Integer) NPBPRouter.getDataTeam();
+        int teamId = (int) NPBPRouter.getDataTeam();
         accountRepository = new AccountRepository();
-        teamAccountRepository = new TeamAccountRepository();
+        accountList = accountRepository.getAccounts();
 
+//        team = (Team) NPBPRouter.getDataTeam();
+//        int teamId = team.getTeamId();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
         team = teamList.findTeamById(teamId);
 
-        accountList = accountRepository.getAccounts();
+        teamAccountRepository = new TeamAccountRepository();
         teamAccountList = teamAccountRepository.getTeamAccountList();
         listId = new ArrayList<>();
         listId.addAll(teamAccountList.findAllAccountsByTeam(teamId));
@@ -78,10 +75,10 @@ public class StaffListController implements Initializable {
             if(count%3==2){vbox3.getChildren().add(createCard(id));}
             count++;
         }
-
-//        page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
+//
+////        page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
     }
-
+//
     public VBox createCard(int id) {
         File file = new File("src/main/resources/cs211/project/views/staff-card.fxml");
         URL url = null;
@@ -103,19 +100,22 @@ public class StaffListController implements Initializable {
         Label usernameLabel = staffController.getUsernameLabel();
         Label statusLabel = staffController.getStatusLabel();
         Label roleLabel = staffController.getRoleLabel();
-        Circle img = staffController.getImgCircle();
+        Circle circle = staffController.getImgCircle();
 
         account = accountList.findUserByAccountId(id);
         teamAccount = teamAccountList.findAccountInTeam(id, team.getTeamId());
         usernameLabel.setText(account.getUsername());
         roleLabel.setText(teamAccount.getRole());
         statusLabel.setText(teamAccount.getStatus());
-        img.setFill(new ImagePattern(new Image("file:" + account.getImage())));
+        circle.setFill(new ImagePattern(new Image("file:" + account.getImagePath())));
 
         VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
-            selectStaff = account;
+//            int selectAcc = event.getEventType().getName();
+            System.out.println(event.getTarget());
+            //selectStaff = account;
             selectBox = finalVbox;
+            //System.out.println(selectStaff.getUsername());
         });
 
         return vbox;
@@ -152,7 +152,7 @@ public class StaffListController implements Initializable {
         Label role = (Label) selectBox.getChildren().get(4);
         Label status = (Label) selectBox.getChildren().get(5);
 
-        circle.setFill(new ImagePattern(new Image("file:" + user.getImage())));
+        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
         username.setText(selectStaff.getName());
         role.setText(teamAccount.getRole());
         status.setText(teamAccount.getStatus());

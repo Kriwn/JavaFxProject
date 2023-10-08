@@ -1,5 +1,6 @@
 package cs211.project.services;
 
+import cs211.project.models.Event;
 import cs211.project.models.Team;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
@@ -132,12 +133,20 @@ public final class NPBPRouter {
         route.dataEvent = data2;
         loadNewPage(route, parent);
     }
-
     public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2,Object data3) throws IOException{
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.dataAccount = data1;
         route.dataEvent = data2;
+        route.dataTeam = data3;
         route.dataActivity = data3;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2,Object data3, Object data4) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        route.dataActivity = data4;
         loadNewPage(route, parent);
     }
     public static void loadPage(String routeLabel, Parent parent, Object data1, Object data2, Team data3) throws IOException{
