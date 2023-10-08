@@ -52,6 +52,8 @@ public class JoinEventController {
     private TextArea detailsEvent;
     @FXML
     private Button joinEventButton;
+    @FXML
+    private Label errorLabel;
     private EventList eventList;
     private Event event;
 
@@ -85,6 +87,7 @@ public class JoinEventController {
 
         showEvent(event);
         detailsEvent.setEditable(false);
+        errorLabel.setVisible(false);
     }
 
     public void showEvent(Event event){
@@ -107,17 +110,23 @@ public class JoinEventController {
     }
 
     public void onJointEventButton(){
-        event.addCountMember();
-        eventRepository.save(eventList);
-        accountEventList = accountEventRepository.getList_join();
-        user.addMyEvent(event.getEventId());
-        accountEventList.addNew(user.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(accountEventList);
+        if(event.checkMember()) {
+            event.addCountMember();
+            eventRepository.save(eventList);
+            accountEventList = accountEventRepository.getList_join();
+            user.addMyEvent(event.getEventId());
+            accountEventList.addNew(user.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(accountEventList);
 
-        try {
-            NPBPRouter.loadPage("home-page",page,user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                NPBPRouter.loadPage("home-page", page, user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            errorLabel.setVisible(true);
+            errorLabel.setText("Event Full!!!");
         }
     }
 

@@ -67,6 +67,43 @@ public class Event {
 
     public Event(String name, String id, String details,
                  String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember, Image image){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.now();
+        this.openDateEnd = LocalDate.now();
+        this.openTimeStart = LocalTime.now();
+        this.openTimeEnd = LocalTime.now();
+        this.countMember = Integer.parseInt(countMember);
+        this.image = image;
+    }
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.now();
+        this.openDateEnd = LocalDate.now();
+        this.openTimeStart = LocalTime.now();
+        this.openTimeEnd = LocalTime.now();
+        this.countMember = Integer.parseInt(countMember);
+        setImage(new Image("file:"+"images/"+"default.png"));
+    }
+
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
                  String countMember, String maxMember){
 
         this.name = name;
@@ -100,6 +137,8 @@ public class Event {
         setImage(new Image("file:" + "images/default.png"));
         this.eventId = Integer.parseInt(id);
     }
+
+
 
     public void checkTimeEvent(){
         if(dateEndEvent.isAfter(LocalDate.now())){

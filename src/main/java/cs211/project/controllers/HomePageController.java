@@ -128,7 +128,7 @@ public class HomePageController implements Initializable {
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
             data.checkTimeJoin();
-            if(data.getStatusEvent() && data.checkMember() && data.getStatusJoin()) {
+            if(data.getStatusEvent() && data.getStatusJoin()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

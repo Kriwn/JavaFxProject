@@ -41,6 +41,10 @@ public class MyCreateEventController implements Initializable {
 
     @FXML
     private Label nameEvent;
+    @FXML
+    private TextField maxMember;
+    @FXML
+    private Label errorLabel;
     private EventRepository eventRepository;
     private EventList eventList;
     private ArrayList<Event> events;
@@ -56,6 +60,7 @@ public class MyCreateEventController implements Initializable {
         event = eventList.findEventById(eventId);
 
         showEvent(event);
+        errorLabel.setVisible(false);
     }
 
     public void showEvent(Event event){
@@ -64,15 +69,23 @@ public class MyCreateEventController implements Initializable {
     }
 
     public void setDateTimeJoin(){
-        event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
-        event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
-        event.setOpenTimeStart(LocalTime.parse(timeStart.getText()));
-        event.setOpenTimeEnd(LocalTime.parse(timeEnd.getText()));
-        eventRepository.save(eventList);
-        dateStart.setValue(null);
-        dateEnd.setValue(null);
-        timeStart.clear();
-        timeEnd.clear();
+        try {
+            event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
+            event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
+            event.setOpenTimeStart(LocalTime.parse(timeStart.getText()));
+            event.setOpenTimeEnd(LocalTime.parse(timeEnd.getText()));
+            event.setCapacity(Integer.parseInt(maxMember.getText()));
+            eventRepository.save(eventList);
+            dateStart.setValue(null);
+            dateEnd.setValue(null);
+            timeStart.clear();
+            timeEnd.clear();
+            maxMember.clear();
+        } catch (Exception e) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Wrong entry!!!");
+        }
+
     }
     public void goToStaffList(){
         try {
