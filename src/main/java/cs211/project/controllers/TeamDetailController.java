@@ -11,7 +11,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TeamDetailController implements Initializable {
@@ -41,10 +40,11 @@ public class TeamDetailController implements Initializable {
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
 
+        team = (Team) NPBPRouter.getDataTeam();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
-        int teamId = (Integer) NPBPRouter.getDataTeam();
-        team = teamList.findTeamById(teamId);
+
+        System.out.println(team.getTeamId()); //debug
 
         showTeam(team,event);
 
@@ -73,7 +73,7 @@ public class TeamDetailController implements Initializable {
 
     public void goToTeamMember(){
         try {
-            NPBPRouter.loadPage("staff-list",page,user,event.getEventId(),team.getTeamId());
+            NPBPRouter.loadPage("show-member",page,user,event,team.getTeamId());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

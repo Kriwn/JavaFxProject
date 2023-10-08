@@ -53,7 +53,7 @@ public class HelloApplication extends Application {
         NPBPRouter.when("setting",viewPath + "setting.fxml");
         NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
         NPBPRouter.when("staff-card", viewPath + "staff-card.fxml");
-        NPBPRouter.when("staff-list", viewPath + "staff-list.fxml");
+        NPBPRouter.when("show-member", viewPath + "show-member.fxml");
         NPBPRouter.when("chat", viewPath + "chat.fxml");
         NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
         NPBPRouter.when("history", viewPath + "history.fxml");

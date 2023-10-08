@@ -6,8 +6,11 @@ import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
+import cs211.project.repository.EventTeamRepository;
+import cs211.project.repository.TeamAccountRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -15,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class JoinEventController {
 
@@ -46,22 +50,40 @@ public class JoinEventController {
 
     @FXML
     private TextArea detailsEvent;
+    @FXML
+    private Button joinEventButton;
     private EventList eventList;
     private Event event;
 
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
+    private TeamAccountRepository accountTeamRepository;
     private AccountEventList accountEventList;
+    private EventTeamRepository eventTeamRepository;
     private User user;
     public void initialize(){
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        user = (User) NPBPRouter.getDataAccount();
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
-        showEvent(event);
+
+        user = (User) NPBPRouter.getDataAccount();
         accountEventRepository = new AccountEventRepository();
         user.addMyEventFromFile(accountEventRepository.getList_join().findEventsByAccount(user.getAccountId()));
+
+        eventTeamRepository = new EventTeamRepository();
+        ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
+
+        accountTeamRepository = new TeamAccountRepository();
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+
+        System.out.println(teamIdEvent);
+        System.out.println(teamIdUser);
+        if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
+            joinEventButton.setVisible(false);
+        }
+
+        showEvent(event);
         detailsEvent.setEditable(false);
     }
 

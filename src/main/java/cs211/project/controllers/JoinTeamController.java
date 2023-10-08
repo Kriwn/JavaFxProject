@@ -2,7 +2,6 @@ package cs211.project.controllers;
 
 import cs211.project.models.*;
 import cs211.project.pivot.TeamAccountList;
-import cs211.project.repository.EventRepository;
 import cs211.project.repository.TeamAccountRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class JoinTeamController {
+public class JoinTeamController implements Initializable {
     @FXML private Label countMemberLabel;
     @FXML private Label maxMemberLabel;
     @FXML private Label dateEndLabel;
@@ -31,13 +30,12 @@ public class JoinTeamController {
     private TeamAccountRepository teamAccountRepository;
     private TeamAccountList teamAccountList;
 
-    public void initialize(){
+    public void initialize(URL url, ResourceBundle resourceBundle){
         user = (User) NPBPRouter.getDataAccount();
 
+        team = (Team) NPBPRouter.getDataTeam();
         teamRepository = new TeamRepository();
         teamlist = teamRepository.getTeamList();
-        int teamId = (Integer) NPBPRouter.getDataTeam();
-        team = teamlist.findTeamById(teamId);
 
         teamAccountRepository = new TeamAccountRepository();
 

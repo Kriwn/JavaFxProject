@@ -51,6 +51,24 @@ public class EventList {
         }
     }
 
+    public boolean checkTeamInEvent(ArrayList<Integer> arrayList, ArrayList<Integer> arrayList2){
+        for(var i : arrayList){
+            if(isTeam(i, arrayList2)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isTeam(int teamId,ArrayList<Integer> arrayList){
+        for(var i : arrayList){
+            if(teamId == i){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Event findEventById(int event_id){
         for (Event event : events) {
             if (event.isEventId(event_id)) {

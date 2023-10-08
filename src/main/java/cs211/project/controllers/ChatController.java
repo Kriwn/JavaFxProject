@@ -1,7 +1,6 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.pivot.TeamChat;
 import cs211.project.pivot.TeamChatList;
 import cs211.project.repository.*;
 import cs211.project.services.NPBPRouter;
@@ -59,13 +58,15 @@ public class ChatController implements Initializable {
 
         event = (Event) NPBPRouter.getDataEvent();
 
+//        team = (Team) NPBPRouter.getDataTeam();
+//        int teamId = team.getTeamId();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
-        int teamId = (Integer) NPBPRouter.getDataTeam();
+        int teamId = (int) NPBPRouter.getDataTeam();
         team = teamList.findTeamById(teamId);
 
         chatRepository = new ChatRepository();
-        chat = chatRepository.getChatList();
+        chat = chatRepository.getChat();
 
         teamChatRepository = new TeamChatRepository();
         teamChatList = teamChatRepository.getTeamChatList();
@@ -108,7 +109,7 @@ public class ChatController implements Initializable {
         Label textLabel = chatTextController.getTextLabel();
 
         chatText = chat.findTextByChatId(id);
-        usernameLabel.setText(account.getUsername());
+        usernameLabel.setText(chatText.getUsername());
         dateLabel.setText(chatText.getDate().toString());
         timeLabel.setText(chatText.getTime().toString());
         textLabel.setText(chatText.getText());
@@ -122,7 +123,12 @@ public class ChatController implements Initializable {
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
         String time = currentTime.getHour() + ":" + currentTime.getMinute();
-        chat.sendNewText(currentDate.toString(),time, account.getUsername(), textField.getText());
+        String text = textField.getText();
+        System.out.println(text); //debug
+        chat.sendNewText(currentDate.toString(),time, account.getUsername(), text);
+
+        System.out.println(chat.toString()); //debug
+
         chatRepository.save(chat);
 
         HBox hbox = createCard(chat.getLastId());
