@@ -140,6 +140,7 @@ public final class NPBPRouter {
         route.dataActivity = data3;
         loadNewPage(route, parent);
     }
+
     public static void loadPage(String routeLabel, Parent parent, Object data1, Object data2, Team data3) throws IOException{
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.dataAccount = data1;
