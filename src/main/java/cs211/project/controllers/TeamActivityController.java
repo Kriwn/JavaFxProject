@@ -1,14 +1,13 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Activity;
-import cs211.project.models.ActivityList;
-import cs211.project.models.User;
+import cs211.project.models.*;
 import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivity;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
+import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -43,15 +42,26 @@ public class TeamActivityController {
 
     private  int teamId;
 
+    private int eventId;
+
+    private TeamRepository teamRepository;
+
+
+    private TeamList teamList;
+
     @FXML
     public void initialize() {
         TeamEventrepository = new ActivityTeamEventRepository();
         ShowActivitys = new ActivityList();
         teamActivityList  = TeamEventrepository.getTeamActivity();
+        teamRepository = new TeamRepository();
+        teamList = teamRepository.getTeamList();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
         user = (User) NPBPRouter.getDataAccount();
         teamId = (int) NPBPRouter.getDataTeam();
+        eventId = (int)NPBPRouter.getDataEvent();
+
 
         for(TeamActivity team :  teamActivityList.getList()) {
             if (team.isTeamId(teamId)) {
@@ -67,7 +77,7 @@ public class TeamActivityController {
             public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
                 if (newValue != null) {
                     try {
-                        NPBPRouter.loadPage("edit-team-activity",page,user,teamId,newValue.getId());
+                        NPBPRouter.loadPageEditTeam("edit-team-activity",page,user,teamId,newValue.getId());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -78,32 +88,37 @@ public class TeamActivityController {
 
     private void showTable(ActivityList activityList) {
         TableColumn<Activity, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setResizable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+        TableColumn<Activity, String> startDateColumn = new TableColumn<>("dateStart");
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
+        startDateColumn.setResizable(false);
 
-        TableColumn<Activity, String> StartDateColumn = new TableColumn<>("dateStart");
-        StartDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
 
-        TableColumn<Activity, String> StartTimeColumn = new TableColumn<>("timeStart");
-        StartTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStart"));
+        TableColumn<Activity, String> startTimeColumn = new TableColumn<>("timeStart");
+        startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStart"));
+        startTimeColumn.setResizable(false);
 
-        TableColumn<Activity, String> EndDateColumn = new TableColumn<>("dateEnd");
-        EndDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        TableColumn<Activity, String> endDateColumn = new TableColumn<>("dateEnd");
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        endDateColumn.setResizable(false);
 
-        TableColumn<Activity, String> EndTimeColumn = new TableColumn<>("timeEnd");
-        EndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
+        TableColumn<Activity, String> endTimeColumn = new TableColumn<>("timeEnd");
+        endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
+        endTimeColumn.setResizable(false);
 
-        TableColumn<Activity, String> StatusColumn = new TableColumn<>("status");
-        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+        TableColumn<Activity, String> statusColumn = new TableColumn<>("status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setResizable(false);
 
         activityTableView.getColumns().clear();
         activityTableView.getColumns().add(nameColumn);
-        activityTableView.getColumns().add(StartDateColumn);
-        activityTableView.getColumns().add(StartTimeColumn);
-        activityTableView.getColumns().add(EndDateColumn);
-        activityTableView.getColumns().add(EndTimeColumn);
-        activityTableView.getColumns().add(StatusColumn);
+        activityTableView.getColumns().add(startDateColumn);
+        activityTableView.getColumns().add(startTimeColumn);
+        activityTableView.getColumns().add(endDateColumn);
+        activityTableView.getColumns().add(endTimeColumn);
+        activityTableView.getColumns().add(statusColumn);
         activityTableView.getItems().clear();
 
         for (Activity activity: activityList.getActivity()) {
@@ -112,7 +127,7 @@ public class TeamActivityController {
     }
     public void create(){
         try {
-            NPBPRouter.loadPage("create-team-activity",page,user,teamId);
+            NPBPRouter.loadPage("create-team-activity",page,user,eventId,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -120,7 +135,7 @@ public class TeamActivityController {
 
     public void back(){
         try {
-            NPBPRouter.loadPage("my-create-event",page,user,teamId);
+            NPBPRouter.loadPage("team-detail",page,user,eventId,teamList.findTeamById(teamId));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

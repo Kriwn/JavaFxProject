@@ -15,7 +15,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="250.0" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Activities" textFill="WHITE" />
+            <Button layoutX="250.0" layoutY="600.0" mnemonicParsing="false" onAction="#goToActivity" prefHeight="50.0" prefWidth="100.0" styleClass="defaultButton" text="Activities" textFill="WHITE" />
             <Label layoutX="65.0" layoutY="340.0" text="ชื่อ Team">
                <font>
                   <Font size="18.0" />

@@ -1,6 +1,7 @@
 package cs211.project.controllers;
 
 import cs211.project.models.ActivityList;
+import cs211.project.models.Event;
 import cs211.project.models.User;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivityList;
@@ -48,7 +49,7 @@ public class CreateTeamActivityController implements Initializable {
 
     private ActivityList activityList;
 
-
+    private int eventId;
 
     private  int teamId;
 
@@ -62,7 +63,7 @@ public class CreateTeamActivityController implements Initializable {
         teamActivityList = activityTeamEventRepository.getTeamActivity();
         user = (User) NPBPRouter.getDataAccount();
         teamId = (int)NPBPRouter.getDataTeam();
-
+        eventId = (int)NPBPRouter.getDataEvent();
     }
 
 
@@ -84,7 +85,7 @@ public class CreateTeamActivityController implements Initializable {
 
     public void backToEventActivity(){
         try {
-            NPBPRouter.loadPage("team-activity",page,user,teamId);
+            NPBPRouter.loadPage("team-activity",page,user,eventId,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
