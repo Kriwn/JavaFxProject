@@ -4,6 +4,7 @@ import cs211.project.models.AccountList;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPRouter;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,12 +19,13 @@ import java.nio.file.StandardCopyOption;
 
 public class SettingController {
 
-    private User user;
     @FXML private TextField oldTextField;
     @FXML private AnchorPane page;
     @FXML private TextField newTextField;
     @FXML private TextField conTextField;
     @FXML private Label errorLabel;
+    @FXML private MFXButton themeButton;
+    private User user;
     private AccountList accounts;
     private AccountRepository repository;
 
@@ -32,6 +34,7 @@ public class SettingController {
         accounts = repository.getAccounts();
         user = (User) NPBPRouter.getDataAccount();
         errorLabel.setText("");
+        themeButton.setText("Theme "+user.getAccountTheme());
     }
 
     @FXML
@@ -75,6 +78,14 @@ public class SettingController {
     public void changeTheme() throws IOException {
         accounts.changeTheme(user.getAccountId());
         repository.save(accounts);
+        NPBPRouter.setCss("CSS/theme-"+accounts.findUserByAccountId(user.getAccountId()).getAccountTheme()+".css");
+        if(accounts.findUserByAccountId(user.getAccountId()).getAccountTheme() == 1)
+            themeButton.setText("Theme "+ 1);
+        else{
+            themeButton.setText("Theme "+ 2);
+        }
+
+//        NPBPRouter.goTo("home");
     }
 
     public void confirm() throws IOException {
