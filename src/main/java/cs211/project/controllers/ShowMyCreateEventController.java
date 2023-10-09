@@ -85,7 +85,7 @@ public class ShowMyCreateEventController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : eventCreate){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        if (i.getStatusEvent()){
+                        if (i.getStatusEvent() && i.getStatusJoin()){
                             observableList.add(i.getName());
                             list.add(eventList.findEventByName(i.getName()));
                         }
