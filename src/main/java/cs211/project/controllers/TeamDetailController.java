@@ -35,18 +35,21 @@ public class TeamDetailController implements Initializable {
 
     private User user;
     private Event event;
-    private Team team;
+    private int team;
+
     private TeamRepository teamRepository;
     private TeamList teamList;
     private EventRepository eventRepository;
     private EventList eventList;
+
+    private  int eventId;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = (User) NPBPRouter.getDataAccount();
 
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        int eventId = (Integer) NPBPRouter.getDataEvent();
+        eventId = (int) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
 
         team = (Team) NPBPRouter.getDataTeam();
@@ -97,8 +100,9 @@ public class TeamDetailController implements Initializable {
     }
 
     public void goToActivity() {
+        System.out.println(team.getTeamId());
         try {
-            NPBPRouter.loadPage("team-activity", page, user, event, team.getTeamId());
+            NPBPRouter.loadPage("team-activity", page, user, eventId, team.getTeamId());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

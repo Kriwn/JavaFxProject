@@ -1,8 +1,6 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Activity;
-import cs211.project.models.ActivityList;
-import cs211.project.models.User;
+import cs211.project.models.*;
 import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivity;
@@ -43,6 +41,11 @@ public class TeamActivityController {
 
     private  int teamId;
 
+    private int eventId;
+
+
+    private TeamList teamList;
+
     @FXML
     public void initialize() {
         TeamEventrepository = new ActivityTeamEventRepository();
@@ -52,6 +55,8 @@ public class TeamActivityController {
         activitys = repository.getActivityList();
         user = (User) NPBPRouter.getDataAccount();
         teamId = (int) NPBPRouter.getDataTeam();
+        eventId = (int)NPBPRouter.getDataEvent();
+
 
         for(TeamActivity team :  teamActivityList.getList()) {
             if (team.isTeamId(teamId)) {
@@ -67,7 +72,7 @@ public class TeamActivityController {
             public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
                 if (newValue != null) {
                     try {
-                        NPBPRouter.loadPage("edit-team-activity",page,user,teamId,newValue.getId());
+                        NPBPRouter.loadPageEditTeam("edit-team-activity",page,user,teamId,newValue.getId());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -112,7 +117,7 @@ public class TeamActivityController {
     }
     public void create(){
         try {
-            NPBPRouter.loadPage("create-team-activity",page,user,teamId);
+            NPBPRouter.loadPage("create-team-activity",page,user,eventId,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -120,7 +125,7 @@ public class TeamActivityController {
 
     public void back(){
         try {
-            NPBPRouter.loadPage("my-create-event",page,user,teamId);
+            NPBPRouter.loadPage("team-detail",page,user,eventId,teamList.findTeamById(teamId));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

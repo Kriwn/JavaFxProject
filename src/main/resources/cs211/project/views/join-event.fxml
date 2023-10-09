@@ -80,6 +80,11 @@
                </font>
             </Label>
             <TextArea fx:id="detailsEvent" layoutX="245.0" layoutY="387.0" prefHeight="68.0" prefWidth="200.0" />
+            <Label fx:id="errorLabel" layoutX="477.0" layoutY="611.0" text="label" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

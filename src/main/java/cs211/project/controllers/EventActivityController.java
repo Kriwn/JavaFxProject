@@ -64,7 +64,7 @@ public class EventActivityController {
             public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
                 if (newValue != null) {
                     try {
-                        NPBPRouter.loadPage("edit-event-activity",page,user,eventId,newValue.getId());
+                        NPBPRouter.loadPageEditEvent("edit-event-activity",page,user,eventId,newValue.getId());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

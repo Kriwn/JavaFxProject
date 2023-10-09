@@ -90,7 +90,7 @@ public class TeamActivityDatasource implements Datasource<TeamActivityList>{
 
         try {
             for (TeamActivity teamActivity : data.getList()) {
-                String line = teamActivity.getActivity_id()+ "," + teamActivity.getTeam_id();
+                String line = teamActivity.getTeam_id()+ "," + teamActivity.getActivity_id();
                 buffer.append(line);
                 buffer.append("\n");
             }

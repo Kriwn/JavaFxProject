@@ -80,7 +80,7 @@ public class EventList {
 
     public void createEvent(String name, String details,
                             String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
-                            String countMember, String maxMember, Image image){
+                            String countMember, Image image){
         name = name.trim();
         details = details.trim();
         dateStartEvent = dateStartEvent.trim();
@@ -88,11 +88,28 @@ public class EventList {
         timeStartEvent = timeStartEvent.trim();
         timeEndEvent = timeEndEvent.trim();
         countMember = countMember.trim();
-        maxMember = maxMember.trim();
         Event exist = findEventByName(name);
         if(!name.equals("")){
             if(exist == null){
-                events.add(new Event(name,""+ (++lastId),details,dateStartEvent,dateEndEvent,timeStartEvent,timeEndEvent,countMember,maxMember,image));
+                events.add(new Event(name,""+ (++lastId),details,dateStartEvent,dateEndEvent,timeStartEvent,timeEndEvent,countMember,image));
+            }
+        }
+    }
+
+    public void createEvent(String name, String details,
+                            String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                            String countMember){
+        name = name.trim();
+        details = details.trim();
+        dateStartEvent = dateStartEvent.trim();
+        dateEndEvent = dateEndEvent.trim();
+        timeStartEvent = timeStartEvent.trim();
+        timeEndEvent = timeEndEvent.trim();
+        countMember = countMember.trim();
+        Event exist = findEventByName(name);
+        if(!name.equals("")){
+            if(exist == null){
+                events.add(new Event(name,""+ (++lastId),details,dateStartEvent,dateEndEvent,timeStartEvent,timeEndEvent,countMember));
             }
         }
     }
