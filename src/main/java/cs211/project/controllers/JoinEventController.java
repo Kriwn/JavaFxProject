@@ -6,17 +6,19 @@ import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventRepository;
-import cs211.project.services.Datasource;
+import cs211.project.repository.EventTeamRepository;
+import cs211.project.repository.TeamAccountRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class JoinEventController {
 
@@ -33,9 +35,6 @@ public class JoinEventController {
     private Label dateStartEventLabel;
 
     @FXML
-    private Label detailsEventLabel;
-
-    @FXML
     private Label nameEventLabel;
 
     @FXML
@@ -49,46 +48,91 @@ public class JoinEventController {
     @FXML
     private ImageView eventImageView;
 
+    @FXML
+    private TextArea detailsEvent;
+    @FXML
+    private Button joinEventButton;
+    @FXML
+    private Label errorLabel;
     private EventList eventList;
     private Event event;
 
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
+    private TeamAccountRepository accountTeamRepository;
     private AccountEventList accountEventList;
+    private EventTeamRepository eventTeamRepository;
     private User user;
     public void initialize(){
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        user = (User) NPBPRouter.getDataAccount();
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
-        showEvent(event);
+
+        user = (User) NPBPRouter.getDataAccount();
         accountEventRepository = new AccountEventRepository();
         user.addMyEventFromFile(accountEventRepository.getList_join().findEventsByAccount(user.getAccountId()));
+
+        eventTeamRepository = new EventTeamRepository();
+        ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
+
+        accountTeamRepository = new TeamAccountRepository();
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+
+        System.out.println(teamIdEvent);
+        System.out.println(teamIdUser);
+        if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
+            joinEventButton.setVisible(false);
+        }
+
+        showEvent(event);
+        detailsEvent.setEditable(false);
+        errorLabel.setVisible(false);
     }
 
     public void showEvent(Event event){
         nameEventLabel.setText(event.getName());
-        detailsEventLabel.setText(event.getDetail());
-        dateStartEventLabel.setText(""+event.getDateStart());
-        dateEndEventLabel.setText(""+event.getDateEnd());
-        timeStartEventLabel.setText(""+event.getTimeStart());
-        timeEndEventLabel.setText(""+event.getTimeEnd());
+        String details = event.getDetail();
+        String []details_new = details.split("\\|");
+        details = "";
+        for (var i : details_new){
+            details += i.trim();
+            details += "\n";
+        }
+        detailsEvent.setText(details);
+        dateStartEventLabel.setText(""+event.getDateStartEvent());
+        dateEndEventLabel.setText(""+event.getDateEndEvent());
+        timeStartEventLabel.setText(""+event.getTimeStartEvent());
+        timeEndEventLabel.setText(""+event.getTimeEndEvent());
         countEmpty.setText(""+event.getCountMember());
         countTotal.setText(""+event.getMaxMember());
         eventImageView.setImage(new Image(event.getImage().getUrl()));
     }
 
     public void onJointEventButton(){
-        event.addCountMember();
-        eventRepository.save(eventList);
-        accountEventList = accountEventRepository.getList_join();
-        user.addMyEvent(event.getEventId());
-        accountEventList.addNew(user.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(accountEventList);
+        if(event.checkMember()) {
+            event.addCountMember();
+            eventRepository.save(eventList);
+            accountEventList = accountEventRepository.getList_join();
+            user.addMyEvent(event.getEventId());
+            accountEventList.addNew(user.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(accountEventList);
 
+            try {
+                NPBPRouter.loadPage("home-page", page, user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            errorLabel.setVisible(true);
+            errorLabel.setText("Event Full!!!");
+        }
+    }
+
+    public void goToSelectTeam(){
         try {
-            NPBPRouter.loadPage("home-page",page,user);
+            NPBPRouter.loadPage("select-team-to-join",page,user,event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

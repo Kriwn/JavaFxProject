@@ -6,8 +6,8 @@ public class EventActivity {
 
     public EventActivity(int event_id,int activity_id)
     {
-        this.activity_id = activity_id;
         this.event_id = event_id;
+        this.activity_id = activity_id;
     }
 
     public boolean isActivityId(int id){

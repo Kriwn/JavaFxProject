@@ -59,15 +59,14 @@
             <TextField fx:id="timeStartEvent" layoutX="244.0" layoutY="281.0" prefHeight="26.0" prefWidth="220.0" promptText="เวลาที่เริ่ม" />
             <DatePicker fx:id="dateEndEvent" layoutX="244.0" layoutY="341.0" prefHeight="26.0" prefWidth="220.0" promptText="วันที่จบ" />
             <TextField fx:id="timeEndEvent" layoutX="244.0" layoutY="401.0" prefHeight="26.0" prefWidth="220.0" promptText="เวลาที่จบ" />
-            <TextField fx:id="capacityEvent" layoutX="301.0" layoutY="566.0" prefHeight="26.0" prefWidth="220.0" promptText="จำนวนผู้เข้าร่วมสูงสุด" />
-            <ImageView fx:id="eventImageView" fitHeight="90.0" fitWidth="200.0" layoutX="256.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="65.0" layoutY="566.0" text="จำนวนผู้เข้าร่วม Event สูงสุด">
+            <ImageView fx:id="eventImageView" fitHeight="200.0" fitWidth="200.0" layoutX="256.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true" />
+            <MFXButton layoutX="483.0" layoutY="489.0" onAction="#handleUploadImageButton" text="add Image" />
+            <MFXButton layoutX="495.0" layoutY="624.0" onAction="#handleCreateEventButton" text="create" />
+            <Label fx:id="errorLabel" layoutX="558.0" layoutY="627.0" text="Label" textFill="RED">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
-            <MFXButton layoutX="483.0" layoutY="489.0" onAction="#handleUploadImageButton" text="add Image" />
-            <MFXButton layoutX="293.0" layoutY="634.0" onAction="#handleCreateEventButton" text="create" />
          </children>
       </AnchorPane>
    </children>

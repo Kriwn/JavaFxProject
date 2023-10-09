@@ -8,17 +8,31 @@ import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MyCreateEventController implements Initializable {
+    @FXML
+    private DatePicker dateEnd;
+
+    @FXML
+    private DatePicker dateStart;
+    @FXML
+    private TextField timeEnd;
+
+    @FXML
+    private TextField timeStart;
     @FXML
     AnchorPane page;
 
@@ -27,6 +41,10 @@ public class MyCreateEventController implements Initializable {
 
     @FXML
     private Label nameEvent;
+    @FXML
+    private TextField maxMember;
+    @FXML
+    private Label errorLabel;
     private EventRepository eventRepository;
     private EventList eventList;
     private ArrayList<Event> events;
@@ -42,26 +60,41 @@ public class MyCreateEventController implements Initializable {
         event = eventList.findEventById(eventId);
 
         showEvent(event);
+        errorLabel.setVisible(false);
     }
 
     public void showEvent(Event event){
         imageView.setImage(new Image(event.getImage().getUrl()));
         nameEvent.setText(event.getName());
     }
+
+    public void setDateTimeJoin(){
+        try {
+            event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
+            event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
+            event.setOpenTimeStart(LocalTime.parse(timeStart.getText()));
+            event.setOpenTimeEnd(LocalTime.parse(timeEnd.getText()));
+            event.setCapacity(Integer.parseInt(maxMember.getText()));
+            eventRepository.save(eventList);
+            dateStart.setValue(null);
+            dateEnd.setValue(null);
+            timeStart.clear();
+            timeEnd.clear();
+            maxMember.clear();
+        } catch (Exception e) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Wrong entry!!!");
+        }
+
+    }
     public void goToStaffList(){
         try {
-            NPBPRouter.loadPage("team-list",page);
+            NPBPRouter.loadPage("team-list",page,user,event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void goToChat(){
-        try {
-            NPBPRouter.loadPage("chat",page);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
     public void goToEditUser(){
         try {
             NPBPRouter.loadPage("edit-user",page,user,event);
@@ -73,6 +106,14 @@ public class MyCreateEventController implements Initializable {
     public void goToEditEvent(){
         try {
             NPBPRouter.loadPage("edit-event",page,user,event.getEventId());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void goToEventActivity(){
+        try {
+            NPBPRouter.loadPage("event-activity",page,user,event.getEventId());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

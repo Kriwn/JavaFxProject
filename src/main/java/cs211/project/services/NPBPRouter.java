@@ -1,5 +1,7 @@
 package cs211.project.services;
 
+import cs211.project.models.Event;
+import cs211.project.models.Team;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.animation.FadeTransition;
@@ -136,6 +138,22 @@ public final class NPBPRouter {
         route.dataAccount = data1;
         route.dataEvent = data2;
         route.dataTeam = data3;
+        route.dataActivity = data3;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2,Object data3, Object data4) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        route.dataActivity = data4;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1, Object data2, Team data3) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
         loadNewPage(route, parent);
     }
     public static void goTo(String routeLabel) throws IOException {
@@ -179,6 +197,10 @@ public final class NPBPRouter {
         return current.dataTeam;
     }
 
+    public  static Object getDataActivity(){
+        return current.dataActivity;
+    }
+
 
     public static class RouteScene{
         private String scenePath;
@@ -188,7 +210,7 @@ public final class NPBPRouter {
         private Object dataAccount;
         private Object dataEvent;
         private Object dataTeam;
-        private Object data4;
+        private Object dataActivity;
         private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());

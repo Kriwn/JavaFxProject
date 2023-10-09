@@ -14,18 +14,21 @@ public class EventList {
         events = new ArrayList<>();
     }
 
-    public void addNewEvent(String name,String id, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity, Image image){
+    public void addNewEvent(String name, String id, String details,
+                            String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                            String openDateStart, String openDateEnd, String openTimeStart, String openTimeEnd,
+                            String countMember, String maxMember, Image image){
         name = name.trim();
         details = details.trim();
-        dateStart = dateStart.trim();
-        dateEnd = dateEnd.trim();
-        timeStart = timeStart.trim();
-        timeEnd = timeEnd.trim();
-        capacity = capacity.trim();
+        dateStartEvent = dateStartEvent.trim();
+        dateEndEvent = dateEndEvent.trim();
+        timeStartEvent = timeStartEvent.trim();
+        timeEndEvent = timeEndEvent.trim();
+        maxMember = maxMember.trim();
         if (!name.equals("")) {
             Event exist = findEventByName(name);
             if (exist == null) {
-                events.add(new Event(name,id, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity,image));
+                events.add(new Event(name,id, details, dateStartEvent, dateEndEvent, timeStartEvent, timeEndEvent,openDateStart, openDateEnd,openTimeStart, openTimeEnd,countMember, maxMember,image));
                 this.lastId = Integer.parseInt(id);
             }
         }
@@ -48,6 +51,24 @@ public class EventList {
         }
     }
 
+    public boolean checkTeamInEvent(ArrayList<Integer> arrayList, ArrayList<Integer> arrayList2){
+        for(var i : arrayList){
+            if(isTeam(i, arrayList2)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isTeam(int teamId,ArrayList<Integer> arrayList){
+        for(var i : arrayList){
+            if(teamId == i){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Event findEventById(int event_id){
         for (Event event : events) {
             if (event.isEventId(event_id)) {
@@ -57,19 +78,38 @@ public class EventList {
         return null;
     }
 
-    public void createEvent(String name, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity, Image image){
+    public void createEvent(String name, String details,
+                            String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                            String countMember, Image image){
         name = name.trim();
         details = details.trim();
-        dateStart = dateStart.trim();
-        dateEnd = dateEnd.trim();
-        timeStart = timeStart.trim();
-        timeEnd = timeEnd.trim();
+        dateStartEvent = dateStartEvent.trim();
+        dateEndEvent = dateEndEvent.trim();
+        timeStartEvent = timeStartEvent.trim();
+        timeEndEvent = timeEndEvent.trim();
         countMember = countMember.trim();
-        capacity = capacity.trim();
         Event exist = findEventByName(name);
         if(!name.equals("")){
             if(exist == null){
-                events.add(new Event(name,""+ (++lastId),details,dateStart,dateEnd,timeStart,timeEnd,countMember,capacity,image));
+                events.add(new Event(name,""+ (++lastId),details,dateStartEvent,dateEndEvent,timeStartEvent,timeEndEvent,countMember,image));
+            }
+        }
+    }
+
+    public void createEvent(String name, String details,
+                            String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                            String countMember){
+        name = name.trim();
+        details = details.trim();
+        dateStartEvent = dateStartEvent.trim();
+        dateEndEvent = dateEndEvent.trim();
+        timeStartEvent = timeStartEvent.trim();
+        timeEndEvent = timeEndEvent.trim();
+        countMember = countMember.trim();
+        Event exist = findEventByName(name);
+        if(!name.equals("")){
+            if(exist == null){
+                events.add(new Event(name,""+ (++lastId),details,dateStartEvent,dateEndEvent,timeStartEvent,timeEndEvent,countMember));
             }
         }
     }

@@ -15,6 +15,6 @@
       </ScrollPane>
       <TextField fx:id="textField" layoutX="64.0" layoutY="659.0" prefHeight="25.0" prefWidth="589.0" />
       <Button layoutX="679.0" layoutY="659.0" mnemonicParsing="false" onAction="#send" text="send" />
-      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#backToMyCreateEvent" text="back" />
+      <Button layoutX="29.0" layoutY="30.0" mnemonicParsing="false" onAction="#backToTeamDetail" text="back" />
    </children>
 </AnchorPane>

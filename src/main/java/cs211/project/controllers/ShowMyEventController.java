@@ -85,7 +85,7 @@ public class ShowMyEventController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : eventJoin){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        if (i.getStatus()){
+                        if (i.getStatusEvent()){
                             observableList.add(i.getName());
                             list.add(eventList.findEventByName(i.getName()));
                         }
@@ -115,7 +115,7 @@ public class ShowMyEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatus() && data.checkMember()) {
+            if(data.getStatusEvent() && data.checkMember()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

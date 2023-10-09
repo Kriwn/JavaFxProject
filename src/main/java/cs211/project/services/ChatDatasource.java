@@ -55,11 +55,13 @@ public class ChatDatasource implements Datasource<Chat>{
                 if (line.equals("")) continue;
 
                 String[] data = line.split(",");
-                String dateTime = data[0];
-                String name = data[1];
-                String text = data[2];
+                String chatId = data[0];
+                String date = data[1];
+                String time = data[2];
+                String name = data[3];
+                String text = data[4];
 
-                texts.addNewText(LocalDateTime.parse(dateTime),name,text);
+                texts.addNewText(chatId,date,time,name,text);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -89,7 +91,7 @@ public class ChatDatasource implements Datasource<Chat>{
 
         try {
             for (ChatText text : data.getChat()) {
-                String line = text.getTime().toString() + "," + text.getUsername() + "," + text.getText();
+                String line = text.getChatId() + "," + text.getDate() + "," + text.getTime() + "," + text.getUsername() + "," + text.getText();
                 buffer.append(line);
                 buffer.append("\n");
             }
