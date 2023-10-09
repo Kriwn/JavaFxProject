@@ -110,32 +110,37 @@ public class MyEventController implements Initializable {
 
     private void showTable(ActivityList activityList) {
         TableColumn<Activity, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setResizable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+        TableColumn<Activity, String> startDateColumn = new TableColumn<>("dateStart");
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
+        startDateColumn.setResizable(false);
 
-        TableColumn<Activity, String> StartDateColumn = new TableColumn<>("dateStart");
-        StartDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
 
-        TableColumn<Activity, String> StartTimeColumn = new TableColumn<>("timeStart");
-        StartTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStart"));
+        TableColumn<Activity, String> startTimeColumn = new TableColumn<>("timeStart");
+        startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStart"));
+        startTimeColumn.setResizable(false);
 
-        TableColumn<Activity, String> EndDateColumn = new TableColumn<>("dateEnd");
-        EndDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        TableColumn<Activity, String> endDateColumn = new TableColumn<>("dateEnd");
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
+        endDateColumn.setResizable(false);
 
-        TableColumn<Activity, String> EndTimeColumn = new TableColumn<>("timeEnd");
-        EndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
+        TableColumn<Activity, String> endTimeColumn = new TableColumn<>("timeEnd");
+        endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
+        endTimeColumn.setResizable(false);
 
-        TableColumn<Activity, String> StatusColumn = new TableColumn<>("status");
-        StatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+        TableColumn<Activity, String> statusColumn = new TableColumn<>("status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setResizable(false);
 
         activityTableView.getColumns().clear();
         activityTableView.getColumns().add(nameColumn);
-        activityTableView.getColumns().add(StartDateColumn);
-        activityTableView.getColumns().add(StartTimeColumn);
-        activityTableView.getColumns().add(EndDateColumn);
-        activityTableView.getColumns().add(EndTimeColumn);
-        activityTableView.getColumns().add(StatusColumn);
+        activityTableView.getColumns().add(startDateColumn);
+        activityTableView.getColumns().add(startTimeColumn);
+        activityTableView.getColumns().add(endDateColumn);
+        activityTableView.getColumns().add(endTimeColumn);
+        activityTableView.getColumns().add(statusColumn);
         activityTableView.getItems().clear();
 
         for (Activity activity: activityList.getActivity()) {

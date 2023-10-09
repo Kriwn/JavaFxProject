@@ -126,10 +126,10 @@ public class CreateEventController {
 
         if (file != null) {
 
-            File dir = new File("images");
+            File dir = new File("images/event");
 
             String locate = dir.getParent();
-            File f = new File("images");
+            File f = new File("images/event");
             if (!f.exists()) {f.mkdirs();}
 
             Path from = Paths.get(file.toURI());
@@ -138,9 +138,9 @@ public class CreateEventController {
             String separator = name.substring(name.lastIndexOf('.'), name.length());
             String fileName = nameEvent.getText().trim();
 
-            eventImageView.setImage(new Image("file:"+"images/"+fileName+separator));
+            eventImageView.setImage(new Image("file:"+"images/event/"+fileName+separator));
 
-            Path to = Paths.get("images/"+fileName+separator);
+            Path to = Paths.get("images/event/"+fileName+separator);
             CopyOption[] options = new CopyOption[]{
                     StandardCopyOption.REPLACE_EXISTING,
                     StandardCopyOption.COPY_ATTRIBUTES

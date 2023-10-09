@@ -88,7 +88,7 @@ public class TeamActivityDatasource implements Datasource<TeamActivityList>{
 
         try {
             for (TeamActivity teamActivity : data.getList()) {
-                String line = teamActivity.getActivityId()+ "," + teamActivity.getTeamId();
+                String line = teamActivity.getTeamId()+ "," + teamActivity.getActivityId();
                 buffer.append(line);
                 buffer.append("\n");
             }

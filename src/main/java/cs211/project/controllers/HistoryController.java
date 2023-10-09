@@ -59,10 +59,10 @@ public class HistoryController implements Initializable {
         setTable(eventEnd,table2);
     }
     private void setTable(ArrayList<Event> events, MFXTableView<Event> tableView) {
-        MFXTableColumn<Event> nameColumn = new MFXTableColumn<>("Name", false, Comparator.comparing(Event::getName));
-        MFXTableColumn<Event> countMemberColumn = new MFXTableColumn<>("Count member", false, Comparator.comparing(Event::getCountMember));
-        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false, Comparator.comparing(Event::getDateStartEvent));
-        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false, Comparator.comparing(Event::getDateEndEvent));
+        MFXTableColumn<Event> nameColumn = new MFXTableColumn<>("Name", false);
+        MFXTableColumn<Event> countMemberColumn = new MFXTableColumn<>("Count member", false);
+        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false);
+        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false);
 
         nameColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getName));
         countMemberColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getCountMember));
