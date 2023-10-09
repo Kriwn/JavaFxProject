@@ -60,7 +60,7 @@ public class ShowMyCreateEventController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_create = accountEventRepository.getList_create();
+        AccountEventList list_create = accountEventRepository.getListCreate();
         ArrayList<Integer> listId = new ArrayList<>();
         listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventCreate = new ArrayList<>();

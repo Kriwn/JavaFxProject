@@ -1,34 +1,34 @@
 package cs211.project.pivot;
 
 public class TeamAccount {
-    private int account_id;
-    private int team_id;
+    private int accountId;
+    private int teamId;
     private String status = "NotBan";
     private String role = "Member";
 
-    public TeamAccount(int acc_id, int team_id){
-        this.account_id = acc_id;
-        this.team_id = team_id;
+    public TeamAccount(int accId, int teamId){
+        this.accountId = accId;
+        this.teamId = teamId;
     }
-    public TeamAccount(int acc_id, int team_id, String status, String role){
-        this.account_id = acc_id;
-        this.team_id = team_id;
+    public TeamAccount(int accId, int teamId, String status, String role){
+        this.accountId = accId;
+        this.teamId = teamId;
         this.status = status;
         this.role = role;
     }
 
     public boolean isAccountId(int id){
-        return this.account_id == id;
+        return this.accountId == id;
     }
     public boolean isTeamId(int id){
-        return this.team_id == id;
+        return this.teamId == id;
     }
 
-    public int getAccount_id() {
-        return account_id;
+    public int getAccountId() {
+        return accountId;
     }
-    public int getTeam_id() {
-        return team_id;
+    public int getTeamId() {
+        return teamId;
     }
     public String getStatus(){
         return status;
@@ -46,8 +46,8 @@ public class TeamAccount {
     @Override
     public String toString() {
         return "TeamAccount{" +
-                "account_id=" + account_id +
-                ", team_id=" + team_id +
+                "account_id=" + accountId +
+                ", team_id=" + teamId +
                 ", status='" + status + '\'' +
                 ", role='" + role + '\'' +
                 '}';

@@ -2,7 +2,6 @@ package cs211.project.controllers;
 
 import cs211.project.models.*;
 import cs211.project.pivot.AccountEventList;
-import cs211.project.pivot.EventActivity;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.ActivityRepository;
@@ -14,10 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -79,7 +76,7 @@ public class MyEventController implements Initializable {
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
         detailsTextArea.setEditable(false);
-        accountEventList = accountEventRepository.getList_join();
+        accountEventList = accountEventRepository.getListJoin();
         results = accountEventList.findEventsByAccount(user.getAccountId());
         ShowActivitys = new ActivityList();
         repository = new ActivityRepository();

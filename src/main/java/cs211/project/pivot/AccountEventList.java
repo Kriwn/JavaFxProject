@@ -20,7 +20,7 @@ public class AccountEventList {
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
             if(accountEvent.isAccountId(acc_id) && accountEvent.getStatus().equals("NotBan")){
-                result.add(accountEvent.getEvent_id());
+                result.add(accountEvent.getEventId());
             }
         }
         return result;
@@ -29,7 +29,7 @@ public class AccountEventList {
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
             if(accountEvent.isEventId(ev_id) && accountEvent.getStatus().equals("NotBan")){
-                result.add(accountEvent.getAccount_id());
+                result.add(accountEvent.getAccountId());
             }
         }
         return result;
@@ -38,7 +38,7 @@ public class AccountEventList {
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
             if(accountEvent.isAccountId(acc_id)){
-                result.add(accountEvent.getEvent_id());
+                result.add(accountEvent.getEventId());
             }
         }
         return result;
@@ -47,14 +47,14 @@ public class AccountEventList {
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
             if(accountEvent.isEventId(ev_id)){
-                result.add(accountEvent.getAccount_id());
+                result.add(accountEvent.getAccountId());
             }
         }
         return result;
     }
     public AccountEvent findAccountInEvent(int acc_id, int ev_id){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == acc_id && accountEvent.getEventId() == ev_id){
                 return accountEvent;
             }
         }
@@ -62,14 +62,14 @@ public class AccountEventList {
     }
     public void ban(int acc_id, int ev_id){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == acc_id && accountEvent.getEventId() == ev_id){
                 accountEvent.setStatus("Ban");
             }
         }
     }
     public void unBan(int acc_id, int ev_id){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == acc_id && accountEvent.getEventId() == ev_id){
                 accountEvent.setStatus("NotBan");
             }
         }

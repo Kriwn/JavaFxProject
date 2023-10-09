@@ -7,13 +7,9 @@ import cs211.project.repository.EventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -21,7 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CreateEventController {
     @FXML
@@ -63,7 +58,7 @@ public class CreateEventController {
         eventList = eventRepository.getEvents();
         event = eventRepository.getEvents().getEvents();
         accountEventRepository = new AccountEventRepository();
-        user.addMyCreateEventFromFile(accountEventRepository.getList_create().findEventsByAccount(user.getAccountId()));
+        user.addMyCreateEventFromFile(accountEventRepository.getListCreate().findEventsByAccount(user.getAccountId()));
 
         errorLabel.setVisible(false);
     }
@@ -92,7 +87,7 @@ public class CreateEventController {
             }
             Event exist = eventList.findEventByName(nameString);
             int event_id = exist.getEventId();
-            accountEventList = accountEventRepository.getList_create();
+            accountEventList = accountEventRepository.getListCreate();
             accountEventList.addNew(user.getAccountId(), event_id);
             accountEventRepository.saveEventOwner(accountEventList);
             nameEvent.clear();

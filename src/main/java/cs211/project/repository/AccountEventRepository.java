@@ -6,33 +6,30 @@ import cs211.project.services.AccountEventJoinDatasource;
 import cs211.project.services.AccountEventOwnerDatasource;
 import cs211.project.services.Datasource;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class AccountEventRepository {
-    private AccountEventList list_join;
-    private AccountEventList list_create;
-    private Datasource<AccountEventList> join_event_data;
-    private Datasource<AccountEventList> owner_event_data;
+    private AccountEventList listJoin;
+    private AccountEventList listCreate;
+    private Datasource<AccountEventList> joinEventData;
+    private Datasource<AccountEventList> ownerEventData;
 
     public AccountEventRepository (){
-        join_event_data = new AccountEventJoinDatasource("data","account_join_events.csv");
-        owner_event_data = new AccountEventOwnerDatasource("data","account_owner_events.csv");
-        list_join = join_event_data.readData();
-        list_create = owner_event_data.readData();
+        joinEventData = new AccountEventJoinDatasource("data","account_join_events.csv");
+        ownerEventData = new AccountEventOwnerDatasource("data","account_owner_events.csv");
+        listJoin = joinEventData.readData();
+        listCreate = ownerEventData.readData();
     }
     public void saveEventJoin( AccountEventList eventList_join){
-        join_event_data.writeData(eventList_join);
+        joinEventData.writeData(eventList_join);
     }
     public void saveEventOwner(AccountEventList eventList_create){
-        owner_event_data.writeData(eventList_create);
+        ownerEventData.writeData(eventList_create);
     }
 
-    public AccountEventList getList_join() {
-        return list_join;
+    public AccountEventList getListJoin() {
+        return listJoin;
     }
 
-    public AccountEventList getList_create() {
-        return list_create;
+    public AccountEventList getListCreate() {
+        return listCreate;
     }
 }

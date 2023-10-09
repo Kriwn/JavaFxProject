@@ -52,7 +52,7 @@ public class EventActivityController {
 
         for(EventActivity event :  eventActivity.getList()) {
             if (event.isEventId(eventId)) {
-                activity = activitys.findActivityById(event.getActivity_id());
+                activity = activitys.findActivityById(event.getActivityId());
                 activity.checkTimeActivity();
                 ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
             }

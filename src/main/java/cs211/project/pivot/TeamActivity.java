@@ -1,33 +1,33 @@
 package cs211.project.pivot;
 
 public class TeamActivity {
-    private int activity_id;
-    private int team_id;
+    private int activityId;
+    private int teamId;
 
-    public TeamActivity(int team_id,int activity_id){
-        this.activity_id = activity_id;
-        this.team_id = team_id;
+    public TeamActivity(int teamId, int activityId){
+        this.activityId = activityId;
+        this.teamId = teamId;
     }
     public boolean isActivityId(int id){
-        return this.activity_id == id;
+        return this.activityId == id;
     }
     public boolean isTeamId(int id){
-        return this.team_id == id;
+        return this.teamId == id;
     }
 
-    public int getActivity_id() {
-        return activity_id;
+    public int getActivityId() {
+        return activityId;
     }
 
-    public  int getTeam_id(){
-        return  team_id;
+    public  int getTeamId(){
+        return teamId;
     }
 
     @Override
     public String toString() {
         return "{EventActivity" +
-                "activity_id=" + activity_id +
-                ", team_id=" + team_id + '\'' +
+                "activity_id=" + activityId +
+                ", team_id=" + teamId + '\'' +
                 '}';
     }
 }

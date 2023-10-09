@@ -9,73 +9,73 @@ public class TeamAccountList {
         list = new ArrayList<>();
     }
 
-    public void addNew(int acc_id, int team_id){
-        list.add(new TeamAccount(acc_id,team_id));
+    public void addNew(int accId, int teamId){
+        list.add(new TeamAccount(accId,teamId));
     }
-    public void addNew(int acc_id, int team_id, String status, String role){
-        list.add(new TeamAccount(acc_id, team_id, status, role));
-    }
-
-    public ArrayList<Integer> findTeamsByAccount(int acc_id){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(TeamAccount teamAccount : list){
-            if(teamAccount.isAccountId(acc_id) && teamAccount.getStatus().equals("NotBan")){
-                result.add(teamAccount.getTeam_id());
-            }
-        }
-        return result;
-    }
-    public ArrayList<Integer> findAccountsByTeam(int team_id){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(TeamAccount teamAccount : list){
-            if(teamAccount.isTeamId(team_id) && teamAccount.getStatus().equals("NotBan")){
-                result.add(teamAccount.getAccount_id());
-            }
-        }
-        return result;
+    public void addNew(int accId, int teamId, String status, String role){
+        list.add(new TeamAccount(accId, teamId, status, role));
     }
 
-    public ArrayList<Integer> findAllAccountsByTeam(int team_id){
+    public ArrayList<Integer> findTeamsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(TeamAccount teamAccount : list){
-            if(teamAccount.isTeamId(team_id)){
-                result.add(teamAccount.getAccount_id());
+            if(teamAccount.isAccountId(accId) && teamAccount.getStatus().equals("NotBan")){
+                result.add(teamAccount.getTeamId());
             }
         }
         return result;
     }
-    public TeamAccount findAccountInTeam(int acc_id, int team_id){
+    public ArrayList<Integer> findAccountsByTeam(int teamId){
+        ArrayList<Integer> result = new ArrayList<>();
         for(TeamAccount teamAccount : list){
-            if(teamAccount.getAccount_id() == acc_id && teamAccount.getTeam_id() == team_id){
+            if(teamAccount.isTeamId(teamId) && teamAccount.getStatus().equals("NotBan")){
+                result.add(teamAccount.getAccountId());
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Integer> findAllAccountsByTeam(int teamId){
+        ArrayList<Integer> result = new ArrayList<>();
+        for(TeamAccount teamAccount : list){
+            if(teamAccount.isTeamId(teamId)){
+                result.add(teamAccount.getAccountId());
+            }
+        }
+        return result;
+    }
+    public TeamAccount findAccountInTeam(int accId, int teamId){
+        for(TeamAccount teamAccount : list){
+            if(teamAccount.getAccountId() == accId && teamAccount.getTeamId() == teamId){
                 return teamAccount;
             }
         }
         return null;
     }
-    public void ban(int acc_id, int team_id){
+    public void ban(int accId, int teamId){
         for(TeamAccount teamAccount : list){
-            if(teamAccount.getAccount_id() == acc_id && teamAccount.getTeam_id() == team_id){
+            if(teamAccount.getAccountId() == accId && teamAccount.getTeamId() == teamId){
                 teamAccount.setStatus("Ban");
             }
         }
     }
-    public void unBan(int acc_id, int team_id){
+    public void unBan(int accId, int teamId){
         for(TeamAccount teamAccount : list){
-            if(teamAccount.getAccount_id() == acc_id && teamAccount.getTeam_id() == team_id){
+            if(teamAccount.getAccountId() == accId && teamAccount.getTeamId() == teamId){
                 teamAccount.setStatus("NotBan");
             }
         }
     }
-    public void promote(int acc_id, int team_id){
+    public void promote(int accId, int teamId){
         for(TeamAccount teamAccount : list){
-            if(teamAccount.getAccount_id() == acc_id && teamAccount.getTeam_id() == team_id){
+            if(teamAccount.getAccountId() == accId && teamAccount.getTeamId() == teamId){
                 teamAccount.setRole("Head");
             }
         }
     }
-    public void demote(int acc_id, int team_id){
+    public void demote(int accId, int teamId){
         for(TeamAccount teamAccount : list){
-            if(teamAccount.getAccount_id() == acc_id && teamAccount.getTeam_id() == team_id){
+            if(teamAccount.getAccountId() == accId && teamAccount.getTeamId() == teamId){
                 teamAccount.setRole("Member");
             }
         }

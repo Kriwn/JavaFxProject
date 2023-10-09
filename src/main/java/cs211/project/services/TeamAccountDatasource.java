@@ -99,7 +99,7 @@ public class TeamAccountDatasource implements Datasource<TeamAccountList>{
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
             for (TeamAccount teamAccount : data.getList()) {
-                String line = teamAccount.getTeam_id() + "," + teamAccount.getAccount_id() + "," + teamAccount.getStatus() + "," + teamAccount.getRole();
+                String line = teamAccount.getTeamId() + "," + teamAccount.getAccountId() + "," + teamAccount.getStatus() + "," + teamAccount.getRole();
                 buffer.append(line);
                 buffer.append("\n");
             }

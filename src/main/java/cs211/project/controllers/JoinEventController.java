@@ -71,7 +71,7 @@ public class JoinEventController {
 
         user = (User) NPBPRouter.getDataAccount();
         accountEventRepository = new AccountEventRepository();
-        user.addMyEventFromFile(accountEventRepository.getList_join().findEventsByAccount(user.getAccountId()));
+        user.addMyEventFromFile(accountEventRepository.getListJoin().findEventsByAccount(user.getAccountId()));
 
         eventTeamRepository = new EventTeamRepository();
         ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
@@ -113,7 +113,7 @@ public class JoinEventController {
         if(event.checkMember()) {
             event.addCountMember();
             eventRepository.save(eventList);
-            accountEventList = accountEventRepository.getList_join();
+            accountEventList = accountEventRepository.getListJoin();
             user.addMyEvent(event.getEventId());
             accountEventList.addNew(user.getAccountId(), event.getEventId());
             accountEventRepository.saveEventJoin(accountEventList);

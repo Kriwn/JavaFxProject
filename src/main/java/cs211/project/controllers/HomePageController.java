@@ -64,11 +64,11 @@ public class HomePageController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_join = accountEventRepository.getList_join();
-        AccountEventList list_create = accountEventRepository.getList_create();
+        AccountEventList listJoin = accountEventRepository.getListJoin();
+        AccountEventList listCreate = accountEventRepository.getListCreate();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
-        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+        listId.addAll(listJoin.findAllEventsByAccount(user.getAccountId()));
+        listId.addAll(listCreate.findEventsByAccount(user.getAccountId()));
 
         for (var i : listId){
             events.remove(eventList.findEventById(i));

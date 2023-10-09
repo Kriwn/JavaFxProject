@@ -60,7 +60,7 @@ public class ShowMyEventController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_join = accountEventRepository.getList_join();
+        AccountEventList list_join = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
         listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventJoin = new ArrayList<>();

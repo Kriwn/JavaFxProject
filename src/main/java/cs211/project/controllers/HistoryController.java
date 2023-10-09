@@ -37,7 +37,7 @@ public class HistoryController implements Initializable {
         eventList = eventRepository.getEvents();
         user = (User)NPBPRouter.getDataAccount();
         accountEventRepository = new AccountEventRepository();
-        accountEventList = accountEventRepository.getList_join();
+        accountEventList = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
         eventNotEnd = new ArrayList<>();
         eventEnd = new ArrayList<>();

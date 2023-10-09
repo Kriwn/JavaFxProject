@@ -1,17 +1,17 @@
 package cs211.project.pivot;
 
 public class AccountEvent {
-    private int account_id;
-    private int event_id;
+    private int accountId;
+    private int eventId;
     private String status = "NotBan";
 
-    public AccountEvent(int acc_id, int ev_id){
-        account_id = acc_id;
-        event_id = ev_id;
+    public AccountEvent(int accId, int evId){
+        accountId = accId;
+        eventId = evId;
     }
-    public AccountEvent(int acc_id, int ev_id, String status){
-        account_id = acc_id;
-        event_id = ev_id;
+    public AccountEvent(int accId, int evId, String status){
+        accountId = accId;
+        eventId = evId;
         this.status = status;
     }
 
@@ -20,18 +20,18 @@ public class AccountEvent {
     }
 
     public boolean isAccountId(int id){
-        return this.account_id == id;
+        return this.accountId == id;
     }
     public boolean isEventId(int id){
-        return this.event_id == id;
+        return this.eventId == id;
     }
 
-    public int getAccount_id() {
-        return account_id;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public int getEvent_id() {
-        return event_id;
+    public int getEventId() {
+        return eventId;
     }
     public String getStatus(){
         return status;
@@ -40,8 +40,8 @@ public class AccountEvent {
     @Override
     public String toString() {
         return "AccountEvent{" +
-                "account_id=" + account_id +
-                ", event_id=" + event_id +
+                "account_id=" + accountId +
+                ", event_id=" + eventId +
                 ", status='" + status + '\'' +
                 '}';
     }

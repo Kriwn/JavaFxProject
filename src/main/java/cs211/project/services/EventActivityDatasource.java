@@ -1,6 +1,5 @@
 package cs211.project.services;
 
-import cs211.project.models.*;
 import cs211.project.pivot.EventActivity;
 import cs211.project.pivot.EventActivityList;
 
@@ -89,7 +88,7 @@ public class EventActivityDatasource implements Datasource<EventActivityList>{
 
         try {
             for (EventActivity eventActivity : data.getList()) {
-                String line =eventActivity.getEvent_id()+ "," +eventActivity.getActivity_id() ;
+                String line =eventActivity.getEventId()+ "," +eventActivity.getActivityId() ;
                 buffer.append(line);
                 buffer.append("\n");
             }

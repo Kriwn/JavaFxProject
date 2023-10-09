@@ -41,7 +41,7 @@ public class EditUserController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private AccountEvent accountEvent;
-    private AccountEventList list_join;
+    private AccountEventList listJoin;
     private ArrayList<Integer> listId;
 
     @Override
@@ -53,9 +53,9 @@ public class EditUserController implements Initializable {
         accountEventRepository = new AccountEventRepository();
 
         accountList = accountRepository.getAccounts();
-        list_join = accountEventRepository.getList_join();
+        listJoin = accountEventRepository.getListJoin();
         listId = new ArrayList<>();
-        listId.addAll(list_join.findAllAccountsByEvent(event.getEventId()));
+        listId.addAll(listJoin.findAllAccountsByEvent(event.getEventId()));
         int count=0;
 
         for(Integer id : listId){
@@ -86,7 +86,7 @@ public class EditUserController implements Initializable {
         Label usernameLabel = userCardController.getUsernameLabel();
         Label statusLabel = userCardController.getStatusLabel();
         Circle img = userCardController.getImgCircle();
-        accountEvent = list_join.findAccountInEvent(id, event.getEventId());
+        accountEvent = listJoin.findAccountInEvent(id, event.getEventId());
 
         usernameLabel.setText(accountList.findUserByAccountId(id).getName());
         statusLabel.setText(accountEvent.getStatus());
@@ -100,15 +100,15 @@ public class EditUserController implements Initializable {
         return vbox;
     }
     public void banButton(){
-        list_join.ban(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(list_join);
-        accountEvent = list_join.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+        listJoin.ban(selectUser.getAccountId(), event.getEventId());
+        accountEventRepository.saveEventJoin(listJoin);
+        accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
         refresh(accountEvent);
     }
     public void unBanButton(){
-        list_join.unBan(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(list_join);
-        accountEvent = list_join.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+        listJoin.unBan(selectUser.getAccountId(), event.getEventId());
+        accountEventRepository.saveEventJoin(listJoin);
+        accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
         refresh(accountEvent);
     }
     public void refresh(AccountEvent accountEvent) {

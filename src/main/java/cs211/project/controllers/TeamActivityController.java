@@ -3,8 +3,6 @@ package cs211.project.controllers;
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
 import cs211.project.models.User;
-import cs211.project.pivot.EventActivity;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivity;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
@@ -55,7 +53,7 @@ public class TeamActivityController {
 
         for(TeamActivity team :  teamActivityList.getList()) {
             if (team.isTeamId(teamId)) {
-                activity = activitys.findActivityById(team.getActivity_id());
+                activity = activitys.findActivityById(team.getActivityId());
                 activity.checkTimeActivity();
                 ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
             }
