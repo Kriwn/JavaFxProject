@@ -1,82 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="760.0" prefWidth="1024.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreatorController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.CreatorController">
    <children>
-      <Label layoutX="459.0" layoutY="64.0" prefHeight="47.0" prefWidth="113.0" text="Creator" textFill="#7d9d9c">
+      <Label layoutX="203.0" layoutY="64.0" prefHeight="47.0" prefWidth="113.0" text="Creator" textFill="#7d9d9c">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="382.0" layoutY="197.0" prefHeight="27.0" prefWidth="101.0" text="6510450445" textFill="#7d9d9c">
+      <Label layoutX="76.0" layoutY="254.0" prefHeight="27.0" prefWidth="101.0" text="6510450445" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="843.0" layoutY="197.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
+      <Label layoutX="338.0" layoutY="254.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="380.0" layoutY="473.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
+      <Label layoutX="73.0" layoutY="516.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="832.0" layoutY="480.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
+      <Label layoutX="346.0" layoutY="516.0" prefHeight="27.0" prefWidth="102.0" text="6510450445" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="417.0" layoutY="267.0" prefHeight="27.0" prefWidth="32.0" text="บอส" textFill="#7d9d9c">
+      <Label layoutX="111.0" layoutY="330.0" prefHeight="27.0" prefWidth="32.0" text="บอส" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="419.0" layoutY="548.0" prefHeight="18.0" prefWidth="22.0" text="พีค" textFill="#7d9d9c">
+      <Label layoutX="112.0" layoutY="591.0" prefHeight="18.0" prefWidth="22.0" text="พีค" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="883.0" layoutY="267.0" prefHeight="18.0" prefWidth="22.0" text="นน" textFill="#7d9d9c">
+      <Label layoutX="378.0" layoutY="324.0" prefHeight="18.0" prefWidth="22.0" text="นน" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="859.0" layoutY="549.0" prefHeight="27.0" prefWidth="47.0" text="ปาล์ม" textFill="#7d9d9c">
+      <Label layoutX="373.0" layoutY="591.0" prefHeight="27.0" prefWidth="47.0" text="ปาล์ม" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="376.0" layoutY="231.0" prefHeight="27.0" prefWidth="114.0" text="ธนวัฒน์ โพธิเดช" textFill="#7d9d9c">
+      <Label layoutX="70.0" layoutY="294.0" prefHeight="27.0" prefWidth="114.0" text="ธนวัฒน์ โพธิเดช" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="837.0" layoutY="231.0" prefHeight="27.0" prefWidth="114.0" text="กฤช วงศ์วรรณดี" textFill="#7d9d9c">
+      <Label layoutX="332.0" layoutY="288.0" prefHeight="27.0" prefWidth="114.0" text="กฤช วงศ์วรรณดี" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="368.0" layoutY="515.0" prefHeight="27.0" prefWidth="130.0" text="ชุติพงษ์ ไตรยะสิทธิ์" textFill="#7d9d9c">
+      <Label layoutX="61.0" layoutY="558.0" prefHeight="27.0" prefWidth="130.0" text="ชุติพงษ์ ไตรยะสิทธิ์" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="826.0" layoutY="518.0" prefHeight="27.0" prefWidth="114.0" text="ธนภูมิ ไชยเสนา" textFill="#7d9d9c">
+      <Label layoutX="340.0" layoutY="558.0" prefHeight="27.0" prefWidth="114.0" text="ธนภูมิ ไชยเสนา" textFill="#7d9d9c">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="501.0" layoutY="647.0" mnemonicParsing="false" onAction="#backToApp" prefHeight="35.0" prefWidth="86.0" styleClass="defaultButton" text="Back" />
-      <Rectangle fx:id="bossRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="177.0" layoutX="138.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="178.0" />
-      <Rectangle fx:id="peakRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="177.0" layoutX="138.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="178.0" />
-      <Rectangle fx:id="nonRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="177.0" layoutX="623.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="178.0" />
-      <Rectangle fx:id="palmRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="177.0" layoutX="623.0" layoutY="430.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="178.0" />
+      <Circle fx:id="bossCir" fill="DODGERBLUE" layoutX="126.0" layoutY="182.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="nonCir" fill="DODGERBLUE" layoutX="398.0" layoutY="181.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="peakCir" fill="DODGERBLUE" layoutX="131.0" layoutY="443.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="palmCir" fill="DODGERBLUE" layoutX="399.0" layoutY="445.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" />
+      <MFXButton layoutX="222.0" layoutY="649.0" onAction="#backToApp" prefHeight="35.0" prefWidth="69.0" text="back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>
