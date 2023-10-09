@@ -20,6 +20,7 @@ public class SettingController {
 
     private User user;
     @FXML private TextField oldTextField;
+    @FXML private AnchorPane page;
     @FXML private TextField newTextField;
     @FXML private TextField conTextField;
     @FXML private Label errorLabel;
@@ -69,6 +70,11 @@ public class SettingController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void changeTheme() throws IOException {
+        accounts.changeTheme(user.getAccountId());
+        repository.save(accounts);
     }
 
     public void confirm() throws IOException {

@@ -15,9 +15,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable{
-    @FXML AnchorPane page;
-    @FXML Circle image;
-    @FXML Label usernameLabel;
+    @FXML private AnchorPane page;
+    @FXML private Circle image;
+    @FXML private Label usernameLabel;
     private User user;
     public void initialize(URL location, ResourceBundle resources){
         user = (User)NPBPRouter.getDataAccount();

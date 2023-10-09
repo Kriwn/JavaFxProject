@@ -9,6 +9,7 @@ import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class EditTeamActivityController {
+public class EditTeamActivityController implements Initializable {
     @FXML
     private TextField nameTextField;
 

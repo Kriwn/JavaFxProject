@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Button?>
@@ -19,12 +20,12 @@
             <Font name="Impact" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="119.0" layoutY="671.0" styleClass="app-text" text="Dont' Have account ?" textFill="#171717">
+      <Label layoutX="141.0" layoutY="656.0" styleClass="app-text" text="Dont' Have account ?" textFill="#171717">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="270.0" layoutY="666.0" mnemonicParsing="false" onAction="#clickSignIn" prefHeight="21.0" prefWidth="75.0" styleClass="signUpButton" text="Sign up" textFill="#141414">
+      <Button layoutX="292.0" layoutY="651.0" mnemonicParsing="false" onAction="#clickSignIn" prefHeight="21.0" prefWidth="75.0" styleClass="signUpButton" text="Sign up" textFill="#141414">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
@@ -32,5 +33,6 @@
       <Label fx:id="errorLabel" layoutX="172.0" layoutY="464.0" text="Label" textFill="RED" />
       <MFXTextField id="customField" fx:id="userNameField" floatMode="BORDER" floatingText="Username" layoutX="131.0" layoutY="333.0" prefHeight="30.0" prefWidth="250.0" />
       <MFXPasswordField id="customPassword" fx:id="passwordField" floatMode="BORDER" floatingText="Password" layoutX="131.0" layoutY="407.0" prefHeight="30.0" prefWidth="250.0" />
+      <MFXButton layoutX="14.0" layoutY="14.0" onAction="#goToCreator" text="creator" />
    </children>
 </AnchorPane>

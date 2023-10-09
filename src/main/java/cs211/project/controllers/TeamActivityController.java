@@ -7,6 +7,7 @@ import cs211.project.pivot.TeamActivity;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
+import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -43,6 +44,8 @@ public class TeamActivityController {
 
     private int eventId;
 
+    private TeamRepository teamRepository;
+
 
     private TeamList teamList;
 
@@ -51,6 +54,8 @@ public class TeamActivityController {
         TeamEventrepository = new ActivityTeamEventRepository();
         ShowActivitys = new ActivityList();
         teamActivityList  = TeamEventrepository.getTeamActivity();
+        teamRepository = new TeamRepository();
+        teamList = teamRepository.getTeamList();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
         user = (User) NPBPRouter.getDataAccount();

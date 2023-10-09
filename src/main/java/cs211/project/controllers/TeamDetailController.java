@@ -35,8 +35,7 @@ public class TeamDetailController implements Initializable {
 
     private User user;
     private Event event;
-    private int team;
-
+    private Team team;
     private TeamRepository teamRepository;
     private TeamList teamList;
     private EventRepository eventRepository;

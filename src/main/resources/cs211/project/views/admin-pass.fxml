@@ -54,6 +54,11 @@
                </font>
             </Button>
             <Label fx:id="errorLabel" layoutX="277.0" layoutY="497.0" text="Label" textFill="#fc0000" />
+            <Button layoutX="39.0" layoutY="36.0" mnemonicParsing="false" onAction="#refresh" prefHeight="17.0" prefWidth="82.0" styleClass="defaultButton" text="refresh" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
