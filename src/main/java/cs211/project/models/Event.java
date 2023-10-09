@@ -185,15 +185,23 @@ public class Event {
         return false;
     }
 
-    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, String maxMember, Image image){
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, Image image){
         this.name = name;
         this.detail = details;
         this.dateStartEvent = LocalDate.parse(dateStart);
         this.timeStartEvent = LocalTime.parse(timeStart);
         this.dateEndEvent = LocalDate.parse(dateEnd);
         this.timeEndEvent = LocalTime.parse(timeEnd);
-        this.maxMember = Integer.parseInt(maxMember);
         this.image = image;
+    }
+
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd){
+        this.name = name;
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStart);
+        this.timeStartEvent = LocalTime.parse(timeStart);
+        this.dateEndEvent = LocalDate.parse(dateEnd);
+        this.timeEndEvent = LocalTime.parse(timeEnd);
     }
 
     public boolean isEventId(int event_id){

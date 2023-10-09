@@ -15,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -24,8 +26,6 @@ import java.nio.file.*;
 import java.util.ResourceBundle;
 
 public class EditEventController implements Initializable {
-    @FXML
-    private TextField capacityEvent;
 
     @FXML
     private DatePicker dateEndEvent;
@@ -35,9 +35,6 @@ public class EditEventController implements Initializable {
 
     @FXML
     private TextArea detailsTextArea;
-
-    @FXML
-    private ImageView eventImageView;
 
     @FXML
     private TextField nameEvent;
@@ -51,12 +48,15 @@ public class EditEventController implements Initializable {
     @FXML
     private TextField timeStartEvent;
     @FXML
+    private Circle eventCircle;
+    @FXML
     private Label successLabel;
 
     private User user;
     private Event event;
     private EventRepository eventRepository;
     private EventList eventList;
+    private Image image;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,12 +92,6 @@ public class EditEventController implements Initializable {
             }
         }));
 
-        capacityEvent.textProperty().addListener((observableValue, old, New) -> {
-            if(New != null) {
-                successLabel.setVisible(false);
-            }
-        });
-
         timeStartEvent.textProperty().addListener((observableValue, old, New) -> {
             if(New != null) {
                 successLabel.setVisible(false);
@@ -126,8 +120,7 @@ public class EditEventController implements Initializable {
         timeStartEvent.setText(event.getTimeStartEvent().toString());
         dateEndEvent.setValue(event.getDateEndEvent());
         timeEndEvent.setText(event.getTimeEndEvent().toString());
-        eventImageView.setImage(event.getImage());
-        capacityEvent.setText(""+event.getMaxMember());
+        eventCircle.setFill(new ImagePattern(event.getImage()));
     }
 
     public void handleEditEventButton(){
@@ -136,8 +129,6 @@ public class EditEventController implements Initializable {
         String timeStart = timeStartEvent.getText();
         String dateEnd = dateEndEvent.getValue().toString();
         String timeEnd = timeEndEvent.getText();
-        Image image = eventImageView.getImage();
-        String maxMember = capacityEvent.getText();
 
         String []s = detailsTextArea.getText().split("\n");
         String details = "";
@@ -145,8 +136,12 @@ public class EditEventController implements Initializable {
             details += i.trim();
             details += "|";
         }
-
-        event.editEvent(name, details, dateStart, timeStart, dateEnd, timeEnd, maxMember, image);
+        if (image != null) {
+            event.editEvent(name, details, dateStart, timeStart, dateEnd, timeEnd, image);
+        }
+        else {
+            event.editEvent(name, details, dateStart, timeStart, dateEnd, timeEnd);
+        }
         eventRepository.save(eventList);
 
         successLabel.setVisible(true);
@@ -181,9 +176,7 @@ public class EditEventController implements Initializable {
             String separator = name.substring(name.lastIndexOf('.'), name.length());
             String fileName = nameEvent.getText().trim();
 
-            eventImageView.setImage(new Image("file:"+"images/event/"+fileName+separator));
-
-            successLabel.setVisible(false);
+            image = new Image("file:"+"images/event/"+fileName+separator);
 
             Path to = Paths.get("images/event/"+fileName+separator);
             CopyOption[] options = new CopyOption[]{
@@ -192,6 +185,7 @@ public class EditEventController implements Initializable {
             };
             try {
                 Files.copy(from,to, options);
+                eventCircle.setFill(new ImagePattern(new Image("file:"+"images/event/"+fileName+separator)));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

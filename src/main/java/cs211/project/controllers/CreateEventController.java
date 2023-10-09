@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -32,7 +34,7 @@ public class CreateEventController {
     private TextArea detailsTextArea;
 
     @FXML
-    private ImageView eventImageView;
+    private Circle eventCircle;
 
     @FXML
     private TextField nameEvent;
@@ -51,6 +53,7 @@ public class CreateEventController {
     private AccountEventList accountEventList;
     private User user;
     private ArrayList<Event> event;
+    private Image image;
 
     public void initialize(){
         user = (User)NPBPRouter.getDataAccount();
@@ -71,7 +74,6 @@ public class CreateEventController {
             String dateEnd = dateEndEvent.getValue().toString();
             String timeStart = timeStartEvent.getText().trim();
             String timeEnd = timeEndEvent.getText().trim();
-            Image image = eventImageView.getImage();
 
 
             String[] s = detailsTextArea.getText().split("\n");
@@ -138,7 +140,7 @@ public class CreateEventController {
             String separator = name.substring(name.lastIndexOf('.'), name.length());
             String fileName = nameEvent.getText().trim();
 
-            eventImageView.setImage(new Image("file:"+"images/event/"+fileName+separator));
+            image = new Image("file:"+"images/event/"+fileName+separator);
 
             Path to = Paths.get("images/event/"+fileName+separator);
             CopyOption[] options = new CopyOption[]{
@@ -147,6 +149,7 @@ public class CreateEventController {
             };
             try {
                 Files.copy(from,to, options);
+                eventCircle.setFill(new ImagePattern(new Image("file:"+"images/event/"+fileName+separator)));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
