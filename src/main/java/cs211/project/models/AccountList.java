@@ -88,6 +88,16 @@ public class AccountList {
         Account exist = findUserByUsername(username);
         exist.setImagePath(path);
     }
+    public void changeTheme(int id){
+        Account exist = findUserByAccountId(id);
+        int theme = exist.getAccountTheme();
+        if(theme == 1){
+            exist.setAccountTheme(2);
+        }
+        else{
+            exist.setAccountTheme(1);
+        }
+    }
     public boolean login(String username, String password){
         Account account = findUserByUsername(username);
         boolean flag = account.validatePassword(password);

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminHome implements Initializable {
+public class AdminHomeController implements Initializable {
     @FXML AnchorPane page;
     @FXML Circle image;
     @FXML Label usernameLabel;

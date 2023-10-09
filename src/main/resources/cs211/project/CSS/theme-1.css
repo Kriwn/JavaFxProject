@@ -91,6 +91,9 @@ Accent = #657b6d
 .app-text{
     -fx-text-fill: #7D9D9C;
 }
+.default-text{
+    -fx-text-fill: black;
+}
 /**************************************************
  * Text Fields
 **************************************************/

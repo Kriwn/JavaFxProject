@@ -11,12 +11,12 @@
          <children>
             <MFXTableView fx:id="table1" footerVisible="false" layoutX="37.0" layoutY="90.0" prefHeight="250.0" prefWidth="550.0" />
             <MFXTableView fx:id="table2" footerVisible="false" layoutX="37.0" layoutY="396.0" prefHeight="250.0" prefWidth="550.0" />
-            <Label layoutX="37.0" layoutY="32.0" prefHeight="27.0" prefWidth="134.0" text="Event Available">
+            <Label layoutX="37.0" layoutY="32.0" prefHeight="27.0" prefWidth="134.0" styleClass="default-text" text="Event Available">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="37.0" layoutY="359.0" prefHeight="27.0" prefWidth="134.0" text="Event Ended">
+            <Label layoutX="37.0" layoutY="359.0" prefHeight="27.0" prefWidth="134.0" styleClass="default-text" text="Event Ended">
                <font>
                   <Font size="18.0" />
                </font>
