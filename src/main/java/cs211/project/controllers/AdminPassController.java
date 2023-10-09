@@ -85,4 +85,11 @@ public class AdminPassController {
             return ;
         }
     }
+    public void refresh(){
+        try {
+            NPBPRouter.goTo("admin-sidebar");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
