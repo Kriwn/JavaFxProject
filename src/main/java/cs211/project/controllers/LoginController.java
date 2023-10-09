@@ -72,7 +72,7 @@ public class LoginController implements Initializable{
         NPBPRouter.loadPage("signup", loginArea);
     }
     public void goToCreator() throws IOException {
-        NPBPRouter.goTo("creator");
+        NPBPRouter.loadPage("creator", loginArea);
     }
 
     public void clickLogIn() throws IOException {
