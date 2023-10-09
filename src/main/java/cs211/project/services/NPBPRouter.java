@@ -100,7 +100,6 @@ public final class NPBPRouter {
        }).getClass().getResource(CSS).toExternalForm());
         window.setScene(scene);
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
-        //window.setScene(new Scene(resource,route.sceneWidth,route.sceneHeight));
         window.setResizable(false);
         window.show();
         routeAnimation(resource);
