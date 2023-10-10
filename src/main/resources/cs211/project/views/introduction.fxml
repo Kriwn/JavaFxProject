@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="512.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.IntroductionController">
+   <children>
+      <Label layoutX="174.0" layoutY="43.0" styleClass="app-text" text="Introduction">
+         <font>
+            <Font name="Impact" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="148.0" styleClass="default-text" text="1.Username ไม่สามารถตั้งซ้ำกันได้แต่สามารถตั้งกี่ตัวก็ได้ Password มีอย่างน้อย 6 ตัว">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="173.0" prefHeight="20.0" prefWidth="456.0" styleClass="default-text" text="2.สามารถเปลี่ยนธีมและpassword ได้ในแถบsetting ด้านซ้ายหลังจากเปลี่ยนธีมกด refresh 1 ครั้ง">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="198.0" prefHeight="15.0" prefWidth="11.0" styleClass="default-text" text="3.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="219.0" prefHeight="15.0" prefWidth="14.0" styleClass="default-text" text="4.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="239.0" styleClass="default-text" text="5.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="264.0" styleClass="default-text" text="6.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="289.0" styleClass="default-text" text="7.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="314.0" styleClass="default-text" text="8.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="339.0" styleClass="default-text" text="9.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="364.0" styleClass="default-text" text="10.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="389.0" styleClass="default-text" text="11.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="414.0" styleClass="default-text" text="12.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="439.0" styleClass="default-text" text="13.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="464.0" styleClass="default-text" text="14.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="489.0" styleClass="default-text" text="15.">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <MFXButton layoutX="433.0" layoutY="709.0" onAction="#backToApp" text="Back" />
+   </children>
+</AnchorPane>

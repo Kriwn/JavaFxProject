@@ -11,7 +11,7 @@
 <AnchorPane fx:id="page" maxHeight="-Infinity" maxWidth="0.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EditUserController">
     <children>
         <Button layoutX="274.0" layoutY="669.0" mnemonicParsing="false" onAction="#unBanButton" prefHeight="35.0" prefWidth="84.0" styleClass="defaultButton" text="UNBAN" textFill="WHITE" />
-        <Label layoutX="358.0" layoutY="70.0" text="User List">
+        <Label layoutX="358.0" layoutY="70.0" styleClass="event-text" text="User List">
             <font>
                 <Font size="18.0" />
             </font>
@@ -28,6 +28,6 @@
             </HBox>
          </content>
       </ScrollPane>
-      <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backToMyCreateEvent" text="back" />
+      <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backToMyCreateEvent" styleClass="defaultButton" text="back" />
     </children>
 </AnchorPane>
