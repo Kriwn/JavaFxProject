@@ -82,8 +82,6 @@ public class SettingController {
         else{
             themeButton.setText("Theme "+ 2);
         }
-
-//        NPBPRouter.goTo("home");
     }
 
     public void confirm() throws IOException {
@@ -92,22 +90,29 @@ public class SettingController {
         String conPass = confirmPasswordField.getText().trim();
         if (oldPass.equals("") || newPass.equals("") || conPass.equals("")) {
             errorLabel.setText("Please fill  is required");
+            errorLabel.setLayoutX(230);
             return ;
         }
             if (user.validatePassword(oldPass)) {
-                if (newPass.equals(conPass)) {
-                    accounts.changePassword(user.getUsername(),newPass);
-                    repository.save(accounts);
-                    System.out.println("Change password successfully");
-                    NPBPRouter.goTo("home",user);
+                if(newPass.length() > 5) {
+                    if (newPass.equals(conPass)) {
+                        accounts.changePassword(user.getUsername(), newPass);
+                        repository.save(accounts);
+                        System.out.println("Change password successfully");
+                        NPBPRouter.goTo("home", user);
+                    } else
+                        errorLabel.setText("Not matching password and confirm password");
+                        errorLabel.setLayoutX(170);
                 }
-                else
-                    errorLabel.setText("Not matching password and confirm password");
+                else{
+                    errorLabel.setText("Password must has more than 5 characters");
+                    errorLabel.setLayoutX(170);
+                }
             }
             else
             {
                 errorLabel.setText("Please fill the correct old password");
-                return ;
+                errorLabel.setLayoutX(180);
             }
     }
 }

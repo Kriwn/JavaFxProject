@@ -62,7 +62,7 @@ public class AdminPassController {
             }
         }
     }
-    public void confirm(){
+    public void confirm() throws IOException {
         String oldPass = oldPasswordField.getText().trim();
         String newPass = newPasswordField.getText().trim();
         String conPass = confirmPasswordField.getText().trim();
@@ -71,18 +71,24 @@ public class AdminPassController {
             return ;
         }
         if (admin.validatePassword(oldPass)) {
-            if (newPass.equals(conPass)) {
-                accounts.changePassword(admin.getUsername(),newPass);
-                repository.save(accounts);
-                System.out.println("Change password successfully");
+            if(newPass.length() > 5) {
+                if (newPass.equals(conPass)) {
+                    accounts.changePassword(admin.getUsername(), newPass);
+                    repository.save(accounts);
+                    NPBPRouter.goTo("admin-sidebar");
+                } else
+                    errorLabel.setText("Not matching password and confirm password");
+                errorLabel.setLayoutX(170);
             }
-            else
-                errorLabel.setText("Not matching password and confirm password");
+            else{
+                errorLabel.setText("Password must has more than 5 characters");
+                errorLabel.setLayoutX(170);
+            }
         }
         else
         {
             errorLabel.setText("Please fill the correct old password");
-            return ;
+            errorLabel.setLayoutX(180);
         }
     }
     public void refresh(){

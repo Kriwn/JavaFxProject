@@ -65,7 +65,7 @@ public class SignUpController implements Initializable{
                     }
                 }
                 else{
-                    errorLabel.setText("Password must have more than 5 characters");
+                    errorLabel.setText("Password must has more than 5 characters");
                     errorLabel.setLayoutX(140);
                     errorLabel.setVisible(true);
                 }

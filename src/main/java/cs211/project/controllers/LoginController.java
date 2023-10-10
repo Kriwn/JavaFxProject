@@ -74,6 +74,9 @@ public class LoginController implements Initializable{
     public void goToCreator() throws IOException {
         NPBPRouter.loadPage("creator", loginArea);
     }
+    public void goToIntro() throws IOException {
+        NPBPRouter.loadPage("Introduction",loginArea);
+    }
 
     public void clickLogIn() throws IOException {
         String username = userNameField.getText();

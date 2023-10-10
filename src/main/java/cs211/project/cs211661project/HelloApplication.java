@@ -41,6 +41,7 @@ public class HelloApplication extends Application {
 
 
         NPBPRouter.when("edit-user",viewPath + "edit-user.fxml");
+        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
         NPBPRouter.when("admin-main",viewPath + "admin-main.fxml");
         NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");
         NPBPRouter.when("create-event",viewPath + "create-event.fxml");
@@ -51,7 +52,6 @@ public class HelloApplication extends Application {
         NPBPRouter.when("select-my-create-event",viewPath + "select-my-create-event.fxml");
         NPBPRouter.when("select-team",viewPath + "select-team.fxml");
         NPBPRouter.when("setting",viewPath + "setting.fxml");
-        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
         NPBPRouter.when("staff-card", viewPath + "staff-card.fxml");
         NPBPRouter.when("show-member", viewPath + "show-member.fxml");
         NPBPRouter.when("chat", viewPath + "chat.fxml");
@@ -65,7 +65,8 @@ public class HelloApplication extends Application {
         NPBPRouter.when("teams-chat", viewPath + "teams-chat.fxml");
         NPBPRouter.when("select-team-to-join",viewPath + "select-team-to-join.fxml");
 
-        NPBPRouter.when("creator",viewPath +"creator.fxml");
+        NPBPRouter.when("creator",viewPath + "creator.fxml");
+        NPBPRouter.when("Introduction", viewPath + "introduction.fxml");
     }
     public static void main(String[] args) {
         launch();
