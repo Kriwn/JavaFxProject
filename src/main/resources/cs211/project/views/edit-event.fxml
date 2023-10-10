@@ -9,41 +9,41 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" style="-fx-background-color: #E4DCCF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EditEventController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" styleClass="defaultPage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.EditEventController">
    <children>
-      <AnchorPane layoutX="89.5" layoutY="50.0" prefHeight="680.0" prefWidth="625.0" style="-fx-background-color: #F0EBE3; -fx-background-radius: 30;">
+      <AnchorPane layoutX="89.5" layoutY="50.0" prefHeight="680.0" prefWidth="625.0" styleClass="defaultInnerPage">
          <children>
-            <Label layoutX="65.0" layoutY="31.0" text="Create Event">
+            <Label layoutX="65.0" layoutY="31.0" styleClass="event-text" text="Edit Event">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="102.0" text="ชื่อ Event">
+            <Label layoutX="247.0" layoutY="102.0" styleClass="event-text" text="ชื่อ Event">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="162.0" text="รายละเอียด Event">
+            <Label layoutX="247.0" layoutY="162.0" styleClass="event-text" text="รายละเอียด Event">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="222.0" text="วันที่เริ่ม Event">
+            <Label layoutX="247.0" layoutY="222.0" styleClass="event-text" text="วันที่เริ่ม Event">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="282.0" text="เวลาที่เริ่ม Event">
+            <Label layoutX="247.0" layoutY="282.0" styleClass="event-text" text="เวลาที่เริ่ม Event">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="342.0" text="วันที่สิ้นสุด Event">
+            <Label layoutX="247.0" layoutY="342.0" styleClass="event-text" text="วันที่สิ้นสุด Event">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="247.0" layoutY="402.0" text="เวลาที่สิ้นสุด Event">
+            <Label layoutX="247.0" layoutY="402.0" styleClass="event-text" text="เวลาที่สิ้นสุด Event">
                <font>
                   <Font size="18.0" />
                </font>

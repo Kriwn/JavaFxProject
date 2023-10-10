@@ -16,9 +16,9 @@ public class CreatorController {
     @FXML private Circle palmCir;
     @FXML private Circle peakCir;
     public void initialize(){
-        bossCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Boss.jpg")));
-        nonCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Non.jpg")));
-        palmCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Palm.jpg")));
+        bossCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Boss.png")));
+        nonCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Non.png")));
+        palmCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Palm.png")));
         peakCir.setFill(new ImagePattern(new Image("file:"+"images/Creator/Peak.png")));
     }
     public void backToApp(){

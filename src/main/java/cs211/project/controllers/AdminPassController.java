@@ -2,9 +2,9 @@ package cs211.project.controllers;
 
 import cs211.project.models.AccountList;
 import cs211.project.models.Admin;
-import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPRouter;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,9 +19,9 @@ import java.nio.file.StandardCopyOption;
 public class AdminPassController {
 
     private Admin admin;
-    @FXML private TextField oldTextField;
-    @FXML private TextField newTextField;
-    @FXML private TextField conTextField;
+    @FXML private MFXPasswordField oldPasswordField;
+    @FXML private MFXPasswordField newPasswordField;
+    @FXML private MFXPasswordField confirmPasswordField;
     @FXML private Label errorLabel;
     private AccountList accounts;
     private AccountRepository repository;
@@ -63,9 +63,9 @@ public class AdminPassController {
         }
     }
     public void confirm(){
-        String oldPass = oldTextField.getText().trim();
-        String newPass = newTextField.getText().trim();
-        String conPass = conTextField.getText().trim();
+        String oldPass = oldPasswordField.getText().trim();
+        String newPass = newPasswordField.getText().trim();
+        String conPass = confirmPasswordField.getText().trim();
         if (oldPass.equals("") || newPass.equals("") || conPass.equals("")) {
             errorLabel.setText("Please fill  is required");
             return ;
