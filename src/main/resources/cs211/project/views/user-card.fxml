@@ -11,12 +11,12 @@
       <Pane prefHeight="23.0" prefWidth="160.0" />
       <Circle fx:id="imgCircle" fill="DODGERBLUE" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
       <Pane prefHeight="23.0" prefWidth="600.0" />
-      <Label fx:id="usernameLabel" text="username">
+      <Label fx:id="usernameLabel" styleClass="event-text" text="username">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="statusLabel" text="status">
+      <Label fx:id="statusLabel" styleClass="event-text" text="status">
          <font>
             <Font size="18.0" />
          </font>
