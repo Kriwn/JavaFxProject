@@ -72,7 +72,7 @@ public class CreateTeamActivityController implements Initializable {
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
-        String detail = detailTextArea.getText();
+        String detail = detailTextArea.getText().replace("\n","|");
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
         activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
