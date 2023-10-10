@@ -93,6 +93,9 @@ Accent = #657b6d
 .default-text{
     -fx-text-fill: black;
 }
+.event-text{
+    -fx-text-fill: black;
+}
 /**************************************************
  * Text Fields
 **************************************************/

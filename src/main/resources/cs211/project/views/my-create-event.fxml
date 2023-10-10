@@ -12,48 +12,48 @@
     <children>
         <AnchorPane layoutX="79.5" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
             <children>
-                <Label layoutX="65.0" layoutY="31.0" text="My Create Event">
+                <Label layoutX="65.0" layoutY="31.0" styleClass="event-text" text="My Create Event">
                     <font>
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label layoutX="65.0" layoutY="341.0" text="Name :">
+                <Label layoutX="65.0" layoutY="341.0" styleClass="event-text" text="Name :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
                 <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="280.0" layoutX="62.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
-                <Label fx:id="nameEvent" layoutX="245.0" layoutY="340.0" text="nameEvent">
+                <Label fx:id="nameEvent" layoutX="245.0" layoutY="340.0" styleClass="event-text" text="nameEvent">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="65.0" layoutY="410.0" text="Details :">
+                <Label layoutX="65.0" layoutY="410.0" styleClass="event-text" text="Details :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="65.0" layoutY="490.0" text="Edit Team :">
+                <Label layoutX="65.0" layoutY="490.0" styleClass="event-text" text="Edit Team :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="65.0" layoutY="570.0" text="Edit User :">
+                <Label layoutX="65.0" layoutY="570.0" styleClass="event-text" text="Edit User :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="370.0" layoutY="410.0" text="Chat :">
+                <Label layoutX="370.0" layoutY="410.0" styleClass="event-text" text="Chat :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="370.0" layoutY="490.0" text="Activity :">
+                <Label layoutX="370.0" layoutY="490.0" styleClass="event-text" text="Activity :">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="370.0" layoutY="570.0" text="Staff :">
+                <Label layoutX="370.0" layoutY="570.0" styleClass="event-text" text="Staff :">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -66,7 +66,7 @@
                 <MFXButton layoutX="484.0" layoutY="571.0" onAction="#goToStaffList" text="staff" />
                 <DatePicker fx:id="dateStart" layoutX="416.0" layoutY="93.0" promptText="Start date" />
                 <DatePicker fx:id="dateEnd" layoutX="415.0" layoutY="166.0" promptText="End date" />
-                <Label layoutX="350.0" layoutY="92.0" text="Enroll :">
+                <Label layoutX="350.0" layoutY="92.0" styleClass="event-text" text="Enroll :">
                     <font>
                         <Font size="18.0" />
                     </font>
