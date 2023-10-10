@@ -167,5 +167,16 @@ Accent = #977284
     -fx-background-radius:10;
     -fx-border-color: transparent;
 }
+.card{
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+.card:hover{
+    -fx-background-color: gray;
+    -fx-translate-y:5;
+}
+.card:focused{
+    -fx-background-color: black;
+}
 
 
