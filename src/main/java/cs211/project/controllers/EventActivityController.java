@@ -25,12 +25,12 @@ public class EventActivityController {
     @FXML
     private AnchorPane page;
 
-    private ActivityTeamEventRepository TeamEventrepository;
+    private ActivityTeamEventRepository teamEventRepository;
 
     private  ActivityRepository repository;
 
     private ActivityList activitys;
-    private  ActivityList ShowActivitys;
+    private  ActivityList showActivitys;
 
     private  Activity activity;
 
@@ -42,9 +42,9 @@ public class EventActivityController {
 
     @FXML
     public void initialize() {
-        TeamEventrepository = new ActivityTeamEventRepository();
-        ShowActivitys = new ActivityList();
-        eventActivity  = TeamEventrepository.getEventActivity();
+        teamEventRepository = new ActivityTeamEventRepository();
+        showActivitys = new ActivityList();
+        eventActivity  = teamEventRepository.getEventActivity();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
         user = (User)NPBPRouter.getDataAccount();
@@ -54,10 +54,10 @@ public class EventActivityController {
             if (event.isEventId(eventId)) {
                 activity = activitys.findActivityById(event.getActivityId());
                 activity.checkTimeActivity();
-                ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
+                showActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
             }
         }
-        showTable(ShowActivitys);
+        showTable(showActivitys);
 
         activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
             @Override

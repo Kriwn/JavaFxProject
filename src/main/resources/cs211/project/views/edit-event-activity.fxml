@@ -55,7 +55,7 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <TextField fx:id="timeStart" layoutX="325.0" layoutY="262.0" promptText="h:mm:ss">
+            <TextField fx:id="timeStart" layoutX="325.0" layoutY="262.0" promptText="hh:mm:ss">
                <font>
                   <Font size="18.0" />
                </font></TextField>
@@ -63,7 +63,7 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <TextField fx:id="timeEnd" layoutX="326.0" layoutY="348.0" promptText="h:mm:ss">
+            <TextField fx:id="timeEnd" layoutX="326.0" layoutY="348.0" promptText="hh:mm:ss">
                <font>
                   <Font size="18.0" />
                </font></TextField>

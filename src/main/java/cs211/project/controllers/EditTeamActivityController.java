@@ -3,7 +3,6 @@ package cs211.project.controllers;
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
 import cs211.project.models.User;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
@@ -85,9 +84,14 @@ public class EditTeamActivityController implements Initializable {
         String detail = detailTextArea.getText();
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
-        activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
-        activityRepository.save(activityList);
-        backToEventActivity();
+        try {
+            activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
+            activityRepository.save(activityList);
+            backToEventActivity();
+        }
+        catch (Exception e){
+
+        }
     }
 
     public void delete(){

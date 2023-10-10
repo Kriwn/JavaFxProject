@@ -27,12 +27,12 @@ public class TeamActivityController {
     @FXML
     private AnchorPane page;
 
-    private ActivityTeamEventRepository TeamEventrepository;
+    private ActivityTeamEventRepository teamEventRepository;
 
     private ActivityRepository repository;
 
     private ActivityList activitys;
-    private  ActivityList ShowActivitys;
+    private  ActivityList showActivitys;
 
     private  Activity activity;
 
@@ -51,9 +51,9 @@ public class TeamActivityController {
 
     @FXML
     public void initialize() {
-        TeamEventrepository = new ActivityTeamEventRepository();
-        ShowActivitys = new ActivityList();
-        teamActivityList  = TeamEventrepository.getTeamActivity();
+        teamEventRepository = new ActivityTeamEventRepository();
+        showActivitys = new ActivityList();
+        teamActivityList  = teamEventRepository.getTeamActivity();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
         repository = new ActivityRepository();
@@ -67,10 +67,10 @@ public class TeamActivityController {
             if (team.isTeamId(teamId)) {
                 activity = activitys.findActivityById(team.getActivityId());
                 activity.checkTimeActivity();
-                ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
+                showActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
             }
         }
-        showTable(ShowActivitys);
+        showTable(showActivitys);
 
         activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
             @Override

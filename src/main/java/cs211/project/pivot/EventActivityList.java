@@ -38,7 +38,7 @@ public class EventActivityList {
         ArrayList<Integer> result = new ArrayList<>();
         for(EventActivity eventActivity: list){
             if (eventActivity.isEventId(eventId)){
-                result.add(eventActivity.getEventId());
+                result.add(eventActivity.getActivityId());
             }
         }
         return result;
