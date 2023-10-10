@@ -1,11 +1,9 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.pivot.AccountEventList;
-import cs211.project.repository.AccountEventRepository;
-import cs211.project.repository.AccountRepository;
-import cs211.project.repository.ActivityRepository;
-import cs211.project.repository.EventRepository;
+import cs211.project.pivot.EventActivity;
+import cs211.project.pivot.EventActivityList;
+import cs211.project.repository.*;
 import cs211.project.services.Datasource;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
@@ -56,14 +54,16 @@ public class MyEventController implements Initializable {
     @FXML private TableView<Activity> activityTableView;
 
     private ActivityRepository repository;
-    private ActivityList activitys;
-    private  ActivityList ShowActivitys;
+    private Activity activity;
 
-    private  Activity activity;
+    private  ActivityList showActivitys;
 
-    private  ArrayList<Integer> results;
+    private  ActivityList activitys;
 
-    private AccountEventList accountEventList;
+    private  EventActivityList eventActivityList;
+
+    private EventActivityList eventActivity;
+    private ActivityTeamEventRepository teamEventRepository;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,19 +76,24 @@ public class MyEventController implements Initializable {
         int eventId = (Integer) NPBPRouter.getDataEvent();
         event = eventList.findEventById(eventId);
         detailsTextArea.setEditable(false);
-        accountEventList = accountEventRepository.getListJoin();
-        results = accountEventList.findEventsByAccount(user.getAccountId());
-        ShowActivitys = new ActivityList();
+
+
+        teamEventRepository = new ActivityTeamEventRepository();
+        showActivitys = new ActivityList();
         repository = new ActivityRepository();
         activitys = repository.getActivityList();
+        eventActivityList = new EventActivityList();
+        eventActivity  = teamEventRepository.getEventActivity();
 
-        for(var i:  results) {
-                activity = activitys.findActivityById(i);
+        for(EventActivity event :  eventActivity.getList()) {
+            if (event.isEventId(eventId)) {
+                activity = activitys.findActivityById(event.getActivityId());
                 activity.checkTimeActivity();
-                ShowActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
+                showActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
+            }
         }
 
-        showTable(ShowActivitys);
+        showTable(showActivitys);
         showEvent(event);
     }
 
