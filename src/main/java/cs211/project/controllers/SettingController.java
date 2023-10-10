@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,10 +18,9 @@ import java.nio.file.StandardCopyOption;
 
 public class SettingController {
 
-    @FXML private TextField oldTextField;
-    @FXML private AnchorPane page;
-    @FXML private TextField newTextField;
-    @FXML private TextField conTextField;
+    @FXML private TextField oldPasswordField;
+    @FXML private TextField newPasswordField;
+    @FXML private TextField confirmPasswordField;
     @FXML private Label errorLabel;
     @FXML private MFXButton themeButton;
     private User user;
@@ -89,9 +87,9 @@ public class SettingController {
     }
 
     public void confirm() throws IOException {
-        String oldPass = oldTextField.getText().trim();
-        String newPass = newTextField.getText().trim();
-        String conPass = conTextField.getText().trim();
+        String oldPass = oldPasswordField.getText().trim();
+        String newPass = newPasswordField.getText().trim();
+        String conPass = confirmPasswordField.getText().trim();
         if (oldPass.equals("") || newPass.equals("") || conPass.equals("")) {
             errorLabel.setText("Please fill  is required");
             return ;
