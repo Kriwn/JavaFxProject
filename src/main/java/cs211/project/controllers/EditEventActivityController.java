@@ -72,7 +72,7 @@ public class EditEventActivityController implements Initializable {
         nameTextField.setText(activity.getName());
         startDatePicker.setValue(activity.getDateStart());
         endDatePicker.setValue(activity.getDateEnd());
-        detailTextArea.setText(activity.getDetail());
+        detailTextArea.setText(activity.getDetail().replace("|","\n"));
         timeStart.setText((""+activity.getTimeStart()));
         timeEnd.setText(""+activity.getTimeEnd());
     }
@@ -82,7 +82,7 @@ public class EditEventActivityController implements Initializable {
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
-        String detail = detailTextArea.getText();
+        String detail = detailTextArea.getText().replace("\n","|");
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
         activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
