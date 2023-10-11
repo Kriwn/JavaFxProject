@@ -1,5 +1,7 @@
 package cs211.project.pivot;
 
+import java.util.ArrayList;
+
 public class EventTeam {
     private int eventId;
     private int teamId;
