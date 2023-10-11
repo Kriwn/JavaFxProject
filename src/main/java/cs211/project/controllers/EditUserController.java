@@ -32,6 +32,7 @@ public class EditUserController implements Initializable {
     private VBox vbox2;
     @FXML
     private VBox vbox3;
+    @FXML Label errorLabel;
     private User selectUser;
     private VBox selectBox;
     private User user;
@@ -48,6 +49,8 @@ public class EditUserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = (User) NPBPRouter.getDataAccount();
         event = (Event) NPBPRouter.getDataEvent();
+
+        errorLabel.setVisible(false);
 
         accountRepository = new AccountRepository();
         accountEventRepository = new AccountEventRepository();
@@ -100,23 +103,34 @@ public class EditUserController implements Initializable {
         return vbox;
     }
     public void banButton(){
-        listJoin.ban(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(listJoin);
-        accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
-        refresh(accountEvent);
+        try {
+            listJoin.ban(selectUser.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(listJoin);
+            accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+            refresh(accountEvent);
+        }catch (Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Please choose some account");
+        }
+
     }
     public void unBanButton(){
-        listJoin.unBan(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(listJoin);
-        accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
-        refresh(accountEvent);
+        try {
+            listJoin.unBan(selectUser.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(listJoin);
+            accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+            refresh(accountEvent);
+        }catch (Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Please choose some account");
+        }
+
     }
     public void refresh(AccountEvent accountEvent) {
-        Circle circle = (Circle) selectBox.getChildren().get(1);
         Label username = (Label) selectBox.getChildren().get(3);
         Label status = (Label) selectBox.getChildren().get(4);
+        errorLabel.setVisible(false);
 
-        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
         username.setText(selectUser.getName());
         status.setText(accountEvent.getStatus());
         selectBox.setFocusTraversable(true);
