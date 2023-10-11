@@ -70,6 +70,7 @@ public class MyCreateEventController implements Initializable {
 
     public void setDateTimeJoin(){
         try {
+            errorLabel.setVisible(false);
             event.setOpenDateStart(LocalDate.parse(dateStart.getValue().toString()));
             event.setOpenDateEnd(LocalDate.parse(dateEnd.getValue().toString()));
             event.setOpenTimeStart(LocalTime.parse(timeStart.getText()));

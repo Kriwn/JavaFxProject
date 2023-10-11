@@ -49,7 +49,6 @@ public class ShowMyEventController implements Initializable {
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
     private EventList eventList;
-    private ArrayList<Event> events;
     private EventTeamRepository eventTeamRepository;
     private TeamAccountRepository accountTeamRepository;
 
@@ -60,7 +59,6 @@ public class ShowMyEventController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
         AccountEventList list_join = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
@@ -72,18 +70,14 @@ public class ShowMyEventController implements Initializable {
 
         eventTeamRepository = new EventTeamRepository();
         ArrayList<Integer> eventId = eventTeamRepository.getEventTeamList().getListEventId();
-        System.out.println(eventId);
         accountTeamRepository = new TeamAccountRepository();
         ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
         ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
-        System.out.println(teamIdUser);
         for (var i : teamIdUser) {
             eventTeamIdUser.add(eventTeamRepository.getEventTeamList().findEventByTeamId(i));
         }
-        System.out.println(eventTeamIdUser);
         ArrayList<Integer> listEventId = new ArrayList<>();
         listEventId.addAll(eventTeamRepository.getEventTeamList().checkEventIdInEventId(eventId, eventTeamIdUser));
-        System.out.println(listEventId);
 
         listEventId = eventTeamRepository.getEventTeamList().checkDuplicateEventId(listEventId);
         for (var i : listEventId){
@@ -139,7 +133,7 @@ public class ShowMyEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatusEvent() && data.checkMember()) {
+            if(data.getStatusEvent()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

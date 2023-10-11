@@ -3,6 +3,7 @@ package cs211.project.models;
 import javafx.scene.image.Image;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -99,7 +100,7 @@ public class Event {
         this.openTimeStart = LocalTime.now();
         this.openTimeEnd = LocalTime.now();
         this.countMember = Integer.parseInt(countMember);
-        setImage(new Image("file:"+"images/"+"default.png"));
+        setImage(new Image("file:"+"images/event/"+"default.png"));
     }
 
     public Event(String name, String id, String details,
@@ -134,25 +135,16 @@ public class Event {
         this.openTimeEnd = LocalTime.parse(openTimeEnd);
         this.countMember = Integer.parseInt(countMember);
         this.statusEvent = true;
-        setImage(new Image("file:" + "images/default.png"));
+        setImage(new Image("file:" + "images/event/default.png"));
         this.eventId = Integer.parseInt(id);
     }
 
 
 
     public void checkTimeEvent(){
-        if(dateEndEvent.isAfter(LocalDate.now())){
-            if(dateEndEvent.equals(LocalDate.now())){
-                if(timeEndEvent.isAfter(LocalTime.now())){
-                    statusEvent = true;
-                }
-                else{
-                    statusEvent = false;
-                }
-            }
-            else{
-                statusEvent = true;
-            }
+        LocalDateTime localDateTimeEnd = LocalDateTime.of(dateEndEvent, timeEndEvent);
+        if(localDateTimeEnd.isAfter(LocalDateTime.now())){
+            statusEvent = true;
         }
         else{
             statusEvent = false;
@@ -160,20 +152,12 @@ public class Event {
     }
 
     public void checkTimeJoin(){
-        if(openDateEnd.isAfter(LocalDate.now()) && openDateStart.isBefore(LocalDate.now())){
-            if(openDateEnd.equals(LocalDate.now()) || openDateStart.equals(LocalDate.now())){
-                if(openTimeEnd.isAfter(LocalTime.now()) && openTimeStart.isBefore(LocalTime.now())){
-                    statusJoin = true;
-                }
-                else{
-                    statusJoin = false;
-                }
-            }
-            else{
-                statusJoin = true;
-            }
+        LocalDateTime localDateTimeEnd = LocalDateTime.of(openDateEnd, openTimeEnd);
+        LocalDateTime localDateTimeStart = LocalDateTime.of(openDateStart, openTimeStart);
+        if (localDateTimeEnd.isAfter(LocalDateTime.now()) && localDateTimeStart.isBefore(LocalDateTime.now())){
+            statusJoin = true;
         }
-        else{
+        else {
             statusJoin = false;
         }
     }

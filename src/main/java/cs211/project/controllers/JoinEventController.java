@@ -79,8 +79,6 @@ public class JoinEventController {
         accountTeamRepository = new TeamAccountRepository();
         ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
 
-        System.out.println(teamIdEvent);
-        System.out.println(teamIdUser);
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             joinEventButton.setVisible(false);
         }

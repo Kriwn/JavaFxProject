@@ -29,7 +29,7 @@ public class Account {
         this.username = username;
         this.password = null;
         this.roleAccount = "User";
-        this.imagePath = "images/default.png";
+        this.imagePath = "images/User/default.png";
         this.timeLogin = LocalDateTime.now();
         this.accountTheme = 1;
     }

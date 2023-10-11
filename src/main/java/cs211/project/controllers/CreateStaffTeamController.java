@@ -87,7 +87,7 @@ public class CreateStaffTeamController {
 
         if(checkTeamName(teams)){
             teamList.createTeam(teamName,member,openDateText,openTime,closeDateText,closeTime,"0");
-            Team exist = teamList.findTeamByName(teamName);
+            Team exist = teamList.getTeams().get(teamList.getTeams().size()-1);
             int teamId = exist.getTeamId();
 
             eventTeamList.addNew(event.getEventId(),teamId);

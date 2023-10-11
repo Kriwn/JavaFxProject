@@ -67,7 +67,7 @@ public class SettingController {
     }
     public void refresh(){
         try {
-            NPBPRouter.goTo("home");
+            NPBPRouter.goTo("home",accounts.findUserByAccountId(user.getAccountId()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -100,9 +100,10 @@ public class SettingController {
                         repository.save(accounts);
                         System.out.println("Change password successfully");
                         NPBPRouter.goTo("home", user);
-                    } else
+                    } else {
                         errorLabel.setText("Not matching password and confirm password");
                         errorLabel.setLayoutX(170);
+                    }
                 }
                 else{
                     errorLabel.setText("Password must has more than 5 characters");

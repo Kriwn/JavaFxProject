@@ -52,7 +52,6 @@ public class TeamListController implements Initializable {
 
         listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));
 
-        System.out.println(listId);
 
         for(Integer id : listId){
             vbox.getChildren().add(createCard(id));

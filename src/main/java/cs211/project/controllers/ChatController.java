@@ -119,15 +119,18 @@ public class ChatController implements Initializable {
 
     public void send(){
         if(textField.getText().equals("")){return;}
-
+        String time;
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
-        String time = currentTime.getHour() + ":" + currentTime.getMinute();
+        if(currentTime.getHour() < 10){
+            time = "0" +currentTime.getHour() + ":" + currentTime.getMinute();
+        }
+        else {
+            time = currentTime.getHour() + ":" + currentTime.getMinute();
+        }
         String text = textField.getText();
-        System.out.println(text); //debug
         chat.sendNewText(currentDate.toString(),time, account.getUsername(), text);
 
-        System.out.println(chat.toString()); //debug
 
         chatRepository.save(chat);
 

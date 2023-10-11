@@ -60,9 +60,9 @@ public class ShowMyCreateEventController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_create = accountEventRepository.getListCreate();
+        AccountEventList listCreate = accountEventRepository.getListCreate();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+        listId.addAll(listCreate.findEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventCreate = new ArrayList<>();
         for (var i : listId){
             eventCreate.add(eventList.findEventById(i));
@@ -115,7 +115,7 @@ public class ShowMyCreateEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatusEvent() && data.checkMember()) {
+            if(data.getStatusEvent()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);
