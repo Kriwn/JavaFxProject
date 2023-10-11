@@ -43,7 +43,7 @@
                </font></TextField>
             <DatePicker fx:id="endDatePicker" layoutX="325.0" layoutY="279.0" prefHeight="25.0" prefWidth="224.0" />
             <DatePicker fx:id="startDatePicker" layoutX="325.0" layoutY="197.0" prefHeight="25.0" prefWidth="224.0" />
-            <Button layoutX="387.0" layoutY="428.0" mnemonicParsing="false" onAction="#createActivity" text="Create">
+            <Button layoutX="387.0" layoutY="428.0" mnemonicParsing="false" onAction="#createActivity" styleClass="defaultButton" text="Create">
                <font>
                   <Font size="14.0" />
                </font></Button>

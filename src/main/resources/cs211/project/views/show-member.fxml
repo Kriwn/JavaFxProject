@@ -19,10 +19,10 @@
             </HBox>
          </content>
       </ScrollPane>
-      <Button layoutX="540.0" layoutY="708.0" mnemonicParsing="false" onAction="#ban" text="BAN" />
-      <Button layoutX="142.0" layoutY="708.0" mnemonicParsing="false" onAction="#promote" text="Promote" />
-      <Button layoutX="597.0" layoutY="708.0" mnemonicParsing="false" onAction="#unBan" text="UNBAN" />
-      <Button layoutX="226.0" layoutY="708.0" mnemonicParsing="false" onAction="#demote" text="Demote" />
-      <Button layoutX="372.0" layoutY="708.0" mnemonicParsing="false" onAction="#backToTeamDetail" text="Back" />
+      <Button fx:id="banButton" layoutX="540.0" layoutY="708.0" mnemonicParsing="false" onAction="#ban" styleClass="defaultButton" text="BAN" />
+      <Button fx:id="promoteButton" layoutX="142.0" layoutY="708.0" mnemonicParsing="false" onAction="#promote" styleClass="defaultButton" text="Promote" />
+      <Button fx:id="unbanButton" layoutX="597.0" layoutY="708.0" mnemonicParsing="false" onAction="#unBan" styleClass="defaultButton" text="UNBAN" />
+      <Button fx:id="demoteButton" layoutX="226.0" layoutY="708.0" mnemonicParsing="false" onAction="#demote" styleClass="defaultButton" text="Demote" />
+      <Button layoutX="372.0" layoutY="708.0" mnemonicParsing="false" onAction="#backToTeamDetail" styleClass="defaultButton" text="Back" />
    </children>
 </AnchorPane>

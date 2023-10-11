@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -40,6 +41,7 @@ public class MyEventController implements Initializable {
 
     @FXML
     private TextArea detailsTextArea;
+    @FXML private Button teamButton;
 
     private Datasource<AccountList> datasourceAccount;
     private AccountList users;
@@ -64,9 +66,12 @@ public class MyEventController implements Initializable {
 
     private EventActivityList eventActivity;
     private ActivityTeamEventRepository teamEventRepository;
+    private EventTeamRepository eventTeamRepository;
+    private TeamAccountRepository teamAccountRepository;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         user = (User)NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         accountRepository = new AccountRepository();
@@ -77,6 +82,16 @@ public class MyEventController implements Initializable {
         event = eventList.findEventById(eventId);
         detailsTextArea.setEditable(false);
 
+        eventTeamRepository = new EventTeamRepository();
+        ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
+
+        teamAccountRepository = new TeamAccountRepository();
+        ArrayList<Integer> teamIdUser = teamAccountRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+
+        if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
+            teamButton.setVisible(true);
+        }
+        else{teamButton.setVisible(false);}
 
         teamEventRepository = new ActivityTeamEventRepository();
         showActivitys = new ActivityList();
@@ -150,6 +165,14 @@ public class MyEventController implements Initializable {
 
         for (Activity activity: activityList.getActivity()) {
             activityTableView.getItems().add(activity);
+        }
+    }
+
+    public void goToTeamList(){
+        try {
+            NPBPRouter.loadPage("team-list-user",page,user,event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

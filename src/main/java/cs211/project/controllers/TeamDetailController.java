@@ -7,6 +7,8 @@ import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class TeamDetailController implements Initializable {
     private Label countMemberLabel;
     @FXML
     private Label maxMemberLabel;
+    @FXML private ImageView eventImageView;
 
     private User user;
     private Event event;
@@ -40,11 +43,12 @@ public class TeamDetailController implements Initializable {
     private TeamList teamList;
     private EventRepository eventRepository;
     private EventList eventList;
-
+    private int set;
     private  int eventId;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = (User) NPBPRouter.getDataAccount();
+        set = NPBPRouter.getData();
 
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
@@ -58,7 +62,6 @@ public class TeamDetailController implements Initializable {
         System.out.println(team.getTeamId()); //debug
 
         showTeam(team, event);
-
     }
 
     public void showTeam(Team team, Event event) {
@@ -71,20 +74,28 @@ public class TeamDetailController implements Initializable {
         timeEndLabel.setText(team.getCloseTime().toString());
         countMemberLabel.setText("" + team.getCountMember());
         maxMemberLabel.setText("" + team.getMaxMember());
-
+        eventImageView.setImage(new Image(event.getImage().getUrl()));
     }
 
     public void backToTeamList() {
-        try {
-            NPBPRouter.loadPage("team-list", page, user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(set==1){
+            try {
+                NPBPRouter.loadPage("team-list", page, user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            try {
+                NPBPRouter.loadPage("team-list-user", page, user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     public void goToTeamMember() {
         try {
-            NPBPRouter.loadPage("show-member", page, user, event, team.getTeamId());
+            NPBPRouter.loadPageSet("show-member", page, user, event, team.getTeamId(),set);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -101,7 +112,7 @@ public class TeamDetailController implements Initializable {
     public void goToActivity() {
         System.out.println(team.getTeamId());
         try {
-            NPBPRouter.loadPage("team-activity", page, user, eventId, team.getTeamId());
+            NPBPRouter.loadPageSet("team-activity", page, user, eventId, team.getTeamId(),set);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

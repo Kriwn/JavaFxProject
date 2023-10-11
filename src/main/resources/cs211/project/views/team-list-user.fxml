@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.TeamListController">
+<AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.TeamListUserController">
    <children>
       <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButton" styleClass="defaultButton" text="back" />
       <Label layoutX="72.0" layoutY="37.0" text="All Teams">
@@ -20,6 +20,5 @@
             <VBox fx:id="vbox" prefHeight="596.0" prefWidth="637.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="createTeamButton" layoutX="351.0" layoutY="707.0" mnemonicParsing="false" onAction="#createTeamButton" styleClass="defaultButton" text="Create Team" />
    </children>
 </AnchorPane>

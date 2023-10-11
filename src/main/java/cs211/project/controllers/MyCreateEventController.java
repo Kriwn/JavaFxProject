@@ -85,7 +85,6 @@ public class MyCreateEventController implements Initializable {
             errorLabel.setVisible(true);
             errorLabel.setText("Wrong entry!!!");
         }
-
     }
     public void goToStaffList(){
         try {

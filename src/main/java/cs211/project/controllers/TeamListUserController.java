@@ -5,7 +5,6 @@ import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.pivot.TeamAccount;
 import cs211.project.pivot.TeamAccountList;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamAccountRepository;
@@ -26,7 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SelectTeamToJoinController implements Initializable {
+public class TeamListUserController implements Initializable {
     @FXML
     private VBox vbox;
     @FXML private AnchorPane page;
@@ -36,11 +35,9 @@ public class SelectTeamToJoinController implements Initializable {
     private Event event;
     private Team team;
     private TeamList teamlist;
-    private ArrayList<Integer> listId;
-    private ArrayList<Integer> checkTeam;
-    private EventTeamList eventTeamList;
     private TeamAccountRepository teamAccountRepository;
     private TeamAccountList teamAccountList;
+    private EventTeamList eventTeamList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -49,32 +46,20 @@ public class SelectTeamToJoinController implements Initializable {
         team = (Team) NPBPRouter.getDataTeam();
 
         teamRepository = new TeamRepository();
-        eventTeamRepository = new EventTeamRepository();
+        teamlist = teamRepository.getTeamList();
 
         teamAccountRepository = new TeamAccountRepository();
         teamAccountList = teamAccountRepository.getTeamAccountList();
+        ArrayList<Integer> checkTeam = teamAccountList.findTeamsByAccount(user.getAccountId());//id ของทีมทั้งหมดที่ user อยู่
 
-        checkTeam = new ArrayList<>();
-        checkTeam.addAll(teamAccountList.findTeamsByAccount(user.getAccountId())); //id ของทีมทั้งหมดที่ account นั้นอยู่
-
-        teamlist = teamRepository.getTeamList();
+        eventTeamRepository = new EventTeamRepository();
         eventTeamList = eventTeamRepository.getEventTeamList();
-        listId = new ArrayList<>();
+        ArrayList<Integer> teamId = eventTeamList.findTeamByEventId(event.getEventId());
 
-        ArrayList<Team> teams = new ArrayList<>();
+        ArrayList<Integer> listTeamId = eventTeamList.checkEventIdInEventId(teamId, checkTeam);
 
-        listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));//id ของทีมทั้งหมดในอีเว้น
-
-        for(var i : listId){
-            teams.add(teamlist.findTeamById(i));//team ทั้งหมดใน event
-        }
-
-        for(var id : checkTeam){
-            teams.remove(teamlist.findTeamById(id));//remove team ที่ account นั้นอยู่ออกไป
-        }
-
-        for(Team team : teams){
-            vbox.getChildren().add(createCard(team.getTeamId()));//โชว์ team ที่เหลือที่ account นี้ยังไม่ได้เข้าร่วม
+        for(var i : listTeamId){
+            vbox.getChildren().add(createCard(i));
         }
     }
 
@@ -106,7 +91,7 @@ public class SelectTeamToJoinController implements Initializable {
 
         hbox.setOnMouseClicked(click ->{
             try {
-                NPBPRouter.loadPageSet("join-team",page,user,event,teamlist.findTeamById(id),0);
+                NPBPRouter.loadPageSet("team-detail",page,user,event.getEventId(),teamlist.findTeamById(id),0);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -117,7 +102,7 @@ public class SelectTeamToJoinController implements Initializable {
 
     public void backButton(){
         try {
-            NPBPRouter.loadPage("join-event",page);
+            NPBPRouter.loadPage("my-event",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

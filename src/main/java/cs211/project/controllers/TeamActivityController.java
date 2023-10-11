@@ -12,6 +12,7 @@ import cs211.project.services.NPBPRouter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,6 +27,7 @@ public class TeamActivityController {
 
     @FXML
     private AnchorPane page;
+    @FXML private Button createButton;
 
     private ActivityTeamEventRepository teamEventRepository;
 
@@ -51,6 +53,7 @@ public class TeamActivityController {
 
     @FXML
     public void initialize() {
+        int set = NPBPRouter.getData();
         teamEventRepository = new ActivityTeamEventRepository();
         showActivitys = new ActivityList();
         teamActivityList  = teamEventRepository.getTeamActivity();
@@ -72,18 +75,22 @@ public class TeamActivityController {
         }
         showTable(showActivitys);
 
-        activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
-            @Override
-            public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
-                if (newValue != null) {
-                    try {
-                        NPBPRouter.loadPageEditTeam("edit-team-activity",page,user,teamId,newValue.getId());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+        if(set==1){
+            activityTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Activity>() {
+                @Override
+                public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
+                    if (newValue != null) {
+                        try {
+                            NPBPRouter.loadPageEditTeam("edit-team-activity", page, user, teamId, newValue.getId());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }else{
+            createButton.setVisible(false);
+        }
     }
 
     private void showTable(ActivityList activityList) {

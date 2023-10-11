@@ -12,6 +12,7 @@ import cs211.project.services.StaffDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
@@ -34,7 +35,17 @@ public class StaffListController implements  Initializable{
     @FXML private VBox vbox2;
     @FXML private VBox vbox3;
     @FXML private AnchorPane page;
+    @FXML
+    private Button banButton;
 
+    @FXML
+    private Button demoteButton;
+
+    @FXML
+    private Button promoteButton;
+
+    @FXML
+    private Button unbanButton;
     private User user;
     private Team team;
     private TeamRepository teamRepository;
@@ -48,16 +59,21 @@ public class StaffListController implements  Initializable{
     private TeamList teamList;
     private Account selectStaff;
     private VBox selectBox;
-//
+
     public void initialize(URL url, ResourceBundle resourceBundle){
         user = (User) NPBPRouter.getDataAccount();
+        int set = NPBPRouter.getData();
+        if(set==0){
+            promoteButton.setVisible(false);
+            demoteButton.setVisible(false);
+            banButton.setVisible(false);
+            unbanButton.setVisible(false);
+        }
 
         int teamId = (int) NPBPRouter.getDataTeam();
         accountRepository = new AccountRepository();
         accountList = accountRepository.getAccounts();
 
-//        team = (Team) NPBPRouter.getDataTeam();
-//        int teamId = team.getTeamId();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
         team = teamList.findTeamById(teamId);
@@ -66,7 +82,7 @@ public class StaffListController implements  Initializable{
         teamAccountList = teamAccountRepository.getTeamAccountList();
         listId = new ArrayList<>();
         listId.addAll(teamAccountList.findAllAccountsByTeam(teamId));
-
+        
         int count=0;
 
         for(Integer id : listId){
@@ -75,10 +91,8 @@ public class StaffListController implements  Initializable{
             if(count%3==2){vbox3.getChildren().add(createCard(id));}
             count++;
         }
-//
-////        page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
     }
-//
+
     public VBox createCard(int id) {
         File file = new File("src/main/resources/cs211/project/views/staff-card.fxml");
         URL url = null;
@@ -145,12 +159,10 @@ public class StaffListController implements  Initializable{
     }
 
     public void refresh(TeamAccount teamAccount) {
-//        Circle circle = (Circle) selectBox.getChildren().get(1);
         Label username = (Label) selectBox.getChildren().get(3);
         Label role = (Label) selectBox.getChildren().get(4);
         Label status = (Label) selectBox.getChildren().get(5);
 
-//        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
         username.setText(selectStaff.getUsername());
         role.setText(teamAccount.getRole());
         status.setText(teamAccount.getStatus());

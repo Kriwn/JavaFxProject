@@ -149,6 +149,17 @@ public final class NPBPRouter {
         loadNewPage(route, parent);
     }
 
+    public static void loadPageSet(String routeLabel, Parent parent, Object data1,Object data2,Object data3, int data) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        route.data = data;
+        loadNewPage(route, parent);
+    }
+
+
+
     public static void loadPage(String routeLabel, Parent parent, Object data1, Object data2, Team data3) throws IOException{
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.dataAccount = data1;
@@ -216,6 +227,10 @@ public final class NPBPRouter {
     public  static Object getDataActivity(){
         return current.dataActivity;
     }
+    public  static int getData(){
+        return current.data;
+    }
+
 
 
     public static class RouteScene{
@@ -227,6 +242,7 @@ public final class NPBPRouter {
         private Object dataEvent;
         private Object dataTeam;
         private Object dataActivity;
+        private int data;
         private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());

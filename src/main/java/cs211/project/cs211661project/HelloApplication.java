@@ -64,6 +64,7 @@ public class HelloApplication extends Application {
         NPBPRouter.when("team-list", viewPath + "team-list.fxml");
         NPBPRouter.when("teams-chat", viewPath + "teams-chat.fxml");
         NPBPRouter.when("select-team-to-join",viewPath + "select-team-to-join.fxml");
+        NPBPRouter.when("team-list-user", viewPath+"team-list-user.fxml");
 
         NPBPRouter.when("creator",viewPath + "creator.fxml");
         NPBPRouter.when("Introduction", viewPath + "introduction.fxml");
