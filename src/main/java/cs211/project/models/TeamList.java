@@ -61,6 +61,13 @@ public class TeamList {
         Team exist = findTeamById(teamId);
         exist.addCountMember();
     }
+    public ArrayList<Integer> getTeamsId(){
+        ArrayList<Integer> teamsId = new ArrayList<>();
+        for(var i : teams){
+            teamsId.add(i.getTeamId());
+        }
+        return teamsId;
+    }
 
     public ArrayList<Team> getTeams() {
         return teams;

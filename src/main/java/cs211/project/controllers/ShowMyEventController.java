@@ -4,8 +4,7 @@ import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
-import cs211.project.repository.AccountEventRepository;
-import cs211.project.repository.EventRepository;
+import cs211.project.repository.*;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
 import javafx.animation.FadeTransition;
@@ -51,6 +50,9 @@ public class ShowMyEventController implements Initializable {
     private AccountEventRepository accountEventRepository;
     private EventList eventList;
     private ArrayList<Event> events;
+    private EventTeamRepository eventTeamRepository;
+    private TeamAccountRepository accountTeamRepository;
+
     private int LOAD = 250;
 
     @Override
@@ -67,6 +69,28 @@ public class ShowMyEventController implements Initializable {
         for (var i : listId){
             eventJoin.add(eventList.findEventById(i));
         }
+
+        eventTeamRepository = new EventTeamRepository();
+        ArrayList<Integer> eventId = eventTeamRepository.getEventTeamList().getListEventId();
+        System.out.println(eventId);
+        accountTeamRepository = new TeamAccountRepository();
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+        ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
+        System.out.println(teamIdUser);
+        for (var i : teamIdUser) {
+            eventTeamIdUser.add(eventTeamRepository.getEventTeamList().findEventByTeamId(i));
+        }
+        System.out.println(eventTeamIdUser);
+        ArrayList<Integer> listEventId = new ArrayList<>();
+        listEventId.addAll(eventTeamRepository.getEventTeamList().checkEventIdInEventId(eventId, eventTeamIdUser));
+        System.out.println(listEventId);
+
+        listEventId = eventTeamRepository.getEventTeamList().checkDuplicateEventId(listEventId);
+        for (var i : listEventId){
+            eventJoin.add(eventList.findEventById(i));
+        }
+
+
         showEvent(eventJoin);
         showNameEventListView.setVisible(false);
 
