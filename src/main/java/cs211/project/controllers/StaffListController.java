@@ -111,11 +111,9 @@ public class StaffListController implements  Initializable{
 
         VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
-//            int selectAcc = event.getEventType().getName();
-            System.out.println(event.getTarget());
-            //selectStaff = account;
+            selectStaff = (User)accountList.findUserByAccountId(id);
             selectBox = finalVbox;
-            //System.out.println(selectStaff.getUsername());
+            System.out.println(selectStaff.getUsername());
         });
 
         return vbox;
@@ -147,13 +145,13 @@ public class StaffListController implements  Initializable{
     }
 
     public void refresh(TeamAccount teamAccount) {
-        Circle circle = (Circle) selectBox.getChildren().get(1);
+//        Circle circle = (Circle) selectBox.getChildren().get(1);
         Label username = (Label) selectBox.getChildren().get(3);
         Label role = (Label) selectBox.getChildren().get(4);
         Label status = (Label) selectBox.getChildren().get(5);
 
-        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
-        username.setText(selectStaff.getName());
+//        circle.setFill(new ImagePattern(new Image("file:" + user.getImagePath())));
+        username.setText(selectStaff.getUsername());
         role.setText(teamAccount.getRole());
         status.setText(teamAccount.getStatus());
         selectBox.setFocusTraversable(true);

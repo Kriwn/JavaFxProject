@@ -21,11 +21,8 @@ public class TeamList {
         countMember = countMember.trim();
 
         if (!name.equals("")) {
-            Team exist = findTeamByName(name);
-            if (exist == null) {
-                teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
-                this.lastId = Integer.parseInt(team_id);
-            }
+            teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
+            this.lastId = Integer.parseInt(team_id);
         }
     }
 
@@ -37,12 +34,8 @@ public class TeamList {
         closeDate = closeDate.trim();
         closeTime = closeTime.trim();
 
-
-        Team exist = findTeamByName(name);
         if(!name.equals("")){
-            if(exist == null){
-                teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
-            }
+            teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
         }
     }
 
@@ -62,6 +55,11 @@ public class TeamList {
             }
         }
         return null;
+    }
+
+    public void addCountMember(int teamId){
+        Team exist = findTeamById(teamId);
+        exist.addCountMember();
     }
 
     public ArrayList<Team> getTeams() {

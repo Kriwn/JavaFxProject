@@ -4,6 +4,7 @@ import cs211.project.models.Event;
 import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
+import cs211.project.pivot.EventTeam;
 import cs211.project.pivot.EventTeamList;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
@@ -62,31 +63,60 @@ public class CreateStaffTeamController {
         teamList = teamRepository.getTeamList();
         teams = teamList.getTeams();
         eventTeamRepository = new EventTeamRepository();
+
+
+
+        errorLabel.setVisible(false);
     }
 
     public void createTeamButton(){
-        String name = teamNameText.getText().trim();
+        String teamName = teamNameText.getText().trim();
         String member = capacity.getText().trim();
         String openDateText = openDate.getValue().toString();
         String closeDateText = closeDate.getValue().toString();
         String openTime = openTimeText.getText().trim();
         String closeTime = closeTimeText.getText().trim();
 
-        teamList.createTeam(name,member,openDateText,openTime,closeDateText,closeTime,"0");
-        Team exist = teamList.findTeamByName(name);
-        int teamId = exist.getTeamId();
-
+        //---------------------------แก้ให้ชื่อทีมซ้ำใน event ไม่ได้----------------------------//
         eventTeamList = eventTeamRepository.getEventTeamList();
-        eventTeamList.addNew(event.getEventId(),teamId);
-        eventTeamRepository.save(eventTeamList);
-
-        teamRepository.save(teamList);
-
-        try {
-            NPBPRouter.loadPage("team-list",page,user,event);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        ArrayList<Integer> teamIdInThisEvent = eventTeamList.findTeamByEventId(event.getEventId());//id ของ ทีมทั้งหมดใน event
+        ArrayList<Team> teams = new ArrayList<>();
+        for(var id : teamIdInThisEvent){
+            teams.add(teamList.findTeamById(id));//team ทั้งหมดใน event
         }
+
+        if(checkTeamName(teams)){
+            teamList.createTeam(teamName,member,openDateText,openTime,closeDateText,closeTime,"0");
+            Team exist = teamList.findTeamByName(teamName);
+            int teamId = exist.getTeamId();
+
+            eventTeamList.addNew(event.getEventId(),teamId);
+            eventTeamRepository.save(eventTeamList);
+
+            teamRepository.save(teamList);
+
+            try {
+                NPBPRouter.loadPage("team-list",page,user,event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            errorLabel.setVisible(true);
+            errorLabel.setText("already has this team name");
+        }
+        //---------------------------แก้ให้ชื่อทีมซ้ำใน event ไม่ได้----------------------------//
+
+    }
+
+    public boolean checkTeamName(ArrayList<Team> teams){
+        boolean check=true;
+        for(var team : teams){
+            if(team.isTeamName(teamNameText.getText().trim())){
+                check=false;
+            }
+        }
+        return check;
     }
 
     public void backButton(){

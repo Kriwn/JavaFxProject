@@ -5,7 +5,10 @@ import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
+import cs211.project.pivot.TeamAccount;
+import cs211.project.pivot.TeamAccountList;
 import cs211.project.repository.EventTeamRepository;
+import cs211.project.repository.TeamAccountRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
@@ -34,7 +37,11 @@ public class SelectTeamToJoinController implements Initializable {
     private Team team;
     private TeamList teamlist;
     private ArrayList<Integer> listId;
+    private ArrayList<Integer> checkTeam;
     private EventTeamList eventTeamList;
+    private TeamAccountRepository teamAccountRepository;
+    private TeamAccountList teamAccountList;
+    private ArrayList<TeamAccount> teamAccounts;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -45,14 +52,31 @@ public class SelectTeamToJoinController implements Initializable {
         teamRepository = new TeamRepository();
         eventTeamRepository = new EventTeamRepository();
 
+        teamAccountRepository = new TeamAccountRepository();
+        teamAccountList = teamAccountRepository.getTeamAccountList();
+        teamAccounts = teamAccountList.getList();
+
+        checkTeam = new ArrayList<>();
+        checkTeam.addAll(teamAccountList.findTeamsByAccount(user.getAccountId())); //id ของทีมทั้งหมดที่ account นั้นอยู่
+
         teamlist = teamRepository.getTeamList();
         eventTeamList = eventTeamRepository.getEventTeamList();
         listId = new ArrayList<>();
 
-        listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));
+        ArrayList<Team> teams = new ArrayList<>();
 
-        for(Integer id : listId){
-            vbox.getChildren().add(createCard(id));
+        listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));//id ของทีมทั้งหมดในอีเว้น
+
+        for(var i : listId){
+            teams.add(teamlist.findTeamById(i));//team ทั้งหมดใน event
+        }
+
+        for(var id : checkTeam){
+            teams.remove(teamlist.findTeamById(id));//remove team ที่ account นั้นอยู่ออกไป
+        }
+
+        for(Team team : teams){
+            vbox.getChildren().add(createCard(team.getTeamId()));//โชว์ team ที่เหลือที่ account นี้ยังไม่ได้เข้าร่วม
         }
     }
 

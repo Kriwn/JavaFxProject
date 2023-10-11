@@ -53,7 +53,7 @@ public class JoinTeamController implements Initializable {
     }
 
     public void joinTeamButton(){
-        team.addCountMember();
+        teamlist.addCountMember(team.getTeamId());
         teamRepository.save(teamlist);
         teamAccountList = teamAccountRepository.getTeamAccountList();
         teamAccountList.addNew(user.getAccountId(), team.getTeamId());
