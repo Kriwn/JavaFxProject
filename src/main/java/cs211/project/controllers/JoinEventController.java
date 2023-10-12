@@ -84,11 +84,13 @@ public class JoinEventController {
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             joinEventButton.setVisible(false);
         }
+        ArrayList<Integer> teamIdEventNew = new ArrayList<>();
+        teamIdEventNew.addAll(teamIdEvent);
         teamIdEvent.removeAll(teamIdUser);
-
-        if (teamIdEvent.isEmpty()){
+        if (teamIdEvent.isEmpty() && !(teamIdEventNew.isEmpty())){
             joinTeamButton.setVisible(false);
         }
+
         showEvent(event);
         detailsEvent.setEditable(false);
         errorLabel.setVisible(false);
