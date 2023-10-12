@@ -21,32 +21,15 @@ import java.nio.file.*;
 import java.util.ArrayList;
 
 public class CreateEventController {
-    @FXML
-    AnchorPane page;
-
-    @FXML
-    private DatePicker dateEndEvent;
-
-    @FXML
-    private DatePicker dateStartEvent;
-
-    @FXML
-    private TextArea detailsTextArea;
-
-    @FXML
-    private Circle eventCircle;
-
-    @FXML
-    private TextField nameEvent;
-
-    @FXML
-    private TextField timeEndEvent;
-
-    @FXML
-    private TextField timeStartEvent;
-
-    @FXML
-    private Label errorLabel;
+    @FXML AnchorPane page;
+    @FXML private DatePicker dateEndEvent;
+    @FXML private DatePicker dateStartEvent;
+    @FXML private TextArea detailsTextArea;
+    @FXML private Circle eventCircle;
+    @FXML private TextField nameEvent;
+    @FXML private TextField timeEndEvent;
+    @FXML private TextField timeStartEvent;
+    @FXML private Label errorLabel;
     private EventList eventList;
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;

@@ -7,9 +7,7 @@ import cs211.project.services.TeamActivityDatasource;
 
 public class ActivityTeamEventRepository {
     private EventActivityList eventActivity;
-
     private Datasource<EventActivityList> evenData;
-
     private  TeamActivityList teamActivity;
     private Datasource<TeamActivityList> teamData;
 

@@ -6,9 +6,7 @@ import java.util.ArrayList;
 public class ActivityList {
     private ArrayList<Activity> activities;
     private  int lastId = 0;
-
     public  ActivityList(){activities = new ArrayList<>();}
-
     public void  addNewActivityFromFile(String name,String detail,String id,String dateStart,String dateEnd, String timeStart,String timeEnd,String status){
         name = name.trim();
         detail = detail.trim();
@@ -29,18 +27,14 @@ public class ActivityList {
     public void remove(Activity activity){
         activities.remove(activity);
     }
-
-
     public int getLastId()
     {
         return  lastId;
     }
-
     public void  addNewActivity(Activity activity)
     {
         activities.add(activity);
     }
-
     public Activity findActivityById(int id){
         for (Activity activity : activities) {
             if (activity.isId(id)){

@@ -21,38 +21,19 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CreateTeamActivityController implements Initializable {
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private AnchorPane page;
-
-    @FXML
-    private DatePicker startDatePicker;
-
-    @FXML
-    private  DatePicker endDatePicker;
-
-    @FXML
-    private TextArea detailTextArea;
-
-    @FXML
-    private  TextField timeStart;
-
-    @FXML
-    private  TextField timeEnd;
-
+    @FXML private TextField nameTextField;
+    @FXML private AnchorPane page;
+    @FXML private DatePicker startDatePicker;
+    @FXML private  DatePicker endDatePicker;
+    @FXML private TextArea detailTextArea;
+    @FXML private  TextField timeStart;
+    @FXML private  TextField timeEnd;
     private ActivityRepository activityRepository;
     private ActivityTeamEventRepository activityTeamEventRepository;
-
     private TeamActivityList teamActivityList;
-
     private ActivityList activityList;
-
     private int eventId;
-
     private  int teamId;
-
     private User user;
 
     @Override

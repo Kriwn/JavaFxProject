@@ -18,11 +18,11 @@ public class AccountEventRepository {
         listJoin = joinEventData.readData();
         listCreate = ownerEventData.readData();
     }
-    public void saveEventJoin( AccountEventList eventList_join){
-        joinEventData.writeData(eventList_join);
+    public void saveEventJoin( AccountEventList eventListJoin){
+        joinEventData.writeData(eventListJoin);
     }
-    public void saveEventOwner(AccountEventList eventList_create){
-        ownerEventData.writeData(eventList_create);
+    public void saveEventOwner(AccountEventList eventListCreate){
+        ownerEventData.writeData(eventListCreate);
     }
 
     public AccountEventList getListJoin() {

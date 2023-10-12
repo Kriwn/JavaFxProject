@@ -59,7 +59,6 @@ public class SettingController {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
                 accounts.changeImage(user.getUsername(), "images/User/" + destinationFileName);
                 repository.save(accounts);
-                System.out.println("File saved successfully.");
             } catch (IOException e) {
                 e.printStackTrace();
             }

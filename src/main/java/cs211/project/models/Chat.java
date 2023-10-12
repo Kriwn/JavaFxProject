@@ -14,7 +14,6 @@ public class Chat {
         date.trim();
         time.trim();
         username.trim();
-
         if(!text.equals("")){
             ChatText exist = findTextByChatId(Integer.parseInt(chatId));
             if(exist == null){
@@ -30,10 +29,7 @@ public class Chat {
         username.trim();
 
         if(!text.equals("")){
-//            ChatText exist = findTextByUsername(username);
-//            if(exist == null){
-                texts.add(new ChatText(""+(++lastId),date,time,username,text));
-//            }
+            texts.add(new ChatText(""+(++lastId),date,time,username,text));
         }
     }
 

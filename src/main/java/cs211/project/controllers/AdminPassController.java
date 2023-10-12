@@ -56,7 +56,6 @@ public class AdminPassController {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
                 accounts.changeImage(admin.getUsername(), "images/Admin/" + destinationFileName);
                 repository.save(accounts);
-                System.out.println("File saved successfully.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -75,7 +74,7 @@ public class AdminPassController {
                 if (newPass.equals(conPass)) {
                     accounts.changePassword(admin.getUsername(), newPass);
                     repository.save(accounts);
-                    NPBPRouter.goTo("admin-sidebar");
+                    NPBPRouter.goTo("admin-sidebar",admin);
                 } else
                     errorLabel.setText("Not matching password and confirm password");
                 errorLabel.setLayoutX(170);
@@ -93,7 +92,7 @@ public class AdminPassController {
     }
     public void refresh(){
         try {
-            NPBPRouter.goTo("admin-sidebar");
+            NPBPRouter.goTo("admin-sidebar",accounts.findUserByAccountId(admin.getAccountId()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

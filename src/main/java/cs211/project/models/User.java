@@ -28,8 +28,6 @@ public class User extends Account{
         }
     }
 
-
-
     public ArrayList<Integer> getMyEvents(){return myEvents;}
     public ArrayList<Integer> getMyCreateEvents(){
         return myCreateEvents;
