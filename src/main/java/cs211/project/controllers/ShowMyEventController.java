@@ -66,20 +66,15 @@ public class ShowMyEventController implements Initializable {
 
         eventTeamRepository = new EventTeamRepository();
         ArrayList<Integer> eventId = eventTeamRepository.getEventTeamList().getListEventId();
-        System.out.println(eventId);
         accountTeamRepository = new TeamAccountRepository();
         ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
-        System.out.println(teamIdUser);
         ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
         for (var i : teamIdUser) {
             eventTeamIdUser.add(eventTeamRepository.getEventTeamList().findEventByTeamId(i));
         }
-        System.out.println(eventTeamIdUser);
         ArrayList<Integer> listEventId = new ArrayList<>();
         listEventId.addAll(eventTeamRepository.getEventTeamList().checkEventIdInEventId(eventId, eventTeamIdUser));
-        System.out.println(listEventId);
         listEventId = eventTeamRepository.getEventTeamList().checkDuplicateEventId(listEventId);
-        System.out.println(listEventId);
         for (var i : listEventId){
             eventJoin.add(eventList.findEventById(i));
         }
