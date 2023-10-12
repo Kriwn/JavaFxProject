@@ -12,7 +12,7 @@
    <children>
       <AnchorPane layoutX="80.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
-            <Label layoutX="263.0" layoutY="78.0" text="Edit Activity">
+            <Label layoutX="263.0" layoutY="78.0" styleClass="event-text" text="Edit Activity">
                <font>
                   <Font size="24.0" />
                </font>
@@ -21,19 +21,19 @@
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Label layoutX="148.0" layoutY="185.0" text="ชื่อกิจกรรม">
+            <Label layoutX="148.0" layoutY="185.0" styleClass="event-text" text="ชื่อกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="148.0" layoutY="230.0" prefHeight="27.0" prefWidth="109.0" text="วันเริ่มกิจกรรม">
+            <Label layoutX="148.0" layoutY="230.0" prefHeight="27.0" prefWidth="109.0" styleClass="event-text" text="วันเริ่มกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="145.0" layoutY="312.0" text="วันสิ้นสุดกิจกรรม">
+            <Label layoutX="145.0" layoutY="312.0" styleClass="event-text" text="วันสิ้นสุดกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="146.0" layoutY="418.0" text="รายละเอียดกิจกรรม">
+            <Label layoutX="146.0" layoutY="418.0" styleClass="event-text" text="รายละเอียดกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -43,7 +43,7 @@
                </font></TextField>
             <DatePicker fx:id="endDatePicker" layoutX="326.0" layoutY="313.0" prefHeight="25.0" prefWidth="224.0" />
             <DatePicker fx:id="startDatePicker" layoutX="325.0" layoutY="231.0" prefHeight="25.0" prefWidth="224.0" />
-            <Button layoutX="404.0" layoutY="486.0" mnemonicParsing="false" onAction="#changeActivity" text="Save Change">
+            <Button layoutX="404.0" layoutY="486.0" mnemonicParsing="false" onAction="#changeActivity" styleClass="defaultButton" text="Save Change">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -51,7 +51,7 @@
                <font>
                   <Font size="14.0" />
                </font></TextArea>
-            <Label layoutX="148.0" layoutY="268.0" text="เวลาเริ่มกิจกรรม">
+            <Label layoutX="148.0" layoutY="268.0" styleClass="event-text" text="เวลาเริ่มกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -59,7 +59,7 @@
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <Label layoutX="148.0" layoutY="354.0" text="เวลาสิ้นสุดกิจกรรม">
+            <Label layoutX="148.0" layoutY="354.0" styleClass="event-text" text="เวลาสิ้นสุดกิจกรรม">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -67,10 +67,15 @@
                <font>
                   <Font size="18.0" />
                </font></TextField>
-            <Button layoutX="284.0" layoutY="589.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="#fc0303">
+            <Button layoutX="284.0" layoutY="589.0" mnemonicParsing="false" onAction="#delete" styleClass="defaultButton" text="Delete" textFill="#fc0303">
                <font>
                   <Font size="14.0" />
                </font></Button>
+            <Button layoutX="366.0" layoutY="589.0" mnemonicParsing="false" onAction="#end" styleClass="defaultButton" text="End" textFill="#fc0303">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

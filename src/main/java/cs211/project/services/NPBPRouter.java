@@ -1,12 +1,10 @@
 package cs211.project.services;
 
-import cs211.project.models.Event;
 import cs211.project.models.Team;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

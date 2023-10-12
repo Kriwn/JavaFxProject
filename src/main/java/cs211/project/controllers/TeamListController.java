@@ -1,19 +1,14 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.pivot.AccountEvent;
-import cs211.project.pivot.AccountEventList;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -52,7 +47,6 @@ public class TeamListController implements Initializable {
 
         listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));
 
-        System.out.println(listId);
 
         for(Integer id : listId){
             vbox.getChildren().add(createCard(id));

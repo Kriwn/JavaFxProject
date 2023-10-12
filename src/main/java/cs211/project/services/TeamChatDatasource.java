@@ -1,7 +1,5 @@
 package cs211.project.services;
 
-import cs211.project.pivot.TeamAccount;
-import cs211.project.pivot.TeamAccountList;
 import cs211.project.pivot.TeamChat;
 import cs211.project.pivot.TeamChatList;
 

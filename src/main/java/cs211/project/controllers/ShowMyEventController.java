@@ -34,10 +34,6 @@ import java.util.ResourceBundle;
 public class ShowMyEventController implements Initializable {
     @FXML
     private AnchorPane page;
-
-    @FXML
-    private ScrollPane scrollPane;
-
     @FXML
     private TextField searchTextField;
 
@@ -49,7 +45,6 @@ public class ShowMyEventController implements Initializable {
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
     private EventList eventList;
-    private ArrayList<Event> events;
     private EventTeamRepository eventTeamRepository;
     private TeamAccountRepository accountTeamRepository;
 
@@ -60,11 +55,10 @@ public class ShowMyEventController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
         AccountEventList list_join = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
+        listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventJoin = new ArrayList<>();
         for (var i : listId){
             eventJoin.add(eventList.findEventById(i));
@@ -74,9 +68,9 @@ public class ShowMyEventController implements Initializable {
         ArrayList<Integer> eventId = eventTeamRepository.getEventTeamList().getListEventId();
         System.out.println(eventId);
         accountTeamRepository = new TeamAccountRepository();
-        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
-        ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
         System.out.println(teamIdUser);
+        ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
         for (var i : teamIdUser) {
             eventTeamIdUser.add(eventTeamRepository.getEventTeamList().findEventByTeamId(i));
         }
@@ -84,8 +78,8 @@ public class ShowMyEventController implements Initializable {
         ArrayList<Integer> listEventId = new ArrayList<>();
         listEventId.addAll(eventTeamRepository.getEventTeamList().checkEventIdInEventId(eventId, eventTeamIdUser));
         System.out.println(listEventId);
-
         listEventId = eventTeamRepository.getEventTeamList().checkDuplicateEventId(listEventId);
+        System.out.println(listEventId);
         for (var i : listEventId){
             eventJoin.add(eventList.findEventById(i));
         }
@@ -139,7 +133,7 @@ public class ShowMyEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatusEvent() && data.checkMember()) {
+            if(data.getStatusEvent()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

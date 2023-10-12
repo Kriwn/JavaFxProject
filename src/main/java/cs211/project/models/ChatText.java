@@ -38,14 +38,6 @@ public class ChatText {
         return text;
     }
 
-    public void setChatId(int chatId) {
-        this.chatId = chatId;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public void setTime(LocalTime time) {
         this.time = time;
     }
@@ -58,9 +50,6 @@ public class ChatText {
         this.text = text;
     }
 
-    public boolean isUsername(String username){
-        return this.username.equals(username);
-    }
     public boolean isChatId(int chatId){return this.chatId == chatId;}
 
     @Override

@@ -11,7 +11,6 @@ public class TeamChat {
     public boolean isTeamId(int id){
         return this.teamId == id;
     }
-    public boolean isChatId(int id){return this.chatId == id;}
     public int getTeamId() {
         return teamId;
     }

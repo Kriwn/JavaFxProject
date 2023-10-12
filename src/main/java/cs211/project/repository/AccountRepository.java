@@ -14,25 +14,8 @@ public class AccountRepository {
         accounts = data.readData();
     }
 
-    public User findUserByUsername(String username){
-        return (User)accounts.findUserByUsername(username);
-    }
-
     public void save(AccountList accounts){
         data.writeData(accounts);
-    }
-
-    public void signUp(String username, String name, String password){
-        accounts.signUp(username,name,password);
-        data.writeData(accounts);
-    }
-
-    public void update(User user){
-
-    }
-
-    public void delete(String username){
-
     }
 
     public AccountList getAccounts(){

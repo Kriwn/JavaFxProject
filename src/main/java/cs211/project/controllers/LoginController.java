@@ -2,29 +2,20 @@ package cs211.project.controllers;
 
 import cs211.project.models.*;
 import cs211.project.repository.AccountRepository;
-import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPKeyPress;
 import cs211.project.services.NPBPRouter;
 import io.github.palexdev.materialfx.controls.MFXIconWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.scene.paint.Color;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{

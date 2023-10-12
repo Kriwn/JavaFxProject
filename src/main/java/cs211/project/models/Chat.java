@@ -1,6 +1,5 @@
 package cs211.project.models;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Chat {
@@ -14,7 +13,6 @@ public class Chat {
         date.trim();
         time.trim();
         username.trim();
-
         if(!text.equals("")){
             ChatText exist = findTextByChatId(Integer.parseInt(chatId));
             if(exist == null){
@@ -30,20 +28,8 @@ public class Chat {
         username.trim();
 
         if(!text.equals("")){
-//            ChatText exist = findTextByUsername(username);
-//            if(exist == null){
-                texts.add(new ChatText(""+(++lastId),date,time,username,text));
-//            }
+            texts.add(new ChatText(""+(++lastId),date,time,username,text));
         }
-    }
-
-    public ChatText findTextByUsername(String name){
-        for(ChatText text : texts){
-            if(text.isUsername(name)){
-                return text;
-            }
-        }
-        return null;
     }
     public ChatText findTextByChatId(int chatId){
         for(ChatText text : texts){

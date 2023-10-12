@@ -12,25 +12,11 @@ import javafx.util.Duration;
 
 public class NPBPAnimation {
 
-    public static void scaleTransition(Control control){
-        ScaleTransition scale = new ScaleTransition(Duration.millis(250), control);
-        scale.setToX(1.1);
-        scale.setToY(1.1);
-        scale.play();
-    }
-
     public static void scaleTransition(Pane pane,double scale){
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(250), pane);
         scaleTransition.setToX(scale);
         scaleTransition.setToY(scale);
         scaleTransition.play();
-    }
-
-    public static void reverseScale(Control control) {
-        ScaleTransition scale = new ScaleTransition(Duration.millis(250), control);
-        scale.setToX(1);
-        scale.setToY(1);
-        scale.play();
     }
 
     public static void reverseScale(Pane pane) {
@@ -39,16 +25,5 @@ public class NPBPAnimation {
         scale.setToY(1);
         scale.play();
     }
-    public static void translateTransition(Control control){
-        TranslateTransition translate = new TranslateTransition(Duration.millis(250), control);
-        translate.setByY(-25);
-        translate.setAutoReverse(true);
-        translate.play();
-    }
-    public static void reverseTranslate(Control control){
-        TranslateTransition translate = new TranslateTransition(Duration.millis(250), control);
-        translate.setByY(25);
-        translate.setAutoReverse(true);
-        translate.play();
-    }
+
 }

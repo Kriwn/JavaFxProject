@@ -2,8 +2,6 @@ package cs211.project.models;
 
 import javafx.scene.image.Image;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class EventList {
@@ -29,23 +27,6 @@ public class EventList {
             Event exist = findEventByName(name);
             if (exist == null) {
                 events.add(new Event(name,id, details, dateStartEvent, dateEndEvent, timeStartEvent, timeEndEvent,openDateStart, openDateEnd,openTimeStart, openTimeEnd,countMember, maxMember,image));
-                this.lastId = Integer.parseInt(id);
-            }
-        }
-    }
-
-    public void addNewEvent(String name,String id, String details, String dateStart, String dateEnd, String timeStart, String timeEnd,String countMember, String capacity){
-        name = name.trim();
-        details = details.trim();
-        dateStart = dateStart.trim();
-        dateEnd = dateEnd.trim();
-        timeStart = timeStart.trim();
-        timeEnd = timeEnd.trim();
-        capacity = capacity.trim();
-        if (!name.equals("")) {
-            Event exist = findEventByName(name);
-            if (exist == null) {
-                events.add(new Event(name,id, details, dateStart, dateEnd, timeStart, timeEnd,countMember, capacity));
                 this.lastId = Integer.parseInt(id);
             }
         }

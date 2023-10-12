@@ -59,8 +59,6 @@ public class TeamDetailController implements Initializable {
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
 
-        System.out.println(team.getTeamId()); //debug
-
         showTeam(team, event);
     }
 

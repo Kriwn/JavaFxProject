@@ -1,7 +1,5 @@
 package cs211.project.services;
 
-import cs211.project.pivot.EventActivity;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.EventTeam;
 import cs211.project.pivot.EventTeamList;
 

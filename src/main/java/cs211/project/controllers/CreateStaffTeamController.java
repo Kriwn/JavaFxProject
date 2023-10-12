@@ -4,7 +4,6 @@ import cs211.project.models.Event;
 import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
-import cs211.project.pivot.EventTeam;
 import cs211.project.pivot.EventTeamList;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;
@@ -87,7 +86,7 @@ public class CreateStaffTeamController {
 
         if(checkTeamName(teams)){
             teamList.createTeam(teamName,member,openDateText,openTime,closeDateText,closeTime,"0");
-            Team exist = teamList.findTeamByName(teamName);
+            Team exist = teamList.getTeams().get(teamList.getTeams().size()-1);
             int teamId = exist.getTeamId();
 
             eventTeamList.addNew(event.getEventId(),teamId);
