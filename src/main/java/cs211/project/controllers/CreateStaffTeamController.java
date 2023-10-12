@@ -43,6 +43,7 @@ public class CreateStaffTeamController {
 
     @FXML
     private TextField teamNameText;
+    @FXML private DatePicker getOpenDate;
     private User user;
     private EventRepository eventRepository;
     private AccountRepository accountRepository;
