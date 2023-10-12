@@ -101,7 +101,7 @@ public class EventDatasource implements Datasource<EventList>{
         BufferedWriter buffer = new BufferedWriter(outputStreamWriter);
 
         try {
-            // สร้าง csv ของ Student และเขียนลงในไฟล์ทีละบรรทัด
+            // สร้าง csv ของ event และเขียนลงในไฟล์ทีละบรรทัด
             for (Event event : data.getEvents()) {
                 String line = event.getName() + "," + event.getEventId() + "," + event.getDetail() + "," + event.getDateStartEvent() + "," + event.getTimeStartEvent() + "," + event.getDateEndEvent() + "," + event.getTimeEndEvent()  + "," + event.getOpenDateStart()  + "," + event.getOpenTimeStart() + "," + event.getOpenDateEnd() + "," + event.getOpenTimeEnd() + "," + event.getCountMember() + "," + event.getMaxMember() + "," + event.getImage().getUrl().toString();
                 buffer.append(line);

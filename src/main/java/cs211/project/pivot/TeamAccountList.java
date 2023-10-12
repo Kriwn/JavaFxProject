@@ -25,16 +25,6 @@ public class TeamAccountList {
         }
         return result;
     }
-    public ArrayList<Integer> findAccountsByTeam(int teamId){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(TeamAccount teamAccount : list){
-            if(teamAccount.isTeamId(teamId) && teamAccount.getStatus().equals("NotBan")){
-                result.add(teamAccount.getAccountId());
-            }
-        }
-        return result;
-    }
-
     public ArrayList<Integer> findAllAccountsByTeam(int teamId){
         ArrayList<Integer> result = new ArrayList<>();
         for(TeamAccount teamAccount : list){

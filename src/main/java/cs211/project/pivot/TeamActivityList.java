@@ -13,16 +13,6 @@ public class TeamActivityList {
         list.add(new TeamActivity(teamId,activityId));
     }
 
-    public ArrayList<Integer> findEventActivityByActivityId(int activityId){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(TeamActivity teamActivity: list){
-            if (teamActivity.isActivityId(activityId)){
-                result.add(teamActivity.getActivityId());
-            }
-        }
-        return result;
-    }
-
     public void remove(int teamId, int acId) {
         Iterator<TeamActivity> iterator = list.iterator();
         while (iterator.hasNext()) {
@@ -31,15 +21,6 @@ public class TeamActivityList {
                 iterator.remove(); // Remove the element using the iterator
             }
         }
-    }
-    public ArrayList<Integer> findEventActivityByTeamId(int teamId){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(TeamActivity teamActivity: list){
-            if (teamActivity.isTeamId(teamId)){
-                result.add(teamActivity.getTeamId());
-            }
-        }
-        return result;
     }
 
     public ArrayList<TeamActivity> getList() {

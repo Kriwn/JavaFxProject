@@ -74,9 +74,6 @@ public class AccountList {
             }
         }
     }
-    public void addUser(Account account) {
-        accounts.add((User)account);
-    }
 
     public void changePassword(String username,String newPassword){
         Account exist = findUserByUsername(username);

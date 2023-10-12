@@ -34,15 +34,6 @@ public class EventActivityList {
             }
         }
     }
-    public ArrayList<Integer> findEventActivityByEventId(int eventId){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(EventActivity eventActivity: list){
-            if (eventActivity.isEventId(eventId)){
-                result.add(eventActivity.getActivityId());
-            }
-        }
-        return result;
-    }
 
     public ArrayList<EventActivity> getList() {
         return list;
