@@ -1,6 +1,7 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Activity {
@@ -35,18 +36,9 @@ public class Activity {
     }
 
     public void checkTimeActivity(){
-        if(dateEnd.isAfter(LocalDate.now())){
-            if(dateEnd.equals(LocalDate.now())){
-                if(timeEnd.isAfter(LocalTime.now())){
-                    status = "available";
-                }
-                else{
-                    status = "Ended";
-                }
-            }
-            else{
-                status = "available";
-            }
+        LocalDateTime localDateTime = LocalDateTime.of(dateEnd, timeEnd);
+        if (localDateTime.isAfter(LocalDateTime.now())){
+            status = "available";
         }
         else{
             status = "Ended";
