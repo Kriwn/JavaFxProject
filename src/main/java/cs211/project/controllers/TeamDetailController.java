@@ -108,7 +108,6 @@ public class TeamDetailController implements Initializable {
     }
 
     public void goToActivity() {
-        System.out.println(team.getTeamId());
         try {
             NPBPRouter.loadPageSet("team-activity", page, user, eventId, team.getTeamId(),set);
         } catch (IOException e) {

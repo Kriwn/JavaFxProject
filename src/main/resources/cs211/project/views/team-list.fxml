@@ -10,7 +10,7 @@
 <AnchorPane fx:id="page" prefHeight="760.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.TeamListController">
    <children>
       <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButton" styleClass="defaultButton" text="back" />
-      <Label layoutX="72.0" layoutY="37.0" text="All Teams">
+      <Label layoutX="72.0" layoutY="37.0" styleClass="event-text" text="All Teams">
          <font>
             <Font size="24.0" />
          </font>
