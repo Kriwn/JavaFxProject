@@ -52,6 +52,7 @@ public class JoinEventController {
     private TextArea detailsEvent;
     @FXML
     private Button joinEventButton;
+    private Button joinTeamButton;
     @FXML
     private Label errorLabel;
     private EventList eventList;
@@ -77,7 +78,7 @@ public class JoinEventController {
         ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
 
         accountTeamRepository = new TeamAccountRepository();
-        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
 
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             joinEventButton.setVisible(false);
@@ -128,9 +129,9 @@ public class JoinEventController {
         }
     }
 
-    public void goToSelectTeam(){
+    public void goToSelectTeam() {
         try {
-            NPBPRouter.loadPage("select-team-to-join",page,user,event);
+            NPBPRouter.loadPage("select-team-to-join", page, user, event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

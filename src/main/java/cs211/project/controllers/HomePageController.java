@@ -50,7 +50,6 @@ public class HomePageController implements Initializable {
     private ArrayList<Event> events;
     private EventList eventList;
     private EventRepository eventRepository;
-    private AccountList accountList;
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private User user;

@@ -25,6 +25,14 @@ public class AccountEventList {
         }
         return result;
     }
+    public String findStatusByEventId(int eventId){
+        for (AccountEvent accountEvent : list){
+            if (accountEvent.isEventId(eventId)) {
+                return accountEvent.getStatus();
+            }
+        }
+        return null;
+    }
     public ArrayList<Integer> findAllEventsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){

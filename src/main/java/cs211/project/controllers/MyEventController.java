@@ -86,7 +86,7 @@ public class MyEventController implements Initializable {
         ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
 
         teamAccountRepository = new TeamAccountRepository();
-        ArrayList<Integer> teamIdUser = teamAccountRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+        ArrayList<Integer> teamIdUser = teamAccountRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
 
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             teamButton.setVisible(true);
@@ -107,8 +107,13 @@ public class MyEventController implements Initializable {
                 showActivitys.addNewActivityFromFile(activity.getName(), activity.getDetail(), "" + activity.getId(), "" + activity.getDateStart(), "" + activity.getDateEnd(), "" + activity.getTimeStart(), "" + activity.getTimeEnd(), "" + activity.getStatus());
             }
         }
+        try {
+            if (accountEventRepository.getListJoin().findStatusByEventId(eventId).equals("NotBan")) {
+                showTable(showActivitys);
+            }
+        } catch (Exception e){
 
-        showTable(showActivitys);
+        }
         showEvent(event);
     }
 
@@ -131,28 +136,34 @@ public class MyEventController implements Initializable {
     private void showTable(ActivityList activityList) {
         TableColumn<Activity, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setResizable(false);
+        nameColumn.setEditable(false);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Activity, String> startDateColumn = new TableColumn<>("dateStart");
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateStart"));
         startDateColumn.setResizable(false);
+        startDateColumn.setEditable(false);
 
 
         TableColumn<Activity, String> startTimeColumn = new TableColumn<>("timeStart");
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeStart"));
         startTimeColumn.setResizable(false);
+        startTimeColumn.setEditable(false);
 
         TableColumn<Activity, String> endDateColumn = new TableColumn<>("dateEnd");
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateEnd"));
         endDateColumn.setResizable(false);
+        endDateColumn.setEditable(false);
 
         TableColumn<Activity, String> endTimeColumn = new TableColumn<>("timeEnd");
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("timeEnd"));
         endTimeColumn.setResizable(false);
+        endTimeColumn.setEditable(false);
 
         TableColumn<Activity, String> statusColumn = new TableColumn<>("status");
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         statusColumn.setResizable(false);
+        statusColumn.setEditable(false);
 
         activityTableView.getColumns().clear();
         activityTableView.getColumns().add(nameColumn);
