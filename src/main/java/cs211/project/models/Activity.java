@@ -64,14 +64,8 @@ public class Activity {
     public void setDetail(String detail) {
         this.detail = detail;
     }
-    public boolean isName(String name){
-        return  this.name.equals(name);
-    }
     public boolean isId(int id){
         return  this.id == id;
-    }
-    public  boolean isDetail(String detail){
-        return  this.detail.equals(detail);
     }
     public LocalDate getDateStart() {
         return dateStart;

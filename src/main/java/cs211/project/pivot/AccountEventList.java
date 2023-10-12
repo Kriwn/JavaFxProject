@@ -25,15 +25,6 @@ public class AccountEventList {
         }
         return result;
     }
-    public ArrayList<Integer> findAccountsByEvent(int evId){
-        ArrayList<Integer> result = new ArrayList<>();
-        for(AccountEvent accountEvent: list){
-            if(accountEvent.isEventId(evId) && accountEvent.getStatus().equals("NotBan")){
-                result.add(accountEvent.getAccountId());
-            }
-        }
-        return result;
-    }
     public ArrayList<Integer> findAllEventsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){

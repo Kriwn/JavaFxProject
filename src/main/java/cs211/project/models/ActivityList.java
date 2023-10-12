@@ -1,6 +1,5 @@
 package cs211.project.models;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ActivityList {
@@ -38,16 +37,6 @@ public class ActivityList {
     public Activity findActivityById(int id){
         for (Activity activity : activities) {
             if (activity.isId(id)){
-                return activity;
-            }
-        }
-        return null;
-    }
-    public  Activity findActivityByBoth(String name,String detail){
-        name = name.trim();
-        detail = detail.trim();
-        for (Activity activity : activities) {
-            if (activity.isName(name) && activity.isDetail(detail)) {
                 return activity;
             }
         }

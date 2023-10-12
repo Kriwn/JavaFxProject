@@ -27,15 +27,6 @@ public class User extends Account{
             this.myEvents = myEvents;
         }
     }
-
-    public ArrayList<Integer> getMyEvents(){return myEvents;}
-    public ArrayList<Integer> getMyCreateEvents(){
-        return myCreateEvents;
-    }
-
-    public void addMyCreateEvent(int id) {
-        myCreateEvents.add(id);
-    }
     public void addMyEvent(int id){
         myEvents.add(id);
     }
