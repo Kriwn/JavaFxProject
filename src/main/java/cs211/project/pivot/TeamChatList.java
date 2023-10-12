@@ -18,17 +18,6 @@ public class TeamChatList {
         return result;
     }
 
-    public TeamChat findChatInTeam(int chatId, int teamId){
-        for(TeamChat teamChat : list){
-            if(teamChat.getChatId() == chatId && teamChat.getTeamId() == teamId){
-                return teamChat;
-            }
-        }
-        return null;
-    }
-
-
-
     public ArrayList<TeamChat> getList() {
         return list;
     }

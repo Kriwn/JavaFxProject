@@ -5,7 +5,6 @@ import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.pivot.TeamAccount;
 import cs211.project.pivot.TeamAccountList;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamAccountRepository;
@@ -55,8 +54,8 @@ public class SelectTeamToJoinController implements Initializable {
         teamAccountList = teamAccountRepository.getTeamAccountList();
 
         checkTeam = new ArrayList<>();
-        checkTeam.addAll(teamAccountList.findTeamsByAccount(user.getAccountId())); //id ของทีมทั้งหมดที่ account นั้นอยู่
-
+        checkTeam.addAll(teamAccountList.findAllTeamsByAccount(user.getAccountId())); //id ของทีมทั้งหมดที่ account นั้นอยู่
+        System.out.println(checkTeam);
         teamlist = teamRepository.getTeamList();
         eventTeamList = eventTeamRepository.getEventTeamList();
         listId = new ArrayList<>();

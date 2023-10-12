@@ -53,6 +53,8 @@ public class JoinEventController {
     @FXML
     private Button joinEventButton;
     @FXML
+    private Button joinTeamButton;
+    @FXML
     private Label errorLabel;
     private EventList eventList;
     private Event event;
@@ -77,10 +79,16 @@ public class JoinEventController {
         ArrayList<Integer> teamIdEvent = eventTeamRepository.getEventTeamList().findTeamByEventId(eventId);
 
         accountTeamRepository = new TeamAccountRepository();
-        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findTeamsByAccount(user.getAccountId());
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
 
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             joinEventButton.setVisible(false);
+        }
+        ArrayList<Integer> teamIdEventNew = new ArrayList<>();
+        teamIdEventNew.addAll(teamIdEvent);
+        teamIdEvent.removeAll(teamIdUser);
+        if (teamIdEvent.isEmpty() && !(teamIdEventNew.isEmpty())){
+            joinTeamButton.setVisible(false);
         }
 
         showEvent(event);
@@ -128,15 +136,12 @@ public class JoinEventController {
         }
     }
 
-    public void goToSelectTeam(){
+    public void goToSelectTeam() {
         try {
-            NPBPRouter.loadPage("select-team-to-join",page,user,event);
+            NPBPRouter.loadPage("select-team-to-join", page, user, event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 }
 
-/*
-* อาจจะส่งข้อมูลด้วยString array ของ account_id,event_id ที่ต้องการ join
-* */

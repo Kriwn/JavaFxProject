@@ -36,8 +36,6 @@ public class ShowMyCreateEventController implements Initializable {
     @FXML
     private AnchorPane page;
 
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private TextField searchTextField;

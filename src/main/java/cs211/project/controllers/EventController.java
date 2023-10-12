@@ -38,15 +38,8 @@ public class EventController {
         this.countMemberLabel = countMemberLabel;
     }
 
-    public void setImgCircle(Circle imgCircle) {
-        this.imgCircle = imgCircle;
-    }
-
     public void setMaxMemberLabel(Label maxMemberLabel) {
         this.maxMemberLabel = maxMemberLabel;
     }
 
-    public void setNameEventLabel(Label nameEventLabel) {
-        this.nameEventLabel = nameEventLabel;
-    }
 }

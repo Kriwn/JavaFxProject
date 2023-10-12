@@ -1,12 +1,12 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Activity {
     private String name;
     private String detail;
-
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalTime timeStart;
@@ -36,25 +36,15 @@ public class Activity {
     }
 
     public void checkTimeActivity(){
-        if(dateEnd.isAfter(LocalDate.now())){
-            if(dateEnd.equals(LocalDate.now())){
-                if(timeEnd.isAfter(LocalTime.now())){
-                    status = "available";
-                }
-                else{
-                    status = "Ended";
-                }
-            }
-            else{
-                status = "available";
-            }
+        LocalDateTime localDateTime = LocalDateTime.of(dateEnd, timeEnd);
+        if (localDateTime.isAfter(LocalDateTime.now())){
+            status = "available";
         }
         else{
             status = "Ended";
         }
     }
     public String getName() {
-
         return name;
     }
     public String getStatus(){
@@ -62,7 +52,6 @@ public class Activity {
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
@@ -72,39 +61,21 @@ public class Activity {
     public String getDetail() {
         return detail;
     }
-
     public void setDetail(String detail) {
-
         this.detail = detail;
     }
-
-
-
-    public boolean isName(String name){
-        return  this.name.equals(name);
-    }
-
     public boolean isId(int id){
         return  this.id == id;
-    }
-
-
-    public  boolean isDetail(String detail){
-        return  this.detail.equals(detail);
     }
     public LocalDate getDateStart() {
         return dateStart;
     }
-
-
     public LocalDate getDateEnd() {
         return dateEnd;
     }
-
     public LocalTime getTimeEnd() {
         return timeEnd;
     }
-
     public LocalTime getTimeStart() {
         return timeStart;
     }

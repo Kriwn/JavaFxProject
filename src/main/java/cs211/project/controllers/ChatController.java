@@ -58,8 +58,6 @@ public class ChatController implements Initializable {
 
         event = (Event) NPBPRouter.getDataEvent();
 
-//        team = (Team) NPBPRouter.getDataTeam();
-//        int teamId = team.getTeamId();
         teamRepository = new TeamRepository();
         teamList = teamRepository.getTeamList();
         int teamId = (int) NPBPRouter.getDataTeam();

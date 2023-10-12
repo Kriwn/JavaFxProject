@@ -40,9 +40,6 @@ public class EditEventController implements Initializable {
     private TextField nameEvent;
 
     @FXML
-    private AnchorPane page;
-
-    @FXML
     private TextField timeEndEvent;
 
     @FXML

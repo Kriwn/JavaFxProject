@@ -8,7 +8,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -59,7 +58,6 @@ public class SettingController {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
                 accounts.changeImage(user.getUsername(), "images/User/" + destinationFileName);
                 repository.save(accounts);
-                System.out.println("File saved successfully.");
             } catch (IOException e) {
                 e.printStackTrace();
             }

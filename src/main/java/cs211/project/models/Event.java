@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Event {
     private int eventId;
@@ -215,20 +214,8 @@ public class Event {
         return detail;
     }
 
-    public void setDateStartEvent(String dateStartEvent) {
-        this.dateStartEvent = LocalDate.parse(dateStartEvent);
-    }
-
-    public void setDateEndEvent(String dateEndEvent) {
-        this.dateEndEvent = LocalDate.parse(dateEndEvent);
-    }
-
     public void setDetail(String detail) {
         this.detail = detail;
-    }
-
-    public void setTimeStartEvent(String timeStartEvent) {
-        this.timeStartEvent = LocalTime.parse(timeStartEvent);
     }
 
     public LocalTime getTimeEndEvent() {
@@ -239,9 +226,6 @@ public class Event {
         return timeStartEvent;
     }
 
-    public void setTimeEndEvent(String timeEndEvent) {
-        this.timeEndEvent = LocalTime.parse(timeEndEvent);
-    }
 
     public int getMaxMember() {
         return maxMember;
@@ -295,9 +279,6 @@ public class Event {
         return statusJoin;
     }
 
-    public void setStatusJoin(boolean statusJoin) {
-        this.statusJoin = statusJoin;
-    }
 
     public void setOpenDateStart(LocalDate openDateStart) {
         this.openDateStart = openDateStart;

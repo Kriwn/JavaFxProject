@@ -1,6 +1,5 @@
 package cs211.project.models;
 
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -39,15 +38,6 @@ public class TeamList {
         }
     }
 
-    public Team findTeamByName(String name){
-        for(Team team : teams){
-            if(team.isTeamName(name)){
-                return team;
-            }
-        }
-        return null;
-    }
-
     public Team findTeamById(int team_id){
         for(Team team : teams){
             if(team.isTeamId(team_id)){
@@ -61,14 +51,6 @@ public class TeamList {
         Team exist = findTeamById(teamId);
         exist.addCountMember();
     }
-    public ArrayList<Integer> getTeamsId(){
-        ArrayList<Integer> teamsId = new ArrayList<>();
-        for(var i : teams){
-            teamsId.add(i.getTeamId());
-        }
-        return teamsId;
-    }
-
     public ArrayList<Team> getTeams() {
         return teams;
     }

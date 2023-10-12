@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         int cssStyle = 1;
-        NPBPRouter.bind(this, stage, "Hi", 1024, 760);
+        NPBPRouter.bind(this, stage, "NPBP Application", 1024, 760);
         NPBPRouter.setCss("CSS/theme-"+cssStyle+".css");
         configRoute();
         NPBPRouter.goTo("app");

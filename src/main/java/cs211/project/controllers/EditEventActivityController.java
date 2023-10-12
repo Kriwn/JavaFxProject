@@ -18,44 +18,24 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class EditEventActivityController implements Initializable {
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private AnchorPane page;
-
-    @FXML
-    private DatePicker startDatePicker;
-
-    @FXML
-    private  DatePicker endDatePicker;
-
-    @FXML
-    private TextArea detailTextArea;
-
-    @FXML
-    private  TextField timeStart;
-
-    @FXML
-    private  TextField timeEnd;
-
+    @FXML private TextField nameTextField;
+    @FXML private AnchorPane page;
+    @FXML private DatePicker startDatePicker;
+    @FXML private  DatePicker endDatePicker;
+    @FXML private TextArea detailTextArea;
+    @FXML private  TextField timeStart;
+    @FXML private  TextField timeEnd;
     private ActivityRepository activityRepository;
-
     private  ActivityList activityList;
-
     private  Activity activity;
-
     private  ActivityTeamEventRepository activityTeamEventRepository;
-
     private  EventActivityList eventActivityList;
-
     private  int id;
-
     private  int eventId;
-
     private  User user;
     public void initialize(URL url, ResourceBundle resourceBundle){
         activityRepository = new ActivityRepository();
@@ -99,7 +79,14 @@ public class EditEventActivityController implements Initializable {
         backToEventActivity();
     }
 
-
+    public void end() {
+        activity.setDateStart(String.valueOf(LocalDate.now()));
+        activity.setDateEnd(String.valueOf(LocalDate.now()));
+        activity.setTimeStart(String.valueOf(LocalTime.now()));
+        activity.setTimeEnd(String.valueOf(LocalTime.now()));
+        activityRepository.save(activityList);
+        backToEventActivity();
+    }
     public void backToEventActivity(){
         try {
             NPBPRouter.loadPage("event-activity",page,user,eventId);

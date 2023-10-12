@@ -50,7 +50,7 @@ public class TeamListUserController implements Initializable {
 
         teamAccountRepository = new TeamAccountRepository();
         teamAccountList = teamAccountRepository.getTeamAccountList();
-        ArrayList<Integer> checkTeam = teamAccountList.findTeamsByAccount(user.getAccountId());//id ของทีมทั้งหมดที่ user อยู่
+        ArrayList<Integer> checkTeam = teamAccountList.findAllTeamsByAccount(user.getAccountId());//id ของทีมทั้งหมดที่ user อยู่
 
         eventTeamRepository = new EventTeamRepository();
         eventTeamList = eventTeamRepository.getEventTeamList();

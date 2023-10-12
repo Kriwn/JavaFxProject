@@ -1,9 +1,7 @@
 package cs211.project.controllers;
 
 import cs211.project.models.ActivityList;
-import cs211.project.models.Event;
 import cs211.project.models.User;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;
@@ -21,38 +19,19 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CreateTeamActivityController implements Initializable {
-    @FXML
-    private TextField nameTextField;
-
-    @FXML
-    private AnchorPane page;
-
-    @FXML
-    private DatePicker startDatePicker;
-
-    @FXML
-    private  DatePicker endDatePicker;
-
-    @FXML
-    private TextArea detailTextArea;
-
-    @FXML
-    private  TextField timeStart;
-
-    @FXML
-    private  TextField timeEnd;
-
+    @FXML private TextField nameTextField;
+    @FXML private AnchorPane page;
+    @FXML private DatePicker startDatePicker;
+    @FXML private  DatePicker endDatePicker;
+    @FXML private TextArea detailTextArea;
+    @FXML private  TextField timeStart;
+    @FXML private  TextField timeEnd;
     private ActivityRepository activityRepository;
     private ActivityTeamEventRepository activityTeamEventRepository;
-
     private TeamActivityList teamActivityList;
-
     private ActivityList activityList;
-
     private int eventId;
-
     private  int teamId;
-
     private User user;
 
     @Override

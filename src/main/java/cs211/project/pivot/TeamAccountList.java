@@ -25,16 +25,15 @@ public class TeamAccountList {
         }
         return result;
     }
-    public ArrayList<Integer> findAccountsByTeam(int teamId){
+    public ArrayList<Integer> findAllTeamsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(TeamAccount teamAccount : list){
-            if(teamAccount.isTeamId(teamId) && teamAccount.getStatus().equals("NotBan")){
-                result.add(teamAccount.getAccountId());
+            if(teamAccount.isAccountId(accId)){
+                result.add(teamAccount.getTeamId());
             }
         }
         return result;
     }
-
     public ArrayList<Integer> findAllAccountsByTeam(int teamId){
         ArrayList<Integer> result = new ArrayList<>();
         for(TeamAccount teamAccount : list){
@@ -43,6 +42,15 @@ public class TeamAccountList {
             }
         }
         return result;
+    }
+
+    public String findStatusByTeamId(int teamId){
+        for (TeamAccount teamAccount : list){
+            if (teamAccount.isTeamId(teamId)) {
+                return teamAccount.getStatus();
+            }
+        }
+        return null;
     }
     public TeamAccount findAccountInTeam(int accId, int teamId){
         for(TeamAccount teamAccount : list){

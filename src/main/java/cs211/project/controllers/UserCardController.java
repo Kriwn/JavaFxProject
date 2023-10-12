@@ -5,20 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 
 public class UserCardController {
-    @FXML
-    private Circle imgCircle;
-    @FXML
-    private Label usernameLabel;
+    @FXML private Circle imgCircle;
+    @FXML private Label usernameLabel;
     @FXML private Label statusLabel;
 
     public Circle getImgCircle() {
         return imgCircle;
     }
-
-    public void setImgCircle(Circle imgCircle) {
-        this.imgCircle = imgCircle;
-    }
-
     public Label getUsernameLabel() {
         return usernameLabel;
     }
@@ -28,8 +21,5 @@ public class UserCardController {
 
     public void setUsernameLabel(Label usernameLabel) {
         this.usernameLabel = usernameLabel;
-    }
-    public void setStatusLabel(Label statusLabel){
-        this.statusLabel = statusLabel;
     }
 }
