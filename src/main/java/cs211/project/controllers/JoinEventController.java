@@ -52,6 +52,7 @@ public class JoinEventController {
     private TextArea detailsEvent;
     @FXML
     private Button joinEventButton;
+    @FXML
     private Button joinTeamButton;
     @FXML
     private Label errorLabel;
@@ -83,7 +84,11 @@ public class JoinEventController {
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             joinEventButton.setVisible(false);
         }
+        teamIdEvent.removeAll(teamIdUser);
 
+        if (teamIdEvent.isEmpty()){
+            joinTeamButton.setVisible(false);
+        }
         showEvent(event);
         detailsEvent.setEditable(false);
         errorLabel.setVisible(false);

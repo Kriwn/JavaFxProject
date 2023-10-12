@@ -82,7 +82,6 @@ public class MyEventController implements Initializable {
 
         teamAccountRepository = new TeamAccountRepository();
         ArrayList<Integer> teamIdUser = teamAccountRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
-
         if (eventList.checkTeamInEvent(teamIdEvent, teamIdUser)){
             teamButton.setVisible(true);
         }
