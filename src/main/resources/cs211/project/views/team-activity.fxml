@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="80.0" layoutY="40.0" prefHeight="680.0" prefWidth="625.0">
          <children>
-            <Label layoutX="274.0" layoutY="35.0" text="Activity">
+            <Label layoutX="274.0" layoutY="35.0" styleClass="default-text" text="Activity">
                <font>
                   <Font size="24.0" />
                </font>
