@@ -53,7 +53,8 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 * 6510450437:
     *
 * 6510450445:
-    *
+    * สร้างหน้า fxml เกี่ยวกับ login,signup,edit user, home-page
+    * เชื่อมหน้าแต่ละหน้าเข้าด้วยกัน
 > ความคืบหน้าครั้งที่ 2 ของแต่ละคน
 
 * 6510450143:
@@ -65,7 +66,10 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 * 6510450437:
     *
 * 6510450445:
-    *
+    * สร้าง models ของ Account, AccountList, User, Admin
+    * สร้าง attribute ของ Account, AccountList, User, Admin
+    * ทำ accountDataSource 
+    * ทำ Controller หน้า login
 > ความคืบหน้าครั้งที่ 3 ของแต่ละคน
 
 * 6510450143:
@@ -80,7 +84,12 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 * 6510450437:
     *
 * 6510450445:
-    *
+    * ดึง dependency ของ MaterialFx มาใช้ในหน้า login, signup, history
+    * ทำ controller home เซ็ตรูปภาพ sidebar
+    * ทำ controller ที่ผู้จัดอีเว้นท์จัดการผู้เข้าร่วมอีเว้นท์
+    * ทำ controller หน้า history สร้างตารางเพื่อโชว์อีเว้นท์ที่เข้าร่วม
+    * ทำ css ใส่ตาราง history
+    * ทำคลาส animation กับ keypress
 > ความคืบหน้าครั้งที่ 4 ของแต่ละคน
 
 * 6510450143:
@@ -91,4 +100,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 * 6510450437:
     *
 * 6510450445:
-    *
+    * ทำส่วนของเปลี่ยนธีม
+    * ทำส่วนของ admin ให้เสร็จสมบูรณ์
+    * ทำ polymorphism ใน admin เรียงลำดับผู้ใช้ที่ login เข้ามาล่าสุด
+    * ทำ introduction, creator ในหน้า login ให้สามารถกดเข้าไปดูได้
