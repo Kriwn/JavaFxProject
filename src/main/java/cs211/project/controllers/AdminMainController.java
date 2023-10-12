@@ -5,6 +5,7 @@ import cs211.project.models.AccountList;
 import cs211.project.models.Admin;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.AccountTimeComparator;
+import cs211.project.services.NPBPRouter;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -29,15 +30,16 @@ public class AdminMainController implements Initializable {
     private AccountList accountList;
     private AccountRepository accountRepository;
     private ArrayList<Account> accountArrayList;
-
+    private Admin admin;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        admin = (Admin) NPBPRouter.getDataAccount();
         accountRepository = new AccountRepository();
         accountList = accountRepository.getAccounts();
         accountArrayList = accountList.getAccounts();
         accountArrayList.removeIf(account -> account.getRoleAccount().equals("Admin"));
-        Admin.sort(accountArrayList,new AccountTimeComparator());
+        admin.sort(accountArrayList,new AccountTimeComparator());
         setData(accountArrayList.get(0));
         setTable(accountArrayList, mfxTableView);
     }
