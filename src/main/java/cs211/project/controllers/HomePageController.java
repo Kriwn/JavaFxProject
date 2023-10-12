@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -34,9 +33,6 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable {
     @FXML
     private AnchorPane page;
-
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private TextField searchTextField;
@@ -114,13 +110,6 @@ public class HomePageController implements Initializable {
             }
         });
         //------------------------------------------------------------------
-//        vbox.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_rainbow.gif")));
-//        searchTextField.setOnMouseEntered(hover -> {
-//            searchTextField.setCursor(new ImageCursor(new Image("file:"+"images/cursor/cursor_text.gif")));
-//        });
-//        searchTextField.setOnMouseExited(unhover -> {
-//            searchTextField.setCursor(Cursor.HAND);
-//        });
     }
     public void showEvent(ArrayList<Event> eventArrayList){
         LOAD = 400;
@@ -168,7 +157,6 @@ public class HomePageController implements Initializable {
         maxMember.setText(""+newEvent.getMaxMember());
         img.setFill(new ImagePattern(new Image(newEvent.getImage().getUrl())));
 
-//        img.setFill(new ImagePattern(new Image("file:"+"images/"+"default.png")));
         vbox.setOnMouseClicked(event ->{
             try {
                 NPBPRouter.loadPage("join-event",page,user,newEvent.getEventId());

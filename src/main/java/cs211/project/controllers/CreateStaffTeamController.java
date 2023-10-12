@@ -4,7 +4,6 @@ import cs211.project.models.Event;
 import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
-import cs211.project.pivot.EventTeam;
 import cs211.project.pivot.EventTeamList;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.EventRepository;

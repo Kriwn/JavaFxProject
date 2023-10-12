@@ -1,9 +1,7 @@
 package cs211.project.controllers;
 
 import cs211.project.models.ActivityList;
-import cs211.project.models.Event;
 import cs211.project.models.User;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
 import cs211.project.repository.ActivityTeamEventRepository;

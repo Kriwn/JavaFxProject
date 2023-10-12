@@ -34,10 +34,6 @@ import java.util.ResourceBundle;
 public class ShowMyEventController implements Initializable {
     @FXML
     private AnchorPane page;
-
-    @FXML
-    private ScrollPane scrollPane;
-
     @FXML
     private TextField searchTextField;
 

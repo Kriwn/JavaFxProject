@@ -1,8 +1,6 @@
 package cs211.project.services;
-
 import cs211.project.models.Team;
 import cs211.project.models.TeamList;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 

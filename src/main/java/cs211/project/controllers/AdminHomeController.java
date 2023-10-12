@@ -25,7 +25,7 @@ public class AdminHomeController implements Initializable {
         usernameLabel.setText(admin.getUsername());
         image.setFill(new ImagePattern(new Image("file:" + admin.getImagePath())));
         try {
-            NPBPRouter.loadPage("admin-main",page);
+            NPBPRouter.loadPage("admin-main",page,admin);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

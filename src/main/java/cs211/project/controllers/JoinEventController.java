@@ -138,6 +138,3 @@ public class JoinEventController {
     }
 }
 
-/*
-* อาจจะส่งข้อมูลด้วยString array ของ account_id,event_id ที่ต้องการ join
-* */

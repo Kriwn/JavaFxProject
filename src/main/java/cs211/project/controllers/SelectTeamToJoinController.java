@@ -5,7 +5,6 @@ import cs211.project.models.Team;
 import cs211.project.models.TeamList;
 import cs211.project.models.User;
 import cs211.project.pivot.EventTeamList;
-import cs211.project.pivot.TeamAccount;
 import cs211.project.pivot.TeamAccountList;
 import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamAccountRepository;
