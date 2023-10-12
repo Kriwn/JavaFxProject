@@ -55,7 +55,6 @@ public class SelectTeamToJoinController implements Initializable {
 
         checkTeam = new ArrayList<>();
         checkTeam.addAll(teamAccountList.findAllTeamsByAccount(user.getAccountId())); //id ของทีมทั้งหมดที่ account นั้นอยู่
-        System.out.println(checkTeam);
         teamlist = teamRepository.getTeamList();
         eventTeamList = eventTeamRepository.getEventTeamList();
         listId = new ArrayList<>();
