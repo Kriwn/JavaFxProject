@@ -79,7 +79,12 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Button layoutX="284.0" layoutY="589.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="#fc0303">
+            <Button layoutX="284.0" layoutY="589.0" mnemonicParsing="false" onAction="#delete" styleClass="defaultButton" text="Delete" textFill="#fc0303">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="386.0" layoutY="589.0" mnemonicParsing="false" onAction="#end" styleClass="defaultButton" text="End" textFill="#fc0303">
                <font>
                   <Font size="14.0" />
                </font>

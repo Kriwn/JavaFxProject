@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class EditTeamActivityController implements Initializable {
@@ -92,6 +93,14 @@ public class EditTeamActivityController implements Initializable {
         catch (Exception e){
 
         }
+    }
+    public void end() {
+        activity.setDateStart(String.valueOf(LocalDate.now()));
+        activity.setDateEnd(String.valueOf(LocalDate.now()));
+        activity.setTimeStart(String.valueOf(LocalTime.now()));
+        activity.setTimeEnd(String.valueOf(LocalTime.now()));
+        activityRepository.save(activityList);
+        backToEventActivity();
     }
 
     public void delete(){
