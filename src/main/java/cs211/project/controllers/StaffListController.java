@@ -6,17 +6,13 @@ import cs211.project.pivot.TeamAccountList;
 import cs211.project.repository.AccountRepository;
 import cs211.project.repository.TeamAccountRepository;
 import cs211.project.repository.TeamRepository;
-import cs211.project.services.Datasource;
 import cs211.project.services.NPBPRouter;
-import cs211.project.services.StaffDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -25,9 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class StaffListController implements  Initializable{

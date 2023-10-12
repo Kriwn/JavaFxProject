@@ -31,9 +31,6 @@ public class MyEventController implements Initializable {
     private AnchorPane page;
 
     @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
     private Label timeEndLabel;
 
     @FXML
@@ -43,8 +40,6 @@ public class MyEventController implements Initializable {
     private TextArea detailsTextArea;
     @FXML private Button teamButton;
 
-    private Datasource<AccountList> datasourceAccount;
-    private AccountList users;
     private User user;
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;

@@ -18,9 +18,6 @@ public class StaffController {
     @FXML
     private Label usernameLabel;
 
-    public void setImgCircle(Circle circle){
-        this.imgCircle = circle;
-    }
 
     public void setUsernameLabel(Label username){
         this.usernameLabel = username;

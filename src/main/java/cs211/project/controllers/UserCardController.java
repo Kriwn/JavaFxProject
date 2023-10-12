@@ -12,11 +12,6 @@ public class UserCardController {
     public Circle getImgCircle() {
         return imgCircle;
     }
-
-    public void setImgCircle(Circle imgCircle) {
-        this.imgCircle = imgCircle;
-    }
-
     public Label getUsernameLabel() {
         return usernameLabel;
     }
@@ -26,8 +21,5 @@ public class UserCardController {
 
     public void setUsernameLabel(Label usernameLabel) {
         this.usernameLabel = usernameLabel;
-    }
-    public void setStatusLabel(Label statusLabel){
-        this.statusLabel = statusLabel;
     }
 }

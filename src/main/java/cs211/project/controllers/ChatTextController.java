@@ -21,15 +21,6 @@ public class ChatTextController {
     public Label getUsernameLabel() {
         return usernameLabel;
     }
-    public void setDateLabel(Label dateLabel) {
-        this.dateLabel = dateLabel;
-    }
-    public void setTextLabel(Label textLabel) {
-        this.textLabel = textLabel;
-    }
-    public void setTimeLabel(Label timeLabel) {
-        this.timeLabel = timeLabel;
-    }
     public void setUsernameLabel(Label usernameLabel) {
         this.usernameLabel = usernameLabel;
     }
