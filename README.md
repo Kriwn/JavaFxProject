@@ -6,7 +6,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 ---
 > วิธีการติดตั้งหรือรันโปรแกรม
-1.  double click ไปที่ NPBP
+1. 
 
 >  ตัวอย่างข้อมูลผู้ใช้ระบบ
 * Admin:
@@ -19,7 +19,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 1. data เก็บข้อมูล csv ทั้งหมดภายในโปรแกรม
    1. account.csv เก็บข้อมูลของ account ทั้งหมดภายในโปรแกรม
    2. event.csv เก็บข้อมูลของอิเว้นท์ทั้งหมดภายในโปรแกรม
-   3. team.csv เก็บข้อมูลของทีมทั้งหมดภายในโปรแกรม
+   3. teams.csv เก็บข้อมูลของทีมทั้งหมดภายในโปรแกรม
    4. activity.csv เก็บกิจกรรมทั้งหมดภายในโปรแกรม
    5. chat.csv เก็บแชททั้งหมดภายในโปรแกรม
    6. account_join_events.csv เก็บข้อมูล accountId ที่เข้าร่วม event ผูกกับ eventId 
