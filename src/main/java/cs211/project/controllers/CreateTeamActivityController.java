@@ -9,6 +9,7 @@ import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,7 @@ public class CreateTeamActivityController implements Initializable {
     @FXML private TextArea detailTextArea;
     @FXML private  TextField timeStart;
     @FXML private  TextField timeEnd;
+    @FXML private Label errorLabel;
     private ActivityRepository activityRepository;
     private ActivityTeamEventRepository activityTeamEventRepository;
     private TeamActivityList teamActivityList;
@@ -43,22 +45,30 @@ public class CreateTeamActivityController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         teamId = (int)NPBPRouter.getDataTeam();
         eventId = (int)NPBPRouter.getDataEvent();
+        errorLabel.setVisible(false);
     }
 
 
     @FXML
     public  void  createActivity(){
+        errorLabel.setVisible(false);
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String detail = detailTextArea.getText().replace("\n","|");
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
-        activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
-        activityRepository.save(activityList);
-        teamActivityList.addNew(teamId,activityList.getLastId());
-        activityTeamEventRepository.saveTeam(teamActivityList);
-        backToEventActivity();
+        try {
+            activityList.addNewActivity(name,detail,startDate.toString(),endDate.toString(),startTime,endTime);
+            activityRepository.save(activityList);
+            teamActivityList.addNew(teamId,activityList.getLastId());
+            activityTeamEventRepository.saveTeam(teamActivityList);
+            backToEventActivity();
+        } catch(Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Wrong Format");
+        }
+
     }
 
 

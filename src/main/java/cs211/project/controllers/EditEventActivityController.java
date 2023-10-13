@@ -10,6 +10,7 @@ import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +30,7 @@ public class EditEventActivityController implements Initializable {
     @FXML private TextArea detailTextArea;
     @FXML private  TextField timeStart;
     @FXML private  TextField timeEnd;
+    @FXML private Label errorLabel;
     private ActivityRepository activityRepository;
     private  ActivityList activityList;
     private  Activity activity;
@@ -47,6 +49,8 @@ public class EditEventActivityController implements Initializable {
         activityTeamEventRepository = new ActivityTeamEventRepository();
         eventActivityList = activityTeamEventRepository.getEventActivity();
 
+        errorLabel.setVisible(false);
+
 
         // edit event
         nameTextField.setText(activity.getName());
@@ -59,15 +63,22 @@ public class EditEventActivityController implements Initializable {
 
     @FXML
     public  void  changeActivity(){
+        errorLabel.setVisible(false);
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String detail = detailTextArea.getText().replace("\n","|");
         String startTime = timeStart.getText();
         String endTime =timeEnd.getText();
-        activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
-        activityRepository.save(activityList);
-        backToEventActivity();
+        try {
+            activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
+            activityRepository.save(activityList);
+            backToEventActivity();
+        } catch (Exception e){
+            errorLabel.setText("Wrong Format");
+            errorLabel.setVisible(true);
+        }
+
     }
 
     public void delete(){

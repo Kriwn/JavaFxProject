@@ -83,7 +83,7 @@ public class TeamActivityController {
                 public void changed(ObservableValue observable, Activity oldValue, Activity newValue) {
                     if (newValue != null) {
                         try {
-                            NPBPRouter.loadPageEditTeam("edit-team-activity", page, user, teamId, newValue.getId());
+                            NPBPRouter.loadPageEditTeam("edit-team-activity", page, user, teamId, newValue.getId(), eventId);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
