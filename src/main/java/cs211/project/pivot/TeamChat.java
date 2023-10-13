@@ -18,11 +18,5 @@ public class TeamChat {
         return chatId;
     }
 
-    @Override
-    public String toString() {
-        return "TeamChat{" +
-                "teamId=" + teamId +
-                ", chatId=" + chatId +
-                '}';
-    }
+
 }

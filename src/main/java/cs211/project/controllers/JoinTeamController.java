@@ -8,6 +8,8 @@ import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -24,16 +26,18 @@ public class JoinTeamController implements Initializable {
     @FXML private Label timeEndLabel;
     @FXML private Label timeStartLabel;
     @FXML private Label errorLabel;
+    @FXML private ImageView eventImageView;
     private User user;
     private Team team;
     private TeamRepository teamRepository;
     private TeamList teamlist;
     private TeamAccountRepository teamAccountRepository;
     private TeamAccountList teamAccountList;
+    private Event event;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
         user = (User) NPBPRouter.getDataAccount();
-
+        event = (Event) NPBPRouter.getDataEvent();
         team = (Team) NPBPRouter.getDataTeam();
         teamRepository = new TeamRepository();
         teamlist = teamRepository.getTeamList();
@@ -52,6 +56,7 @@ public class JoinTeamController implements Initializable {
         timeEndLabel.setText(team.getCloseTime().toString());
         countMemberLabel.setText(""+team.getCountMember());
         maxMemberLabel.setText(""+team.getMaxMember());
+        eventImageView.setImage(new Image(event.getImage().getUrl()));
     }
 
     public void joinTeamButton(){

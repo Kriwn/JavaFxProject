@@ -89,12 +89,6 @@ public class TeamAccountList {
         }
     }
 
-    @Override
-    public String toString() {
-        return "TeamAccountList{" +
-                "list=" + list +
-                '}';
-    }
 
     public ArrayList<TeamAccount> getList() {
         return list;

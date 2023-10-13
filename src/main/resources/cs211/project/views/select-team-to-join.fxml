@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cs211.project.controllers.SelectTeamToJoinController">
    <children>
       <AnchorPane fx:id="page" layoutX="10.0" layoutY="10.0" prefHeight="760.0" prefWidth="784.0">
          <children>
-            <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButton" text="back" />
-            <Label layoutX="72.0" layoutY="37.0" text="Select Team To Join">
+            <Button layoutX="671.0" layoutY="37.0" mnemonicParsing="false" onAction="#backButton" styleClass="defaultButton" text="back" />
+            <Label layoutX="72.0" layoutY="37.0" styleClass="event-text" text="Select Team To Join">
                <font>
                   <Font size="24.0" />
                </font>

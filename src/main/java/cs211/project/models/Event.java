@@ -296,25 +296,5 @@ public class Event {
         this.openTimeEnd = openTimeEnd;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "eventId=" + eventId +
-                ", name='" + name + '\'' +
-                ", detail='" + detail + '\'' +
-                ", countMember=" + countMember +
-                ", maxMember=" + maxMember +
-                ", image=" + image +
-                ", dateStartEvent=" + dateStartEvent +
-                ", dateEndEvent=" + dateEndEvent +
-                ", timeStartEvent=" + timeStartEvent +
-                ", timeEndEvent=" + timeEndEvent +
-                ", openDateStart=" + openDateStart +
-                ", openDateEnd=" + openDateEnd +
-                ", openTimeStart=" + openTimeStart +
-                ", openTimeEnd=" + openTimeEnd +
-                ", statusEvent=" + statusEvent +
-                ", statusJoin=" + statusJoin +
-                '}';
-    }
+
 }

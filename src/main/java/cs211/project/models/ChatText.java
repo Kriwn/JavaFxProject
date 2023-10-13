@@ -52,14 +52,4 @@ public class ChatText {
 
     public boolean isChatId(int chatId){return this.chatId == chatId;}
 
-    @Override
-    public String toString() {
-        return "ChatText{" +
-                "chatId=" + chatId +
-                ", date=" + date +
-                ", time=" + time +
-                ", username='" + username + '\'' +
-                ", text='" + text + '\'' +
-                '}';
-    }
 }

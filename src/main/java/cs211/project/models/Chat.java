@@ -48,11 +48,4 @@ public class Chat {
         return texts;
     }
 
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "texts=" + texts +
-                ", lastId=" + lastId +
-                '}';
-    }
 }
