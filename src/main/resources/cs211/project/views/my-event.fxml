@@ -74,7 +74,7 @@
                   </TableView>
                </content>
             </ScrollPane>
-            <Button fx:id="teamButton" layoutX="287.0" layoutY="654.0" mnemonicParsing="false" onAction="#goToTeamList" text="Team" />
+            <Button fx:id="teamButton" layoutX="287.0" layoutY="654.0" mnemonicParsing="false" onAction="#goToTeamList" styleClass="defaultButton" text="Team" />
          </children>
       </AnchorPane>
    </children>

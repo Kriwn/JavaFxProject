@@ -25,9 +25,9 @@ public class AccountEventList {
         }
         return result;
     }
-    public String findStatusByEventId(int eventId){
+    public String findStatusByEventId(int eventId, int accId){
         for (AccountEvent accountEvent : list){
-            if (accountEvent.isEventId(eventId)) {
+            if (accountEvent.isEventId(eventId) && accountEvent.isAccountId(accId)) {
                 return accountEvent.getStatus();
             }
         }

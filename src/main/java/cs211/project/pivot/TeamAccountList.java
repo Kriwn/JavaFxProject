@@ -44,9 +44,9 @@ public class TeamAccountList {
         return result;
     }
 
-    public String findStatusByTeamId(int teamId){
+    public String findStatusByTeamId(int teamId, int accId){
         for (TeamAccount teamAccount : list){
-            if (teamAccount.isTeamId(teamId)) {
+            if (teamAccount.isTeamId(teamId) && teamAccount.isAccountId(accId)) {
                 return teamAccount.getStatus();
             }
         }
