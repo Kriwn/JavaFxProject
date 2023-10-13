@@ -6,7 +6,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 ---
 > วิธีการติดตั้งหรือรันโปรแกรม
-1.  
+1.  โหลดไฟล์ NPBP.zip จาก Tag Jarfile 
 2.  เเตกไฟล์ NPBP.zip 
 3.  หลังจากเเตกไฟล์เรียบร้อยเเล้ว เวลาที่ต้องการเปิดโปรเเกรมให้ คลิกไปที่ NPBP หรือ รันผ่าน command line โดยใช้ java -jar *.jar file
 
