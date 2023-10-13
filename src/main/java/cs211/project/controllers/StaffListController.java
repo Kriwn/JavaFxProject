@@ -121,7 +121,6 @@ public class StaffListController implements  Initializable{
         vbox.setOnMouseClicked(event -> {
             selectStaff = (User)accountList.findUserByAccountId(id);
             selectBox = finalVbox;
-            System.out.println(selectStaff.getUsername());
         });
 
         return vbox;

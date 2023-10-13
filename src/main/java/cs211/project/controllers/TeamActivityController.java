@@ -92,7 +92,7 @@ public class TeamActivityController {
             });
         }else{
             createButton.setVisible(false);
-            if (teamAccountList.findStatusByTeamId(teamId).equals("NotBan")) {
+            if (teamAccountList.findStatusByTeamId(teamId, user.getAccountId()).equals("NotBan")) {
                 showTable(showActivitys);
             }
         }

@@ -101,7 +101,7 @@ public class MyEventController implements Initializable {
             }
         }
         try {
-            if (accountEventRepository.getListJoin().findStatusByEventId(eventId).equals("NotBan")) {
+            if (accountEventRepository.getListJoin().findStatusByEventId(eventId, user.getAccountId()).equals("NotBan")) {
                 showTable(showActivitys);
             }
         } catch (Exception e){
