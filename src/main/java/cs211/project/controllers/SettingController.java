@@ -4,12 +4,11 @@ import cs211.project.models.AccountList;
 import cs211.project.models.User;
 import cs211.project.repository.AccountRepository;
 import cs211.project.services.NPBPRouter;
+import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +17,12 @@ import java.nio.file.StandardCopyOption;
 
 public class SettingController {
 
-    private User user;
-    @FXML private TextField oldTextField;
-    @FXML private TextField newTextField;
-    @FXML private TextField conTextField;
+    @FXML private TextField oldPasswordField;
+    @FXML private TextField newPasswordField;
+    @FXML private TextField confirmPasswordField;
     @FXML private Label errorLabel;
+    @FXML private MFXButton themeButton;
+    private User user;
     private AccountList accounts;
     private AccountRepository repository;
 
@@ -31,6 +31,7 @@ public class SettingController {
         accounts = repository.getAccounts();
         user = (User) NPBPRouter.getDataAccount();
         errorLabel.setText("");
+        themeButton.setText("Theme "+user.getAccountTheme());
     }
 
     @FXML
@@ -38,7 +39,7 @@ public class SettingController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image");
 
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images", "*.png", "*.jpg", "*.jpeg","*gif"));
 
         File file = fileChooser.showOpenDialog(null);
 
@@ -57,35 +58,60 @@ public class SettingController {
                 Files.copy(file.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING,StandardCopyOption.COPY_ATTRIBUTES);
                 accounts.changeImage(user.getUsername(), "images/User/" + destinationFileName);
                 repository.save(accounts);
-                System.out.println("File saved successfully.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+    public void refresh(){
+        try {
+            NPBPRouter.goTo("home",accounts.findUserByAccountId(user.getAccountId()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changeTheme() throws IOException {
+        accounts.changeTheme(user.getAccountId());
+        repository.save(accounts);
+        NPBPRouter.setCss("CSS/theme-"+accounts.findUserByAccountId(user.getAccountId()).getAccountTheme()+".css");
+        if(accounts.findUserByAccountId(user.getAccountId()).getAccountTheme() == 1)
+            themeButton.setText("Theme "+ 1);
+        else{
+            themeButton.setText("Theme "+ 2);
+        }
+    }
 
     public void confirm() throws IOException {
-        String oldPass = oldTextField.getText().trim();
-        String newPass = newTextField.getText().trim();
-        String conPass = conTextField.getText().trim();
+        String oldPass = oldPasswordField.getText().trim();
+        String newPass = newPasswordField.getText().trim();
+        String conPass = confirmPasswordField.getText().trim();
         if (oldPass.equals("") || newPass.equals("") || conPass.equals("")) {
             errorLabel.setText("Please fill  is required");
+            errorLabel.setLayoutX(230);
             return ;
         }
             if (user.validatePassword(oldPass)) {
-                if (newPass.equals(conPass)) {
-                    accounts.changePassword(user.getUsername(),newPass);
-                    repository.save(accounts);
-                    System.out.println("Change password successfully");
-                    NPBPRouter.goTo("home",user);
+                if(newPass.length() > 5) {
+                    if (newPass.equals(conPass)) {
+                        accounts.changePassword(user.getUsername(), newPass);
+                        repository.save(accounts);
+                        System.out.println("Change password successfully");
+                        NPBPRouter.goTo("home", user);
+                    } else {
+                        errorLabel.setText("Not matching password and confirm password");
+                        errorLabel.setLayoutX(170);
+                    }
                 }
-                else
-                    errorLabel.setText("Not matching password and confirm password");
+                else{
+                    errorLabel.setText("Password must has more than 5 characters");
+                    errorLabel.setLayoutX(170);
+                }
             }
             else
             {
                 errorLabel.setText("Please fill the correct old password");
-                return ;
+                errorLabel.setLayoutX(180);
             }
     }
 }

@@ -5,8 +5,6 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class Event {
     private int eventId;
@@ -15,55 +13,151 @@ public class Event {
     private  int countMember;
     private int maxMember;
     private Image image;
-    private LocalDate dateStart;
-    private LocalDate dateEnd;
-    private LocalTime timeStart;
-    private LocalTime timeEnd;
-    private boolean status;
+    private LocalDate dateStartEvent;
+    private LocalDate dateEndEvent;
+    private LocalTime timeStartEvent;
+    private LocalTime timeEndEvent;
 
-    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember,Image image){
+    private LocalDate openDateStart;
+    private LocalDate openDateEnd;
+    private LocalTime openTimeStart;
+    private LocalTime openTimeEnd;
+    private boolean statusEvent;
+    private boolean statusJoin;
+
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String openDateStart, String openDateEnd, String openTimeStart, String openTimeEnd,
+                 String countMember, String maxMember, Image image){
+
         this.name = name;
         this.eventId = Integer.parseInt(id);
         this.detail = details;
-        this.dateStart = LocalDate.parse(dateStart);
-        this.dateEnd = LocalDate.parse(dateEnd);
-        this.timeStart = LocalTime.parse(timeStart);
-        this.timeEnd = LocalTime.parse(timeEnd);
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.parse(openDateStart);
+        this.openDateEnd = LocalDate.parse(openDateEnd);
+        this.openTimeStart = LocalTime.parse(openTimeStart);
+        this.openTimeEnd = LocalTime.parse(openTimeEnd);
+        this.countMember = Integer.parseInt(countMember);
+        this.maxMember = Integer.parseInt(maxMember);
+        this.image = image;
+    }
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember, String maxMember, Image image){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.now();
+        this.openDateEnd = LocalDate.now();
+        this.openTimeStart = LocalTime.now();
+        this.openTimeEnd = LocalTime.now();
         this.countMember = Integer.parseInt(countMember);
         this.maxMember = Integer.parseInt(maxMember);
         this.image = image;
     }
 
-    public Event(String name,String id, String details,String dateStart,String dateEnd,String timeStart,String timeEnd,String countMember, String maxMember){
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember, Image image){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.now();
+        this.openDateEnd = LocalDate.now();
+        this.openTimeStart = LocalTime.now();
+        this.openTimeEnd = LocalTime.now();
+        this.countMember = Integer.parseInt(countMember);
+        this.image = image;
+    }
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.now();
+        this.openDateEnd = LocalDate.now();
+        this.openTimeStart = LocalTime.now();
+        this.openTimeEnd = LocalTime.now();
+        this.countMember = Integer.parseInt(countMember);
+        setImage(new Image("file:"+"images/event/"+"default.png"));
+    }
+
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String countMember, String maxMember){
+
+        this.name = name;
+        this.eventId = Integer.parseInt(id);
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.countMember = Integer.parseInt(countMember);
+        this.maxMember = Integer.parseInt(maxMember);
+    }
+
+    public Event(String name, String id, String details,
+                 String dateStartEvent, String dateEndEvent, String timeStartEvent, String timeEndEvent,
+                 String openDateStart, String openDateEnd, String openTimeStart, String openTimeEnd,
+                 String countMember, String maxMember){
         this.name = name;
         this.detail = details;
         this.maxMember = Integer.parseInt(maxMember);
-        this.dateStart = LocalDate.parse(dateStart);
-        this.dateEnd = LocalDate.parse(dateEnd);
-        this.timeStart = LocalTime.parse(timeStart);
-        this.timeEnd = LocalTime.parse(timeEnd);
+        this.dateStartEvent = LocalDate.parse(dateStartEvent);
+        this.dateEndEvent = LocalDate.parse(dateEndEvent);
+        this.timeStartEvent = LocalTime.parse(timeStartEvent);
+        this.timeEndEvent = LocalTime.parse(timeEndEvent);
+        this.openDateStart = LocalDate.parse(openDateStart);
+        this.openDateEnd = LocalDate.parse(openDateEnd);
+        this.openTimeStart = LocalTime.parse(openTimeStart);
+        this.openTimeEnd = LocalTime.parse(openTimeEnd);
         this.countMember = Integer.parseInt(countMember);
-        this.status = true;
-        setImage(new Image("file:" + "images/default.png"));
+        this.statusEvent = true;
+        setImage(new Image("file:" + "images/event/default.png"));
         this.eventId = Integer.parseInt(id);
     }
 
+
+
     public void checkTimeEvent(){
-        if(dateEnd.isAfter(LocalDate.now())){
-            if(dateEnd.equals(LocalDate.now())){
-                if(timeEnd.isAfter(LocalTime.now())){
-                    status = true;
-                }
-                else{
-                    status = false;
-                }
-            }
-            else{
-                status = true;
-            }
+        LocalDateTime localDateTimeEnd = LocalDateTime.of(dateEndEvent, timeEndEvent);
+        if(localDateTimeEnd.isAfter(LocalDateTime.now())){
+            statusEvent = true;
         }
         else{
-            status = false;
+            statusEvent = false;
+        }
+    }
+
+    public void checkTimeJoin(){
+        LocalDateTime localDateTimeEnd = LocalDateTime.of(openDateEnd, openTimeEnd);
+        LocalDateTime localDateTimeStart = LocalDateTime.of(openDateStart, openTimeStart);
+        if (localDateTimeEnd.isAfter(LocalDateTime.now()) && localDateTimeStart.isBefore(LocalDateTime.now())){
+            statusJoin = true;
+        }
+        else {
+            statusJoin = false;
         }
     }
 
@@ -74,27 +168,35 @@ public class Event {
         return false;
     }
 
-    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, String maxMember, Image image){
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd, Image image){
         this.name = name;
         this.detail = details;
-        this.dateStart = LocalDate.parse(dateStart);
-        this.timeStart = LocalTime.parse(timeStart);
-        this.dateEnd = LocalDate.parse(dateEnd);
-        this.timeEnd = LocalTime.parse(timeEnd);
-        this.maxMember = Integer.parseInt(maxMember);
+        this.dateStartEvent = LocalDate.parse(dateStart);
+        this.timeStartEvent = LocalTime.parse(timeStart);
+        this.dateEndEvent = LocalDate.parse(dateEnd);
+        this.timeEndEvent = LocalTime.parse(timeEnd);
         this.image = image;
+    }
+
+    public void editEvent(String name, String details, String dateStart, String timeStart, String dateEnd, String timeEnd){
+        this.name = name;
+        this.detail = details;
+        this.dateStartEvent = LocalDate.parse(dateStart);
+        this.timeStartEvent = LocalTime.parse(timeStart);
+        this.dateEndEvent = LocalDate.parse(dateEnd);
+        this.timeEndEvent = LocalTime.parse(timeEnd);
     }
 
     public boolean isEventId(int event_id){
         return this.eventId == event_id;
     }
 
-    public LocalDate getDateStart() {
-        return dateStart;
+    public LocalDate getDateStartEvent() {
+        return dateStartEvent;
     }
 
-    public LocalDate getDateEnd() {
-        return dateEnd;
+    public LocalDate getDateEndEvent() {
+        return dateEndEvent;
     }
 
     public boolean isName(String name) {
@@ -112,33 +214,18 @@ public class Event {
         return detail;
     }
 
-    public void setDateStart(String dateStart) {
-        this.dateStart = LocalDate.parse(dateStart);
-    }
-
-    public void setDateEnd(String dateEnd) {
-        this.dateEnd = LocalDate.parse(dateEnd);
-    }
-
     public void setDetail(String detail) {
         this.detail = detail;
     }
 
-    public void setTimeStart(String timeStart) {
-        this.timeStart = LocalTime.parse(timeStart);
+    public LocalTime getTimeEndEvent() {
+        return timeEndEvent;
     }
 
-    public LocalTime getTimeEnd() {
-        return timeEnd;
+    public LocalTime getTimeStartEvent() {
+        return timeStartEvent;
     }
 
-    public LocalTime getTimeStart() {
-        return timeStart;
-    }
-
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = LocalTime.parse(timeEnd);
-    }
 
     public int getMaxMember() {
         return maxMember;
@@ -156,8 +243,8 @@ public class Event {
         this.countMember++;
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getStatusEvent() {
+        return statusEvent;
     }
 
     public void setImage(Image image) {
@@ -172,20 +259,42 @@ public class Event {
         return eventId;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "eventId=" + eventId +
-                ", name='" + name + '\'' +
-                ", detail='" + detail + '\'' +
-                ", countMember=" + countMember +
-                ", maxMember=" + maxMember +
-                ", image=" + image +
-                ", dateStart=" + dateStart +
-                ", dateEnd=" + dateEnd +
-                ", timeStart=" + timeStart +
-                ", timeEnd=" + timeEnd +
-                ", status=" + status +
-                '}';
+    public LocalDate getOpenDateStart() {
+        return openDateStart;
     }
+
+    public LocalDate getOpenDateEnd() {
+        return openDateEnd;
+    }
+
+    public LocalTime getOpenTimeStart() {
+        return openTimeStart;
+    }
+
+    public LocalTime getOpenTimeEnd() {
+        return openTimeEnd;
+    }
+
+    public boolean getStatusJoin() {
+        return statusJoin;
+    }
+
+
+    public void setOpenDateStart(LocalDate openDateStart) {
+        this.openDateStart = openDateStart;
+    }
+
+    public void setOpenDateEnd(LocalDate openDateEnd) {
+        this.openDateEnd = openDateEnd;
+    }
+
+    public void setOpenTimeStart(LocalTime openTimeStart) {
+        this.openTimeStart = openTimeStart;
+    }
+
+    public void setOpenTimeEnd(LocalTime openTimeEnd) {
+        this.openTimeEnd = openTimeEnd;
+    }
+
+
 }

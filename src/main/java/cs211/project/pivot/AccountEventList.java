@@ -9,67 +9,66 @@ public class AccountEventList {
         list = new ArrayList<>();
     }
 
-    public void addNew(int acc_id, int ev_id){
-        list.add(new AccountEvent(acc_id,ev_id));
+    public void addNew(int accId, int evId){
+        list.add(new AccountEvent(accId,evId));
     }
-    public void addNew(int acc_id, int ev_id, String status){
-        list.add(new AccountEvent(acc_id, ev_id, status));
+    public void addNew(int accId, int evId, String status){
+        list.add(new AccountEvent(accId, evId, status));
     }
 
-    public ArrayList<Integer> findEventsByAccount(int acc_id){
+    public ArrayList<Integer> findEventsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
-            if(accountEvent.isAccountId(acc_id) && accountEvent.getStatus().equals("NotBan")){
-                result.add(accountEvent.getEvent_id());
+            if(accountEvent.isAccountId(accId) && accountEvent.getStatus().equals("NotBan")){
+                result.add(accountEvent.getEventId());
             }
         }
         return result;
     }
-    public ArrayList<Integer> findAccountsByEvent(int ev_id){
+    public String findStatusByEventId(int eventId, int accId){
+        for (AccountEvent accountEvent : list){
+            if (accountEvent.isEventId(eventId) && accountEvent.isAccountId(accId)) {
+                return accountEvent.getStatus();
+            }
+        }
+        return null;
+    }
+    public ArrayList<Integer> findAllEventsByAccount(int accId){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
-            if(accountEvent.isEventId(ev_id) && accountEvent.getStatus().equals("NotBan")){
-                result.add(accountEvent.getAccount_id());
+            if(accountEvent.isAccountId(accId)){
+                result.add(accountEvent.getEventId());
             }
         }
         return result;
     }
-    public ArrayList<Integer> findAllEventsByAccount(int acc_id){
+    public ArrayList<Integer> findAllAccountsByEvent(int evId){
         ArrayList<Integer> result = new ArrayList<>();
         for(AccountEvent accountEvent: list){
-            if(accountEvent.isAccountId(acc_id)){
-                result.add(accountEvent.getEvent_id());
+            if(accountEvent.isEventId(evId)){
+                result.add(accountEvent.getAccountId());
             }
         }
         return result;
     }
-    public ArrayList<Integer> findAllAccountsByEvent(int ev_id){
-        ArrayList<Integer> result = new ArrayList<>();
+    public AccountEvent findAccountInEvent(int accId, int evId){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.isEventId(ev_id)){
-                result.add(accountEvent.getAccount_id());
-            }
-        }
-        return result;
-    }
-    public AccountEvent findAccountInEvent(int acc_id, int ev_id){
-        for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == accId && accountEvent.getEventId() == evId){
                 return accountEvent;
             }
         }
         return null;
     }
-    public void ban(int acc_id, int ev_id){
+    public void ban(int accId, int evId){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == accId && accountEvent.getEventId() == evId){
                 accountEvent.setStatus("Ban");
             }
         }
     }
-    public void unBan(int acc_id, int ev_id){
+    public void unBan(int accId, int evId){
         for(AccountEvent accountEvent: list){
-            if(accountEvent.getAccount_id() == acc_id && accountEvent.getEvent_id() == ev_id){
+            if(accountEvent.getAccountId() == accId && accountEvent.getEventId() == evId){
                 accountEvent.setStatus("NotBan");
             }
         }

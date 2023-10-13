@@ -5,17 +5,12 @@ import cs211.project.pivot.AccountEvent;
 import cs211.project.pivot.AccountEventList;
 import cs211.project.repository.AccountEventRepository;
 import cs211.project.repository.AccountRepository;
-import cs211.project.repository.EventRepository;
-import cs211.project.services.Datasource;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -37,6 +32,7 @@ public class EditUserController implements Initializable {
     private VBox vbox2;
     @FXML
     private VBox vbox3;
+    @FXML Label errorLabel;
     private User selectUser;
     private VBox selectBox;
     private User user;
@@ -46,7 +42,7 @@ public class EditUserController implements Initializable {
     private AccountRepository accountRepository;
     private AccountEventRepository accountEventRepository;
     private AccountEvent accountEvent;
-    private AccountEventList list_join;
+    private AccountEventList listJoin;
     private ArrayList<Integer> listId;
 
     @Override
@@ -54,13 +50,15 @@ public class EditUserController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         event = (Event) NPBPRouter.getDataEvent();
 
+        errorLabel.setVisible(false);
+
         accountRepository = new AccountRepository();
         accountEventRepository = new AccountEventRepository();
 
         accountList = accountRepository.getAccounts();
-        list_join = accountEventRepository.getList_join();
+        listJoin = accountEventRepository.getListJoin();
         listId = new ArrayList<>();
-        listId.addAll(list_join.findAllAccountsByEvent(event.getEventId()));
+        listId.addAll(listJoin.findAllAccountsByEvent(event.getEventId()));
         int count=0;
 
         for(Integer id : listId){
@@ -87,15 +85,15 @@ public class EditUserController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        UserCardController userCardController = (UserCardController) fxmlLoader.getController();;
+        UserCardController userCardController = (UserCardController) fxmlLoader.getController();
         Label usernameLabel = userCardController.getUsernameLabel();
         Label statusLabel = userCardController.getStatusLabel();
         Circle img = userCardController.getImgCircle();
-        accountEvent = list_join.findAccountInEvent(id, event.getEventId());
+        accountEvent = listJoin.findAccountInEvent(id, event.getEventId());
 
         usernameLabel.setText(accountList.findUserByAccountId(id).getName());
         statusLabel.setText(accountEvent.getStatus());
-        img.setFill(new ImagePattern(new Image("file:" + accountList.findUserByAccountId(id).getImage())));
+        img.setFill(new ImagePattern(new Image("file:" + accountList.findUserByAccountId(id).getImagePath())));
 
         VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
@@ -105,25 +103,44 @@ public class EditUserController implements Initializable {
         return vbox;
     }
     public void banButton(){
-        list_join.ban(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(list_join);
-        accountEvent = list_join.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
-        refresh(accountEvent);
+        try {
+            listJoin.ban(selectUser.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(listJoin);
+            accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+            refresh(accountEvent);
+        }catch (Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Please choose some account");
+        }
+
     }
     public void unBanButton(){
-        list_join.unBan(selectUser.getAccountId(), event.getEventId());
-        accountEventRepository.saveEventJoin(list_join);
-        accountEvent = list_join.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
-        refresh(accountEvent);
+        try {
+            listJoin.unBan(selectUser.getAccountId(), event.getEventId());
+            accountEventRepository.saveEventJoin(listJoin);
+            accountEvent = listJoin.findAccountInEvent(selectUser.getAccountId(), event.getEventId());
+            refresh(accountEvent);
+        }catch (Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Please choose some account");
+        }
+
     }
     public void refresh(AccountEvent accountEvent) {
-        Circle circle = (Circle) selectBox.getChildren().get(1);
         Label username = (Label) selectBox.getChildren().get(3);
         Label status = (Label) selectBox.getChildren().get(4);
+        errorLabel.setVisible(false);
 
-        circle.setFill(new ImagePattern(new Image("file:" + user.getImage())));
         username.setText(selectUser.getName());
         status.setText(accountEvent.getStatus());
         selectBox.setFocusTraversable(true);
+    }
+
+    public void backToMyCreateEvent(){
+        try {
+            NPBPRouter.loadPage("my-create-event",page,user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

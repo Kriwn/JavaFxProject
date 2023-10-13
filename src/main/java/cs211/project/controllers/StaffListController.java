@@ -1,16 +1,18 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Staff;
-import cs211.project.models.StaffList;
-import cs211.project.services.Datasource;
+import cs211.project.models.*;
+import cs211.project.pivot.TeamAccount;
+import cs211.project.pivot.TeamAccountList;
+import cs211.project.repository.AccountRepository;
+import cs211.project.repository.TeamAccountRepository;
+import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
-import cs211.project.services.StaffDatasource;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -19,43 +21,73 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.ResourceBundle;
 
-public class StaffListController {
-    private ArrayList<Staff> staffs;
-    private StaffList staffList;
-    private Datasource<StaffList> datasource;
+public class StaffListController implements  Initializable{
+    @FXML private VBox vbox1;
+    @FXML private VBox vbox2;
+    @FXML private VBox vbox3;
+    @FXML private AnchorPane page;
     @FXML
-    private VBox vbox1;
+    private Button banButton;
+
     @FXML
-    private VBox vbox2;
+    private Button demoteButton;
+
     @FXML
-    private VBox vbox3;
-    private Staff selectStaff;
+    private Button promoteButton;
+
+    @FXML
+    private Button unbanButton;
+    private User user;
+    private Team team;
+    private TeamRepository teamRepository;
+    private AccountRepository accountRepository;
+    private Account account;
+    private AccountList accountList;
+    private TeamAccount teamAccount;
+    private TeamAccountList teamAccountList;
+    private TeamAccountRepository teamAccountRepository;
+    private ArrayList<Integer> listId;
+    private TeamList teamList;
+    private Account selectStaff;
     private VBox selectBox;
-    @FXML
-    AnchorPane page;
 
-    public void initialize(){
-        datasource = new StaffDatasource("staffs", "staffs.csv");
-        staffList = datasource.readData();
-        staffs = staffList.getStaffs();
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        user = (User) NPBPRouter.getDataAccount();
+        int set = NPBPRouter.getData();
+        if(set==0){
+            promoteButton.setVisible(false);
+            demoteButton.setVisible(false);
+            banButton.setVisible(false);
+            unbanButton.setVisible(false);
+        }
+
+        int teamId = (int) NPBPRouter.getDataTeam();
+        accountRepository = new AccountRepository();
+        accountList = accountRepository.getAccounts();
+
+        teamRepository = new TeamRepository();
+        teamList = teamRepository.getTeamList();
+        team = teamList.findTeamById(teamId);
+
+        teamAccountRepository = new TeamAccountRepository();
+        teamAccountList = teamAccountRepository.getTeamAccountList();
+        listId = new ArrayList<>();
+        listId.addAll(teamAccountList.findAllAccountsByTeam(teamId));
 
         int count=0;
 
-        for(var staff : staffs){
-            if(count%3==0){vbox1.getChildren().add(createCard(staff));}
-            if(count%3==1){vbox2.getChildren().add(createCard(staff));}
-            if(count%3==2){vbox3.getChildren().add(createCard(staff));}
+        for(Integer id : listId){
+            if(count%3==0){vbox1.getChildren().add(createCard(id));}
+            if(count%3==1){vbox2.getChildren().add(createCard(id));}
+            if(count%3==2){vbox3.getChildren().add(createCard(id));}
             count++;
         }
-
-        page.setBackground(new Background(new BackgroundImage(new Image("file:"+"src/main/resources/cs211/project/Images/Palm.png"),BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, new BackgroundPosition(null,200,true,null,200,true),new BackgroundSize(100,100,true,true,true,true))));
     }
 
-    public VBox createCard(Staff staff) {
+    public VBox createCard(int id) {
         File file = new File("src/main/resources/cs211/project/views/staff-card.fxml");
         URL url = null;
         try {
@@ -76,139 +108,63 @@ public class StaffListController {
         Label usernameLabel = staffController.getUsernameLabel();
         Label statusLabel = staffController.getStatusLabel();
         Label roleLabel = staffController.getRoleLabel();
-        Circle img = staffController.getImgCircle();
+        Circle circle = staffController.getImgCircle();
 
-        usernameLabel.setText(staff.getUsername());
-        roleLabel.setText(staff.getRole());
-        statusLabel.setText(staff.getStatus());
-        img.setFill(new ImagePattern(new Image("file:" + staff.getImagePath())));
+        account = accountList.findUserByAccountId(id);
+        teamAccount = teamAccountList.findAccountInTeam(id, team.getTeamId());
+        usernameLabel.setText(account.getUsername());
+        roleLabel.setText(teamAccount.getRole());
+        statusLabel.setText(teamAccount.getStatus());
+        circle.setFill(new ImagePattern(new Image("file:" + account.getImagePath())));
 
         VBox finalVbox = vbox;
         vbox.setOnMouseClicked(event -> {
-            selectStaff = staff;
+            selectStaff = (User)accountList.findUserByAccountId(id);
             selectBox = finalVbox;
-            System.out.println("Selected Staff: " + selectStaff.getUsername()); // for debugging
         });
 
-//        vbox.setOnDragOver(event -> handleDragOver(event));
-//        vbox.setOnDragDropped(event -> handleDrop(event, staff));
         return vbox;
     }
 
-//    public void handleDragOver(DragEvent event){
-//        if(event.getDragboard().hasFiles()){
-//            event.acceptTransferModes(TransferMode.ANY);
-//        }
-//        event.consume();
-//    }
-//
-//    public void handleDrop(DragEvent event, Staff staff) {
-//        List<File> files = event.getDragboard().getFiles();
-//        Image img = new Image("file:" + files.get(0).getAbsolutePath());
-//        System.out.println("ImagePath : " + files.get(0).getAbsolutePath());
-//
-//        Circle circle = staff.getImg();
-//        circle.setFill(new ImagePattern(img));
-//        staff.setImg(circle);
-//        String path = writeFile(files.get(0), staff);
-//        staff.setImagePath(path);
-//        datasource.writeData(staffList);
-//        refresh();
-//    }
-//
-//    public String writeFile(File file, Staff staff) {
-//        File dir = new File("src/main/resources/cs211/project/Images");
-//
-//        String locate = dir.getParent();
-//        File f = new File(locate +"/Images");
-//        if (!f.exists()) {f.mkdirs();}
-//
-//        Path from = Paths.get(file.toURI());
-//
-//        String name = file.getName();
-//        String separator = name.substring(name.lastIndexOf('.'), name.length());
-//        String fileName = staff.getUsername();
-//
-//        if (!separator.equals(".jpg") || !separator.equals(".png") || !separator.equals(".gif")){
-//            return staff.getImagePath();
-//        }
-//
-//        Path to = Paths.get(locate+"/Images/"+fileName+separator);
-//        CopyOption[] options = new CopyOption[]{
-//                StandardCopyOption.REPLACE_EXISTING,
-//                StandardCopyOption.COPY_ATTRIBUTES
-//        };
-//        try {
-//            Files.copy(from,to, options);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return to.toString();
-//    }
-
     public void promote(){
-        Staff staff = staffList.findStaffByUsername(selectStaff.getUsername());
-        staff.setRole("Head");
-        datasource.writeData(staffList);
-        refresh();
+        teamAccountList.promote(selectStaff.getAccountId(),team.getTeamId());
+        teamAccountRepository.save(teamAccountList);
+        teamAccount = teamAccountList.findAccountInTeam(selectStaff.getAccountId(),team.getTeamId());
+        refresh(teamAccount);
     }
     public void demote(){
-        Staff staff = staffList.findStaffByUsername(selectStaff.getUsername());
-        staff.setRole("Member");
-        datasource.writeData(staffList);
-        refresh();
+        teamAccountList.demote(selectStaff.getAccountId(),team.getTeamId());
+        teamAccountRepository.save(teamAccountList);
+        teamAccount = teamAccountList.findAccountInTeam(selectStaff.getAccountId(),team.getTeamId());
+        refresh(teamAccount);
     }
     public void ban(){
-        Staff staff = staffList.findStaffByUsername(selectStaff.getUsername());
-        staff.setStatus("Ban");
-        datasource.writeData(staffList);
-        refresh();
+        teamAccountList.ban(selectStaff.getAccountId(),team.getTeamId());
+        teamAccountRepository.save(teamAccountList);
+        teamAccount = teamAccountList.findAccountInTeam(selectStaff.getAccountId(),team.getTeamId());
+        refresh(teamAccount);
     }
     public void unBan(){
-        Staff staff = staffList.findStaffByUsername(selectStaff.getUsername());
-        staff.setStatus("Normal");
-        datasource.writeData(staffList);
-        refresh();
+        teamAccountList.unBan(selectStaff.getAccountId(),team.getTeamId());
+        teamAccountRepository.save(teamAccountList);
+        teamAccount = teamAccountList.findAccountInTeam(selectStaff.getAccountId(),team.getTeamId());
+        refresh(teamAccount);
     }
 
-    public void refresh() {
-        Circle circle = (Circle) selectBox.getChildren().get(1);
+    public void refresh(TeamAccount teamAccount) {
         Label username = (Label) selectBox.getChildren().get(3);
         Label role = (Label) selectBox.getChildren().get(4);
         Label status = (Label) selectBox.getChildren().get(5);
 
-        circle.setFill(selectStaff.getImg().getFill());
         username.setText(selectStaff.getUsername());
-        status.setText(selectStaff.getStatus());
-        role.setText(selectStaff.getRole());
-
-//        username.setText(selectStaff.getUsername());
-//        status.setText(selectStaff.getStatus());
-//        role.setText(selectStaff.getRole());
-//        img.setFill(selectStaff.getImg().getFill());
-//        vbox1.getChildren().clear();
-//        vbox2.getChildren().clear();
-//        vbox3.getChildren().clear();
-//
-//        staffList = datasource.readData();
-//        staffs = staffList.getStaffs();
-//
-//        int count = 0;
-//        for (var staff : staffs) {
-//            if (count % 3 == 0) {
-//                vbox1.getChildren().add(createCard(staff));
-//            } else if (count % 3 == 1) {
-//                vbox2.getChildren().add(createCard(staff));
-//            } else if (count % 3 == 2) {
-//                vbox3.getChildren().add(createCard(staff));
-//            }
-//            count++;
-//        }
+        role.setText(teamAccount.getRole());
+        status.setText(teamAccount.getStatus());
+        selectBox.setFocusTraversable(true);
     }
 
-    public void backToMyCreateEvent(){
+    public void backToTeamDetail(){
         try {
-            NPBPRouter.loadPage("my-create-event",page);
+            NPBPRouter.loadPage("team-detail",page,user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

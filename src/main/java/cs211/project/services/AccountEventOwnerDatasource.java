@@ -5,8 +5,6 @@ import cs211.project.pivot.AccountEventList;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AccountEventOwnerDatasource implements Datasource<AccountEventList> {
 
@@ -99,7 +97,7 @@ public class AccountEventOwnerDatasource implements Datasource<AccountEventList>
         try {
             // สร้าง csv ของ user และเขียนลงในไฟล์ทีละบรรทัด
             for (AccountEvent accountEvent : data.getList()) {
-                String line = accountEvent.getAccount_id() + "," + accountEvent.getEvent_id();
+                String line = accountEvent.getAccountId() + "," + accountEvent.getEventId();
                 buffer.append(line);
                 buffer.append("\n");
             }

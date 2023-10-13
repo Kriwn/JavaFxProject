@@ -4,8 +4,7 @@ import cs211.project.models.Event;
 import cs211.project.models.EventList;
 import cs211.project.models.User;
 import cs211.project.pivot.AccountEventList;
-import cs211.project.repository.AccountEventRepository;
-import cs211.project.repository.EventRepository;
+import cs211.project.repository.*;
 import cs211.project.services.NPBPAnimation;
 import cs211.project.services.NPBPRouter;
 import javafx.animation.FadeTransition;
@@ -16,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -35,10 +33,6 @@ import java.util.ResourceBundle;
 public class ShowMyEventController implements Initializable {
     @FXML
     private AnchorPane page;
-
-    @FXML
-    private ScrollPane scrollPane;
-
     @FXML
     private TextField searchTextField;
 
@@ -50,7 +44,9 @@ public class ShowMyEventController implements Initializable {
     private EventRepository eventRepository;
     private AccountEventRepository accountEventRepository;
     private EventList eventList;
-    private ArrayList<Event> events;
+    private EventTeamRepository eventTeamRepository;
+    private TeamAccountRepository accountTeamRepository;
+
     private int LOAD = 250;
 
     @Override
@@ -58,15 +54,31 @@ public class ShowMyEventController implements Initializable {
         user = (User) NPBPRouter.getDataAccount();
         eventRepository = new EventRepository();
         eventList = eventRepository.getEvents();
-        events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_join = accountEventRepository.getList_join();
+        AccountEventList list_join = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_join.findEventsByAccount(user.getAccountId()));
+        listId.addAll(list_join.findAllEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventJoin = new ArrayList<>();
         for (var i : listId){
             eventJoin.add(eventList.findEventById(i));
         }
+
+        eventTeamRepository = new EventTeamRepository();
+        ArrayList<Integer> eventId = eventTeamRepository.getEventTeamList().getListEventId();
+        accountTeamRepository = new TeamAccountRepository();
+        ArrayList<Integer> teamIdUser = accountTeamRepository.getTeamAccountList().findAllTeamsByAccount(user.getAccountId());
+        ArrayList<Integer> eventTeamIdUser = new ArrayList<>();
+        for (var i : teamIdUser) {
+            eventTeamIdUser.add(eventTeamRepository.getEventTeamList().findEventByTeamId(i));
+        }
+        ArrayList<Integer> listEventId = new ArrayList<>();
+        listEventId.addAll(eventTeamRepository.getEventTeamList().checkEventIdInEventId(eventId, eventTeamIdUser));
+        listEventId = eventTeamRepository.getEventTeamList().checkDuplicateEventId(listEventId);
+        for (var i : listEventId){
+            eventJoin.add(eventList.findEventById(i));
+        }
+
+
         showEvent(eventJoin);
         showNameEventListView.setVisible(false);
 
@@ -85,7 +97,7 @@ public class ShowMyEventController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : eventJoin){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        if (i.getStatus()){
+                        if (i.getStatusEvent() && i.getStatusJoin()){
                             observableList.add(i.getName());
                             list.add(eventList.findEventByName(i.getName()));
                         }
@@ -115,7 +127,7 @@ public class ShowMyEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatus() && data.checkMember()) {
+            if(data.getStatusEvent()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

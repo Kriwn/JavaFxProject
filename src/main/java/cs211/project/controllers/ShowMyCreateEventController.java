@@ -16,18 +16,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -39,8 +35,6 @@ public class ShowMyCreateEventController implements Initializable {
     @FXML
     private AnchorPane page;
 
-    @FXML
-    private ScrollPane scrollPane;
 
     @FXML
     private TextField searchTextField;
@@ -63,9 +57,9 @@ public class ShowMyCreateEventController implements Initializable {
         eventList = eventRepository.getEvents();
         events = eventList.getEvents();
         accountEventRepository = new AccountEventRepository();
-        AccountEventList list_create = accountEventRepository.getList_create();
+        AccountEventList listCreate = accountEventRepository.getListCreate();
         ArrayList<Integer> listId = new ArrayList<>();
-        listId.addAll(list_create.findEventsByAccount(user.getAccountId()));
+        listId.addAll(listCreate.findEventsByAccount(user.getAccountId()));
         ArrayList<Event> eventCreate = new ArrayList<>();
         for (var i : listId){
             eventCreate.add(eventList.findEventById(i));
@@ -88,7 +82,7 @@ public class ShowMyCreateEventController implements Initializable {
                 ArrayList<Event> list = new ArrayList<>();
                 for(var i : eventCreate){
                     if(i.getName().toLowerCase().contains(New.toLowerCase())) {
-                        if (i.getStatus()){
+                        if (i.getStatusEvent() && i.getStatusJoin()){
                             observableList.add(i.getName());
                             list.add(eventList.findEventByName(i.getName()));
                         }
@@ -118,7 +112,7 @@ public class ShowMyCreateEventController implements Initializable {
         LOAD = 250;
         eventArrayList.forEach(data -> {
             data.checkTimeEvent();
-            if(data.getStatus() && data.checkMember()) {
+            if(data.getStatusEvent()) {
                 VBox vBox = createCard(data);
                 vbox.getChildren().add(vBox);
                 vBox.setOpacity(0);

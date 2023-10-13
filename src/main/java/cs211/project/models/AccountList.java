@@ -35,26 +35,27 @@ public class AccountList {
         return true;
     }
     /*เพิ่มuser จากการอ่านไฟล์*/
-    public void addNewUserFromFile(String username, String name,String id, String password,String role,String image,String time){
+    public void addNewUserFromFile(String username, String name,String id, String password, String role, String image, String time, String theme){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new User(username,name,id,password,role,image,time));
+                accounts.add(new User(username , name, id, password, role, image, time, theme));
                 this.lastId = Integer.parseInt(id);
             }
         }
     }
-    public void addNewAdminFromFile(String username, String name,String Id, String password, String role, String image, String time){
+    public void addNewAdminFromFile(String username, String name,String id, String password, String role, String image, String time, String theme){
         username = username.trim();
         name = name.trim();
         password = password.trim();
         Account exist = findUserByUsername(username);
         if(!username.equals("") && !name.equals("") && !password.equals("")){
             if(exist == null){
-                accounts.add(new Admin(username,name,Id,password,role,image,time));
+                accounts.add(new Admin(username,name,id,password,role,image,time, theme));
+                this.lastId = Integer.parseInt(id);
             }
         }
     }
@@ -73,9 +74,6 @@ public class AccountList {
             }
         }
     }
-    public void addUser(Account account) {
-        accounts.add((User)account);
-    }
 
     public void changePassword(String username,String newPassword){
         Account exist = findUserByUsername(username);
@@ -85,7 +83,17 @@ public class AccountList {
     public  void changeImage(String username,String path)
     {
         Account exist = findUserByUsername(username);
-        exist.setImage(path);
+        exist.setImagePath(path);
+    }
+    public void changeTheme(int id){
+        Account exist = findUserByAccountId(id);
+        int theme = exist.getAccountTheme();
+        if(theme == 1){
+            exist.setAccountTheme(2);
+        }
+        else{
+            exist.setAccountTheme(1);
+        }
     }
     public boolean login(String username, String password){
         Account account = findUserByUsername(username);

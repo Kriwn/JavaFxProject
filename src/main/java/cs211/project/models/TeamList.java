@@ -1,6 +1,5 @@
 package cs211.project.models;
 
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -21,11 +20,8 @@ public class TeamList {
         countMember = countMember.trim();
 
         if (!name.equals("")) {
-            Team exist = findTeamByName(name);
-            if (exist == null) {
-                teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
-                this.lastId = Integer.parseInt(team_id);
-            }
+            teams.add(new Team(team_id, name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
+            this.lastId = Integer.parseInt(team_id);
         }
     }
 
@@ -37,21 +33,9 @@ public class TeamList {
         closeDate = closeDate.trim();
         closeTime = closeTime.trim();
 
-        Team exist = findTeamByName(name);
         if(!name.equals("")){
-            if(exist == null){
-                teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
-            }
+            teams.add(new Team(""+(++lastId), name, maxMember, openDate, openTime, closeDate, closeTime, countMember));
         }
-    }
-
-    public Team findTeamByName(String name){
-        for(Team team : teams){
-            if(team.isTeamName(name)){
-                return team;
-            }
-        }
-        return null;
     }
 
     public Team findTeamById(int team_id){
@@ -63,6 +47,10 @@ public class TeamList {
         return null;
     }
 
+    public void addCountMember(int teamId){
+        Team exist = findTeamById(teamId);
+        exist.addCountMember();
+    }
     public ArrayList<Team> getTeams() {
         return teams;
     }

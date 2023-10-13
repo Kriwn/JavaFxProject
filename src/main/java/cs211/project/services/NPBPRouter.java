@@ -1,10 +1,10 @@
 package cs211.project.services;
 
+import cs211.project.models.Team;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -98,7 +98,6 @@ public final class NPBPRouter {
        }).getClass().getResource(CSS).toExternalForm());
         window.setScene(scene);
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
-        //window.setScene(new Scene(resource,route.sceneWidth,route.sceneHeight));
         window.setResizable(false);
         window.show();
         routeAnimation(resource);
@@ -136,6 +135,51 @@ public final class NPBPRouter {
         route.dataAccount = data1;
         route.dataEvent = data2;
         route.dataTeam = data3;
+        route.dataActivity = data3;
+        loadNewPage(route, parent);
+    }
+    public static void loadPage(String routeLabel, Parent parent, Object data1,Object data2,Object data3, Object data4) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        route.dataActivity = data4;
+        loadNewPage(route, parent);
+    }
+
+    public static void loadPageSet(String routeLabel, Parent parent, Object data1,Object data2,Object data3, int data) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        route.data = data;
+        loadNewPage(route, parent);
+    }
+
+
+
+    public static void loadPage(String routeLabel, Parent parent, Object data1, Object data2, Team data3) throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataTeam = data3;
+        loadNewPage(route, parent);
+    }
+
+    public static void loadPageEditTeam(String routeLabel, Parent parent, Object data1, Object data2, Object data3, Object data4)throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataTeam = data2;
+        route.dataActivity = data3;
+        route.dataEvent = data4;
+        loadNewPage(route, parent);
+    }
+
+    public static void loadPageEditEvent(String routeLabel, Parent parent, Object data1, Object data2, Object data3)throws IOException{
+        RouteScene route = (RouteScene)routes.get(routeLabel);
+        route.dataAccount = data1;
+        route.dataEvent = data2;
+        route.dataActivity = data3;
         loadNewPage(route, parent);
     }
     public static void goTo(String routeLabel) throws IOException {
@@ -179,6 +223,14 @@ public final class NPBPRouter {
         return current.dataTeam;
     }
 
+    public  static Object getDataActivity(){
+        return current.dataActivity;
+    }
+    public  static int getData(){
+        return current.data;
+    }
+
+
 
     public static class RouteScene{
         private String scenePath;
@@ -188,7 +240,8 @@ public final class NPBPRouter {
         private Object dataAccount;
         private Object dataEvent;
         private Object dataTeam;
-        private Object data4;
+        private Object dataActivity;
+        private int data;
         private int css_select;
         private RouteScene(String scenePath) {
             this(scenePath, getWindowTitle(), getWindowWidth(), getWindowHeight());

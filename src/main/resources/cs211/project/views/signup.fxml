@@ -20,7 +20,7 @@
          </font>
       </Label>
       <Button layoutX="23.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#clickBack" styleClass="app-logInButton" text="Back" />
-      <Label fx:id="errorLabel" layoutX="242.0" layoutY="505.0" text="Label" textFill="RED" />
+      <Label fx:id="errorLabel" layoutX="179.0" layoutY="493.0" text="Label" textFill="RED" />
       <MFXTextField id="customField" fx:id="userNameField" floatMode="BORDER" floatingText="Username" layoutX="131.0" layoutY="258.0" prefHeight="38.0" prefWidth="250.0" />
       <MFXTextField id="customField" fx:id="nameField" floatMode="BORDER" floatingText="Name" layoutX="131.0" layoutY="317.0" prefHeight="38.0" prefWidth="250.0" />
       <MFXPasswordField id="customPassword" fx:id="passwordField" floatMode="BORDER" floatingText="Password" layoutX="131.0" layoutY="380.0" prefHeight="30.0" prefWidth="250.0" />

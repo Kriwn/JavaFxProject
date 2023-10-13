@@ -1,12 +1,12 @@
 package cs211.project.controllers;
 
-import cs211.project.models.Chat;
-import cs211.project.models.ChatText;
-import cs211.project.services.ChatDatasource;
-import cs211.project.services.Datasource;
+import cs211.project.models.*;
+import cs211.project.pivot.TeamChatList;
+import cs211.project.repository.*;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -21,27 +21,59 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ChatController {
+public class ChatController implements Initializable {
     @FXML private AnchorPane page;
     @FXML private ScrollPane scrollPane;
     @FXML private VBox vbox;
     @FXML private TextField textField;
+
+    private User user;
+    private Event event;
+    private Team team;
+    private ArrayList<Integer> listId;
+    private AccountRepository accountRepository;
+    private Account account;
+    private AccountList accountList;
+    private ChatRepository chatRepository;
     private Chat chat;
-    private ArrayList<ChatText> texts;
-    private Datasource<Chat> datasource;
+    private ChatText chatText;
+    private TeamChatRepository teamChatRepository;
+    private TeamChatList teamChatList;
+    private TeamRepository teamRepository;
+    private TeamList teamList;
 
-    public void initialize(){
+    public void initialize(URL url, ResourceBundle resourceBundle){
         scrollPane.setVvalue(1.0);
-        datasource = new ChatDatasource("chat", "chat.csv");
-        chat = datasource.readData();
-        texts = chat.getChat();
-        datasource.writeData(chat);
 
-        for(var text : texts){
-            vbox.getChildren().add(createCard(text));
+        user = (User) NPBPRouter.getDataAccount();
+        int accId = user.getAccountId();
+        accountRepository = new AccountRepository();
+        accountList = accountRepository.getAccounts();
+        account = accountList.findUserByAccountId(accId);
+
+        event = (Event) NPBPRouter.getDataEvent();
+
+        teamRepository = new TeamRepository();
+        teamList = teamRepository.getTeamList();
+        int teamId = (int) NPBPRouter.getDataTeam();
+        team = teamList.findTeamById(teamId);
+
+        chatRepository = new ChatRepository();
+        chat = chatRepository.getChat();
+
+        teamChatRepository = new TeamChatRepository();
+        teamChatList = teamChatRepository.getTeamChatList();
+
+        listId = new ArrayList<>();
+        listId.addAll(teamChatList.findChatByTeamId(teamId));
+
+        for(Integer id : listId){
+            vbox.getChildren().add(createCard(id));
         }
 
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event ->{
@@ -51,7 +83,7 @@ public class ChatController {
         });
     }
 
-    public HBox createCard(ChatText text){
+    public HBox createCard(int id){
         File file = new File("src/main/resources/cs211/project/views/chat-text.fxml");
         URL url = null;
         try {
@@ -70,40 +102,54 @@ public class ChatController {
 
         ChatTextController chatTextController = (ChatTextController) fxmlLoader.getController();
         Label usernameLabel = chatTextController.getUsernameLabel();
-        Label dateTimeLabel = chatTextController.getDateTimeLabel();
+        Label dateLabel = chatTextController.getDateLabel();
+        Label timeLabel = chatTextController.getTimeLabel();
         Label textLabel = chatTextController.getTextLabel();
 
-        usernameLabel.setText(text.getUsername());
-        dateTimeLabel.setText(text.getTime().toString());
-        textLabel.setText(text.getText());
+        chatText = chat.findTextByChatId(id);
+        usernameLabel.setText(chatText.getUsername());
+        dateLabel.setText(chatText.getDate().toString());
+        timeLabel.setText(chatText.getTime().toString());
+        textLabel.setText(chatText.getText());
 
         return hbox;
     }
 
     public void send(){
         if(textField.getText().equals("")){return;}
+        String time;
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        if(currentTime.getHour() < 10){
+            time = "0" +currentTime.getHour() + ":" + currentTime.getMinute();
+        }
+        else {
+            time = currentTime.getHour() + ":" + currentTime.getMinute();
+        }
+        String text = textField.getText();
+        chat.sendNewText(currentDate.toString(),time, account.getUsername(), text);
 
-        LocalDateTime now = LocalDateTime.now();
-        String time = ""+now.getYear()+"-"+"%02d".formatted(now.getMonthValue())+"-"+"%02d".formatted(now.getDayOfMonth())+"T"+"%02d".formatted(now.getHour())+":"+ "%02d".formatted(now.getMinute())+":"+"%02d".formatted(now.getSecond());
-        ChatText text = new ChatText(LocalDateTime.parse(time),"USER",textField.getText());
-        HBox hbox = createCard(text);
+
+        chatRepository.save(chat);
+
+        HBox hbox = createCard(chat.getLastId());
         vbox.getChildren().add(hbox);
 
-        texts.add(text);
-        datasource.writeData(chat);
+        teamChatList.addNew(team.getTeamId(),chat.getLastId());
+        teamChatRepository.save(teamChatList);
 
         textField.clear();
 
         try {
-            NPBPRouter.loadPage("chat",page);
+            NPBPRouter.loadPage("chat",page,user,event,team.getTeamId());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void backToMyCreateEvent(){
+    public void backToTeamDetail(){
         try {
-            NPBPRouter.loadPage("my-create-event",page);
+            NPBPRouter.loadPage("team-detail",page);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

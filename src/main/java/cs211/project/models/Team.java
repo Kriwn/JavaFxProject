@@ -1,10 +1,11 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Team {
-    private int team_id;
+    private int teamId;
     private String teamName;
     private int countMember;
     private int maxMember;
@@ -12,9 +13,10 @@ public class Team {
     private LocalTime openTime;
     private LocalDate closeDate;
     private LocalTime closeTime;
+    private Boolean timeCheck;
 
-    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime){
-        this.team_id = Integer.parseInt(team_id);
+    public Team(String teamId, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime){
+        this.teamId = Integer.parseInt(teamId);
         this.teamName = name;
         this.maxMember = Integer.parseInt(maxMember);
         this.openDate = LocalDate.parse(openDate);
@@ -24,8 +26,8 @@ public class Team {
         this.countMember = 0;
     }
     
-    public Team(String team_id, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, String countMember){
-        this.team_id = Integer.parseInt(team_id);
+    public Team(String teamId, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime, String countMember){
+        this.teamId = Integer.parseInt(teamId);
         this.teamName = name;
         this.maxMember = Integer.parseInt(maxMember);
         this.openDate = LocalDate.parse(openDate);
@@ -35,7 +37,7 @@ public class Team {
         this.countMember = Integer.parseInt(countMember);
     }
 
-    public int getTeamId() {return team_id;}
+    public int getTeamId() {return teamId;}
 
     public String getTeamName() {return teamName;}
 
@@ -57,10 +59,31 @@ public class Team {
     }
 
     public boolean isTeamId(int team_id){
-        return this.team_id == team_id;
+        return this.teamId == team_id;
     }
 
     public void addCountMember(){
         countMember++;
+    }
+
+    public boolean checkMember(){
+        if (countMember < maxMember){
+            return true;
+        }
+        return false;
+    }
+
+    public void checkTime(){
+        LocalDateTime localDateTimeEnd =LocalDateTime.of(closeDate,closeTime);
+        if(localDateTimeEnd.isAfter(LocalDateTime.now())){
+            timeCheck = true;
+        }
+        else {
+            timeCheck = false;
+        }
+    }
+
+    public Boolean getTimeCheck() {
+        return timeCheck;
     }
 }

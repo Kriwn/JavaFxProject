@@ -1,14 +1,14 @@
 package cs211.project.controllers;
 
 import cs211.project.models.*;
-import cs211.project.repository.AccountRepository;
-import cs211.project.repository.EventRepository;
+import cs211.project.pivot.EventTeamList;
+import cs211.project.repository.EventTeamRepository;
 import cs211.project.repository.TeamRepository;
 import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,33 +18,42 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class TeamListController {
-    @FXML private ScrollPane scrollPane;
-    @FXML private VBox vBox;
+public class TeamListController implements Initializable {
+    @FXML private VBox vbox;
     @FXML private AnchorPane page;
-    private Team selectedTeam;
     private TeamRepository teamRepository;
-    private EventRepository eventRepository;
-    private AccountRepository accountRepository;
+    private EventTeamRepository eventTeamRepository;
     private User user;
     private Event event;
+    private Team team;
     private TeamList teamlist;
-    private ArrayList<Team> teams;
+    private ArrayList<Integer> listId;
+    private EventTeamList eventTeamList;
 
-    public void initialize(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
         user = (User) NPBPRouter.getDataAccount();
         event = (Event) NPBPRouter.getDataEvent();
-        eventRepository = new EventRepository();
-        accountRepository = new AccountRepository();
+        team = (Team) NPBPRouter.getDataTeam();
+
         teamRepository = new TeamRepository();
+        eventTeamRepository = new EventTeamRepository();
+
         teamlist = teamRepository.getTeamList();
-        teams = teamlist.getTeams();
+        eventTeamList = eventTeamRepository.getEventTeamList();
+        listId = new ArrayList<>();
+
+        listId.addAll(eventTeamList.findTeamByEventId(event.getEventId()));
 
 
+        for(Integer id : listId){
+            vbox.getChildren().add(createCard(id));
+        }
     }
 
-    public HBox createCard(Team team){
+    public HBox createCard(int id){
         File file = new File("src/main/resources/cs211/project/views/team-card.fxml");
         URL url = null;
         try {
@@ -66,9 +75,17 @@ public class TeamListController {
         Label countMemberLabel = teamCardController.getCountMemberLabel();
         Label maxMemberLabel = teamCardController.getMaxMemberLabel();
 
-        teamNameLabel.setText(team.getTeamName());
-        countMemberLabel.setText(""+team.getCountMember());
-        maxMemberLabel.setText(""+team.getMaxMember());
+        teamNameLabel.setText(teamlist.findTeamById(id).getTeamName());
+        countMemberLabel.setText(""+teamlist.findTeamById(id).getCountMember());
+        maxMemberLabel.setText(""+teamlist.findTeamById(id).getMaxMember());
+
+        hbox.setOnMouseClicked(click ->{
+            try {
+                NPBPRouter.loadPageSet("team-detail",page,user,event.getEventId(),teamlist.findTeamById(id),1);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         return hbox;
     }
@@ -83,7 +100,7 @@ public class TeamListController {
 
     public void createTeamButton(){
         try {
-            NPBPRouter.loadPage("create-staff-team",page);
+            NPBPRouter.loadPage("create-staff-team",page,user,event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

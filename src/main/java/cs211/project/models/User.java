@@ -12,8 +12,8 @@ public class User extends Account{
         myCreateEvents = new ArrayList<>();
     }
 
-    public User(String username, String name,String Id, String password, String role, String image, String time) {
-        super(username,name,Id,password,role,image,time);
+    public User(String username, String name,String Id, String password, String role, String image, String time, String theme) {
+        super(username, name, Id, password, role, image, time, theme);
         myEvents = new ArrayList<>();
         myCreateEvents = new ArrayList<>();
     }
@@ -27,28 +27,8 @@ public class User extends Account{
             this.myEvents = myEvents;
         }
     }
-
-
-
-    public ArrayList<Integer> getMyEvents(){return myEvents;}
-    public ArrayList<Integer> getMyCreateEvents(){
-        return myCreateEvents;
-    }
-
-    public void addMyCreateEvent(int id) {
-        myCreateEvents.add(id);
-    }
     public void addMyEvent(int id){
         myEvents.add(id);
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "Username = "+
-                getUsername() + ", name = " + getName() + ", password = " + getPassword() + ", image = " +
-                getImage() + ", role = " + getRoleAccount() + ", timeLogin = "+ getTimeLogin() +
-                ", myEvents=" + myEvents +
-                ", myCreateEvents=" + myCreateEvents +
-                '}';
-    }
 }

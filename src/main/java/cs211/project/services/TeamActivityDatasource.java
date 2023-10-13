@@ -1,7 +1,5 @@
 package cs211.project.services;
 
-import cs211.project.pivot.EventActivity;
-import cs211.project.pivot.EventActivityList;
 import cs211.project.pivot.TeamActivity;
 import cs211.project.pivot.TeamActivityList;
 
@@ -90,7 +88,7 @@ public class TeamActivityDatasource implements Datasource<TeamActivityList>{
 
         try {
             for (TeamActivity teamActivity : data.getList()) {
-                String line = teamActivity.getActivity_id()+ "," + teamActivity.getTeam_id();
+                String line = teamActivity.getTeamId()+ "," + teamActivity.getActivityId();
                 buffer.append(line);
                 buffer.append("\n");
             }

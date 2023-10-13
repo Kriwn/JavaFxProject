@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class HistoryController implements Initializable {
@@ -37,7 +36,7 @@ public class HistoryController implements Initializable {
         eventList = eventRepository.getEvents();
         user = (User)NPBPRouter.getDataAccount();
         accountEventRepository = new AccountEventRepository();
-        accountEventList = accountEventRepository.getList_join();
+        accountEventList = accountEventRepository.getListJoin();
         ArrayList<Integer> listId = new ArrayList<>();
         eventNotEnd = new ArrayList<>();
         eventEnd = new ArrayList<>();
@@ -48,7 +47,7 @@ public class HistoryController implements Initializable {
         }
         for(var i : events){
             i.checkTimeEvent();
-            if(i.getStatus()){
+            if(i.getStatusEvent()){
                 eventNotEnd.add(i);
             }
             else{
@@ -59,15 +58,15 @@ public class HistoryController implements Initializable {
         setTable(eventEnd,table2);
     }
     private void setTable(ArrayList<Event> events, MFXTableView<Event> tableView) {
-        MFXTableColumn<Event> nameColumn = new MFXTableColumn<>("Name", false, Comparator.comparing(Event::getName));
-        MFXTableColumn<Event> countMemberColumn = new MFXTableColumn<>("Count member", false, Comparator.comparing(Event::getCountMember));
-        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false, Comparator.comparing(Event::getDateStart));
-        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false, Comparator.comparing(Event::getDateEnd));
+        MFXTableColumn<Event> nameColumn = new MFXTableColumn<>("Name", false);
+        MFXTableColumn<Event> countMemberColumn = new MFXTableColumn<>("Count member", false);
+        MFXTableColumn<Event> dateStartColumn = new MFXTableColumn<>("Date Start", false);
+        MFXTableColumn<Event> dateEndColumn = new MFXTableColumn<>("Date End", false);
 
         nameColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getName));
         countMemberColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getCountMember));
-        dateStartColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateStart));
-        dateEndColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateEnd));
+        dateStartColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateStartEvent));
+        dateEndColumn.setRowCellFactory(event -> new MFXTableRowCell<>(Event::getDateEndEvent));
         tableView.getTableColumns().clear();
         tableView.getTableColumns().addAll(nameColumn, countMemberColumn , dateStartColumn , dateEndColumn);
 

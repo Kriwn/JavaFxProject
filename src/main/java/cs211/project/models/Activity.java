@@ -1,21 +1,21 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Activity {
     private String name;
     private String detail;
-
     private LocalDate dateStart;
     private LocalDate dateEnd;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private boolean status;
+    private String status;
 
     private int id;
 
-    public Activity(String name, String detail,int id,String dateStart,String dateEnd, String timeStart,String timeEnd) {
+    public Activity(String name, String detail,int id,String dateStart,String dateEnd, String timeStart,String timeEnd,String status) {
         this.name = name;
         this.detail = detail;
         this.id = id;
@@ -23,27 +23,35 @@ public class Activity {
         this.dateEnd = LocalDate.parse(dateEnd);
         this.timeStart = LocalTime.parse(timeStart);
         this.timeEnd = LocalTime.parse(timeEnd);
-        this.status = true;
+        this.status = status;
     }
 
-    public boolean checkTimeEvent(){
-        if(dateEnd.isAfter(LocalDate.now())){
-            return true;
+    public void editActivity(String name, String detail, LocalDate dateStart, LocalDate dateEnd, String timeStart, String timeEnd) {
+        this.name = name;
+        this.detail = detail;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.timeStart = LocalTime.parse(timeStart);
+        this.timeEnd = LocalTime.parse(timeEnd);
+    }
+
+    public void checkTimeActivity(){
+        LocalDateTime localDateTime = LocalDateTime.of(dateEnd, timeEnd);
+        if (localDateTime.isAfter(LocalDateTime.now())){
+            status = "available";
         }
         else{
-            return false;
+            status = "Ended";
         }
     }
     public String getName() {
-
         return name;
     }
-    public boolean getStatus(){
+    public String getStatus(){
         return  status;
     }
 
     public void setName(String name) {
-
         this.name = name;
     }
 
@@ -53,42 +61,26 @@ public class Activity {
     public String getDetail() {
         return detail;
     }
-
     public void setDetail(String detail) {
-
         this.detail = detail;
     }
-
-
-
-    public boolean isName(String name){
-        return  this.name.equals(name);
-    }
-
     public boolean isId(int id){
         return  this.id == id;
-    }
-
-
-    public  boolean isDetail(String detail){
-        return  this.detail.equals(detail);
     }
     public LocalDate getDateStart() {
         return dateStart;
     }
-
-
     public LocalDate getDateEnd() {
         return dateEnd;
     }
-
     public LocalTime getTimeEnd() {
         return timeEnd;
     }
-
     public LocalTime getTimeStart() {
         return timeStart;
     }
+
+
     public void setTimeStart(String timeStart) {
         this.timeStart = LocalTime.parse(timeStart);
     }

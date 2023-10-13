@@ -1,5 +1,6 @@
 package cs211.project.pivot;
 
+
 public class EventTeam {
     private int eventId;
     private int teamId;

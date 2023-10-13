@@ -12,13 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 public class HelloApplication extends Application {
-    private int cssstyle = 1;
     @Override
     public void start(Stage stage) throws IOException {
-        NPBPRouter.bind(this, stage, "Hi", 1024, 760);
-        NPBPRouter.setCss("CSS/User/theme-"+cssstyle+".css");
+        int cssStyle = 1;
+        NPBPRouter.bind(this, stage, "NPBP Application", 1024, 760);
+        NPBPRouter.setCss("CSS/theme-"+cssStyle+".css");
         configRoute();
-//        String css = getClass().getResource("css/theme-2.css").toExternalForm();
         NPBPRouter.goTo("app");
     }
 
@@ -31,10 +30,18 @@ public class HelloApplication extends Application {
         NPBPRouter.when("home-page",viewPath + "home-page.fxml");
         NPBPRouter.when("edit-event", viewPath + "edit-event.fxml");
         NPBPRouter.when("my-event",viewPath + "my-event.fxml");
-        NPBPRouter.when("activity", viewPath + "activity.fxml");
-        NPBPRouter.when("create-activity", viewPath + "create-activity.fxml");
-        NPBPRouter.when("edit-activity", viewPath + "edit-activity.fxml");
+
+
+        NPBPRouter.when("event-activity", viewPath + "event-activity.fxml");
+        NPBPRouter.when("team-activity", viewPath + "team-activity.fxml");
+        NPBPRouter.when("create-event-activity", viewPath + "create-event-activity.fxml");
+        NPBPRouter.when("create-team-activity", viewPath + "create-team-activity.fxml");
+        NPBPRouter.when("edit-event-activity", viewPath + "edit-event-activity.fxml");
+        NPBPRouter.when("edit-team-activity", viewPath + "edit-team-activity.fxml");
+
+
         NPBPRouter.when("edit-user",viewPath + "edit-user.fxml");
+        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
         NPBPRouter.when("admin-main",viewPath + "admin-main.fxml");
         NPBPRouter.when("admin-pass",viewPath + "admin-pass.fxml");
         NPBPRouter.when("create-event",viewPath + "create-event.fxml");
@@ -45,9 +52,8 @@ public class HelloApplication extends Application {
         NPBPRouter.when("select-my-create-event",viewPath + "select-my-create-event.fxml");
         NPBPRouter.when("select-team",viewPath + "select-team.fxml");
         NPBPRouter.when("setting",viewPath + "setting.fxml");
-        NPBPRouter.when("admin-sidebar",viewPath + "sidebar-admin.fxml");
         NPBPRouter.when("staff-card", viewPath + "staff-card.fxml");
-        NPBPRouter.when("staff-list", viewPath + "staff-list.fxml");
+        NPBPRouter.when("show-member", viewPath + "show-member.fxml");
         NPBPRouter.when("chat", viewPath + "chat.fxml");
         NPBPRouter.when("chat-text", viewPath + "chat-text.fxml");
         NPBPRouter.when("history", viewPath + "history.fxml");
@@ -56,8 +62,12 @@ public class HelloApplication extends Application {
         NPBPRouter.when("team-card", viewPath + "team-card.fxml");
         NPBPRouter.when("team-detail", viewPath + "team-detail.fxml");
         NPBPRouter.when("team-list", viewPath + "team-list.fxml");
-        NPBPRouter.when("teams-list", viewPath + "teams-list.fxml");
         NPBPRouter.when("teams-chat", viewPath + "teams-chat.fxml");
+        NPBPRouter.when("select-team-to-join",viewPath + "select-team-to-join.fxml");
+        NPBPRouter.when("team-list-user", viewPath+"team-list-user.fxml");
+
+        NPBPRouter.when("creator",viewPath + "creator.fxml");
+        NPBPRouter.when("Introduction", viewPath + "introduction.fxml");
     }
     public static void main(String[] args) {
         launch();
