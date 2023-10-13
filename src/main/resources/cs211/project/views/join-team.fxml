@@ -79,6 +79,7 @@
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
+            <Label fx:id="errorLabel" layoutX="399.0" layoutY="658.0" text="Label" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

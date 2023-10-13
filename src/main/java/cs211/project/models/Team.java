@@ -1,6 +1,7 @@
 package cs211.project.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Team {
@@ -12,6 +13,7 @@ public class Team {
     private LocalTime openTime;
     private LocalDate closeDate;
     private LocalTime closeTime;
+    private Boolean timeCheck;
 
     public Team(String teamId, String name, String maxMember, String openDate, String openTime, String closeDate, String closeTime){
         this.teamId = Integer.parseInt(teamId);
@@ -62,5 +64,26 @@ public class Team {
 
     public void addCountMember(){
         countMember++;
+    }
+
+    public boolean checkMember(){
+        if (countMember < maxMember){
+            return true;
+        }
+        return false;
+    }
+
+    public void checkTime(){
+        LocalDateTime localDateTimeEnd =LocalDateTime.of(closeDate,closeTime);
+        if(localDateTimeEnd.isAfter(LocalDateTime.now())){
+            timeCheck = true;
+        }
+        else {
+            timeCheck = false;
+        }
+    }
+
+    public Boolean getTimeCheck() {
+        return timeCheck;
     }
 }

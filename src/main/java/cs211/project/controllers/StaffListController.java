@@ -76,7 +76,7 @@ public class StaffListController implements  Initializable{
         teamAccountList = teamAccountRepository.getTeamAccountList();
         listId = new ArrayList<>();
         listId.addAll(teamAccountList.findAllAccountsByTeam(teamId));
-        
+
         int count=0;
 
         for(Integer id : listId){

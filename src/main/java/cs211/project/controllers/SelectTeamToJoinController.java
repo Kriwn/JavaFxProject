@@ -72,7 +72,10 @@ public class SelectTeamToJoinController implements Initializable {
         }
 
         for(Team team : teams){
-            vbox.getChildren().add(createCard(team.getTeamId()));//โชว์ team ที่เหลือที่ account นี้ยังไม่ได้เข้าร่วม
+            team.checkTime();//เช็คว่าหมดเวลารับสมัครหรือยัง
+            if(team.getTimeCheck()){//ถ้ายังไม่หมดเวลารับสมัคร
+                vbox.getChildren().add(createCard(team.getTeamId()));//โชว์ team ที่เหลือที่ account นี้ยังไม่ได้เข้าร่วม
+            }
         }
     }
 

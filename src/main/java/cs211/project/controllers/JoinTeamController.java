@@ -23,6 +23,7 @@ public class JoinTeamController implements Initializable {
     @FXML private Label teamNameLabel;
     @FXML private Label timeEndLabel;
     @FXML private Label timeStartLabel;
+    @FXML private Label errorLabel;
     private User user;
     private Team team;
     private TeamRepository teamRepository;
@@ -40,6 +41,7 @@ public class JoinTeamController implements Initializable {
         teamAccountRepository = new TeamAccountRepository();
 
         showDetail(team);
+        errorLabel.setVisible(false);
     }
 
     public void showDetail(Team team){
@@ -53,17 +55,24 @@ public class JoinTeamController implements Initializable {
     }
 
     public void joinTeamButton(){
-        teamlist.addCountMember(team.getTeamId());
-        teamRepository.save(teamlist);
-        teamAccountList = teamAccountRepository.getTeamAccountList();
-        teamAccountList.addNew(user.getAccountId(), team.getTeamId());
-        teamAccountRepository.save(teamAccountList);
+        if(team.checkMember()){
+            teamlist.addCountMember(team.getTeamId());
+            teamRepository.save(teamlist);
+            teamAccountList = teamAccountRepository.getTeamAccountList();
+            teamAccountList.addNew(user.getAccountId(), team.getTeamId());
+            teamAccountRepository.save(teamAccountList);
 
-        try {
-            NPBPRouter.loadPage("home-page",page,user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                NPBPRouter.loadPage("home-page",page,user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        else{
+            errorLabel.setVisible(true);
+            errorLabel.setText("Team is Full!!!");
+        }
+
     }
 
     public void backButton(){
