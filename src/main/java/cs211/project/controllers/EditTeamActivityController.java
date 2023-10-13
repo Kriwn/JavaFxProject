@@ -2,6 +2,7 @@ package cs211.project.controllers;
 
 import cs211.project.models.Activity;
 import cs211.project.models.ActivityList;
+import cs211.project.models.Event;
 import cs211.project.models.User;
 import cs211.project.pivot.TeamActivityList;
 import cs211.project.repository.ActivityRepository;
@@ -10,6 +11,7 @@ import cs211.project.services.NPBPRouter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +43,8 @@ public class EditTeamActivityController implements Initializable {
 
     @FXML
     private  TextField timeEnd;
+    @FXML
+    private Label errorLabel;
 
     private ActivityRepository activityRepository;
 
@@ -53,16 +57,19 @@ public class EditTeamActivityController implements Initializable {
     private  int teamId;
 
     private User user;
+    private int eventId;
 
     private  ActivityTeamEventRepository activityTeamEventRepository;
 
     private  TeamActivityList teamActivityList;
     public void initialize(URL url, ResourceBundle resourceBundle){
+        errorLabel.setVisible(false);
         activityRepository = new ActivityRepository();
         activityList = activityRepository.getActivityList();
         id = (int) NPBPRouter.getDataActivity();
         teamId = (int)NPBPRouter.getDataTeam();
         user = (User)NPBPRouter.getDataAccount();
+        eventId = (int)NPBPRouter.getDataEvent();
         activity = activityList.findActivityById(id);
         activityTeamEventRepository = new ActivityTeamEventRepository();
         teamActivityList = activityTeamEventRepository.getTeamActivity();
@@ -79,15 +86,21 @@ public class EditTeamActivityController implements Initializable {
 
     @FXML
     public  void  changeActivity() {
+        errorLabel.setVisible(false);
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
         String detail = detailTextArea.getText().replace("\n", "|");
         String startTime = timeStart.getText();
         String endTime = timeEnd.getText();
-        activity.editActivity(name, detail, startDate, endDate, startTime, endTime);
-        activityRepository.save(activityList);
-        backToEventActivity();
+        try {
+            activity.editActivity(name, detail, startDate, endDate, startTime, endTime);
+            activityRepository.save(activityList);
+            backToEventActivity();
+        } catch(Exception e){
+            errorLabel.setVisible(true);
+            errorLabel.setText("Wrong Format");
+        }
     }
     public void end() {
         activity.setDateStart(String.valueOf(LocalDate.now()));
@@ -111,7 +124,7 @@ public class EditTeamActivityController implements Initializable {
 
     public void backToEventActivity(){
         try {
-            NPBPRouter.loadPage("team-activity",page,user,teamId);
+            NPBPRouter.loadPage("team-activity",page,user,eventId,teamId);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -77,7 +77,7 @@
             <Font name="Arial" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="22.0" layoutY="466.0" prefHeight="15.0" prefWidth="187.0" styleClass="default-text" text="10.ใน 1 อีเว้นท์ไม่สามารถตั้งชื่อซ้ำกันได้">
+      <Label layoutX="22.0" layoutY="466.0" prefHeight="15.0" prefWidth="197.0" styleClass="default-text" text="10.ใน 1 อีเว้นท์ไม่สามารถตั้งชื่อทีมซ้ำกันได้">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
