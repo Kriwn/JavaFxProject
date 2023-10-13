@@ -6,7 +6,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 
 ---
 > วิธีการติดตั้งหรือรันโปรแกรม
-1. ไม่รู้
+1.  double click ไปที่ NPBP
 
 >  ตัวอย่างข้อมูลผู้ใช้ระบบ
 * Admin:
@@ -45,7 +45,8 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 > ความคืบหน้าครั้งที่ 1 ของแต่ละคน
 
 * 6510450143:
-    *
+    * สร้างหน้า  fxml sidebar admin  setting
+    * เชื่อมหน้าแต่ละหน้าเข้าด้วยกัน
 * 6510450291:
     * สร้างหน้า fxml เกี่ยวกับ Event
     * ทำในส่วนของหน้า Create Event
@@ -58,7 +59,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 > ความคืบหน้าครั้งที่ 2 ของแต่ละคน
 
 * 6510450143:
-    *
+    * สร้าง models Activity  ActivityList
 * 6510450291:
     * สร้าง models ของ Event กับ EventList
     * สร้าง attribute กับ methods ของ models Event กับ EventList
@@ -73,7 +74,10 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 > ความคืบหน้าครั้งที่ 3 ของแต่ละคน
 
 * 6510450143:
-    *
+    *  สร้าง Controller ของหน้าSetting (เปลี่ยนรหัส เปลี่ยนรูป)
+    *  สร้าง ActivityDatasource,TeamActivityDatasource,EventActivityDatasource
+    *  สร้าง pivot EventActivity,EventActivityList,TeamActivity,TeamActivityList
+    *  สร้าง repository  ActivityTeamEventRepository
 * 6510450291:
     * ทำช่อง Search ชื่อ Event
     * ทำระบบเกี่ยวกับการเข้าร่วมอีเว้นท์มีการเช็คเวลาของอีเว้นท์ เช็คจำนวนคน และเช็คว่าผู้ใช้โดนแบนหรือไม่
@@ -93,7 +97,7 @@ https://saacsos.notion.site/Project-CS211-2566-1c8e195c0ebd4071aea8f733692e3989?
 > ความคืบหน้าครั้งที่ 4 ของแต่ละคน
 
 * 6510450143:
-    *
+    * นำActivity ไปเชื่อมกับ Team เเละ Event
 * 6510450291:
     * ส่วนระบบของอีเว้นท์เสร็จสมบูรณ์ ได้มีการแก้ไข deBuq ต่างๆ ทำให้มีการทำงานที่ถูกต้อง แก้ไขเรื่องเวลา การเปิดรับรับสมัครคนเข้าร่วมอีเว้นท์
     * ทำส่วนที่สามารถเข้าร่วม team ได้หลาย team เมื่อเข้าร่วม team แล้วจะไม่สามารถเข้าร่วมอีเว้นท์แบบผู้ใช้ทั่วไปได้ แต่สามารถเข้าร่วมทีมอื่นได้

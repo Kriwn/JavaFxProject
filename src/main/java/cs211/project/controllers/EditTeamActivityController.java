@@ -78,21 +78,16 @@ public class EditTeamActivityController implements Initializable {
     }
 
     @FXML
-    public  void  changeActivity(){
+    public  void  changeActivity() {
         String name = nameTextField.getText();
         LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();
-        String detail = detailTextArea.getText().replace("\n","|");
+        String detail = detailTextArea.getText().replace("\n", "|");
         String startTime = timeStart.getText();
-        String endTime =timeEnd.getText();
-        try {
-            activity.editActivity(name,detail,startDate,endDate,startTime,endTime);
-            activityRepository.save(activityList);
-            backToEventActivity();
-        }
-        catch (Exception e){
-
-        }
+        String endTime = timeEnd.getText();
+        activity.editActivity(name, detail, startDate, endDate, startTime, endTime);
+        activityRepository.save(activityList);
+        backToEventActivity();
     }
     public void end() {
         activity.setDateStart(String.valueOf(LocalDate.now()));
