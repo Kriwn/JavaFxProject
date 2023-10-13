@@ -14,11 +14,4 @@ public class Admin extends Account{
     public void sort(ArrayList<Account> accountArrayList, Comparator<Account> cmp){
         Collections.sort(accountArrayList, cmp);
     }
-    @Override
-    public String toString() {
-        return "Admin{" + "Username = "+
-                getUsername() + ", name = " + getName() + ", password = " + getPassword() + ", image = " +
-                getImagePath() + ", role = " + getRoleAccount() + ", timeLogin = "+ getTimeLogin() +
-                '}';
-    }
 }

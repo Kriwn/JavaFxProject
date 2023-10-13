@@ -134,15 +134,4 @@ public class Account {
         return accountId;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", image='" + imagePath + '\'' +
-                ", roleAccount='" + roleAccount + '\'' +
-                ", timeLogin=" + timeLogin +
-                '}';
-    }
 }

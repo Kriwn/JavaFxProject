@@ -31,13 +31,4 @@ public class User extends Account{
         myEvents.add(id);
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "Username = "+
-                getUsername() + ", name = " + getName() + ", password = " + getPassword() + ", image = " +
-                getImagePath() + ", role = " + getRoleAccount() + ", timeLogin = "+ getTimeLogin() +
-                ", myEvents=" + myEvents +
-                ", myCreateEvents=" + myCreateEvents +
-                '}';
-    }
 }

@@ -43,13 +43,4 @@ public class TeamAccount {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "TeamAccount{" +
-                "account_id=" + accountId +
-                ", team_id=" + teamId +
-                ", status='" + status + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }

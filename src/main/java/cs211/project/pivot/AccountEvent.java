@@ -37,12 +37,5 @@ public class AccountEvent {
         return status;
     }
 
-    @Override
-    public String toString() {
-        return "AccountEvent{" +
-                "account_id=" + accountId +
-                ", event_id=" + eventId +
-                ", status='" + status + '\'' +
-                '}';
-    }
+
 }

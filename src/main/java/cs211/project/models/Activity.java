@@ -80,19 +80,6 @@ public class Activity {
         return timeStart;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "name='" + name + '\'' +
-                ", detail='" + detail + '\'' +
-                ", dateStart=" + dateStart +
-                ", dateEnd=" + dateEnd +
-                ", timeStart=" + timeStart +
-                ", timeEnd=" + timeEnd +
-                ", status='" + status + '\'' +
-                ", id=" + id +
-                '}';
-    }
 
     public void setTimeStart(String timeStart) {
         this.timeStart = LocalTime.parse(timeStart);

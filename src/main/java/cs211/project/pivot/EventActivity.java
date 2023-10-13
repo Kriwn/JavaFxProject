@@ -25,11 +25,5 @@ public class EventActivity {
         return eventId;
     }
 
-    @Override
-    public String toString() {
-        return "{EventActivity" +
-                "activity_id=" + activityId +
-                ", event_id=" + eventId + '\'' +
-                '}';
-    }
+
 }
